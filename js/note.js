@@ -16,9 +16,9 @@ window.addEventListener('load', function () {
         }
     });
 
-    $(".close-sidebar")[0].addEventListener('click', function () {
-        location.hash = cachedHash;
-    });
+    // $(".close-sidebar")[0].addEventListener('click', function () {
+    //     location.hash = cachedHash;
+    // });
 
     $(TOC_HASH)[0].addEventListener('click', function (e) {
         e.stopPropagation();

@@ -49,9 +49,10 @@ $( document ).ready(function() {
     $('#content').prepend(toggleSidebar);
 
     // add close button when sidebar showed in mobile screen
-    var closeBtn = $('<a class="close-sidebar">Close</a>');
+    // var closeBtn = $('<a class="close-sidebar">Close</a>');
     var tocTitle = $('#table-of-contents').find('h2');
-    tocTitle.append(closeBtn);
+    tocTitle[0].innerText = 'Ishmael';
+    // tocTitle.append(closeBtn);
 });
 
 window.SphinxRtdTheme = (function (jquery) {
