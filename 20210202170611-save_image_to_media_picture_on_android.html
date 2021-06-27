@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Save image to media picture on Android</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Save image to media picture on Android</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20200622135139-android.html">Android</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #ff79c6;">val</span> GALLERY_PATH <span style="color: #c0afa7;">=</span> <span style="color: #f1fa8c;">"${</span><span style="color: #bd93f9;">Environment.DIRECTORY_PICTURES</span><span style="color: #f1fa8c;">}/lab"</span>
+<span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">saveToPictures</span><span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">src</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #99bbb4;">title</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #99bbb4;">save</span><span style="color: #ff79c6;">(</span><span style="color: #e0d0a0;">src</span>, <span style="color: #99bbb4;">title</span>, <span style="color: #f1fa8c;">"png"</span>, <span style="color: #bd93f9;">GALLERY_PATH</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">saveToDownloads</span><span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">src</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #b3c0a7;">name</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #99bbb4;">save</span><span style="color: #ff79c6;">(</span>
+    <span style="color: #e0d0a0;">src</span>,
+    <span style="color: #b3c0a7;">name</span>.<span style="color: #9999bb;">substringBeforeLast</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"."</span><span style="color: #50fa7b;">)</span>,
+    <span style="color: #b3c0a7;">name</span>.<span style="color: #a3e0a0;">substringAfterLast</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"."</span><span style="color: #50fa7b;">)</span>,
+    <span style="color: #bd93f9;">Environment.DIRECTORY_DOWNLOADS</span>
+  <span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">save</span><span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">src</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #99bbb4;">title</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #a3e0a0;">ext</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #99bbb4;">relativeParent</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6;">val</span> name <span style="color: #c0afa7;">=</span> <span style="color: #f1fa8c;">"${</span><span style="color: #99bbb4;">title</span>.<span style="color: #c0afa7;">chunked64</span><span style="color: #ff79c6;">()</span>.<span style="color: #a6bb99;">withTimestamp</span><span style="color: #f1fa8c;">}.</span>$ext<span style="color: #f1fa8c;">"</span>
+  <span style="color: #ff79c6;">if</span> <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Build.VERSION.SDK_INT</span> <span style="color: #a0d6e0;">&gt;=</span> <span style="color: #bd93f9;">Build.VERSION_CODES.Q</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6;">val</span> destRoot <span style="color: #c0afa7;">=</span> <span style="color: #ff79c6;">when</span> <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">relativeParent</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+      <span style="color: #bd93f9;">GALLERY_PATH</span> <span style="color: #9999bb;">-&gt;</span> <span style="color: #bd93f9;">MediaStore.Images.Media.getContentUri</span><span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">MediaStore.VOLUME_EXTERNAL_PRIMARY</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #ff79c6;">else</span> <span style="color: #9999bb;">-&gt;</span> <span style="color: #bd93f9;">MediaStore.Downloads.getContentUri</span><span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">MediaStore.VOLUME_EXTERNAL_PRIMARY</span><span style="color: #ffb86c;">)</span>
+    <span style="color: #50fa7b;">}</span>
+
+    <span style="color: #c0afa7;">saveToMediaStore</span><span style="color: #50fa7b;">(</span><span style="color: #e0d0a0;">src</span>, <span style="color: #a7aac0;">destRoot</span>, <span style="color: #b3c0a7;">name</span>, <span style="color: #99bbb4;">relativeParent</span><span style="color: #50fa7b;">)</span>
+  <span style="color: #ff79c6;">}</span> <span style="color: #ff79c6;">else</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #b3c0a7;">saveToExternalStorage</span><span style="color: #50fa7b;">(</span><span style="color: #e0d0a0;">src</span>, <span style="color: #f1fa8c;">"${</span><span style="color: #99bbb4;">relativeParent</span><span style="color: #f1fa8c;">}/</span>$name<span style="color: #f1fa8c;">"</span><span style="color: #50fa7b;">)</span>
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+@<span style="color: #bd93f9;">RequiresApi</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Build.VERSION_CODES.Q</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">saveToMediaStore</span><span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">src</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #a7aac0;">destRoot</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #b3c0a7;">name</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #99bbb4;">relativeParent</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #bd93f9;">ContentValues</span><span style="color: #ff79c6;">()</span>.<span style="color: #a0d6e0;">apply</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a3e0a0;">put</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">MediaStore.MediaColumns.DISPLAY_NAME</span>, <span style="color: #b3c0a7;">name</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a3e0a0;">put</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">MediaStore.MediaColumns.RELATIVE_PATH</span>, <span style="color: #99bbb4;">relativeParent</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a3e0a0;">put</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">MediaStore.MediaColumns.IS_PENDING</span>, <span style="color: #c0a7bd;">1</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #b3c0a7;">name</span>.<span style="color: #c0afa7;">endsWith</span><span style="color: #ffb86c;">(</span><span style="color: #f1fa8c;">"png"</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+      <span style="color: #a3e0a0;">put</span><span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">MediaStore.MediaColumns.MIME_TYPE</span>, <span style="color: #f1fa8c;">"image/png"</span><span style="color: #ffb86c;">)</span>
+    <span style="color: #50fa7b;">}</span>
+
+    <span style="color: #a3e0a0;">contentResolver</span>.<span style="color: #a6bb99;">insert</span><span style="color: #50fa7b;">(</span><span style="color: #a7aac0;">destRoot</span>, <span style="color: #ff79c6;">this</span><span style="color: #50fa7b;">)</span>?.<span style="color: #a7c0b9;">let</span> <span style="color: #50fa7b;">{</span>
+      <span style="color: #e0d0a0;">src</span>.<span style="color: #a7aac0;">copyTo</span><span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">it</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #a0d6e0;">clear</span><span style="color: #ffb86c;">()</span>
+      <span style="color: #a3e0a0;">put</span><span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">MediaStore.MediaColumns.IS_PENDING</span>, <span style="color: #b6a0e0;">0</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #a3e0a0;">contentResolver</span>.<span style="color: #b3c0a7;">update</span><span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">it</span>, <span style="color: #ff79c6;">this</span>, <span style="color: #8be9fd;">null</span>, <span style="color: #8be9fd;">null</span><span style="color: #ffb86c;">)</span>
+    <span style="color: #50fa7b;">}</span>
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">saveToExternalStorage</span><span style="color: #61bfff;">(</span><span style="color: #a7c0b9;">from</span>: <span style="color: #bd93f9;">Uri</span>, <span style="color: #e0d0a0;">relativePath</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #bd93f9;">File</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Environment.getExternalStorageDirectory</span><span style="color: #50fa7b;">()</span>, <span style="color: #e0d0a0;">relativePath</span><span style="color: #ff79c6;">)</span>.<span style="color: #a0d6e0;">apply</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #c0afa7;">parentFile</span>?.<span style="color: #a7aac0;">mkdirs</span><span style="color: #50fa7b;">()</span>
+    <span style="color: #b3c0a7;">createNewFile</span><span style="color: #50fa7b;">()</span>
+    <span style="color: #a7c0b9;">from</span>.<span style="color: #a7aac0;">copyTo</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">this</span>.<span style="color: #bb99b4;">toUri</span><span style="color: #ffb86c;">()</span><span style="color: #50fa7b;">)</span>
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #ff79c6;">val</span> String<span style="color: #bd93f9;">.withTimestamp</span>: <span style="color: #bd93f9;">String</span>
+  <span style="color: #ff79c6;">get</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6;">val</span> suffix <span style="color: #c0afa7;">=</span> <span style="color: #bd93f9;">SimpleDateFormat</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"yyMMddHHmmss"</span>, <span style="color: #bd93f9;">Locale.ENGLISH</span><span style="color: #ff79c6;">)</span>
+      .<span style="color: #9999bb;">format</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Date</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #8be9fd; background-color: #323440;">// </span><span style="color: #8be9fd; background-color: #323440;">12 is suffix's length</span>
+    <span style="color: #ff79c6;">val</span> suffixPattern <span style="color: #c0afa7;">=</span> <span style="color: #bd93f9;">Regex</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">".*-[\\d]{12}$"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6;">val</span> nameWithoutSuffix <span style="color: #c0afa7;">=</span> <span style="color: #ff79c6;">if</span> <span style="color: #ff79c6;">(</span><span style="color: #c0a7bd;">suffixPattern</span>.<span style="color: #c0afa7;">matches</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">this</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6;">this</span>.<span style="color: #9999bb;">substringBeforeLast</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"-"</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span> <span style="color: #ff79c6;">else</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6;">this</span>
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6;">return</span> <span style="color: #f1fa8c;">"</span>$nameWithoutSuffix<span style="color: #f1fa8c;">-</span>$suffix<span style="color: #f1fa8c;">"</span>
+  <span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6;">fun</span> <span style="color: #bd93f9;">String.chunked64</span><span style="color: #61bfff;">()</span> <span style="color: #c0afa7;">=</span> <span style="color: #bb99b4;">chunked</span><span style="color: #61bfff;">(</span><span style="color: #a7aac0;">64</span><span style="color: #61bfff;">)</span>.<span style="color: #b3c0a7;">firstOrNull</span><span style="color: #61bfff;">()</span> ?: <span style="color: #bd93f9;">UUID.randomUUID</span><span style="color: #61bfff;">()</span>.<span style="color: #bb99b4;">toString</span><span style="color: #61bfff;">()</span>
+
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:15</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

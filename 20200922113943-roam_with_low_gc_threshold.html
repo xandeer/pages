@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roam with low gc threshold</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Roam with low gc threshold</h1>
+<dl class="org-dl">
+<dt>links</dt><dd><a href="20200628160616-org_roam.html">Org Roam</a></dd>
+</dl>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a6bb99;">org-roam-directory</span> <span style="color: #f1fa8c;">"~/projects/personal/notes"</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #e0d0a0;">org-roam-db-location</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #f1fa8c;">"~/.cache/roam.db"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">benchmark</span> <span style="color: #c0a7bd;">1</span> '<span style="color: #ff79c6;">(</span><span style="color: #a7aac0;">org-roam-db-build-cache</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a6bb99;">org-roam-directory</span> <span style="color: #f1fa8c;">"~/projects/personal/notes"</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #bb99b4;">org-roam-db-gc-threshold</span> <span style="color: #bba699;">gc-cons-threshold</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #e0d0a0;">org-roam-db-location</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #f1fa8c;">"~/.cache/roam.db"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">benchmark</span> <span style="color: #c0a7bd;">1</span> '<span style="color: #ff79c6;">(</span><span style="color: #a7aac0;">org-roam-db-build-cache</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+android 上，刚才成功了，花了 943s.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a6bb99;">org-roam-directory</span> <span style="color: #f1fa8c;">"~/projects/personal/notes"</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #e0d0a0;">org-roam-db-location</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #f1fa8c;">"~/.cache/roam.db"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">benchmark</span> <span style="color: #c0a7bd;">1</span> '<span style="color: #ff79c6;">(</span><span style="color: #a7aac0;">org-roam-db-build-cache</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+android 上，gc 后：
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a6bb99;">org-roam-directory</span> <span style="color: #f1fa8c;">"~/projects/personal/notes"</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #bb99b4;">org-roam-db-gc-threshold</span> <span style="color: #bba699;">gc-cons-threshold</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #e0d0a0;">org-roam-db-location</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #f1fa8c;">"~/.cache/bm-roam.db"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #e0d0a0;">benchmark</span> <span style="color: #c0a7bd;">1</span> '<span style="color: #ff79c6;">(</span><span style="color: #a7aac0;">org-roam-db-build-cache</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:18</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

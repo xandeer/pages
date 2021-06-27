@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Make Roam Tags behind the Title for Ivy</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Make Roam Tags behind the Title for Ivy</h1>
+<dl class="org-dl">
+<dt>links</dt><dd><a href="20200628160616-org_roam.html">Org Roam</a> <a href="20200623100445-emacs.html">Emacs</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #8be9fd; background-color: #323440;">; </span><span style="color: #8be9fd; background-color: #323440;">Override the original, duplicate tags after title to make search easier.</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">org-roam--get-title-path-completions</span> <span style="color: #ff79c6;">()</span>
+  <span style="color: #a8eefd; background-color: #323440;">"Return an alist for completion. The car is the displayed title for</span>
+<span style="color: #a8eefd; background-color: #323440;">completion, and the cdr is the to the file."</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">let*</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">rows</span> <span style="color: #bd93f9;">(</span><span style="color: #b6a0e0;">org-roam-db-query</span> <span style="color: #f1fa8c;">[</span><span style="color: #ffb86c;">:select</span> <span style="color: #0189cc;">[</span><span style="color: #a7c0b9;">files:file</span> <span style="color: #bba699;">titles:title</span> <span style="color: #a7aac0;">tags:tags</span> <span style="color: #a3e0a0;">files:meta</span><span style="color: #0189cc;">]</span> <span style="color: #ffb86c;">:from</span> <span style="color: #99bbb4;">titles</span>
+                                   <span style="color: #ffb86c;">:left</span> <span style="color: #ffb86c;">:join</span> <span style="color: #9999bb;">tags</span>
+                                   <span style="color: #ffb86c;">:on</span> <span style="color: #0189cc;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #a6bb99;">titles:file</span> <span style="color: #a6bb99;">tags:file</span><span style="color: #0189cc;">)</span>
+                                   <span style="color: #ffb86c;">:left</span> <span style="color: #ffb86c;">:join</span> <span style="color: #bba699;">files</span>
+                                   <span style="color: #ffb86c;">:on</span> <span style="color: #0189cc;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #a6bb99;">titles:file</span> <span style="color: #a7c0b9;">files:file</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">]</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
+         <span style="color: #e0d0a0;">completions</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #b3c0a7;">seq-sort-by</span> <span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #bd93f9;">(</span><span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span>
+                   <span style="color: #bd93f9;">(</span><span style="color: #9999bb;">plist-get</span> <span style="color: #f1fa8c;">(</span><span style="color: #c0a7bd;">nth</span> <span style="color: #e0a0bc;">3</span> <span style="color: #bba699;">x</span><span style="color: #f1fa8c;">)</span> <span style="color: #ffb86c;">:mtime</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
+                 #'<span style="color: #e0d0a0;">time-less-p</span>
+                 <span style="color: #bb99b4;">rows</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">dolist</span> <span style="color: #ffb86c;">(</span><span style="color: #e0d0a0;">row</span> <span style="color: #bb99b4;">rows</span> <span style="color: #e0d0a0;">completions</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">pcase-let</span> <span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">(</span>`<span style="color: #0189cc;">(</span>,<span style="color: #c0a7bd;">file-path</span> ,<span style="color: #99bbb4;">title</span> ,<span style="color: #9999bb;">tags</span><span style="color: #0189cc;">)</span> <span style="color: #e0d0a0;">row</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span>
+        <span style="color: #bd93f9;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #f1fa8c;">(</span><span style="color: #0189cc;">(</span><span style="color: #b3c0a7;">k</span> <span style="color: #a2b6da;">(</span><span style="color: #e0a0bc;">concat</span>
+                  <span style="color: #9cb6ad;">(</span><span style="color: #ff79c6;">when</span> <span style="color: #9999bb;">tags</span>
+                    <span style="color: #61bfff;">(</span><span style="color: #9999bb;">format</span> <span style="color: #f1fa8c;">"(%s) "</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">s-join</span> <span style="color: #e0d0a0;">org-roam-tag-separator</span> <span style="color: #9999bb;">tags</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span><span style="color: #9cb6ad;">)</span>
+                  <span style="color: #99bbb4;">title</span>
+                  <span style="color: #9cb6ad;">(</span><span style="color: #ff79c6;">when</span> <span style="color: #9999bb;">tags</span>
+                    <span style="color: #61bfff;">(</span><span style="color: #9999bb;">format</span> <span style="color: #f1fa8c;">" (%s)"</span> <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">s-join</span> <span style="color: #e0d0a0;">org-roam-tag-separator</span> <span style="color: #9999bb;">tags</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span><span style="color: #9cb6ad;">)</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span>
+              <span style="color: #0189cc;">(</span><span style="color: #e0d0a0;">v</span> <span style="color: #a2b6da;">(</span><span style="color: #a6bb99;">list</span> <span style="color: #ffb86c;">:path</span> <span style="color: #c0a7bd;">file-path</span> <span style="color: #ffb86c;">:title</span> <span style="color: #99bbb4;">title</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span>
+          <span style="color: #f1fa8c;">(</span><span style="color: #ff79c6;">push</span> <span style="color: #0189cc;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #b3c0a7;">k</span> <span style="color: #e0d0a0;">v</span><span style="color: #0189cc;">)</span> <span style="color: #e0d0a0;">completions</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:16</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebView not destroyed</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">WebView not destroyed</h1>
+<dl class="org-dl">
+<dt>links</dt><dd><a href="20200622135139-android.html">Android</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">destroyWebView</span><span style="color: #61bfff;">(</span><span style="color: #a7c0b9;">webView</span>: <span style="color: #bd93f9;">WebView</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6;">try</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a7c0b9;">webView</span>.<span style="color: #a0d6e0;">apply</span> <span style="color: #50fa7b;">{</span>
+      <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">parent</span> <span style="color: #ff79c6;">as</span> <span style="color: #bd93f9;">ViewGroup?</span><span style="color: #ffb86c;">)</span>?.<span style="color: #b6a0e0;">removeView</span><span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">this</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #9999bb;">stopLoading</span><span style="color: #ffb86c;">()</span>
+      <span style="color: #b6a0e0;">webChromeClient</span> <span style="color: #c0afa7;">=</span> <span style="color: #8be9fd;">null</span>
+      <span style="color: #c0a7bd;">webViewClient</span> <span style="color: #c0afa7;">=</span> <span style="color: #8be9fd;">null</span>
+      <span style="color: #b3c0a7;">destroy</span><span style="color: #ffb86c;">()</span>
+    <span style="color: #50fa7b;">}</span>
+  <span style="color: #ff79c6;">}</span> <span style="color: #ff79c6;">catch</span> <span style="color: #ff79c6;">(</span><span style="color: #e0a0bc;">e</span>: <span style="color: #bd93f9;">Exception</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #e0a0bc;">logger</span>.<span style="color: #e0a0bc;">error</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Something wrong while destroy WebView"</span>, <span style="color: #e0a0bc;">e</span><span style="color: #50fa7b;">)</span>
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:18</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

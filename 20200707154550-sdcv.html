@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sdcv</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Sdcv</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga0559eb">1. Install on MacOS</a></li>
+<li><a href="#org96305dd">2. Where to download dictionaries?</a></li>
+<li><a href="#orga446c9a">3. Use in Emacs</a></li>
+</ul>
+</div>
+</div>
+<dl class="org-dl">
+<dt>tags</dt><dd><a href="20200621180845-tools.html">Tools</a> <a href="20200623100445-emacs.html">Emacs</a></dd>
+</dl>
+
+<div id="outline-container-orga0559eb" class="outline-2">
+<h2 id="orga0559eb"><span class="section-number-2">1.</span> Install on <a href="20200625140939-macos.html">MacOS</a></h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #9999bb;">brew</span> <span style="color: #a6bb99;">install</span> <span style="color: #e0d0a0;">sdcv</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org96305dd" class="outline-2">
+<h2 id="org96305dd"><span class="section-number-2">2.</span> Where to download dictionaries?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="http://download.huzheng.org/zh_CN/">zh<sub>CN</sub></a>
+</p>
+</div>
+</div>
+<div id="outline-container-orga446c9a" class="outline-2">
+<h2 id="orga446c9a"><span class="section-number-2">3.</span> Use in <a href="20200623100445-emacs.html">Emacs</a></h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #99bbb4;">package!</span> <span style="color: #e0d0a0;">sdcv</span>
+  <span style="color: #ffb86c;">:recipe</span> <span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">:host</span> <span style="color: #a3e0a0;">github</span> <span style="color: #ffb86c;">:repo</span> <span style="color: #f1fa8c;">"manateelazycat/sdcv"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #a6bb99;">use-package!</span> <span style="color: #e0d0a0;">sdcv</span>
+  <span style="color: #ffb86c;">:commands</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">sdcv-search-pointer</span>
+             <span style="color: #b3c0a7;">sdcv-search-pointer+</span>
+             <span style="color: #a0d6e0;">sdcv-search-input</span>
+             <span style="color: #a7c0b9;">sdcv-search-input+</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffb86c;">:init</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">map!</span>
+   <span style="color: #ffb86c;">:leader</span>
+   <span style="color: #ffb86c;">:prefix</span> <span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"l"</span> <span style="color: #a6bb99;">.</span> <span style="color: #f1fa8c;">"lookup"</span><span style="color: #50fa7b;">)</span>
+   <span style="color: #ffb86c;">:n</span> <span style="color: #f1fa8c;">"l"</span> #'<span style="color: #b3c0a7;">sdcv-search-pointer+</span>
+   <span style="color: #ffb86c;">:n</span> <span style="color: #f1fa8c;">"i"</span> #'<span style="color: #a7c0b9;">sdcv-search-input+</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffb86c;">:config</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #e0d0a0;">sdcv-say-word-p</span> <span style="color: #e0d0a0;">nil</span>
+        <span style="color: #bb99b4;">sdcv-dictionary-data-dir</span>  <span style="color: #50fa7b;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #f1fa8c;">"~/.stardict"</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #bb99b4;">sdcv-dictionary-simple-list</span>
+        '<span style="color: #50fa7b;">(</span>
+          <span style="color: #f1fa8c;">"&#26391;&#36947;&#33521;&#27721;&#23383;&#20856;5.0"</span>
+          <span style="color: #f1fa8c;">"&#26391;&#36947;&#27721;&#33521;&#23383;&#20856;5.0"</span>
+          <span style="color: #f1fa8c;">"&#26032;&#21326;&#23383;&#20856;"</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #a3e0a0;">sdcv-dictionary-complete-list</span>
+        '<span style="color: #50fa7b;">(</span>
+          <span style="color: #f1fa8c;">"&#26391;&#36947;&#33521;&#27721;&#23383;&#20856;5.0"</span>
+          <span style="color: #f1fa8c;">"&#26391;&#36947;&#27721;&#33521;&#23383;&#20856;5.0"</span>
+          <span style="color: #f1fa8c;">"&#26032;&#21326;&#23383;&#20856;"</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:16</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

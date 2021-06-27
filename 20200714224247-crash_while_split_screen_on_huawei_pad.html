@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-06-27 Sun 14:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crash while Split Screen on Huawei Pad</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Crash while Split Screen on Huawei Pad</h1>
+<dl class="org-dl">
+<dt>links</dt><dd><a href="work/20200628134843-donut.html">Donut</a> <a href="20200717220204-bug.html">Bug</a> <a href="20200717220309-fixed.html">Fixed</a></dd>
+</dl>
+
+<p>
+The problem is about that split screen will dispatch onDetachedFromWindow
+and onAttachedToWindow each time. So don't depend upon them to do
+initializations.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-kotlin"><span style="color: #ff79c6;">override</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">onAttachedToWindow</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6;">super</span>.<span style="color: #bb99b4;">onAttachedToWindow</span><span style="color: #ff79c6;">()</span>
+  <span style="color: #8be9fd; background-color: #323440;">// </span><span style="color: #8be9fd; background-color: #323440;">Below will be called as splitting screen.</span>
+  <span style="color: #a0d6e0;">addView</span><span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">et</span>, <span style="color: #b3c0a7;">matchParent</span>, <span style="color: #a0d6e0;">wrapContent</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #a7aac0;">subscribeVms</span><span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-06-27 Sun 14:17</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
