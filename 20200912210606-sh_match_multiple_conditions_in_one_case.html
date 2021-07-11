@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>sh match multiple conditions in one case</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">sh match multiple conditions in one case</h1>
+<p>
+Using ;;&amp; in place of ;; causes the shell to test the next pattern list in
+the statement, if any, and execute any associated list on a successful
+match.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh" id="org7398d95"><span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">cs</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6;">case</span> $1<span style="color: #ff79c6;"> in</span>
+    <span style="color: #c0a7bd;">1</span>)
+      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Mon"</span>;;
+    <span style="color: #9999bb;">2</span>|<span style="color: #e0a0bc;">3</span>|<span style="color: #a7aac0;">4</span>|<span style="color: #a7c0b9;">5</span>)
+      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Tue|Wed|Thu|Fri"</span>;;&amp;
+    <span style="color: #a7c0b9;">5</span>|<span style="color: #a6bb99;">6</span>|<span style="color: #c0afa7;">7</span>)
+      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Fri|Sat|Sun"</span>;;
+    <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">3)</span>
+      <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">echo "Wed";;</span>
+    <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">2|3)</span>
+      <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">echo "Wed";;</span>
+    <span style="color: #e0a0bc;">*</span>)
+      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Nothing matched"</span>;;
+  <span style="color: #ff79c6;">esac</span>
+  <span style="color: #ffb86c;">echo</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #99bbb4;">cs</span> <span style="color: #c0a7bd;">1</span>
+<span style="color: #99bbb4;">cs</span> <span style="color: #e0a0bc;">3</span>
+<span style="color: #99bbb4;">cs</span> <span style="color: #a7c0b9;">5</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:43</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

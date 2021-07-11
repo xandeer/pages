@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ivy-pinyin</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">ivy-pinyin</h1>
+<dl class="org-dl">
+<dt>tags</dt><dd><a href="20200623100445-emacs.html">Emacs</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #99bbb4;">package!</span> <span style="color: #a7c0b9;">pinyinlib</span>
+  <span style="color: #ffb86c;">:recipe</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">:host</span> <span style="color: #a3e0a0;">github</span>
+   <span style="color: #ffb86c;">:repo</span> <span style="color: #f1fa8c;">"xlshiz/pinyinlib.el"</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #a0d6e0;">use-package</span> <span style="color: #a7c0b9;">pinyinlib</span>
+  <span style="color: #ffb86c;">:after</span> <span style="color: #a7c0b9;">ivy</span>
+  <span style="color: #ffb86c;">:commands</span> <span style="color: #99bbb4;">pinyinlib-build-regexp-string</span>
+  <span style="color: #ffb86c;">:init</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a0d6e0;">pinyinlib--simplified-char-table</span> '<span style="color: #c0afa7;">pinyinlib--simplified-xiaohe</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">x/pinyin-regexp-helper</span> <span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">str</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a8eefd; background-color: #323440;">"Construct pinyin regexp for STR."</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">cond</span> <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #bb99b4;">equal</span> <span style="color: #b6a0e0;">str</span> <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">.*?</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #bd93f9;">)</span> <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">.*?</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ffb86c;">)</span>
+          <span style="color: #ffb86c;">(</span><span style="color: #99bbb4;">t</span> <span style="color: #bd93f9;">(</span><span style="color: #99bbb4;">pinyinlib-build-regexp-string</span> <span style="color: #b6a0e0;">str</span> <span style="color: #99bbb4;">t</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">x/pinyinlib-build-regexp-string</span> <span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">str</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a8eefd; background-color: #323440;">"Build a pinyin regexp sequence from STR."</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">cond</span> <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #bb99b4;">equal</span> <span style="color: #b6a0e0;">str</span> <span style="color: #f1fa8c;">" "</span><span style="color: #bd93f9;">)</span> <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">.*?</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ffb86c;">)</span>
+          <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #bb99b4;">equal</span> <span style="color: #b6a0e0;">str</span> <span style="color: #f1fa8c;">""</span><span style="color: #bd93f9;">)</span> <span style="color: #e0d0a0;">nil</span><span style="color: #ffb86c;">)</span>
+          <span style="color: #ffb86c;">(</span><span style="color: #99bbb4;">t</span> <span style="color: #b6a0e0;">str</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">pinyin-to-utf8</span> <span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">str</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a8eefd; background-color: #323440;">"Convert STR to UTF-8."</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">cond</span> <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #bb99b4;">equal</span> <span style="color: #b6a0e0;">0</span> <span style="color: #f1fa8c;">(</span><span style="color: #b6a0e0;">length</span> <span style="color: #b6a0e0;">str</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span> <span style="color: #e0d0a0;">nil</span><span style="color: #ffb86c;">)</span>
+          <span style="color: #ffb86c;">(</span><span style="color: #99bbb4;">t</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">concat</span>
+              <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">"</span>
+              <span style="color: #f1fa8c;">(</span><span style="color: #bb99b4;">mapconcat</span>
+               #'<span style="color: #c0afa7;">x/pinyinlib-build-regexp-string</span>
+               <span style="color: #0189cc;">(</span><span style="color: #c0a7bd;">remove</span> <span style="color: #e0d0a0;">nil</span> <span style="color: #a2b6da;">(</span><span style="color: #9999bb;">mapcar</span> #'<span style="color: #e0d0a0;">x/pinyin-regexp-helper</span> <span style="color: #9cb6ad;">(</span><span style="color: #99bbb4;">split-string</span> <span style="color: #b6a0e0;">str</span> <span style="color: #f1fa8c;">""</span><span style="color: #9cb6ad;">)</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span>
+               <span style="color: #f1fa8c;">""</span><span style="color: #f1fa8c;">)</span>
+              <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">"</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">eh-ivy-cregexp</span> <span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">str</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #a8eefd; background-color: #323440;">"The regex builder wrapper to support pinyin."</span>
+    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #9999bb;">trimed</span> <span style="color: #f1fa8c;">(</span><span style="color: #a6bb99;">s-join</span> <span style="color: #f1fa8c;">" "</span> <span style="color: #0189cc;">(</span><span style="color: #c0a7bd;">remove</span> <span style="color: #f1fa8c;">""</span> <span style="color: #a2b6da;">(</span><span style="color: #99bbb4;">split-string</span> <span style="color: #b6a0e0;">str</span> <span style="color: #f1fa8c;">" "</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
+      <span style="color: #ffb86c;">(</span><span style="color: #e0a0bc;">concat</span>
+       <span style="color: #bd93f9;">(</span><span style="color: #e0d0a0;">ivy--regex-plus</span> <span style="color: #9999bb;">trimed</span><span style="color: #bd93f9;">)</span>
+       <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">|</span><span style="color: #f1fa8c;">"</span>
+       <span style="color: #bd93f9;">(</span><span style="color: #bb99b4;">pinyin-to-utf8</span> <span style="color: #9999bb;">trimed</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #c0a7bd;">ivy-re-builders-alist</span>
+        '<span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #99bbb4;">t</span> <span style="color: #a6bb99;">.</span> <span style="color: #99bbb4;">eh-ivy-cregexp</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:42</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

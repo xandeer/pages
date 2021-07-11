@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>emacs string replace with regexp capture group</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">emacs string replace with regexp capture group</h1>
+<p>
+hello, world
+-&gt;
+world, hello
+regexp: \(.*\), \(.*\)
+replace: \2, \1
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #bb99b4;">s-replace-regexp</span> <span style="color: #f1fa8c;">"</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">.*</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">, </span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">.*</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">"</span> <span style="color: #f1fa8c;">"\\2, \\1"</span> <span style="color: #f1fa8c;">"hello, world"</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #bb99b4;">s-replace-regexp</span> <span style="color: #f1fa8c;">" \\{4,\\}[0-9]\\{4\\}-.*:[0-9]\\{2\\}"</span> <span style="color: #f1fa8c;">"2"</span> <span style="color: #f1fa8c;">"            2021-07-03 21:46:40"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:42</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

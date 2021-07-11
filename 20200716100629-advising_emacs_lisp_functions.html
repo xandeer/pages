@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advising Emacs Lisp Functions</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Advising Emacs Lisp Functions</h1>
+<dl class="org-dl">
+<dt>links</dt><dd><a href="20200623100445-emacs.html">Emacs</a> <a href="20200716100707-elisp.html">Elisp</a></dd>
+</dl>
+
+
+<p>
+The "advice" feature lets you add to the existing definition of a function,
+by "advising the function". This is a cleaner method than redefining the
+whole function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">my-double</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #bba699;">x</span> <span style="color: #9999bb;">2</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">my-increase</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ff79c6;">(</span><span style="color: #e0a0bc;">+</span> <span style="color: #bba699;">x</span> <span style="color: #c0a7bd;">1</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #c0afa7;">advice-add</span> '<span style="color: #a6bb99;">my-double</span> <span style="color: #ffb86c;">:filter-return</span> #'<span style="color: #b6a0e0;">my-increase</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #61bfff;">(</span><span style="color: #a6bb99;">my-double</span> <span style="color: #e0a0bc;">3</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #c0afa7;">advice-add</span> '<span style="color: #99bbb4;">org-roam-capture--capture</span> <span style="color: #ffb86c;">:before</span> #'<span style="color: #9999bb;">xandeer/auto-toggle-roam-buffer-disable</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">(</span><span style="color: #c0afa7;">advice-add</span> '<span style="color: #99bbb4;">org-roam-capture--capture</span> <span style="color: #ffb86c;">:after</span> #'<span style="color: #a7aac0;">org-roam-buffer-deactivate</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:43</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:39 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Save image to media picture on Android</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Save image to media picture on Android</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20200622135139-android.html">Android</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-kotlin">val GALLERY_PATH = "${Environment.DIRECTORY_PICTURES}/lab"
+fun saveToPictures(src: Uri, title: String) {
+  save(src, title, "png", GALLERY_PATH)
+}
+
+fun saveToDownloads(src: Uri, name: String) {
+  save(
+    src,
+    name.substringBeforeLast("."),
+    name.substringAfterLast("."),
+    Environment.DIRECTORY_DOWNLOADS
+  )
+}
+
+private fun save(src: Uri, title: String, ext: String, relativeParent: String) {
+  val name = "${title.chunked64().withTimestamp}.$ext"
+  if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.Q) {
+    val destRoot = when (relativeParent) {
+      GALLERY_PATH -&gt; MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+      else -&gt; MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    }
+
+    saveToMediaStore(src, destRoot, name, relativeParent)
+  } else {
+    saveToExternalStorage(src, "${relativeParent}/$name")
+  }
+}
+
+@RequiresApi(Build.VERSION_CODES.Q)
+private fun saveToMediaStore(src: Uri, destRoot: Uri, name: String, relativeParent: String) {
+  ContentValues().apply {
+    put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+    put(MediaStore.MediaColumns.RELATIVE_PATH, relativeParent)
+    put(MediaStore.MediaColumns.IS_PENDING, 1)
+    if (name.endsWith("png")) {
+      put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+    }
+
+    contentResolver.insert(destRoot, this)?.let {
+      src.copyTo(it)
+      clear()
+      put(MediaStore.MediaColumns.IS_PENDING, 0)
+      contentResolver.update(it, this, null, null)
+    }
+  }
+}
+
+private fun saveToExternalStorage(from: Uri, relativePath: String) {
+  File(Environment.getExternalStorageDirectory(), relativePath).apply {
+    parentFile?.mkdirs()
+    createNewFile()
+    from.copyTo(this.toUri())
+  }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-kotlin">val String.withTimestamp: String
+  get() {
+    val suffix = SimpleDateFormat("yyMMddHHmmss", Locale.ENGLISH)
+      .format(Date())
+    // 12 is suffix's length
+    val suffixPattern = Regex(".*-[\\d]{12}$")
+    val nameWithoutSuffix = if (suffixPattern.matches(this)) {
+      this.substringBeforeLast("-")
+    } else {
+      this
+    }
+    return "$nameWithoutSuffix-$suffix"
+  }
+
+fun String.chunked64() = chunked(64).firstOrNull() ?: UUID.randomUUID().toString()
+
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:39</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:39 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Best practice for instantiating a new Android Fragment</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Best practice for instantiating a new Android Fragment</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20200622135139-android.html">Android</a></dd>
+</dl>
+
+
+<p>
+If Android decides to recreate your Fragment later, it's going to call the
+no-argument constructor of your fragment. So overloading the constructor is
+not a solution.
+</p>
+
+<p>
+With that being said, the way to pass stuff to your Fragment so that they
+are available after a Fragment is recreated by Android is to pass a bundle
+to the setArguments method.
+</p>
+
+<p>
+So, for example, if we wanted to pass an integer to the fragment we would
+use something like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #ff79c6;">public</span> <span style="color: #ff79c6;">static</span> <span style="color: #bd93f9;">MyFragment</span> <span style="color: #50fa7b;">newInstance</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> someInt<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">MyFragment</span> myFragment = <span style="color: #ff79c6;">new</span> <span style="color: #bd93f9;">MyFragment</span><span style="color: #ff79c6;">()</span>;
+
+    <span style="color: #bd93f9;">Bundle</span> args = <span style="color: #ff79c6;">new</span> <span style="color: #bd93f9;">Bundle</span><span style="color: #ff79c6;">()</span>;
+    <span style="color: #9999bb;">args</span>.<span style="color: #a6bb99;">putInt</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"someInt"</span>, <span style="color: #e0a0bc;">someInt</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #bba699;">myFragment</span>.<span style="color: #b3c0a7;">setArguments</span><span style="color: #ff79c6;">(</span><span style="color: #9999bb;">args</span><span style="color: #ff79c6;">)</span>;
+
+    <span style="color: #ff79c6;">return</span> <span style="color: #bba699;">myFragment</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+And later in the Fragment onCreate() you can access that integer by using:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #9999bb;">getArguments</span><span style="color: #61bfff;">()</span>.<span style="color: #c0afa7;">getInt</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"someInt"</span>, <span style="color: #b6a0e0;">0</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<p>
+This Bundle will be available even if the Fragment is somehow recreated by
+Android.
+</p>
+
+<p>
+Also note: setArguments can only be called before the Fragment is attached
+to the Activity.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:39</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

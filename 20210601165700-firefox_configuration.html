@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-11 Sun 15:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>firefox configuration</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">firefox configuration</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7f65dbe">1. plugins</a>
+<ul>
+<li><a href="#org0d4498d">1.1. sidebery</a></li>
+<li><a href="#org1a6abdd">1.2. uBlock Origin</a></li>
+<li><a href="#orgd8208a1">1.3. surfingkeys</a></li>
+</ul>
+</li>
+<li><a href="#org895666b">2. hide tabbar</a></li>
+<li><a href="#org6e143a0">3. refs</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7f65dbe" class="outline-2">
+<h2 id="org7f65dbe"><span class="section-number-2">1.</span> plugins</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org0d4498d" class="outline-3">
+<h3 id="org0d4498d"><span class="section-number-3">1.1.</span> sidebery</h3>
+</div>
+<div id="outline-container-org1a6abdd" class="outline-3">
+<h3 id="org1a6abdd"><span class="section-number-3">1.2.</span> uBlock Origin</h3>
+</div>
+<div id="outline-container-orgd8208a1" class="outline-3">
+<h3 id="orgd8208a1"><span class="section-number-3">1.3.</span> surfingkeys</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-javascript"><span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'J'</span>, <span style="color: #f1fa8c;">'D'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'K'</span>, <span style="color: #f1fa8c;">'S'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'t'</span>, <span style="color: #f1fa8c;">'T'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'F'</span>, <span style="color: #f1fa8c;">'af'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'h'</span>, <span style="color: #f1fa8c;">'E'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'l'</span>, <span style="color: #f1fa8c;">'R'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'j'</span>, <span style="color: #f1fa8c;">'d'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'k'</span>, <span style="color: #f1fa8c;">'e'</span><span style="color: #61bfff;">)</span>;
+
+<span style="color: #e0a0bc;">settings</span>.<span style="color: #bba699;">focusFirstCandidate</span> = <span style="color: #8be9fd;">true</span>;
+
+<span style="color: #b3c0a7;">addSearchAliasX</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'c'</span>, <span style="color: #f1fa8c;">'grep.app'</span>, <span style="color: #f1fa8c;">'https://grep.app/search?q='</span>, <span style="color: #f1fa8c;">'s'</span>, <span style="color: #f1fa8c;">'https://grep.app/search?q='</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">(</span>response<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6;">var</span> res = <span style="color: #c0a7bd;">JSON</span>.<span style="color: #a0d6e0;">parse</span><span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">response</span>.<span style="color: #bb99b4;">text</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">return</span> <span style="color: #9999bb;">res</span>.<span style="color: #a3e0a0;">map</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">function</span><span style="color: #ffb86c;">(</span>r<span style="color: #ffb86c;">){</span>
+        <span style="color: #ff79c6;">return</span> <span style="color: #c0a7bd;">r</span>.<span style="color: #a7c0b9;">phrase</span>;
+    <span style="color: #ffb86c;">}</span><span style="color: #50fa7b;">)</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'oc'</span>, <span style="color: #f1fa8c;">'grep.app'</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a7aac0;">Front</span>.<span style="color: #e0a0bc;">openOmnibar</span><span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">{</span><span style="color: #c0afa7;">type</span>: <span style="color: #f1fa8c;">"SearchEngine"</span>, <span style="color: #c0afa7;">extra</span>: <span style="color: #f1fa8c;">"c"</span><span style="color: #ffb86c;">}</span><span style="color: #50fa7b;">)</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #b3c0a7;">addSearchAliasX</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'w'</span>, <span style="color: #f1fa8c;">'wikipedia en'</span>, <span style="color: #f1fa8c;">'https://en.wikipedia.org/wiki/'</span>, <span style="color: #f1fa8c;">'s'</span>, <span style="color: #f1fa8c;">'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search='</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">(</span>response<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6;">return</span> <span style="color: #c0a7bd;">JSON</span>.<span style="color: #a0d6e0;">parse</span><span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">response</span>.<span style="color: #bb99b4;">text</span><span style="color: #50fa7b;">)[</span><span style="color: #c0a7bd;">1</span><span style="color: #50fa7b;">]</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #b3c0a7;">addSearchAliasX</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'f'</span>, <span style="color: #f1fa8c;">'wikipedia cn'</span>, <span style="color: #f1fa8c;">'https://zh.wikipedia.org/wiki/'</span>, <span style="color: #f1fa8c;">'s'</span>, <span style="color: #f1fa8c;">'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search='</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">(</span>response<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6;">return</span> <span style="color: #c0a7bd;">JSON</span>.<span style="color: #a0d6e0;">parse</span><span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">response</span>.<span style="color: #bb99b4;">text</span><span style="color: #50fa7b;">)[</span><span style="color: #c0a7bd;">1</span><span style="color: #50fa7b;">]</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'ow'</span>, <span style="color: #f1fa8c;">'wikipedia en'</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a7aac0;">Front</span>.<span style="color: #e0a0bc;">openOmnibar</span><span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">{</span><span style="color: #c0afa7;">type</span>: <span style="color: #f1fa8c;">"SearchEngine"</span>, <span style="color: #c0afa7;">extra</span>: <span style="color: #f1fa8c;">"w"</span><span style="color: #ffb86c;">}</span><span style="color: #50fa7b;">)</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'of'</span>, <span style="color: #f1fa8c;">'wikipedia cn'</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a7aac0;">Front</span>.<span style="color: #e0a0bc;">openOmnibar</span><span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">{</span><span style="color: #c0afa7;">type</span>: <span style="color: #f1fa8c;">"SearchEngine"</span>, <span style="color: #c0afa7;">extra</span>: <span style="color: #f1fa8c;">"f"</span><span style="color: #ffb86c;">}</span><span style="color: #50fa7b;">)</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #a3e0a0;">map</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'oo'</span>, <span style="color: #f1fa8c;">'og'</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'ou'</span>, <span style="color: #f1fa8c;">'github'</span>, <span style="color: #ff79c6;">function</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #a7aac0;">Front</span>.<span style="color: #e0a0bc;">openOmnibar</span><span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">{</span><span style="color: #c0afa7;">type</span>: <span style="color: #f1fa8c;">"SearchEngine"</span>, <span style="color: #c0afa7;">extra</span>: <span style="color: #f1fa8c;">"h"</span><span style="color: #ffb86c;">}</span><span style="color: #50fa7b;">)</span>;
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'oa'</span>, <span style="color: #f1fa8c;">'Open google translate to cn'</span>, <span style="color: #ff79c6;">()</span> =&gt; <span style="color: #ff79c6;">{</span>
+    <span style="color: #e0d0a0;">tabOpenLink</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"https://translate.google.com/?sl=auto&amp;tl=zh-CN&amp;text="</span><span style="color: #50fa7b;">)</span>
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+<span style="color: #9999bb;">mapkey</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'ob'</span>, <span style="color: #f1fa8c;">'Open google translate to en'</span>, <span style="color: #ff79c6;">()</span> =&gt; <span style="color: #ff79c6;">{</span>
+    <span style="color: #e0d0a0;">tabOpenLink</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"https://translate.google.com/?sl=auto&amp;tl=en&amp;text="</span><span style="color: #50fa7b;">)</span>
+<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>;
+
+<span style="color: #8be9fd; background-color: #323440;">// </span><span style="color: #8be9fd; background-color: #323440;">theme</span>
+<span style="color: #e0a0bc;">settings</span>.<span style="color: #a7c0b9;">theme</span> = <span style="color: #f1fa8c;">`</span>
+<span style="color: #f1fa8c;">.sk_theme {</span>
+<span style="color: #f1fa8c;">  background: </span><span style="color: #ffffff; background-color: #100a14;">#100a14</span><span style="color: #f1fa8c;">dd;</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #000000; background-color: #4f97d7;">#4f97d7</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme tbody {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #ffffff; background-color: #292;">#292</span><span style="color: #f1fa8c;">d;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme input {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #000000; background-color: #d9dce0;">#d9dce0</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme .url {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #ffffff; background-color: #2d9574;">#2d9574</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme .annotation {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #ffffff; background-color: #a31db1;">#a31db1</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme .omnibar_highlight {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #ffffff; background-color: #333;">#333</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">  background: </span><span style="color: #000000; background-color: #ffff00;">#ffff00</span><span style="color: #f1fa8c;">aa;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme #sk_omnibarSearchResult ul&gt;li:nth-child(odd) {</span>
+<span style="color: #f1fa8c;">  background: </span><span style="color: #ffffff; background-color: #5d4d7a;">#5d4d7a</span><span style="color: #f1fa8c;">55;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme #sk_omnibarSearchResult ul&gt;li.focused {</span>
+<span style="color: #f1fa8c;">  background: </span><span style="color: #ffffff; background-color: #5d4d7a;">#5d4d7a</span><span style="color: #f1fa8c;">aa;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme #sk_omnibarSearchResult .omnibar_folder {</span>
+<span style="color: #f1fa8c;">  color: </span><span style="color: #ffffff; background-color: #a31db1;">#a31db1</span><span style="color: #f1fa8c;">;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">.sk_theme #sk_hints &gt; div {</span>
+<span style="color: #f1fa8c;">    color: white !important;</span>
+<span style="color: #f1fa8c;">}</span>
+<span style="color: #f1fa8c;">`</span>;
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org895666b" class="outline-2">
+<h2 id="org895666b"><span class="section-number-2">2.</span> hide tabbar</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+set about:config
+</p>
+<div class="sample" id="org8a5ef6b">
+<p>
+toolkit.legacyUserProfileCustomizations.stylesheets &#x2013;&gt; true
+browser.tabs.drawInTitlebar &#x2013;&gt; true
+</p>
+
+</div>
+
+<p>
+modify <code>userChrome.css</code>
+about:profiles
+${FIREFOX<sub>PROFILE</sub>}/chrome/userChrome.css
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #ffb86c;">@namespace</span> <span style="color: #c0a7bd;">url</span><span style="color: #f8f8f2; background-color: #282a36;">(</span><span style="color: #f1fa8c;">http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</span><span style="color: #f8f8f2; background-color: #282a36;">)</span>;
+
+<span style="color: #50fa7b;">#sidebar-header </span><span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">display</span>: <span style="color: #9999bb;">none</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #50fa7b;">#TabsToolbar </span><span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">visibility</span>: <span style="color: #99bbb4;">collapse</span> <span style="color: #ffb86c;">!important</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #50fa7b;">#TabsToolbar .tabbrowser-tab </span><span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">display</span>: <span style="color: #9999bb;">none</span> <span style="color: #ffb86c;">!important</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #50fa7b;">#nav-bar</span><span style="color: #61bfff;">[</span><span style="color: #50fa7b;">inFullscreen</span><span style="color: #61bfff;">]</span><span style="color: #50fa7b;">,</span>
+<span style="color: #50fa7b;">#TabsToolbar</span><span style="color: #61bfff;">[</span><span style="color: #50fa7b;">inFullscreen</span><span style="color: #61bfff;">]</span><span style="color: #50fa7b;"> </span><span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">display</span>: <span style="color: #9999bb;">none</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #50fa7b;">#TabsToolbar &gt; .titlebar-buttonbox-container </span><span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">display</span>: <span style="color: #9999bb;">none</span> <span style="color: #ffb86c;">!important</span>;
+<span style="color: #61bfff;">}</span>
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e143a0" class="outline-2">
+<h2 id="org6e143a0"><span class="section-number-2">3.</span> refs</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://wangz.me/2021-01-20-firefox.html#org12da196">https://wangz.me/2021-01-20-firefox.html#org12da196</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-11 Sun 15:41</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
