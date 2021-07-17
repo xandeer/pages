@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-11 Sun 15:43 -->
+<!-- 2021-07-17 Sat 17:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Double Click on Android</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="style.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="content" class="content">
@@ -20,51 +20,50 @@
 
 <div class="org-src-container">
 <pre class="src src-kotlin">
-/**
- * Copy from https://gist.github.com/srix55/ec64d2f6a371c80bbbc4#gistcomment-3422299
- */
+<span style="color: #8be9fd; background-color: #323440;">/**</span>
+<span style="color: #8be9fd; background-color: #323440;"> * Copy from https://gist.github.com/srix55/ec64d2f6a371c80bbbc4#gistcomment-3422299</span>
+<span style="color: #8be9fd; background-color: #323440;"> */</span>
 
-/**
- * Is an onClickListener that handles doubleClickListener
- *
- * @param doubleClickQualificationTime The time in which the second tap should be done
- * in order to qualify as a double click. Time in MS
- */
-abstract class DoubleClickListener(
-  private val doubleClickQualificationTime: Long = 300
-) : View.OnClickListener {
+<span style="color: #8be9fd; background-color: #323440;">/**</span>
+<span style="color: #8be9fd; background-color: #323440;"> * Is an onClickListener that handles doubleClickListener</span>
+<span style="color: #8be9fd; background-color: #323440;"> *</span>
+<span style="color: #8be9fd; background-color: #323440;"> * @param doubleClickQualificationTime The time in which the second tap should be done</span>
+<span style="color: #8be9fd; background-color: #323440;"> * in order to qualify as a double click. Time in MS</span>
+<span style="color: #8be9fd; background-color: #323440;"> */</span>
+<span style="color: #ff79c6;">abstract</span> <span style="color: #ff79c6;">class</span> <span style="color: #bd93f9;">DoubleClickListener</span><span style="color: #61bfff;">(</span>
+  <span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">val</span> doubleClickQualificationTime: <span style="color: #bd93f9;">Long</span> <span style="color: #c0afa7;">=</span> <span style="color: #e0a0bc;">300</span>
+<span style="color: #61bfff;">)</span> : <span style="color: #bd93f9;">View.OnClickListener</span> <span style="color: #61bfff;">{</span>
 
-  private var timestampLastClick = 0L
+  <span style="color: #ff79c6;">private</span> <span style="color: #ff79c6;">var</span> timestampLastClick <span style="color: #c0afa7;">=</span> <span style="color: #bb99b4;">0L</span>
 
-  override fun onClick(v: View) {
-    if ((elapsedRealtime() - timestampLastClick) &lt; doubleClickQualificationTime) {
-      onDoubleClick(v)
-    }
-    timestampLastClick = elapsedRealtime();
-  }
+  <span style="color: #ff79c6;">override</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">onClick</span><span style="color: #ff79c6;">(</span><span style="color: #e0d0a0;">v</span>: <span style="color: #bd93f9;">View</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #a7c0b9;">elapsedRealtime</span><span style="color: #bd93f9;">()</span> <span style="color: #a7aac0;">-</span> <span style="color: #e0d0a0;">timestampLastClick</span><span style="color: #ffb86c;">)</span> <span style="color: #bb99b4;">&lt;</span> <span style="color: #bba699;">doubleClickQualificationTime</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+      <span style="color: #bb99b4;">onDoubleClick</span><span style="color: #ffb86c;">(</span><span style="color: #e0d0a0;">v</span><span style="color: #ffb86c;">)</span>
+    <span style="color: #50fa7b;">}</span>
+    <span style="color: #e0d0a0;">timestampLastClick</span> <span style="color: #c0afa7;">=</span> <span style="color: #a7c0b9;">elapsedRealtime</span><span style="color: #50fa7b;">()</span>;
+  <span style="color: #ff79c6;">}</span>
 
-  /** When the view is double clicked */
-  abstract fun onDoubleClick(v: View)
-}
+  <span style="color: #8be9fd; background-color: #323440;">/** </span><span style="color: #8be9fd; background-color: #323440;">When the view is double clicked */</span>
+  <span style="color: #ff79c6;">abstract</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">onDoubleClick</span><span style="color: #ff79c6;">(</span><span style="color: #e0d0a0;">v</span>: <span style="color: #bd93f9;">View</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
 
-/**
- * Creates a [DoubleClickListener] and applies it to a view
- */
-inline fun View.setOnDoubleClickListener(
-  crossinline onDoubleClick: (View) -&gt; Unit
-) {
-  setOnClickListener(object : DoubleClickListener() {
-    override fun onDoubleClick(v: View) {
-      onDoubleClick(v)
-    }
-  })
-}
+<span style="color: #8be9fd; background-color: #323440;">/**</span>
+<span style="color: #8be9fd; background-color: #323440;"> * Creates a [DoubleClickListener] and applies it to a view</span>
+<span style="color: #8be9fd; background-color: #323440;"> */</span>
+<span style="color: #ff79c6;">inline</span> <span style="color: #ff79c6;">fun</span> <span style="color: #bd93f9;">View.setOnDoubleClickListener</span><span style="color: #61bfff;">(</span>
+  <span style="color: #ff79c6;">crossinline</span> <span style="color: #bb99b4;">onDoubleClick</span>: <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">View</span><span style="color: #ff79c6;">)</span> <span style="color: #9999bb;">-&gt;</span> <span style="color: #bd93f9;">Unit</span>
+<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #a7c0b9;">setOnClickListener</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">object</span> : <span style="color: #bd93f9;">DoubleClickListener</span><span style="color: #50fa7b;">()</span> <span style="color: #50fa7b;">{</span>
+    <span style="color: #ff79c6;">override</span> <span style="color: #ff79c6;">fun</span> <span style="color: #50fa7b;">onDoubleClick</span><span style="color: #ffb86c;">(</span><span style="color: #e0d0a0;">v</span>: <span style="color: #bd93f9;">View</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">{</span>
+      <span style="color: #bb99b4;">onDoubleClick</span><span style="color: #bd93f9;">(</span><span style="color: #e0d0a0;">v</span><span style="color: #bd93f9;">)</span>
+    <span style="color: #ffb86c;">}</span>
+  <span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
 </pre>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2021-07-11 Sun 15:43</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div class="link"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
 </div>
 </body>
 </html>
