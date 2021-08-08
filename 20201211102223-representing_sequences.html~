@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-08 Sun 15:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Representing Sequences</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Representing Sequences</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20201211095722-hierarchical_data_and_the_closure_property.html">Hierarchical Data and the Closure Property</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define one-through-four (list 1 2 3 4))
+one-through-four
+(car one-through-four)
+(cdr one-through-four)
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (list-ref items n)
+  (if (= n 0)
+      (car items)
+      (list-ref (cdr items) (- n 1))))
+(define squares (list 1 4 9 16 25))
+(list-ref squares 3)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (length items)
+  (if (null? items)
+      0
+      (+ 1 (length (cdr items)))))
+(define odds (list 1 3 5 7))
+(length odds)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (length items)
+  (define (length-iter a count)
+    (if (null? a)
+	count
+	(length-iter (cdr a) (+ count 1))))
+  (length-iter items 0))
+(define odds (list 1 3 5 7))
+(length odds)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (append l1 l2)
+  (if (null? l1)
+      l2
+      (cons (car l1) (append (cdr l1) l2))))
+(define odds (list 1 3 5 7))
+(define squares (list 1 4 9 16 25))
+(append odds squares)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (last-pair items)
+  (if (null? (cdr items))
+      (car items)
+      (last-pair (cdr items))))
+(last-pair (list 1 2 3))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (append l1 l2)
+  (if (null? l1)
+      l2
+      (cons (car l1) (append (cdr l1) l2))))
+
+(define (reverse items)
+  (if (null? items)
+      '()
+      (append (reverse (cdr items)) (list (car items)))))
+
+(reverse (list 1 2 3 4))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

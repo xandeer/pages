@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-08 Sun 15:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>What Is Meant by Data?</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">What Is Meant by Data?</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20201202110040-building_abstractions_with_data.html">Building Abstractions with Data</a></dd>
+<dt>link</dt><dd><a href="20201102100826-structure_and_interpretation_of_computer_programs.html">Structure and Interpretation of Computer Programs</a></dd>
+</dl>
+
+
+<p>
+In general, we can think of data as defined by some collection of selectors
+and constructors, together with specified conditions that these procedures
+must fulfill in order to be a valid representation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (cons x y)
+  (define (dispatch m)
+    (cond ((= m 0) x)
+	  ((= m 1) y)
+	  (else (error "Argument not 0 or 1: CONS" m))))
+  dispatch)
+
+(define (car z)
+  (z 0))
+
+(define (cdr z)
+  (z 1))
+
+(display (car (cons 1 2)))
+(newline)
+(display (cdr (cons 1 2)))
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define (cons x y)
+  (lambda (m) (m x y)))
+
+(define (car z)
+  (z (lambda (p q) p)))
+
+(define (cdr z)
+  (z (lambda (p q ) q)))
+
+(display (car (cons 1 2)))
+(newline)
+(display (cdr (cons 1 2)))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(define zero (lambda (f) (lambda (x) x)))
+
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f ((n f) x)))))
+
+(display (add-1 zero))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
