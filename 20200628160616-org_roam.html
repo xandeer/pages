@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 12:58 -->
+<!-- 2021-08-08 Sun 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Org Roam</title>
@@ -40,31 +40,31 @@
 </dl>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #a0d6e0;">use-package</span> <span style="color: #e0d0a0;">org-roam</span>
-  <span style="color: #ffb86c;">:hook</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a7c0b9;">after-init</span> <span style="color: #a6bb99;">.</span> <span style="color: #c0afa7;">org-roam-mode</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffb86c;">:custom</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #b6a0e0;">org-roam-capture-templates</span>
-   '<span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #f1fa8c;">"d"</span> <span style="color: #f1fa8c;">"default"</span> <span style="color: #a6bb99;">plain</span> #'<span style="color: #c0a7bd;">org-roam-capture--get-point</span> <span style="color: #f1fa8c;">"%?"</span>
-      <span style="color: #ffb86c;">:file-name</span> <span style="color: #f1fa8c;">"%&lt;%Y%m%d%H%M%S&gt;-${slug}"</span>
-      <span style="color: #ffb86c;">:head</span> <span style="color: #f1fa8c;">"#+TITLE: ${title}\n#+CREATED: &lt;%&lt;%Y-%m-%d %a %R&gt;&gt;\n#+ROAM_TAGS: Inbox\n\n"</span>
-      <span style="color: #ffb86c;">:unnarrowed</span> <span style="color: #99bbb4;">t</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #e0a0bc;">org-roam-dailies-capture-templates</span>
-   '<span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #f1fa8c;">"d"</span> <span style="color: #f1fa8c;">"daily"</span> <span style="color: #a6bb99;">plain</span> <span style="color: #bd93f9;">(</span><span style="color: #ff79c6;">function</span> <span style="color: #c0a7bd;">org-roam-capture--get-point</span><span style="color: #bd93f9;">)</span> <span style="color: #f1fa8c;">""</span>
-      <span style="color: #ffb86c;">:immediate-finish</span> <span style="color: #99bbb4;">t</span>
-      <span style="color: #ffb86c;">:file-name</span> <span style="color: #f1fa8c;">"journal/%&lt;%Y-%m-%d-%a&gt;"</span>
-      <span style="color: #ffb86c;">:head</span> <span style="color: #f1fa8c;">"#+TITLE: %&lt;%Y-%m-%d, %A&gt;\n#+STARTUP: content\n\n* %&lt;%A, %x&gt;"</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffb86c;">:config</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a6bb99;">map!</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">:prefix</span> <span style="color: #ffb86c;">(</span><span style="color: #f1fa8c;">"C-c x"</span> <span style="color: #a6bb99;">.</span> <span style="color: #f1fa8c;">"Xandeer"</span><span style="color: #ffb86c;">)</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam yesterday"</span> <span style="color: #f1fa8c;">"y"</span> #'<span style="color: #bb99b4;">org-roam-dailies-yesterday</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam find"</span> <span style="color: #f1fa8c;">"f"</span> #'<span style="color: #a0d6e0;">org-roam-find-file</span>
-         <span style="color: #ffb86c;">:map</span> <span style="color: #bba699;">org-mode-map</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam insert"</span> <span style="color: #f1fa8c;">"i"</span> #'<span style="color: #a3e0a0;">org-roam-insert</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam insert immediate"</span> <span style="color: #f1fa8c;">"I"</span> #'<span style="color: #a3e0a0;">org-roam-insert-immediate</span>
-         <span style="color: #ffb86c;">:map</span> <span style="color: #a3e0a0;">org-roam-mode-map</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam mode"</span> <span style="color: #f1fa8c;">"r"</span> #'<span style="color: #e0d0a0;">org-roam</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam buffer"</span> <span style="color: #f1fa8c;">"b"</span> #'<span style="color: #a0d6e0;">org-roam-switch-to-buffer</span>
-         <span style="color: #ffb86c;">:desc</span> <span style="color: #f1fa8c;">"Roam graph"</span> <span style="color: #f1fa8c;">"g"</span> #'<span style="color: #a3e0a0;">org-roam-graph</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-elisp">(use-package org-roam
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-capture-templates
+   '(("d" "default" plain #'org-roam-capture--get-point "%?"
+      :file-name "%&lt;%Y%m%d%H%M%S&gt;-${slug}"
+      :head "#+TITLE: ${title}\n#+CREATED: &lt;%&lt;%Y-%m-%d %a %R&gt;&gt;\n#+ROAM_TAGS: Inbox\n\n"
+      :unnarrowed t)))
+  (org-roam-dailies-capture-templates
+   '(("d" "daily" plain (function org-roam-capture--get-point) ""
+      :immediate-finish t
+      :file-name "journal/%&lt;%Y-%m-%d-%a&gt;"
+      :head "#+TITLE: %&lt;%Y-%m-%d, %A&gt;\n#+STARTUP: content\n\n* %&lt;%A, %x&gt;")))
+  :config
+  (map! (:prefix ("C-c x" . "Xandeer")
+	 :desc "Roam yesterday" "y" #'org-roam-dailies-yesterday
+	 :desc "Roam find" "f" #'org-roam-find-file
+	 :map org-mode-map
+	 :desc "Roam insert" "i" #'org-roam-insert
+	 :desc "Roam insert immediate" "I" #'org-roam-insert-immediate
+	 :map org-roam-mode-map
+	 :desc "Roam mode" "r" #'org-roam
+	 :desc "Roam buffer" "b" #'org-roam-switch-to-buffer
+	 :desc "Roam graph" "g" #'org-roam-graph)))
 </pre>
 </div>
 </div>

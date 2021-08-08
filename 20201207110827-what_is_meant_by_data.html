@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 12:59 -->
+<!-- 2021-08-08 Sun 15:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>What Is Meant by Data?</title>
@@ -48,49 +48,49 @@ must fulfill in order to be a valid representation.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">cons</span> <span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">dispatch</span> <span style="color: #c0a7bd;">m</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">cond</span> <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #c0a7bd;">m</span> <span style="color: #b6a0e0;">0</span><span style="color: #bd93f9;">)</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span>
-          <span style="color: #ffb86c;">(</span><span style="color: #bd93f9;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #c0a7bd;">m</span> <span style="color: #c0a7bd;">1</span><span style="color: #bd93f9;">)</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span>
-          <span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">else</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">error</span> <span style="color: #f1fa8c;">"Argument not 0 or 1: CONS"</span> <span style="color: #c0a7bd;">m</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #a7c0b9;">dispatch</span><span style="color: #61bfff;">)</span>
+<pre class="src src-scheme">(define (cons x y)
+  (define (dispatch m)
+    (cond ((= m 0) x)
+	  ((= m 1) y)
+	  (else (error "Argument not 0 or 1: CONS" m))))
+  dispatch)
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">car</span> <span style="color: #b6a0e0;">z</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #b6a0e0;">z</span> <span style="color: #b6a0e0;">0</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(define (car z)
+  (z 0))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">cdr</span> <span style="color: #b6a0e0;">z</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #b6a0e0;">z</span> <span style="color: #c0a7bd;">1</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(define (cdr z)
+  (z 1))
 
-<span style="color: #61bfff;">(</span><span style="color: #a3e0a0;">display</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">car</span> <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #b3c0a7;">newline</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #a3e0a0;">display</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">cdr</span> <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(display (car (cons 1 2)))
+(newline)
+(display (cdr (cons 1 2)))
 </pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">cons</span> <span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #50fa7b;">(</span><span style="color: #c0a7bd;">m</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">(</span><span style="color: #c0a7bd;">m</span> <span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-scheme">(define (cons x y)
+  (lambda (m) (m x y)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">car</span> <span style="color: #b6a0e0;">z</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #b6a0e0;">z</span> <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #ffb86c;">(</span><span style="color: #a3e0a0;">p</span> <span style="color: #a0d6e0;">q</span><span style="color: #ffb86c;">)</span> <span style="color: #a3e0a0;">p</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(define (car z)
+  (z (lambda (p q) p)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">cdr</span> <span style="color: #b6a0e0;">z</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #b6a0e0;">z</span> <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #ffb86c;">(</span><span style="color: #a3e0a0;">p</span> <span style="color: #a0d6e0;">q</span> <span style="color: #ffb86c;">)</span> <span style="color: #a0d6e0;">q</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(define (cdr z)
+  (z (lambda (p q ) q)))
 
-<span style="color: #61bfff;">(</span><span style="color: #a3e0a0;">display</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">car</span> <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #b3c0a7;">newline</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #a3e0a0;">display</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">cdr</span> <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(display (car (cons 1 2)))
+(newline)
+(display (cdr (cons 1 2)))
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-scheme"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #50fa7b;">zero</span> <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #50fa7b;">(</span><span style="color: #bb99b4;">f</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #ffb86c;">(</span><span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #bba699;">x</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-scheme">(define zero (lambda (f) (lambda (x) x)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">define</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">add-1</span> <span style="color: #a0d6e0;">n</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #50fa7b;">(</span><span style="color: #bb99b4;">f</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">lambda</span> <span style="color: #ffb86c;">(</span><span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">f</span> <span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">(</span><span style="color: #a0d6e0;">n</span> <span style="color: #bb99b4;">f</span><span style="color: #f1fa8c;">)</span> <span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f ((n f) x)))))
 
-<span style="color: #61bfff;">(</span><span style="color: #a3e0a0;">display</span> <span style="color: #ff79c6;">(</span><span style="color: #bb99b4;">add-1</span> <span style="color: #c0a7bd;">zero</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(display (add-1 zero))
 </pre>
 </div>
 </div>

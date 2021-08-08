@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 13:01 -->
+<!-- 2021-08-08 Sun 15:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sh match multiple conditions in one case</title>
@@ -42,26 +42,26 @@ match.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org683a13a"><span style="color: #ff79c6;">function</span> <span style="color: #50fa7b;">cs</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ff79c6;">case</span> $1<span style="color: #ff79c6;"> in</span>
-    <span style="color: #c0a7bd;">1</span>)
-      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Mon"</span>;;
-    <span style="color: #9999bb;">2</span>|<span style="color: #e0a0bc;">3</span>|<span style="color: #a7aac0;">4</span>|<span style="color: #a7c0b9;">5</span>)
-      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Tue|Wed|Thu|Fri"</span>;;&amp;
-    <span style="color: #a7c0b9;">5</span>|<span style="color: #a6bb99;">6</span>|<span style="color: #c0afa7;">7</span>)
-      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Fri|Sat|Sun"</span>;;
-    <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">3)</span>
-      <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">echo "Wed";;</span>
-    <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">2|3)</span>
-      <span style="color: #8be9fd; background-color: #323440;"># </span><span style="color: #8be9fd; background-color: #323440;">echo "Wed";;</span>
-    <span style="color: #e0a0bc;">*</span>)
-      <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Nothing matched"</span>;;
-  <span style="color: #ff79c6;">esac</span>
-  <span style="color: #ffb86c;">echo</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #99bbb4;">cs</span> <span style="color: #c0a7bd;">1</span>
-<span style="color: #99bbb4;">cs</span> <span style="color: #e0a0bc;">3</span>
-<span style="color: #99bbb4;">cs</span> <span style="color: #a7c0b9;">5</span>
+<pre class="src src-sh" id="org86dac30">function cs() {
+  case $1 in
+    1)
+      echo "Mon";;
+    2|3|4|5)
+      echo "Tue|Wed|Thu|Fri";;&amp;
+    5|6|7)
+      echo "Fri|Sat|Sun";;
+    # 3)
+      # echo "Wed";;
+    # 2|3)
+      # echo "Wed";;
+    *)
+      echo "Nothing matched";;
+  esac
+  echo
+}
+cs 1
+cs 3
+cs 5
 </pre>
 </div>
 </div>

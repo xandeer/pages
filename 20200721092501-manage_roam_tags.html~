@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-08 Sun 15:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manage Roam Tags</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Manage Roam Tags</h1>
+<div class="org-src-container">
+<pre class="src src-elisp">(defun +org-notes-tags-read ()
+  "Return list of tags as set in the buffer."
+  (org-roam--extract-tags-prop (buffer-file-name (buffer-base-buffer))))
+
+(defun +org-notes-tags-delete ()
+  "Delete a tag from current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (+org-notes-tags-read))
+	 (tag (completing-read "Tag: " tags nil 'require-match)))
+    (+org-buffer-prop-set
+     "ROAM_TAGS"
+     (combine-and-quote-strings (delete tag tags)))
+    (org-roam-db--update-tags)))
+
+(defun +org-notes-tags-add ()
+  "Add a tag to current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (seq-uniq
+		(+seq-flatten
+		 (+seq-flatten
+		  (org-roam-db-query [:select tags :from tags])))))
+	 (tag (completing-read "Tag: " tags)))
+    (when (string-empty-p tag)
+      (user-error "Tag can't be empty"))
+    (+org-buffer-prop-set
+     "ROAM_TAGS"
+     (combine-and-quote-strings (seq-uniq (cons tag (+org-notes-tags-read)))))
+    (org-roam-db--update-tags)))
+
+(defun +org-notes-buffer-p ()
+  "Return non-nil if the currently visited buffer is a note."
+  (and buffer-file-name
+       (string-equal (expand-file-name (file-name-as-directory org-roam-directory))
+		     (file-name-directory buffer-file-name))))
+
+(defun +seq-flatten (list-of-lists)
+  "Flatten LIST-OF-LISTS."
+  (apply #'append list-of-lists))
+
+(defun +org-buffer-prop-set (name value)
+  "Set a buffer property called NAME to VALUE."
+  (save-excursion
+    (widen)
+    (goto-char (point-min))
+    (if (re-search-forward (concat "^#\\+" name ": \\(.*\\)") (point-max) t)
+	(replace-match (concat "#+" name ": " value))
+      ;; find the first line that doesn't begin with ':' or '#'
+      (let ((found))
+	(while (not (or found (eobp)))
+	  (beginning-of-line)
+	  (if (or (looking-at "^#")
+		  (looking-at "^:"))
+	      (line-move 1 t)
+	    (setq found t)))
+	(insert "#+" name ": " value "\n")))))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

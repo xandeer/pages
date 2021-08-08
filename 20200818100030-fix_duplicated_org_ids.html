@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 13:01 -->
+<!-- 2021-08-08 Sun 15:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fix duplicated org ids</title>
@@ -41,14 +41,14 @@
 
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">(</span><span style="color: #c0a7bd;">org-id-files</span> <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">org-roam--list-files</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">concat</span> <span style="color: #bb99b4;">org-directory</span> <span style="color: #f1fa8c;">"area"</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-      <span style="color: #99bbb4;">org-agenda-files</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #99bbb4;">org-id-update-id-locations</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-elisp">(let ((org-id-files (org-roam--list-files (concat org-directory "area")))
+      org-agenda-files)
+  (org-id-update-id-locations))
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a7aac0;">rg</span> <span style="color: #c0a7bd;">--files-with-matches</span> <span style="color: #f1fa8c;">':ID:'</span> <span style="color: #f1fa8c;">'/home/kevin/projects/personal/notes/area'</span> | <span style="color: #a7aac0;">xargs</span> <span style="color: #9999bb;">sed</span> <span style="color: #a6bb99;">-i</span> <span style="color: #f1fa8c;">'/:ID:/d'</span>
+<pre class="src src-sh">rg --files-with-matches ':ID:' '/home/kevin/projects/personal/notes/area' | xargs sed -i '/:ID:/d'
 </pre>
 </div>
 </div>

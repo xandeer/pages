@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 13:00 -->
+<!-- 2021-08-08 Sun 15:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Manage Roam Tags</title>
@@ -36,65 +36,65 @@
 <div id="content">
 <h1 class="title">Manage Roam Tags</h1>
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+org-notes-tags-read</span> <span style="color: #ff79c6;">()</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Return list of tags as set in the buffer."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #c0afa7;">org-roam--extract-tags-prop</span> <span style="color: #50fa7b;">(</span><span style="color: #c0afa7;">buffer-file-name</span> <span style="color: #ffb86c;">(</span><span style="color: #bba699;">buffer-base-buffer</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-elisp">(defun +org-notes-tags-read ()
+  "Return list of tags as set in the buffer."
+  (org-roam--extract-tags-prop (buffer-file-name (buffer-base-buffer))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+org-notes-tags-delete</span> <span style="color: #ff79c6;">()</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Delete a tag from current note."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">interactive</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">unless</span> <span style="color: #50fa7b;">(</span><span style="color: #e0d0a0;">+org-notes-buffer-p</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">user-error</span> <span style="color: #f1fa8c;">"Current buffer is not a note"</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">let*</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #9999bb;">tags</span> <span style="color: #bd93f9;">(</span><span style="color: #bba699;">+org-notes-tags-read</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-         <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">tag</span> <span style="color: #bd93f9;">(</span><span style="color: #a0d6e0;">completing-read</span> <span style="color: #f1fa8c;">"Tag: "</span> <span style="color: #9999bb;">tags</span> <span style="color: #e0d0a0;">nil</span> '<span style="color: #a7aac0;">require-match</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">+org-buffer-prop-set</span>
-     <span style="color: #f1fa8c;">"ROAM_TAGS"</span>
-     <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">combine-and-quote-strings</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">delete</span> <span style="color: #b3c0a7;">tag</span> <span style="color: #9999bb;">tags</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">org-roam-db--update-tags</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun +org-notes-tags-delete ()
+  "Delete a tag from current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (+org-notes-tags-read))
+	 (tag (completing-read "Tag: " tags nil 'require-match)))
+    (+org-buffer-prop-set
+     "ROAM_TAGS"
+     (combine-and-quote-strings (delete tag tags)))
+    (org-roam-db--update-tags)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+org-notes-tags-add</span> <span style="color: #ff79c6;">()</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Add a tag to current note."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">interactive</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">unless</span> <span style="color: #50fa7b;">(</span><span style="color: #e0d0a0;">+org-notes-buffer-p</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">user-error</span> <span style="color: #f1fa8c;">"Current buffer is not a note"</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">let*</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #9999bb;">tags</span> <span style="color: #bd93f9;">(</span><span style="color: #b6a0e0;">seq-uniq</span>
-                <span style="color: #f1fa8c;">(</span><span style="color: #a0d6e0;">+seq-flatten</span>
-                 <span style="color: #0189cc;">(</span><span style="color: #a0d6e0;">+seq-flatten</span>
-                  <span style="color: #a2b6da;">(</span><span style="color: #b6a0e0;">org-roam-db-query</span> <span style="color: #9cb6ad;">[</span><span style="color: #ffb86c;">:select</span> <span style="color: #9999bb;">tags</span> <span style="color: #ffb86c;">:from</span> <span style="color: #9999bb;">tags</span><span style="color: #9cb6ad;">]</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-         <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">tag</span> <span style="color: #bd93f9;">(</span><span style="color: #a0d6e0;">completing-read</span> <span style="color: #f1fa8c;">"Tag: "</span> <span style="color: #9999bb;">tags</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">when</span> <span style="color: #ffb86c;">(</span><span style="color: #b6a0e0;">string-empty-p</span> <span style="color: #b3c0a7;">tag</span><span style="color: #ffb86c;">)</span>
-      <span style="color: #ffb86c;">(</span><span style="color: #f1fa8c;">user-error</span> <span style="color: #f1fa8c;">"Tag can't be empty"</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">+org-buffer-prop-set</span>
-     <span style="color: #f1fa8c;">"ROAM_TAGS"</span>
-     <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">combine-and-quote-strings</span> <span style="color: #bd93f9;">(</span><span style="color: #b6a0e0;">seq-uniq</span> <span style="color: #f1fa8c;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #b3c0a7;">tag</span> <span style="color: #0189cc;">(</span><span style="color: #bba699;">+org-notes-tags-read</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #99bbb4;">org-roam-db--update-tags</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun +org-notes-tags-add ()
+  "Add a tag to current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (seq-uniq
+		(+seq-flatten
+		 (+seq-flatten
+		  (org-roam-db-query [:select tags :from tags])))))
+	 (tag (completing-read "Tag: " tags)))
+    (when (string-empty-p tag)
+      (user-error "Tag can't be empty"))
+    (+org-buffer-prop-set
+     "ROAM_TAGS"
+     (combine-and-quote-strings (seq-uniq (cons tag (+org-notes-tags-read)))))
+    (org-roam-db--update-tags)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+org-notes-buffer-p</span> <span style="color: #ff79c6;">()</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Return non-nil if the currently visited buffer is a note."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">and</span> <span style="color: #c0afa7;">buffer-file-name</span>
-       <span style="color: #50fa7b;">(</span><span style="color: #b6a0e0;">string-equal</span> <span style="color: #ffb86c;">(</span><span style="color: #a6bb99;">expand-file-name</span> <span style="color: #bd93f9;">(</span><span style="color: #a3e0a0;">file-name-as-directory</span> <span style="color: #a6bb99;">org-roam-directory</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-                     <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">file-name-directory</span> <span style="color: #c0afa7;">buffer-file-name</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun +org-notes-buffer-p ()
+  "Return non-nil if the currently visited buffer is a note."
+  (and buffer-file-name
+       (string-equal (expand-file-name (file-name-as-directory org-roam-directory))
+		     (file-name-directory buffer-file-name))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+seq-flatten</span> <span style="color: #ff79c6;">(</span><span style="color: #99bbb4;">list-of-lists</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Flatten LIST-OF-LISTS."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a0d6e0;">apply</span> #'<span style="color: #c0a7bd;">append</span> <span style="color: #99bbb4;">list-of-lists</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun +seq-flatten (list-of-lists)
+  "Flatten LIST-OF-LISTS."
+  (apply #'append list-of-lists))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">+org-buffer-prop-set</span> <span style="color: #ff79c6;">(</span><span style="color: #b3c0a7;">name</span> <span style="color: #bb99b4;">value</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #a8eefd; background-color: #323440;">"Set a buffer property called NAME to VALUE."</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">save-excursion</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #a7aac0;">widen</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #bba699;">goto-char</span> <span style="color: #ffb86c;">(</span><span style="color: #e0d0a0;">point-min</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #ff79c6;">if</span> <span style="color: #ffb86c;">(</span><span style="color: #c0afa7;">re-search-forward</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">concat</span> <span style="color: #f1fa8c;">"^#\\+"</span> <span style="color: #b3c0a7;">name</span> <span style="color: #f1fa8c;">": </span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">(</span><span style="color: #f1fa8c;">.*</span><span style="color: #bd93f9; font-weight: bold;">\\</span><span style="color: #bd93f9; font-weight: bold;">)</span><span style="color: #f1fa8c;">"</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">(</span><span style="color: #a6bb99;">point-max</span><span style="color: #bd93f9;">)</span> <span style="color: #99bbb4;">t</span><span style="color: #ffb86c;">)</span>
-        <span style="color: #ffb86c;">(</span><span style="color: #a0d6e0;">replace-match</span> <span style="color: #bd93f9;">(</span><span style="color: #e0a0bc;">concat</span> <span style="color: #f1fa8c;">"#+"</span> <span style="color: #b3c0a7;">name</span> <span style="color: #f1fa8c;">": "</span> <span style="color: #bb99b4;">value</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-      <span style="color: #8be9fd; background-color: #323440;">;; </span><span style="color: #8be9fd; background-color: #323440;">find the first line that doesn't begin with ':' or '#'</span>
-      <span style="color: #ffb86c;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">(</span><span style="color: #a6bb99;">found</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span>
-        <span style="color: #bd93f9;">(</span><span style="color: #ff79c6;">while</span> <span style="color: #f1fa8c;">(</span><span style="color: #c0a7bd;">not</span> <span style="color: #0189cc;">(</span><span style="color: #ff79c6;">or</span> <span style="color: #a6bb99;">found</span> <span style="color: #a2b6da;">(</span><span style="color: #a7aac0;">eobp</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span>
-          <span style="color: #f1fa8c;">(</span><span style="color: #a3e0a0;">beginning-of-line</span><span style="color: #f1fa8c;">)</span>
-          <span style="color: #f1fa8c;">(</span><span style="color: #ff79c6;">if</span> <span style="color: #0189cc;">(</span><span style="color: #ff79c6;">or</span> <span style="color: #a2b6da;">(</span><span style="color: #bba699;">looking-at</span> <span style="color: #f1fa8c;">"^#"</span><span style="color: #a2b6da;">)</span>
-                  <span style="color: #a2b6da;">(</span><span style="color: #bba699;">looking-at</span> <span style="color: #f1fa8c;">"^:"</span><span style="color: #a2b6da;">)</span><span style="color: #0189cc;">)</span>
-              <span style="color: #0189cc;">(</span><span style="color: #e0d0a0;">line-move</span> <span style="color: #c0a7bd;">1</span> <span style="color: #99bbb4;">t</span><span style="color: #0189cc;">)</span>
-            <span style="color: #0189cc;">(</span><span style="color: #ff79c6;">setq</span> <span style="color: #a6bb99;">found</span> <span style="color: #99bbb4;">t</span><span style="color: #0189cc;">)</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span>
-        <span style="color: #bd93f9;">(</span><span style="color: #a6bb99;">insert</span> <span style="color: #f1fa8c;">"#+"</span> <span style="color: #b3c0a7;">name</span> <span style="color: #f1fa8c;">": "</span> <span style="color: #bb99b4;">value</span> <span style="color: #f1fa8c;">"\n"</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun +org-buffer-prop-set (name value)
+  "Set a buffer property called NAME to VALUE."
+  (save-excursion
+    (widen)
+    (goto-char (point-min))
+    (if (re-search-forward (concat "^#\\+" name ": \\(.*\\)") (point-max) t)
+	(replace-match (concat "#+" name ": " value))
+      ;; find the first line that doesn't begin with ':' or '#'
+      (let ((found))
+	(while (not (or found (eobp)))
+	  (beginning-of-line)
+	  (if (or (looking-at "^#")
+		  (looking-at "^:"))
+	      (line-move 1 t)
+	    (setq found t)))
+	(insert "#+" name ": " value "\n")))))
 </pre>
 </div>
 </div>

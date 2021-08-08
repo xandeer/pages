@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 12:58 -->
+<!-- 2021-08-08 Sun 15:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shell or cli</title>
@@ -39,21 +39,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga1398bc">1. Better</a></li>
-<li><a href="#orgc9da1e6">2. Tools</a></li>
-<li><a href="#org51484b0">3. Shell Tips</a>
+<li><a href="#orgc15c08b">1. Better</a></li>
+<li><a href="#orgea93010">2. Tools</a></li>
+<li><a href="#org8163ff8">3. Shell Tips</a>
 <ul>
-<li><a href="#org2ea2d76">3.1. Run the last command with sudo</a></li>
-<li><a href="#org8c72743">3.2. echo $(clippaste)</a></li>
+<li><a href="#orgdb07afb">3.1. Run the last command with sudo</a></li>
+<li><a href="#org479c013">3.2. echo $(clippaste)</a></li>
 </ul>
 </li>
-<li><a href="#orga5019cc">4. Startup files loading order (.bashrc, .profile, .zshrc etc)</a>
+<li><a href="#org869c72c">4. Startup files loading order (.bashrc, .profile, .zshrc etc)</a>
 <ul>
-<li><a href="#org35ea5d0">4.1. For Bash</a></li>
-<li><a href="#org1ec38a6">4.2. For Zsh</a></li>
+<li><a href="#org9f1384c">4.1. For Bash</a></li>
+<li><a href="#orga83f5f8">4.2. For Zsh</a></li>
 </ul>
 </li>
-<li><a href="#org06c8975">5. Ref</a></li>
+<li><a href="#orge84d0fa">5. Ref</a></li>
 </ul>
 </div>
 </div>
@@ -62,8 +62,8 @@
 </dl>
 
 
-<div id="outline-container-orga1398bc" class="outline-2">
-<h2 id="orga1398bc"><span class="section-number-2">1</span> Better</h2>
+<div id="outline-container-orgc15c08b" class="outline-2">
+<h2 id="orgc15c08b"><span class="section-number-2">1</span> Better</h2>
 <div class="outline-text-2" id="text-1">
 <ol class="org-ol">
 <li>ls: exa</li>
@@ -74,7 +74,7 @@
 du: ncdu
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #ffb86c;">alias</span> du=<span style="color: #f1fa8c;">"ncdu --color dark -rr -x --exclude .git --exclude node_modules"</span>
+<pre class="src src-sh">alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 </pre>
 </div></li>
 <li>cat: bat</li>
@@ -82,15 +82,15 @@ du: ncdu
 ping: prettyping
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #ffb86c;">alias</span> ping=<span style="color: #f1fa8c;">'prettyping --nolegend'</span>
+<pre class="src src-sh">alias ping='prettyping --nolegend'
 </pre>
 </div></li>
 <li>curl: httpie, http</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgc9da1e6" class="outline-2">
-<h2 id="orgc9da1e6"><span class="section-number-2">2</span> Tools</h2>
+<div id="outline-container-orgea93010" class="outline-2">
+<h2 id="orgea93010"><span class="section-number-2">2</span> Tools</h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li><code>zsh_stats:</code> shows top 20 commands</li>
@@ -99,43 +99,43 @@ ping: prettyping
 git-chglog
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a0d6e0;">git-chglog</span> <span style="color: #e0d0a0;">--config</span> <span style="color: #e0a0bc;">cfg.yaml</span> <span style="color: #b3c0a7;">--output</span> <span style="color: #99bbb4;">changelog.md</span> <span style="color: #e0a0bc;">1.1.0..</span>
+<pre class="src src-sh">git-chglog --config cfg.yaml --output changelog.md 1.1.0..
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org51484b0" class="outline-2">
-<h2 id="org51484b0"><span class="section-number-2">3</span> Shell Tips</h2>
+<div id="outline-container-org8163ff8" class="outline-2">
+<h2 id="org8163ff8"><span class="section-number-2">3</span> Shell Tips</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org2ea2d76" class="outline-3">
-<h3 id="org2ea2d76"><span class="section-number-3">3.1</span> Run the last command with sudo</h3>
+<div id="outline-container-orgdb07afb" class="outline-3">
+<h3 id="orgdb07afb"><span class="section-number-3">3.1</span> Run the last command with sudo</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Refiled on <span class="timestamp-wrapper"><span class="timestamp">[2019-06-27 Thu 09:16]</span></span></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #c0a7bd;">sudo</span> <span style="color: #bd93f9; font-weight: bold;">!</span>!
+<pre class="src src-sh">sudo !!
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8c72743" class="outline-3">
-<h3 id="org8c72743"><span class="section-number-3">3.2</span> echo $(clippaste)</h3>
+<div id="outline-container-org479c013" class="outline-3">
+<h3 id="org479c013"><span class="section-number-3">3.2</span> echo $(clippaste)</h3>
 </div>
 </div>
-<div id="outline-container-orga5019cc" class="outline-2">
-<h2 id="orga5019cc"><span class="section-number-2">4</span> Startup files loading order (.bashrc, .profile, .zshrc etc)</h2>
+<div id="outline-container-org869c72c" class="outline-2">
+<h2 id="org869c72c"><span class="section-number-2">4</span> Startup files loading order (.bashrc, .profile, .zshrc etc)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/">Startup files loading order</a>
 </p>
 </div>
-<div id="outline-container-org35ea5d0" class="outline-3">
-<h3 id="org35ea5d0"><span class="section-number-3">4.1</span> For Bash</h3>
+<div id="outline-container-org9f1384c" class="outline-3">
+<h3 id="org9f1384c"><span class="section-number-3">4.1</span> For Bash</h3>
 <div class="outline-text-3" id="text-4-1">
-<!-- This HTML table template is generated by emacs 27.2 -->
+<!-- This HTML table template is generated by emacs 28.0.50 -->
 <table border="1">
   <tr>
     <td align="left" valign="top">
@@ -298,15 +298,15 @@ git-chglog
 </table>
 </div>
 </div>
-<div id="outline-container-org1ec38a6" class="outline-3">
-<h3 id="org1ec38a6"><span class="section-number-3">4.2</span> For Zsh</h3>
+<div id="outline-container-orga83f5f8" class="outline-3">
+<h3 id="orga83f5f8"><span class="section-number-3">4.2</span> For Zsh</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 For zsh: [Note that zsh seems to read ~/.profile as well, if ~/.zshrc is not
 present.]
 </p>
 
-<!-- This HTML table template is generated by emacs 27.2 -->
+<!-- This HTML table template is generated by emacs 28.0.50 -->
 <table border="1">
   <tr>
     <td align="left" valign="top">
@@ -498,8 +498,8 @@ present.]
 </div>
 </div>
 </div>
-<div id="outline-container-org06c8975" class="outline-2">
-<h2 id="org06c8975"><span class="section-number-2">5</span> Ref</h2>
+<div id="outline-container-orge84d0fa" class="outline-2">
+<h2 id="orge84d0fa"><span class="section-number-2">5</span> Ref</h2>
 <div class="outline-text-2" id="text-5">
 <ol class="org-ol">
 <li><a href="https://github.com/ibraheemdev/modern-unix">https://github.com/ibraheemdev/modern-unix</a></li>

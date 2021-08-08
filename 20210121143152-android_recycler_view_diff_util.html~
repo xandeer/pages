@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-08 Sun 15:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Android recycler view diff util</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Android recycler view diff util</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20200622135139-android.html">Android</a></dd>
+</dl>
+
+
+<div class="org-src-container">
+<pre class="src src-kotlin">interface AutoUpdatableAdapter {
+
+    fun &lt;T&gt; RecyclerView.Adapter&lt;*&gt;.autoNotify(old: List&lt;T&gt;, new: List&lt;T&gt;, compare: (T, T) -&gt; Boolean) {
+	val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+
+	    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+		return compare(old[oldItemPosition], new[newItemPosition])
+	    }
+
+	    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+		return old[oldItemPosition] == new[newItemPosition]
+	    }
+
+	    override fun getOldListSize() = old.size
+
+	    override fun getNewListSize() = new.size
+	})
+
+	diff.dispatchUpdatesTo(this)
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-kotlin">class ContentAdapter() : RecyclerView.Adapter&lt;ContentAdapter.ViewHolder&gt;(), AutoUpdatableAdapter {
+
+    var items: List&lt;Content&gt; by Delegates.observable(emptyList()) {
+	prop, old, new -&gt;
+	autoNotify(old, new) { o, n -&gt; o.id == n.id }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+	return ViewHolder(parent.inflate(R.layout.view_item))
+    }
+
+    override fun getItemCount() = items.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+	holder.bind(items[position])
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+	fun bind(content: Content) = with(itemView) {
+	    image.loadUrl(content.image)
+	    text.text = content.text
+	}
+    }
+}
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-08 Sun 10:32 -->
+<!-- 2021-08-08 Sun 15:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure</title>
@@ -39,46 +39,46 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7463e00">1. Install</a></li>
-<li><a href="#org57c5838">2. Start</a></li>
-<li><a href="#org2337ade">3. Guide</a></li>
-<li><a href="#orgfc59958">4. Repl</a></li>
-<li><a href="#orgc57923b">5. Refs</a></li>
+<li><a href="#orgc04c000">1. Install</a></li>
+<li><a href="#org4b5ab07">2. Start</a></li>
+<li><a href="#org2cb0d05">3. Guide</a></li>
+<li><a href="#org7eb4c03">4. Repl</a></li>
+<li><a href="#org1e11d18">5. Refs</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7463e00" class="outline-2">
-<h2 id="org7463e00"><span class="section-number-2">1</span> Install</h2>
+<div id="outline-container-orgc04c000" class="outline-2">
+<h2 id="orgc04c000"><span class="section-number-2">1</span> Install</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #9999bb;">brew</span> <span style="color: #a6bb99;">install</span> <span style="color: #a7aac0;">clojure/tools/clojure</span>
+<pre class="src src-shell">brew install clojure/tools/clojure
 
-<span style="color: #9999bb;">wget</span> <span style="color: #a0d6e0;">https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein</span> <span style="color: #a7c0b9;">-O</span> <span style="color: #9999bb;">~/.bin</span>
-<span style="color: #a7aac0;">chmod</span> <span style="color: #99bbb4;">+x</span> <span style="color: #b3c0a7;">~/.bin/lein</span>
+wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O ~/.bin
+chmod +x ~/.bin/lein
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org57c5838" class="outline-2">
-<h2 id="org57c5838"><span class="section-number-2">2</span> Start</h2>
+<div id="outline-container-org4b5ab07" class="outline-2">
+<h2 id="org4b5ab07"><span class="section-number-2">2</span> Start</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #b6a0e0;">take</span> <span style="color: #b6a0e0;">~/temp/lein</span>
-<span style="color: #c0afa7;">lein</span> <span style="color: #e0a0bc;">new</span> <span style="color: #e0d0a0;">app</span> <span style="color: #e0a0bc;">hello</span>
-<span style="color: #a7c0b9;">emacsclient</span> <span style="color: #a3e0a0;">hello/project.clj</span>
+<pre class="src src-shell">take ~/temp/lein
+lein new app hello
+emacsclient hello/project.clj
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #99bbb4;">cider-jack-in</span>
- '<span style="color: #C57BDB;">(</span><span style="color: #C57BDB;">:project-dir</span> <span style="color: #7bc275;">"~/temp/lein/hello"</span><span style="color: #C57BDB;">)</span><span style="color: #51afef;">)</span>
+<pre class="src src-emacs-lisp">(cider-jack-in
+ '(:project-dir "~/temp/lein/hello"))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2337ade" class="outline-2">
-<h2 id="org2337ade"><span class="section-number-2">3</span> Guide</h2>
+<div id="outline-container-org2cb0d05" class="outline-2">
+<h2 id="org2cb0d05"><span class="section-number-2">3</span> Guide</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://clojure.org/guides/learn/sequential_colls">https://clojure.org/guides/learn/sequential_colls</a></li>
@@ -86,22 +86,22 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfc59958" class="outline-2">
-<h2 id="orgfc59958"><span class="section-number-2">4</span> Repl</h2>
+<div id="outline-container-org7eb4c03" class="outline-2">
+<h2 id="org7eb4c03"><span class="section-number-2">4</span> Repl</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Reload file in repl:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #51afef;">(</span><span style="color: #bb99b4;">use</span> <span style="color: #c0afa7;">'your.namespace</span> <span style="color: #a991f1;">:reload</span><span style="color: #51afef;">)</span>
+<pre class="src src-clojure">(use 'your.namespace :reload)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc57923b" class="outline-2">
-<h2 id="orgc57923b"><span class="section-number-2">5</span> Refs</h2>
+<div id="outline-container-org1e11d18" class="outline-2">
+<h2 id="org1e11d18"><span class="section-number-2">5</span> Refs</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://liujiacai.net/blog/2019/04/21/experience-in-clojure/">Clojure 开发经验总结</a></li>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-29 Thu 12:59 -->
+<!-- 2021-08-08 Sun 15:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abstraction Barriers</title>
@@ -53,47 +53,47 @@ losing the ability to make progress on the rest of the system.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">gcd</span> <span style="color: #ff79c6;">(</span><span style="color: #c0a7bd;">a</span> <span style="color: #c0a7bd;">b</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #c0a7bd;">b</span> <span style="color: #b6a0e0;">0</span><span style="color: #50fa7b;">)</span>
-      <span style="color: #c0a7bd;">a</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #a7c0b9;">gcd</span> <span style="color: #c0a7bd;">b</span> <span style="color: #ffb86c;">(</span><span style="color: #bba699;">%</span> <span style="color: #c0a7bd;">a</span> <span style="color: #c0a7bd;">b</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-elisp">(defun gcd (a b)
+  (if (= b 0)
+      a
+    (gcd b (% a b))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">make-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #a0d6e0;">n</span> <span style="color: #b6a0e0;">d</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">(</span><span style="color: #99bbb4;">cons</span> <span style="color: #a0d6e0;">n</span> <span style="color: #b6a0e0;">d</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">numer</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #b6a0e0;">g</span> <span style="color: #bd93f9;">(</span><span style="color: #a7c0b9;">gcd</span> <span style="color: #f1fa8c;">(</span><span style="color: #bb99b4;">car</span> <span style="color: #bba699;">x</span><span style="color: #f1fa8c;">)</span> <span style="color: #f1fa8c;">(</span><span style="color: #bb99b4;">cdr</span> <span style="color: #bba699;">x</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #a6bb99;">/</span> <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">car</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #b6a0e0;">g</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">denom</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #ff79c6;">let</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">(</span><span style="color: #b6a0e0;">g</span> <span style="color: #bd93f9;">(</span><span style="color: #a7c0b9;">gcd</span> <span style="color: #f1fa8c;">(</span><span style="color: #bb99b4;">car</span> <span style="color: #bba699;">x</span><span style="color: #f1fa8c;">)</span> <span style="color: #f1fa8c;">(</span><span style="color: #bb99b4;">cdr</span> <span style="color: #bba699;">x</span><span style="color: #f1fa8c;">)</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-    <span style="color: #50fa7b;">(</span><span style="color: #a6bb99;">/</span> <span style="color: #ffb86c;">(</span><span style="color: #bb99b4;">cdr</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #b6a0e0;">g</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun make-rat (n d) (cons n d))
+(defun numer (x)
+  (let ((g (gcd (car x) (cdr x))))
+    (/ (car x) g)))
+(defun denom (x)
+  (let ((g (gcd (car x) (cdr x))))
+    (/ (cdr x) g)))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">print-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #e0a0bc;">concat</span> <span style="color: #50fa7b;">(</span><span style="color: #a7aac0;">number-to-string</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span> <span style="color: #f1fa8c;">"/"</span> <span style="color: #50fa7b;">(</span><span style="color: #a7aac0;">number-to-string</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun print-rat (x)
+  (concat (number-to-string (numer x)) "/" (number-to-string (denom x))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">add-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">+</span> <span style="color: #ffb86c;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #bd93f9;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-               <span style="color: #ffb86c;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #bd93f9;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #a6bb99;">y</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-            <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun add-rat (x y)
+  (make-rat (+ (* (numer x) (denom y))
+	       (* (numer y) (denom x)))
+	    (* (denom x) (denom y))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">sub-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #50fa7b;">(</span><span style="color: #a7aac0;">-</span> <span style="color: #ffb86c;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #bd93f9;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span>
-               <span style="color: #ffb86c;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #bd93f9;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #a6bb99;">y</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #bd93f9;">)</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-            <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun sub-rat (x y)
+  (make-rat (- (* (numer x) (denom y))
+	       (* (numer y) (denom x)))
+	    (* (denom x) (denom y))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">mul-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-            <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun mul-rat (x y)
+  (make-rat (* (numer x) (numer y))
+	    (* (denom x) (denom y))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">div-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-            <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun div-rat (x y)
+  (make-rat (* (numer x) (denom y))
+	    (* (denom x) (numer y))))
 
-<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">defun</span> <span style="color: #50fa7b;">equal-rat?</span> <span style="color: #ff79c6;">(</span><span style="color: #bba699;">x</span> <span style="color: #a6bb99;">y</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ff79c6;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span>
-     <span style="color: #50fa7b;">(</span><span style="color: #e0a0bc;">*</span> <span style="color: #ffb86c;">(</span><span style="color: #b3c0a7;">denom</span> <span style="color: #bba699;">x</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">(</span><span style="color: #a7aac0;">numer</span> <span style="color: #a6bb99;">y</span><span style="color: #ffb86c;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(defun equal-rat? (x y)
+  (= (* (numer x) (denom y))
+     (* (denom x) (numer y))))
 
-<span style="color: #61bfff;">(</span><span style="color: #b6a0e0;">print-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(print-rat (make-rat 1 2))
 
-<span style="color: #61bfff;">(</span><span style="color: #b6a0e0;">print-rat</span> <span style="color: #ff79c6;">(</span><span style="color: #a7c0b9;">add-rat</span> <span style="color: #50fa7b;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #c0a7bd;">1</span> <span style="color: #9999bb;">2</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">(</span><span style="color: #a3e0a0;">make-rat</span> <span style="color: #c0a7bd;">1</span> <span style="color: #a6bb99;">6</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+(print-rat (add-rat (make-rat 1 2) (make-rat 1 6)))
 </pre>
 </div>
 </div>
