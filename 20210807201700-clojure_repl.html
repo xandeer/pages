@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-08 Sun 10:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Clojure Repl</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Clojure Repl</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org954d65e">1. Clojure Repl</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org954d65e" class="outline-2">
+<h2 id="org954d65e"><span class="section-number-2">1</span> Clojure Repl</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #51afef;">(</span><span style="color: #a3e0a0;">require</span> <span style="color: #e0a0bc;">'</span><span style="color: #C57BDB;">[</span><span style="color: #bba699;">clojure.pprint</span> <span style="color: #a991f1;">:as</span> <span style="color: #b6a0e0;">pp</span><span style="color: #C57BDB;">]</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #a3e0a0;">require</span> <span style="color: #e0a0bc;">'</span><span style="color: #C57BDB;">[</span><span style="color: #c0a7bd;">clojure.reflect</span> <span style="color: #a991f1;">:as</span> <span style="color: #bb99b4;">reflect</span><span style="color: #C57BDB;">]</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #a3e0a0;">require</span> <span style="color: #e0a0bc;">'</span><span style="color: #C57BDB;">[</span><span style="color: #a0d6e0;">clojure.java.javadoc</span> <span style="color: #a991f1;">:as</span> <span style="color: #a0d6e0;">jdoc</span><span style="color: #C57BDB;">]</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #51afef;">def</span> <span style="color: #DFDFDF;">file</span> <span style="color: #C57BDB;">(</span><span style="color: #FCCE7B;">clojure.java.io</span>/as-file <span style="color: #7bc275;">"/tmp"</span><span style="color: #C57BDB;">)</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #c0afa7;">type</span> <span style="color: #e0a0bc;">file</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #51afef;">defn</span> <span style="color: #5cEfFF;">jref</span> <span style="color: #C57BDB;">[</span><span style="color: #e0d0a0;">o</span><span style="color: #C57BDB;">]</span>
+  <span style="color: #C57BDB;">(</span><span style="color: #51afef;">let</span> <span style="color: #7bc275;">[</span><span style="color: #c0afa7;">type</span> <span style="color: #e69055;">(</span><span style="color: #51afef;">if</span> <span style="color: #a991f1;">(</span><span style="color: #c0afa7;">=</span> <span style="color: #FCCE7B;">(</span><span style="color: #c0afa7;">type</span> <span style="color: #e0d0a0;">o</span><span style="color: #FCCE7B;">)</span> <span style="color: #7bc275;">"java.lang.Class"</span><span style="color: #a991f1;">)</span> <span style="color: #e0d0a0;">o</span>
+                 <span style="color: #a991f1;">(</span><span style="color: #c0afa7;">type</span> <span style="color: #e0d0a0;">o</span><span style="color: #a991f1;">)</span><span style="color: #e69055;">)</span><span style="color: #7bc275;">]</span>
+    <span style="color: #7bc275;">(</span><span style="color: #51afef;">-&gt;&gt;</span> <span style="color: #e69055;">(</span><span style="color: #FCCE7B;">reflect</span>/reflect <span style="color: #c0afa7;">type</span><span style="color: #e69055;">)</span>
+         <span style="color: #a991f1;">:members</span> <span style="color: #e69055;">(</span><span style="color: #c0afa7;">sort-by</span> <span style="color: #a991f1;">:name</span><span style="color: #e69055;">)</span>
+         <span style="color: #e69055;">(</span><span style="color: #FCCE7B;">pp</span>/print-table <span style="color: #a991f1;">[</span><span style="color: #a991f1;">:name</span> <span style="color: #a991f1;">:flags</span> <span style="color: #a991f1;">:parameter-types</span> <span style="color: #a991f1;">:return-type</span><span style="color: #a991f1;">]</span><span style="color: #e69055;">)</span><span style="color: #7bc275;">)</span><span style="color: #C57BDB;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #a7c0b9;">jref</span> <span style="color: #e0a0bc;">file</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #a7c0b9;">jref</span> <span style="color: #C57BDB;">(</span><span style="color: #c0afa7;">type</span> <span style="color: #e0a0bc;">file</span><span style="color: #C57BDB;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #51afef;">(</span><span style="color: #e0d0a0;">apropos</span> <span style="color: #7bc275;">"sub"</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #c0a7bd;">dir</span> <span style="color: #99bbb4;">clojure.core</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #bb99b4;">source</span> <span style="color: #a6bb99;">doc</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #a6bb99;">doc</span> <span style="color: #c0a7bd;">dir</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
