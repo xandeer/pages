@@ -204,3 +204,156 @@ keymap ; {:a 1, :b 2, :c 3}
 (#{1 2 3} 4) ; nil
 
 ;; There are more functions in the clojure.sets namespace.
+
+;;; Useful forms
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Logic constructs in clojure are just macros, and look like
+;; everything else
+(if false "a" "b") ; "b"
+(if false "a") ; nil
+
+;; Use let to create temporary bindings
+(let [a 1 b 2]
+  (> a b)) ; false
+
+;; Group statements together with do
+(do
+  (print "Hello")
+  "World") ; "World"
+
+
+;; Functions have an implicit do
+(defn print-and-say-hello [name]
+  (print "Saying hello to " name)
+  (str "Hello " name)) ; #'learnclojure/print-and-say-hello
+(print-and-say-hello "Jeff") ; "Hello Jeff"
+
+;; So does let
+(let [name "Urkel"]
+  (print "Saying hello to " name)
+  (str "Hello " name)) ;"Hello Urkel"
+
+;; Use the threading macros (-> and ->>) to express transformations of
+;; data more clearly.
+
+;; The "Thread-first" macro (->) inserts into each form the result of
+;; the previous, as the first argument (second item)
+(->
+ {:a 1 :b 2}
+ (assoc :c 3)
+ (dissoc :b)) ; {:a 1, :c 3}
+
+;; This expression could be written as:
+;; (dissoc (assoc {:a 1 :b 2} :c 3) :b)
+
+;; The double arrow does the same thing, but inserts the result of
+;; each line at the *end* of the form. This is useful for collection
+;; operations in particular:
+(->>
+ (range 10)
+ (map inc)
+ (filter odd?)
+ (into [])) ; [1 3 5 7 9]
+
+;; When you are in a situation where you want more freedom as where to
+;; put the result of previous data transformations in an
+;; expression, you can use the as-> macro. With it, you can assign a
+;; specific name to transformations' output and use it as a
+;; placeholder in your chained expressions:
+(as-> [1 2 3] input
+  (map inc input) ; You can use last transform's output at the last position
+  (nth input 2)   ; and at the second position, in the same expression
+  (conj [4 5 6] input 8 9 10)) ; or in the middle ! Result: [4 5 6 4 8 9 10]
+
+;;; Modules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Use "use" to get all functions from the module
+(use 'clojure.set)
+
+;; Now we can use set operations
+(intersection #{1 2 3} #{2 3 4}) ; #{3 2}
+(difference #{1 2 3} #{2 3 4}) ; #{1}
+
+;; You can choose a subset of functions to import, too
+(use '[clojure.set :only [intersection]])
+
+;; Use require to import a module
+(require 'clojure.string)
+
+;; Use / to call functions from a module
+;; Here, the module is clojure.string and the function is blank?
+(clojure.string/blank? "") ; true
+
+;; You can give a module a shorter name on import
+(require '[clojure.string :as str])
+(str/replace "This is a test." #"[a-o]" str/upper-case) ; "THIs Is A tEst."
+;; (#"" denotes a regular expression literal)
+
+;; You can use require (and use, but don't) from a namespace using :require.
+;; You don't need to quote your modules if you do it this way.
+(ns test
+  (:require
+   [clojure.string :as str]
+   [clojure.set :as set]))
+
+;;; Java
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Java has a huge and useful standard library, so
+;; you'll want to learn how to get at it.
+
+;; Use import to load a java module
+(import java.util.Date)
+
+;; You can import from an ns too.
+(ns test
+  (:import java.util.Date
+           java.util.Calendar))
+
+;; Use the class name with a "." at the end to make a new instance
+(Date.) ; #inst "2021-08-22T03:51:09.538-00:00"
+
+;; Use . to call methods. Or, use the ".method" shortcut
+(. (Date.) getTime) ; 1629604313327
+(.getTime (Date.)) ; 1629604327814
+
+;; Use / to call static methods
+(System/currentTimeMillis) ; 1629604357446
+
+;; Use doto to make dealing with (mutable) classes more tolerable
+(import java.util.Calendar)
+(doto (Calendar/getInstance)
+  (.set 2000 1 1 0 0 0)
+  .getTime) ; #inst "2000-02-01T00:00:00.945+08:00"
+
+;;; STM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Software Transacational Memory is the mechanism clojure uses to handle
+;; persistent state. There are a few constructs in clojure that use this.
+
+;; An atom is the simplest. Pass it an initial value
+(def my-atom (atom {})) ; #'test/my-atom
+
+;; Update an atom with swap!.
+;; swap! takes a function and calls it with the current value of the atom
+;; as the first argument, and any trailing arguments as the second
+(swap! my-atom assoc :a 1) ; {:a 1}
+(swap! my-atom assoc :b 2) ; {:a 1, :b 2}
+
+;; Use '@' to dereference the atom and get the value
+my-atom ; #atom[{:a 1, :b 2} 0x412adeed]
+@my-atom ; {:a 1, :b 2}
+
+;; Here's a simple counter using an atom
+(def counter (atom 0)) ; #'test/counter
+(defn inc-counter []
+  (swap! counter inc)) ; #'test/inc-counter
+
+(inc-counter) ; 1
+(inc-counter) ; 2
+(inc-counter) ; 3
+
+@counter ; 3
