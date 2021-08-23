@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 17:04 -->
+<!-- 2021-08-23 Mon 23:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android recycler view diff util</title>
@@ -44,22 +44,22 @@
 <pre class="src src-kotlin">interface AutoUpdatableAdapter {
 
     fun &lt;T&gt; RecyclerView.Adapter&lt;*&gt;.autoNotify(old: List&lt;T&gt;, new: List&lt;T&gt;, compare: (T, T) -&gt; Boolean) {
-	val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+        val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
 
-	    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-		return compare(old[oldItemPosition], new[newItemPosition])
-	    }
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return compare(old[oldItemPosition], new[newItemPosition])
+            }
 
-	    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-		return old[oldItemPosition] == new[newItemPosition]
-	    }
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return old[oldItemPosition] == new[newItemPosition]
+            }
 
-	    override fun getOldListSize() = old.size
+            override fun getOldListSize() = old.size
 
-	    override fun getNewListSize() = new.size
-	})
+            override fun getNewListSize() = new.size
+        })
 
-	diff.dispatchUpdatesTo(this)
+        diff.dispatchUpdatesTo(this)
     }
 }
 </pre>
@@ -69,26 +69,26 @@
 <pre class="src src-kotlin">class ContentAdapter() : RecyclerView.Adapter&lt;ContentAdapter.ViewHolder&gt;(), AutoUpdatableAdapter {
 
     var items: List&lt;Content&gt; by Delegates.observable(emptyList()) {
-	prop, old, new -&gt;
-	autoNotify(old, new) { o, n -&gt; o.id == n.id }
+        prop, old, new -&gt;
+        autoNotify(old, new) { o, n -&gt; o.id == n.id }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-	return ViewHolder(parent.inflate(R.layout.view_item))
+        return ViewHolder(parent.inflate(R.layout.view_item))
     }
 
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-	holder.bind(items[position])
+        holder.bind(items[position])
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-	fun bind(content: Content) = with(itemView) {
-	    image.loadUrl(content.image)
-	    text.text = content.text
-	}
+        fun bind(content: Content) = with(itemView) {
+            image.loadUrl(content.image)
+            text.text = content.text
+        }
     }
 }
 </pre>

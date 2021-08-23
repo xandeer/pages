@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 17:04 -->
+<!-- 2021-08-23 Mon 23:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Google Analytics on Android</title>
@@ -47,20 +47,20 @@
 Validate debugView:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">adb shell setprop debug.firebase.analytics.app &lt;package_name&gt;
+<pre class="src src-sh">   adb shell setprop debug.firebase.analytics.app &lt;package_name&gt;
 </pre>
 </div></li>
 <li><p>
 Track events:
 </p>
 <div class="org-src-container">
-<pre class="src src-kotlin">fun track(event: String, param: String) {
-val bundle = Bundle()
-bundle.putString("param", param)
-// Firebase doesn't support event name contains space.
-FirebaseAnalytics.getInstance(App.context)
-    .logEvent(event, bundle)
-}
+<pre class="src src-kotlin">   fun track(event: String, param: String) {
+   val bundle = Bundle()
+   bundle.putString("param", param)
+   // Firebase doesn't support event name contains space.
+   FirebaseAnalytics.getInstance(App.context)
+       .logEvent(event, bundle)
+   }
 </pre>
 </div></li>
 <li><a href="https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports?authuser=2&amp;platform=android">Get deobfuscated crash reports with the Firebase Crashlytics SDK</a></li>
@@ -68,7 +68,7 @@ FirebaseAnalytics.getInstance(App.context)
 Check if crashlytics is working?
 </p>
 <div class="org-src-container">
-<pre class="src src-kotlin">throw RuntimeExpection("Test")
+<pre class="src src-kotlin">   throw RuntimeExpection("Test")
 </pre>
 </div>
 <p>
