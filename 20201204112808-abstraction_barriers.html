@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:18 -->
+<!-- 2021-08-23 Mon 14:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abstraction Barriers</title>
@@ -53,41 +53,41 @@ losing the ability to make progress on the rest of the system.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">(defun gcd (a b)
-  (if (= b 0)
+<pre class="src src-elisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">gcd</span> (a b)
+  (<span style="font-weight: bold;">if</span> (= b 0)
       a
     (gcd b (% a b))))
 
-(defun make-rat (n d) (cons n d))
-(defun numer (x)
-  (let ((g (gcd (car x) (cdr x))))
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">make-rat</span> (n d) (cons n d))
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">numer</span> (x)
+  (<span style="font-weight: bold;">let</span> ((g (gcd (car x) (cdr x))))
     (/ (car x) g)))
-(defun denom (x)
-  (let ((g (gcd (car x) (cdr x))))
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">denom</span> (x)
+  (<span style="font-weight: bold;">let</span> ((g (gcd (car x) (cdr x))))
     (/ (cdr x) g)))
 
-(defun print-rat (x)
-  (concat (number-to-string (numer x)) "/" (number-to-string (denom x))))
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">print-rat</span> (x)
+  (concat (number-to-string (numer x)) <span style="font-style: italic;">"/"</span> (number-to-string (denom x))))
 
-(defun add-rat (x y)
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">add-rat</span> (x y)
   (make-rat (+ (* (numer x) (denom y))
-	       (* (numer y) (denom x)))
-	    (* (denom x) (denom y))))
+               (* (numer y) (denom x)))
+            (* (denom x) (denom y))))
 
-(defun sub-rat (x y)
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">sub-rat</span> (x y)
   (make-rat (- (* (numer x) (denom y))
-	       (* (numer y) (denom x)))
-	    (* (denom x) (denom y))))
+               (* (numer y) (denom x)))
+            (* (denom x) (denom y))))
 
-(defun mul-rat (x y)
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">mul-rat</span> (x y)
   (make-rat (* (numer x) (numer y))
-	    (* (denom x) (denom y))))
+            (* (denom x) (denom y))))
 
-(defun div-rat (x y)
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">div-rat</span> (x y)
   (make-rat (* (numer x) (denom y))
-	    (* (denom x) (numer y))))
+            (* (denom x) (numer y))))
 
-(defun equal-rat? (x y)
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">equal-rat?</span> (x y)
   (= (* (numer x) (denom y))
      (* (denom x) (numer y))))
 

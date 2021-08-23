@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:16 -->
+<!-- 2021-08-23 Mon 14:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org babel for scheme</title>
@@ -43,8 +43,8 @@
 <div class="org-src-container">
 <pre class="src src-elisp">(straight-use-package 'geiser)
 (leaf geiser
-  :config
-  (setq geiser-active-implementations '(guile)))
+  <span style="font-weight: bold;">:config</span>
+  (<span style="font-weight: bold;">setq</span> geiser-active-implementations '(guile)))
 </pre>
 </div>
 
@@ -52,23 +52,23 @@
 <pre class="src src-elisp">(org-babel-do-load-languages
  'org-babel-load-languages
  `(
-   ;; ...
+   <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">...</span>
    (scheme . t)))
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-scheme">(define (cons x y)
-  (define (dispatch m)
-    (cond ((= m 0) x)
-	  ((= m 1) y)
-	  (else (error "Argument not 0 or 1: CONS" m))))
+<pre class="src src-scheme">(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cons</span> x y)
+  (<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">dispatch</span> m)
+    (<span style="font-weight: bold;">cond</span> ((= m 0) x)
+          ((= m 1) y)
+          (<span style="font-weight: bold;">else</span> (error <span style="font-style: italic;">"Argument not 0 or 1: CONS"</span> m))))
   dispatch)
 
-(define (car z)
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">car</span> z)
   (z 0))
 
-(define (cdr z)
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cdr</span> z)
   (z 1))
 
 (display (car (cons 1 2)))

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:17 -->
+<!-- 2021-08-23 Mon 14:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Rime</title>
@@ -45,14 +45,14 @@
 <li><a href="#org3bd2438">1.2. Librime</a>
 <ul>
 <li><a href="#org8c851d9">1.2.1. FAQ</a></li>
-<li><a href="#org102c1cc">1.2.2. Mac</a></li>
-<li><a href="#orge3372a7">1.2.3. Nixos</a></li>
+<li><a href="#org45cc1ca">1.2.2. Mac</a></li>
+<li><a href="#org356f341">1.2.3. Nixos</a></li>
 </ul>
 </li>
 <li><a href="#orge354a84">1.3. Prepare share data (don't need)</a>
 <ul>
-<li><a href="#org45cc1ca">1.3.1. Mac</a></li>
-<li><a href="#org356f341">1.3.2. Nixos</a></li>
+<li><a href="#orgc8abf05">1.3.1. Mac</a></li>
+<li><a href="#org232fc7e">1.3.2. Nixos</a></li>
 </ul>
 </li>
 </ul>
@@ -93,8 +93,8 @@ Use <a href="20200705173454-rime.html">rime</a> in <a href="20200623100445-emacs
 </p>
 </div>
 </div>
-<div id="outline-container-org102c1cc" class="outline-4">
-<h4 id="org102c1cc"><span class="section-number-4">1.2.2</span> Mac</h4>
+<div id="outline-container-org45cc1ca" class="outline-4">
+<h4 id="org45cc1ca"><span class="section-number-4">1.2.2</span> Mac</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 <pre class="src src-sh">wget https://github.com/rime/librime/releases/download/1.7.3/rime-1.7.3-osx.zip
@@ -104,19 +104,19 @@ cp -a librime ~/.local/share
 </div>
 </div>
 </div>
-<div id="outline-container-orge3372a7" class="outline-4">
-<h4 id="orge3372a7"><span class="section-number-4">1.2.3</span> Nixos</h4>
+<div id="outline-container-org356f341" class="outline-4">
+<h4 id="org356f341"><span class="section-number-4">1.2.3</span> Nixos</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
-<pre class="src src-elisp">(when (eq window-system 'x)
-  ; This may not exist, so I use the following.
-  ; (setq rime-emacs-module-header-root (concat (shell-command-to-string "nix eval --raw '(let pkgs = import &lt;nixpkgs&gt; {}; in with pkgs; lib.getLib emacs)'") "/include"))
-  (setq rime-emacs-module-header-root "/run/current-system/sw/share/emacs/26.3/src"))
+<pre class="src src-elisp">(<span style="font-weight: bold;">when</span> (eq window-system 'x)
+  <span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">This may not exist, so I use the following.</span>
+  <span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">(setq rime-emacs-module-header-root (concat (shell-command-to-string "nix eval --raw '(let pkgs = import &lt;nixpkgs&gt; {}; in with pkgs; lib.getLib emacs)'") "/include"))</span>
+  (<span style="font-weight: bold;">setq</span> rime-emacs-module-header-root <span style="font-style: italic;">"/run/current-system/sw/share/emacs/26.3/src"</span>))
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-sh">ln -sTf $(nix eval --raw '(let pkgs = import &lt;nixpkgs&gt; {}; in with pkgs; lib.getLib librime)') ~/.local/share/librime
+<pre class="src src-sh">ln -sTf $(nix eval --raw <span style="font-style: italic;">'(let pkgs = import &lt;nixpkgs&gt; {}; in with pkgs; lib.getLib librime)'</span>) ~/.local/share/librime
 </pre>
 </div>
 </div>
@@ -130,18 +130,18 @@ cp -a librime ~/.local/share
 This could make rime and emacs-rime use the same configuration.
 </p>
 </div>
-<div id="outline-container-org45cc1ca" class="outline-4">
-<h4 id="org45cc1ca"><span class="section-number-4">1.3.1</span> Mac</h4>
+<div id="outline-container-orgc8abf05" class="outline-4">
+<h4 id="orgc8abf05"><span class="section-number-4">1.3.1</span> Mac</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
-<pre class="src src-sh">ln -shf /Library/Input\ Methods/Squirrel.app/Contents/SharedSupport/opencc ~/Library/Rime/opencc
+<pre class="src src-sh">ln -shf /Library/Input<span style="font-style: italic;">\ </span>Methods/Squirrel.app/Contents/SharedSupport/opencc ~/Library/Rime/opencc
 ln -shf ~/Library/Rime ~/.local/share/rime
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org356f341" class="outline-4">
-<h4 id="org356f341"><span class="section-number-4">1.3.2</span> Nixos</h4>
+<div id="outline-container-org232fc7e" class="outline-4">
+<h4 id="org232fc7e"><span class="section-number-4">1.3.2</span> Nixos</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">ln -sTf ~/.config/fcitx/rime ~/.local/share/rime
@@ -156,33 +156,33 @@ ln -shf ~/Library/Rime ~/.local/share/rime
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-elisp">(straight-register-package
- '(rime :host github
-	:repo "DogLooksGood/emacs-rime"
-	:files ( "Makefile" "*.el" "lib.c")))
+ '(rime <span style="font-weight: bold;">:host</span> github
+        <span style="font-weight: bold;">:repo</span> <span style="font-style: italic;">"DogLooksGood/emacs-rime"</span>
+        <span style="font-weight: bold;">:files</span> ( <span style="font-style: italic;">"Makefile"</span> <span style="font-style: italic;">"*.el"</span> <span style="font-style: italic;">"lib.c"</span>)))
 
 (leaf rime
-  :straight t posframe
-  :bind (("M-i" . toggle-input-method))
-  :bind (:rime-mode-map
-	 ("M-I" . rime-force-enable))
-  :bind (:rime-active-mode-map
-	 ("M-i" . rime-inline-ascii))
-  :bind (:ivy-minibuffer-map
-	 ("M-i" . toggle-input-method))
-  :custom
-  (default-input-method . "rime")
-  (rime-librime-root    . "~/.local/share/librime/dist")
-  (rime-share-data-dir  . "~/.local/share/librime/thirdparty/share")
-  (rime-user-data-dir   . "~/.cache/rime")
-  :config
-  (when *is-a-linux*
-    (setq rime-emacs-module-header-root "/nix/store/m0bvchfp8b8ddnpjqn36n82f1wgl3qza-emacs-27.1/include")
-    (setq rime-share-data-dir (expand-file-name "~/.config/fcitx/rime")))
-  (setq rime-show-candidate 'posframe)
-  (setq rime-show-preedit t)
-  (setq rime-cursor "˰")
-  (setq rime-inline-ascii-trigger 'shift-l)
-  (setq rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "&lt;left&gt;" "&lt;right&gt;" "&lt;up&gt;" "&lt;down&gt;" "&lt;prior&gt;" "&lt;next&gt;" "&lt;delete&gt;" "C-`"))
+  <span style="font-weight: bold;">:straight</span> t posframe
+  <span style="font-weight: bold;">:bind</span> ((<span style="font-style: italic;">"M-i"</span> . toggle-input-method))
+  <span style="font-weight: bold;">:bind</span> (<span style="font-weight: bold;">:rime-mode-map</span>
+         (<span style="font-style: italic;">"M-I"</span> . rime-force-enable))
+  <span style="font-weight: bold;">:bind</span> (<span style="font-weight: bold;">:rime-active-mode-map</span>
+         (<span style="font-style: italic;">"M-i"</span> . rime-inline-ascii))
+  <span style="font-weight: bold;">:bind</span> (<span style="font-weight: bold;">:ivy-minibuffer-map</span>
+         (<span style="font-style: italic;">"M-i"</span> . toggle-input-method))
+  <span style="font-weight: bold;">:custom</span>
+  (default-input-method . <span style="font-style: italic;">"rime"</span>)
+  (rime-librime-root    . <span style="font-style: italic;">"~/.local/share/librime/dist"</span>)
+  (rime-share-data-dir  . <span style="font-style: italic;">"~/.local/share/librime/thirdparty/share"</span>)
+  (rime-user-data-dir   . <span style="font-style: italic;">"~/.cache/rime"</span>)
+  <span style="font-weight: bold;">:config</span>
+  (<span style="font-weight: bold;">when</span> *is-a-linux*
+    (<span style="font-weight: bold;">setq</span> rime-emacs-module-header-root <span style="font-style: italic;">"/nix/store/m0bvchfp8b8ddnpjqn36n82f1wgl3qza-emacs-27.1/include"</span>)
+    (<span style="font-weight: bold;">setq</span> rime-share-data-dir (expand-file-name <span style="font-style: italic;">"~/.config/fcitx/rime"</span>)))
+  (<span style="font-weight: bold;">setq</span> rime-show-candidate 'posframe)
+  (<span style="font-weight: bold;">setq</span> rime-show-preedit t)
+  (<span style="font-weight: bold;">setq</span> rime-cursor <span style="font-style: italic;">"&#752;"</span>)
+  (<span style="font-weight: bold;">setq</span> rime-inline-ascii-trigger 'shift-l)
+  (<span style="font-weight: bold;">setq</span> rime-translate-keybindings '(<span style="font-style: italic;">"C-f"</span> <span style="font-style: italic;">"C-b"</span> <span style="font-style: italic;">"C-n"</span> <span style="font-style: italic;">"C-p"</span> <span style="font-style: italic;">"C-g"</span> <span style="font-style: italic;">"&lt;left&gt;"</span> <span style="font-style: italic;">"&lt;right&gt;"</span> <span style="font-style: italic;">"&lt;up&gt;"</span> <span style="font-style: italic;">"&lt;down&gt;"</span> <span style="font-style: italic;">"&lt;prior&gt;"</span> <span style="font-style: italic;">"&lt;next&gt;"</span> <span style="font-style: italic;">"&lt;delete&gt;"</span> <span style="font-style: italic;">"C-`"</span>))
   (custom-set-variables
    '(rime-disable-predicates
      '(rime-predicate-evil-mode-p

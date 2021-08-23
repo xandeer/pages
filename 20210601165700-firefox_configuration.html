@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:18 -->
+<!-- 2021-08-23 Mon 14:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>firefox configuration</title>
@@ -66,84 +66,84 @@
 <h3 id="org995933f"><span class="section-number-3">1.3</span> surfingkeys</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-javascript">map('J', 'D');
-map('K', 'S');
-map('t', 'T');
-map('F', 'af');
-map('h', 'E');
-map('l', 'R');
-map('j', 'd');
-map('k', 'e');
+<pre class="src src-javascript">map(<span style="font-style: italic;">'J'</span>, <span style="font-style: italic;">'D'</span>);
+map(<span style="font-style: italic;">'K'</span>, <span style="font-style: italic;">'S'</span>);
+map(<span style="font-style: italic;">'t'</span>, <span style="font-style: italic;">'T'</span>);
+map(<span style="font-style: italic;">'F'</span>, <span style="font-style: italic;">'af'</span>);
+map(<span style="font-style: italic;">'h'</span>, <span style="font-style: italic;">'E'</span>);
+map(<span style="font-style: italic;">'l'</span>, <span style="font-style: italic;">'R'</span>);
+map(<span style="font-style: italic;">'j'</span>, <span style="font-style: italic;">'d'</span>);
+map(<span style="font-style: italic;">'k'</span>, <span style="font-style: italic;">'e'</span>);
 
-settings.focusFirstCandidate = true;
+settings.focusFirstCandidate = <span style="font-weight: bold; text-decoration: underline;">true</span>;
 
-addSearchAliasX('c', 'grep.app', 'https://grep.app/search?q=', 's', 'https://grep.app/search?q=', function(response) {
-    var res = JSON.parse(response.text);
-    return res.map(function(r){
-	return r.phrase;
+addSearchAliasX(<span style="font-style: italic;">'c'</span>, <span style="font-style: italic;">'grep.app'</span>, <span style="font-style: italic;">'https://grep.app/search?q='</span>, <span style="font-style: italic;">'s'</span>, <span style="font-style: italic;">'https://grep.app/search?q='</span>, <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">response</span>) {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">res</span> = JSON.parse(response.text);
+    <span style="font-weight: bold;">return</span> res.map(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">r</span>){
+        <span style="font-weight: bold;">return</span> r.phrase;
     });
 });
-mapkey('oc', 'grep.app', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "c"});
+mapkey(<span style="font-style: italic;">'oc'</span>, <span style="font-style: italic;">'grep.app'</span>, <span style="font-weight: bold;">function</span>() {
+    Front.openOmnibar({type: <span style="font-style: italic;">"SearchEngine"</span>, extra: <span style="font-style: italic;">"c"</span>});
 });
-addSearchAliasX('w', 'wikipedia en', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search=', function(response) {
-    return JSON.parse(response.text)[1];
+addSearchAliasX(<span style="font-style: italic;">'w'</span>, <span style="font-style: italic;">'wikipedia en'</span>, <span style="font-style: italic;">'https://en.wikipedia.org/wiki/'</span>, <span style="font-style: italic;">'s'</span>, <span style="font-style: italic;">'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search='</span>, <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">response</span>) {
+    <span style="font-weight: bold;">return</span> JSON.parse(response.text)[1];
 });
-addSearchAliasX('f', 'wikipedia cn', 'https://zh.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search=', function(response) {
-    return JSON.parse(response.text)[1];
+addSearchAliasX(<span style="font-style: italic;">'f'</span>, <span style="font-style: italic;">'wikipedia cn'</span>, <span style="font-style: italic;">'https://zh.wikipedia.org/wiki/'</span>, <span style="font-style: italic;">'s'</span>, <span style="font-style: italic;">'https://en.wikipedia.org/w/api.php?action=opensearch&amp;format=json&amp;formatversion=2&amp;namespace=0&amp;limit=40&amp;search='</span>, <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">response</span>) {
+    <span style="font-weight: bold;">return</span> JSON.parse(response.text)[1];
 });
-mapkey('ow', 'wikipedia en', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "w"});
+mapkey(<span style="font-style: italic;">'ow'</span>, <span style="font-style: italic;">'wikipedia en'</span>, <span style="font-weight: bold;">function</span>() {
+    Front.openOmnibar({type: <span style="font-style: italic;">"SearchEngine"</span>, extra: <span style="font-style: italic;">"w"</span>});
 });
-mapkey('of', 'wikipedia cn', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "f"});
+mapkey(<span style="font-style: italic;">'of'</span>, <span style="font-style: italic;">'wikipedia cn'</span>, <span style="font-weight: bold;">function</span>() {
+    Front.openOmnibar({type: <span style="font-style: italic;">"SearchEngine"</span>, extra: <span style="font-style: italic;">"f"</span>});
 });
-map('oo', 'og');
-mapkey('ou', 'github', function() {
-    Front.openOmnibar({type: "SearchEngine", extra: "h"});
+map(<span style="font-style: italic;">'oo'</span>, <span style="font-style: italic;">'og'</span>);
+mapkey(<span style="font-style: italic;">'ou'</span>, <span style="font-style: italic;">'github'</span>, <span style="font-weight: bold;">function</span>() {
+    Front.openOmnibar({type: <span style="font-style: italic;">"SearchEngine"</span>, extra: <span style="font-style: italic;">"h"</span>});
 });
-mapkey('oa', 'Open google translate to cn', () =&gt; {
-    tabOpenLink("https://translate.google.com/?sl=auto&amp;tl=zh-CN&amp;text=")
+mapkey(<span style="font-style: italic;">'oa'</span>, <span style="font-style: italic;">'Open google translate to cn'</span>, () =&gt; {
+    tabOpenLink(<span style="font-style: italic;">"https://translate.google.com/?sl=auto&amp;tl=zh-CN&amp;text="</span>)
 });
-mapkey('ob', 'Open google translate to en', () =&gt; {
-    tabOpenLink("https://translate.google.com/?sl=auto&amp;tl=en&amp;text=")
+mapkey(<span style="font-style: italic;">'ob'</span>, <span style="font-style: italic;">'Open google translate to en'</span>, () =&gt; {
+    tabOpenLink(<span style="font-style: italic;">"https://translate.google.com/?sl=auto&amp;tl=en&amp;text="</span>)
 });
 
-// theme
-settings.theme = `
-.sk_theme {
-	background: #100a14dd;
-	color: #4f97d7;
-}
-.sk_theme tbody {
-	color: #292d;
-}
-.sk_theme input {
-	color: #d9dce0;
-}
-.sk_theme .url {
-	color: #2d9574;
-}
-.sk_theme .annotation {
-	color: #a31db1;
-}
-.sk_theme .omnibar_highlight {
-	color: #333;
-	background: #ffff00aa;
-}
-.sk_theme #sk_omnibarSearchResult ul&gt;li:nth-child(odd) {
-	background: #5d4d7a55;
-}
-.sk_theme #sk_omnibarSearchResult ul&gt;li.focused {
-	background: #5d4d7aaa;
-}
-.sk_theme #sk_omnibarSearchResult .omnibar_folder {
-	color: #a31db1;
-}
-.sk_theme #sk_hints &gt; div {
-    color: white !important;
-}
-`;
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">theme</span>
+settings.theme = <span style="font-style: italic;">`</span>
+<span style="font-style: italic;">.sk_theme {</span>
+<span style="font-style: italic;">        background: #100a14dd;</span>
+<span style="font-style: italic;">        color: #4f97d7;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme tbody {</span>
+<span style="font-style: italic;">        color: #292d;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme input {</span>
+<span style="font-style: italic;">        color: #d9dce0;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme .url {</span>
+<span style="font-style: italic;">        color: #2d9574;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme .annotation {</span>
+<span style="font-style: italic;">        color: #a31db1;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme .omnibar_highlight {</span>
+<span style="font-style: italic;">        color: #333;</span>
+<span style="font-style: italic;">        background: #ffff00aa;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme #sk_omnibarSearchResult ul&gt;li:nth-child(odd) {</span>
+<span style="font-style: italic;">        background: #5d4d7a55;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme #sk_omnibarSearchResult ul&gt;li.focused {</span>
+<span style="font-style: italic;">        background: #5d4d7aaa;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme #sk_omnibarSearchResult .omnibar_folder {</span>
+<span style="font-style: italic;">        color: #a31db1;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">.sk_theme #sk_hints &gt; div {</span>
+<span style="font-style: italic;">    color: white !important;</span>
+<span style="font-style: italic;">}</span>
+<span style="font-style: italic;">`</span>;
 
 </pre>
 </div>
@@ -157,7 +157,7 @@ settings.theme = `
 <p>
 set about:config
 </p>
-<div class="sample" id="orgdd86859">
+<div class="sample" id="orgbee58b4">
 <p>
 toolkit.legacyUserProfileCustomizations.stylesheets &#x2013;&gt; true
 browser.tabs.drawInTitlebar &#x2013;&gt; true
@@ -172,26 +172,26 @@ ${FIREFOX<sub>PROFILE</sub>}/chrome/userChrome.css
 </p>
 
 <div class="org-src-container">
-<pre class="src src-css">@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+<pre class="src src-css"><span style="font-weight: bold;">@namespace</span> url<span style="color: #000000; background-color: #ffffff;">(</span><span style="font-style: italic;">http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</span><span style="color: #000000; background-color: #ffffff;">)</span>;
 
-#sidebar-header {
-    display: none;
+<span style="font-weight: bold;">#sidebar-header </span>{
+    <span style="font-weight: bold;">display</span>: none;
 }
 
-#TabsToolbar {
-    visibility: collapse !important;
+<span style="font-weight: bold;">#TabsToolbar </span>{
+    <span style="font-weight: bold;">visibility</span>: collapse <span style="font-weight: bold;">!important</span>;
 }
-#TabsToolbar .tabbrowser-tab {
-    display: none !important;
-}
-
-#nav-bar[inFullscreen],
-#TabsToolbar[inFullscreen] {
-    display: none;
+<span style="font-weight: bold;">#TabsToolbar .tabbrowser-tab </span>{
+    <span style="font-weight: bold;">display</span>: none <span style="font-weight: bold;">!important</span>;
 }
 
-#TabsToolbar &gt; .titlebar-buttonbox-container {
-    display: none !important;
+<span style="font-weight: bold;">#nav-bar[inFullscreen],</span>
+<span style="font-weight: bold;">#TabsToolbar[inFullscreen] </span>{
+    <span style="font-weight: bold;">display</span>: none;
+}
+
+<span style="font-weight: bold;">#TabsToolbar &gt; .titlebar-buttonbox-container </span>{
+    <span style="font-weight: bold;">display</span>: none <span style="font-weight: bold;">!important</span>;
 }
 
 </pre>

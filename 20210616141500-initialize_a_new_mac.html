@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:17 -->
+<!-- 2021-08-23 Mon 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Initialize a new mac</title>
@@ -120,7 +120,7 @@ cp -a librime/dist ~/.local/share/librime
 Create another Volume on your Disk for Nix:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">sudo diskutil apfs addVolume disk1 'APFS' nix
+<pre class="src src-sh">sudo diskutil apfs addVolume disk1 <span style="font-style: italic;">'APFS'</span> nix
 </pre>
 </div>
 
@@ -136,10 +136,10 @@ Encrypt Disk:
 Setup Mount Point:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">sudo bash -c 'echo nix &gt;&gt; /etc/synthetic.conf'
+<pre class="src src-sh">sudo bash -c <span style="font-style: italic;">'echo nix &gt;&gt; /etc/synthetic.conf'</span>
 sudo vifs
 diskutil info /dev/disk1s7 | grep UUID
-# UUID= /nix apfs  rw
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">UUID= /nix apfs  rw</span>
 </pre>
 </div>
 </div>
@@ -150,7 +150,7 @@ diskutil info /dev/disk1s7 | grep UUID
 <div class="org-src-container">
 <pre class="src src-sh">curl -L https://nixos.org/nix/install -o installNix.sh
 sh &lt;installNix.sh --daemon
-# sh &lt;(curl -L https://nixos.org/nix/install) --daemon
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">sh &lt;(curl -L https://nixos.org/nix/install) --daemon</span>
 </pre>
 </div>
 </div>
@@ -161,7 +161,7 @@ sh &lt;installNix.sh --daemon
 <div class="org-src-container">
 <pre class="src src-sh">nix-env -qaP --description git
 nix-env -iA nixpkgs.gitFull
-ssh-keygen -t ed25519 -C "kkxandeer@gmail.com"
+ssh-keygen -t ed25519 -C <span style="font-style: italic;">"kkxandeer@gmail.com"</span>
 vi ~/.ssh/config
 pbcopy &lt; ~/.ssh/id_ed25519.pub
 </pre>
@@ -174,7 +174,7 @@ Copy ssh pub to <a href="https://github.com/settings/keys">Github</a>.
 <p>
 Copy below to <code>~/.ssh/config</code>.
 </p>
-<pre class="example" id="orgcb7d128">
+<pre class="example" id="org959a112">
 Host *
   IgnoreUnknown UseKeychain
   AddKeysToAgent yes
@@ -201,12 +201,12 @@ rm -rf result
 <div class="org-src-container">
 <pre class="src src-sh">nix-env -i stow
 mkdir -p ~/projects/personal
-cd ~/projects/personal
+<span style="font-weight: bold;">cd</span> ~/projects/personal
 git clone git@github.com:xandeer/dotfiles.git
-cd dotfiles
+<span style="font-weight: bold;">cd</span> dotfiles
 make install
 darwin-rebuild switch
-cd ~
+<span style="font-weight: bold;">cd</span> ~
 mr -j 9 update
 </pre>
 </div>
@@ -231,7 +231,7 @@ mr -j 9 update
 <h2 id="orgb708303"><span class="section-number-2">3</span> Brew</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-sh">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+<pre class="src src-sh">/bin/bash -c <span style="font-style: italic;">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</span>
 </pre>
 </div>
 

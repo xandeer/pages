@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:16 -->
+<!-- 2021-08-23 Mon 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Best practice for instantiating a new Android Fragment</title>
@@ -58,14 +58,14 @@ use something like:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java">public static MyFragment newInstance(int someInt) {
-    MyFragment myFragment = new MyFragment();
+<pre class="src src-java"><span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">MyFragment</span> <span style="font-weight: bold;">newInstance</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">someInt</span>) {
+    <span style="font-weight: bold; text-decoration: underline;">MyFragment</span> <span style="font-weight: bold; font-style: italic;">myFragment</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">MyFragment</span>();
 
-    Bundle args = new Bundle();
-    args.putInt("someInt", someInt);
+    <span style="font-weight: bold; text-decoration: underline;">Bundle</span> <span style="font-weight: bold; font-style: italic;">args</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Bundle</span>();
+    args.putInt(<span style="font-style: italic;">"someInt"</span>, someInt);
     myFragment.setArguments(args);
 
-    return myFragment;
+    <span style="font-weight: bold;">return</span> myFragment;
 }
 </pre>
 </div>
@@ -75,7 +75,7 @@ And later in the Fragment onCreate() you can access that integer by using:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java">getArguments().getInt("someInt", 0);
+<pre class="src src-java">getArguments().getInt(<span style="font-style: italic;">"someInt"</span>, 0);
 </pre>
 </div>
 

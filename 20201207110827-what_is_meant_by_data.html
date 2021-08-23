@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-23 Mon 13:16 -->
+<!-- 2021-08-23 Mon 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>What Is Meant by Data?</title>
@@ -48,17 +48,17 @@ must fulfill in order to be a valid representation.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scheme">(define (cons x y)
-  (define (dispatch m)
-    (cond ((= m 0) x)
-	  ((= m 1) y)
-	  (else (error "Argument not 0 or 1: CONS" m))))
+<pre class="src src-scheme">(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cons</span> x y)
+  (<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">dispatch</span> m)
+    (<span style="font-weight: bold;">cond</span> ((= m 0) x)
+          ((= m 1) y)
+          (<span style="font-weight: bold;">else</span> (error <span style="font-style: italic;">"Argument not 0 or 1: CONS"</span> m))))
   dispatch)
 
-(define (car z)
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">car</span> z)
   (z 0))
 
-(define (cdr z)
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cdr</span> z)
   (z 1))
 
 (display (car (cons 1 2)))
@@ -69,14 +69,14 @@ must fulfill in order to be a valid representation.
 
 
 <div class="org-src-container">
-<pre class="src src-scheme">(define (cons x y)
-  (lambda (m) (m x y)))
+<pre class="src src-scheme">(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cons</span> x y)
+  (<span style="font-weight: bold;">lambda</span> (m) (m x y)))
 
-(define (car z)
-  (z (lambda (p q) p)))
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">car</span> z)
+  (z (<span style="font-weight: bold;">lambda</span> (p q) p)))
 
-(define (cdr z)
-  (z (lambda (p q ) q)))
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">cdr</span> z)
+  (z (<span style="font-weight: bold;">lambda</span> (p q ) q)))
 
 (display (car (cons 1 2)))
 (newline)
@@ -85,10 +85,10 @@ must fulfill in order to be a valid representation.
 </div>
 
 <div class="org-src-container">
-<pre class="src src-scheme">(define zero (lambda (f) (lambda (x) x)))
+<pre class="src src-scheme">(<span style="font-weight: bold;">define</span> <span style="font-weight: bold;">zero</span> (<span style="font-weight: bold;">lambda</span> (f) (<span style="font-weight: bold;">lambda</span> (x) x)))
 
-(define (add-1 n)
-  (lambda (f) (lambda (x) (f ((n f) x)))))
+(<span style="font-weight: bold;">define</span> (<span style="font-weight: bold;">add-1</span> n)
+  (<span style="font-weight: bold;">lambda</span> (f) (<span style="font-weight: bold;">lambda</span> (x) (f ((n f) x)))))
 
 (display (add-1 zero))
 </pre>
