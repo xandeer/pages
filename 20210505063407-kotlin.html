@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-23 Mon 13:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kotlin</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Kotlin</h1>
+<ol class="org-ol">
+<li><a href="20210630210100-string_to_md5_hex_in_kotlin.html">String to md5 hex in kotlin</a></li>
+<li><a href="20210505063304-gson_deserialize_list_array.html">Gson deserialize list/array</a></li>
+<li><a href="20200812215238-gson_deserialize_with_default_value.html">Gson deserialize with default value</a></li>
+<li><a href="https://play.kotlinlang.org/">https://play.kotlinlang.org/</a></li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-kotlin">fun group() {
+  val z = (1..9).map {it * 3}
+    .filter {it &lt; 20}
+    .groupBy {it % 2 == 0}
+    .mapKeys { if (it.key) "T" else "F" }
+
+  println(z)
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-kotlin">fun fibonacciSequence(): Sequence&lt;Long&gt; {
+  var a = 0L
+  var b = 1L
+
+  fun next(): Long {
+    val result = a + b
+    a = b
+    b = result
+    return a
+  }
+
+  return generateSequence(::next)
+}
+val y = fibonacciSequence().take(10).toList()
+println(y)
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
