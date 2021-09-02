@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-08-30 Mon 22:42 -->
+<!-- 2021-09-02 Thu 08:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Initialize a new mac</title>
@@ -66,6 +66,7 @@
 </li>
 <li><a href="#orgb708303">3. Brew</a></li>
 <li><a href="#org8244c3a">4. nvm (disabled)</a></li>
+<li><a href="#orgbbf24d8">5. tdlib</a></li>
 </ul>
 </div>
 </div>
@@ -174,7 +175,7 @@ Copy ssh pub to <a href="https://github.com/settings/keys">Github</a>.
 <p>
 Copy below to <code>~/.ssh/config</code>.
 </p>
-<pre class="example" id="orgca222dd">
+<pre class="example" id="org820187d">
 Host *
   IgnoreUnknown UseKeychain
   AddKeysToAgent yes
@@ -252,6 +253,23 @@ brew install trash onefetch emacs-plus@27 ffmpeg prettyping sdcv ranger git-chgl
 <pre class="src src-sh">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 src
 nvm install node
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbbf24d8" class="outline-2">
+<h2 id="orgbbf24d8"><span class="section-number-2">5</span> tdlib</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-shell">gcl https://github.com/tdlib/td.git
+<span style="font-weight: bold;">cd</span> td
+take build
+cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DZLIB_LIBRARY=/usr/local/opt/zlib/ -DZLIB_INCLUDE_DIR=/usr/local/opt/zlib/include ..
+make -j8
+sudo make install
+<span style="font-weight: bold;">cd</span> ~/.emacs.d/straight/repos/telega.el
+git checkout master
+git pull
 </pre>
 </div>
 </div>
