@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-02 Thu 08:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>git-chglog</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">git-chglog</h1>
+<p>
+A <a href="20200621180845-tools.html#ID-B82A8D5A-0BF5-4FB7-A101-BDFABFFD3422">Tool</a> to generate CHANGELOG.md by commit messages.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git-chglog --config .chglog/config.yml --output CHANGELOG.md 1.2.0..
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-yaml">style: gitlab
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/xandeer/hs.git
+options:
+  commits:
+    filters:
+      Type:
+        - Feat
+        - Fix
+        - Refactor
+  commit_groups:
+    group_by: Type
+    sort_by: Title
+    title_maps:
+      Feat: Features
+      Fix: Bug Fixes
+      Refactor: Code Refactoring
+  header:
+    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-md">{{ if .Versions -}}
+&lt;a name="unreleased"&gt;&lt;/a&gt;
+## [Unreleased]
+
+{{ if .Unreleased.CommitGroups -}}
+{{ range .Unreleased.CommitGroups -}}
+### {{ .Title }}
+{{ range .Commits -}}
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} ([{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{.Hash.Long }}))
+{{ end -}}
+{{ end }}
+{{ end -}}
+{{ end -}}
+
+{{ range .Versions }}
+&lt;a name="{{ .Tag.Name }}"&gt;&lt;/a&gt;
+## {{ if .Tag.Previous }}[{{ .Tag.Name }}]{{ else }}{{ .Tag.Name }}{{ end }} - {{ datetime "2006-01-02" .Tag.Date }}
+{{ range .CommitGroups -}}
+### {{ .Title }}
+{{ range .Commits -}}
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} ([{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{.Hash.Long }}))
+{{ end }}
+{{ end -}}
+{{ end -}}
+
+{{- if .Versions }}
+[Unreleased]: {{ .Info.RepositoryURL }}
+{{ range .Versions -}}
+{{ if .Tag.Previous -}}
+[{{ .Tag.Name }}]: {{ $.Info.RepositoryURL }}/tags/{{ .Tag.Name }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

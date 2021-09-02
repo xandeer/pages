@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-09-02 Thu 08:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>sh match multiple conditions in one case</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">sh match multiple conditions in one case</h1>
+<p>
+Using ;;&amp; in place of ;; causes the shell to test the next pattern list in
+the statement, if any, and execute any associated list on a successful
+match.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh" id="org114784b"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">cs</span>() {
+  <span style="font-weight: bold;">case</span> $<span style="font-weight: bold; font-style: italic;">1</span><span style="font-weight: bold;"> in</span>
+    1)
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Mon"</span>;;
+    2|3|4|5)
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Tue|Wed|Thu|Fri"</span>;;&amp;
+    5|6|7)
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Fri|Sat|Sun"</span>;;
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">3)</span>
+      <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">echo "Wed";;</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">2|3)</span>
+      <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">echo "Wed";;</span>
+    *)
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Nothing matched"</span>;;
+  <span style="font-weight: bold;">esac</span>
+  <span style="font-weight: bold;">echo</span>
+}
+cs 1
+cs 3
+cs 5
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="index.html">Home</a><a href="20210629191000-000_index.html">000</a></div><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
