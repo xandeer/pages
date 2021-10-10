@@ -30,6 +30,7 @@ window.onload = () => {
     }
   });
 
+  // Generate an image to share.
   document.getElementById('share-img').addEventListener('click', (e) => {
     const preview = document.querySelector('.shared-preview.hide')
     if (preview) {
@@ -38,6 +39,7 @@ window.onload = () => {
       generatePng();
     }
     e.stopPropagation();
+    e.preventDefault();
   });
 };
 
