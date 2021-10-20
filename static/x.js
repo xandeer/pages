@@ -1,4 +1,4 @@
-bwindow.onload = () => {
+window.onload = () => {
   // Open image in current window.
   document.querySelectorAll('img').forEach((item) => {
 	  item.addEventListener('click', (event) => {
