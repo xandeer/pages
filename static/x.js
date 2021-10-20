@@ -12,6 +12,9 @@ window.onload = () => {
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.src = it.href;
+      audio.addEventListener('click', (e) => {
+        e.stopPropagation();
+      })
       it.parentElement.append(audio);
       it.style.display = 'none';
     }
