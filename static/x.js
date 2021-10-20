@@ -12,7 +12,7 @@ bwindow.onload = () => {
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.src = it.href;
-      it.parentElement.insert(audio);
+      it.parentElement.append(audio);
       it.style.display = 'none';
     }
   });
