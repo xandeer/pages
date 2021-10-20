@@ -1,9 +1,20 @@
-window.onload = () => {
+bwindow.onload = () => {
   // Open image in current window.
   document.querySelectorAll('img').forEach((item) => {
 	  item.addEventListener('click', (event) => {
 		  window.location.href = event.target.getAttribute('src');
 	  });
+  });
+
+  // Insert audio tag.
+  document.querySelectorAll('a').forEach((it) => {
+    if (it.href.endsWith('m4a')) {
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = it.href;
+      it.parentElement.insert(audio);
+      it.style.display = 'none';
+    }
   });
 
   // Make the top content touch easy.
