@@ -8,7 +8,7 @@ window.onload = () => {
 
   // Insert audio tag.
   document.querySelectorAll('a').forEach((it) => {
-    if (it.href.endsWith('m4a')) {
+    if (it.href.endsWith('mp3') || it.href.endsWith('m4a')) {
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.src = it.href;
