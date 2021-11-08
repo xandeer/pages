@@ -32,7 +32,7 @@ window.onload = () => {
   document.addEventListener('click', (e) => {
     const preview = document.querySelector('.shared-preview');
     if (preview) {
-      preview.classList.add('hide');
+      hide(preview);
     } else if (!hasSelection) {
       const dir = e.pageX * 2 > document.body.clientWidth ? 1 : -1;
       const top = dir * window.screen.height / 2;
@@ -48,7 +48,7 @@ window.onload = () => {
   document.getElementById('share-img').addEventListener('click', (e) => {
     const preview = document.querySelector('.shared-preview.hide')
     if (preview) {
-      preview.classList.remove('hide');
+      show(preview);
     } else {
       generatePng();
     }
@@ -61,7 +61,7 @@ function generatePng() {
   const node = document.getElementById('content');
   const dl = document.querySelector('dl');
 
-  dl.classList.add('hide');
+  hide(dl);
   domtoimage
     .toPng(node, {
       width: node.offsetWidth * devicePixelRatio,
@@ -80,5 +80,18 @@ function generatePng() {
       img.title = document.title + '.png';
       document.body.appendChild(img);
     });
-  dl.classList.remove('hide');
+  show(dl);
+}
+
+
+function hide(view) {
+  if (view && view.classList) {
+    view.classList.add('hide');
+  }
+}
+
+function show(view) {
+  if (view && view.classList) {
+    view.classList.remove('hide');
+  }
 }
