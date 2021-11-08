@@ -58,8 +58,10 @@ window.onload = () => {
 };
 
 function generatePng() {
-  var node = document.getElementById('content');
+  const node = document.getElementById('content');
+  const dl = document.querySelector('dl');
 
+  dl.classList.add('hide');
   domtoimage
     .toPng(node, {
       width: node.offsetWidth * devicePixelRatio,
@@ -77,5 +79,6 @@ function generatePng() {
       img.src = dataUrl;
       img.title = document.title + '.png';
       document.body.appendChild(img);
-    })
+    });
+  dl.classList.remove('hide');
 }
