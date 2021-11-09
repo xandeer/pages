@@ -31,7 +31,7 @@ window.onload = () => {
   });
   document.addEventListener('click', (e) => {
     const preview = document.querySelector('.shared-preview');
-    if (preview) {
+    if (preview && !preview.classList.contains('hide')) {
       hide(preview);
     } else if (!hasSelection) {
       const dir = e.pageX * 2 > document.body.clientWidth ? 1 : -1;
@@ -59,19 +59,24 @@ window.onload = () => {
 
 function generatePng() {
   const node = document.getElementById('content');
-  const dl = document.querySelector('dl');
+  const maxSize = 16777216;
+  let ratio = devicePixelRatio;
+  if (node.offsetWidth * node.offsetHeight * ratio * ratio > maxSize) {
+    ratio = devicePixelRatio / 2;
+  }
 
-  hide(dl);
   domtoimage
     .toPng(node, {
-      width: node.offsetWidth * devicePixelRatio,
-      height: node.offsetHeight * devicePixelRatio,
+      width: node.offsetWidth * ratio,
+      height: node.offsetHeight * ratio,
       style: {
-        transform: `scale(${devicePixelRatio})`,
+        transform: `scale(${ratio})`,
         transformOrigin: `top left`,
         width: `${node.offsetWidth}px`,
         height: `${node.offsetHeight}px`,
-      }
+      },
+      // Exclude head dl info, like author or reading time.
+      filter: n => n.tagName !== 'DL'
     })
     .then(function (dataUrl) {
       const img = new Image();
@@ -79,8 +84,10 @@ function generatePng() {
       img.src = dataUrl;
       img.title = document.title + '.png';
       document.body.appendChild(img);
+    })
+    .catch(function (error) {
+      console.error('oops, something went wrong!', error);
     });
-  show(dl);
 }
 
 
