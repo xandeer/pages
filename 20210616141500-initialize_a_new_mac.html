@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-08 Wed 15:00 -->
+<!-- 2021-12-08 Wed 18:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Initialize a new mac</title>
@@ -175,7 +175,7 @@ Copy ssh pub to <a href="https://github.com/settings/keys">Github</a>.
 <p>
 Copy below to <code>~/.ssh/config</code>.
 </p>
-<pre class="example" id="orgadcf4af">
+<pre class="example" id="org1862fb2">
 Host *
   IgnoreUnknown UseKeychain
   AddKeysToAgent yes
@@ -263,8 +263,9 @@ nvm install node
 <div class="org-src-container">
 <pre class="src src-shell">g clone https://github.com/tdlib/td.git
 <span style="font-weight: bold;">cd</span> td
-take build
-cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DZLIB_LIBRARY=/usr/local/opt/zlib/ -DZLIB_INCLUDE_DIR=/usr/local/opt/zlib/include ..
+md build; <span style="font-weight: bold;">cd</span> build
+cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DZLIB_LIBRARY=/usr/local/opt/zlib/lib/ -DZLIB_INCLUDE_DIR=/usr/local/opt/zlib/include ..
+cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ ..
 make -j8
 sudo make install
 <span style="font-weight: bold;">cd</span> ~/.emacs.d/straight/repos/telega.el
