@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-09 Thu 09:13 -->
+<!-- 2021-12-09 Thu 11:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android</title>
@@ -39,9 +39,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf70d2f3">1. Problems</a>
+<li><a href="#org6ca442a">1. Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></a></li>
+<li><a href="#orgf70d2f3">2. Problems</a>
 <ul>
-<li><a href="#orgdca3e98">1.1. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
+<li><a href="#orgdca3e98">2.1. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
 </ul>
 </li>
 </ul>
@@ -63,14 +64,27 @@
 <a href="https://roadmap.sh/android">https://roadmap.sh/android</a>
 </p>
 
-
-<div id="outline-container-orgf70d2f3" class="outline-2">
-<h2 id="orgf70d2f3"><span class="section-number-2">1</span> Problems</h2>
+<div id="outline-container-org6ca442a" class="outline-2">
+<h2 id="org6ca442a"><span class="section-number-2">1</span> Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></h2>
 <div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh">adb tcpip 5555
+adb connect 172.20.10.8:5555
+adb disconnect 172.20.10.8:5555
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">get ip</span>
+adb shell ip -f inet addr show wlan0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf70d2f3" class="outline-2">
+<h2 id="orgf70d2f3"><span class="section-number-2">2</span> Problems</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-orgdca3e98" class="outline-3">
-<h3 id="orgdca3e98"><span class="section-number-3">1.1</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgdca3e98"><span class="section-number-3">2.1</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 Here, don't use `Collection&lt;T&gt;.toTypedArray(): Array&lt;T&gt;`. Because the return
 value is `Array`, which doesn't implement `Serializable` API.
