@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-10 Fri 17:36 -->
+<!-- 2021-12-10 Fri 21:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs</title>
@@ -39,23 +39,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga9fcd52">1. Info</a></li>
-<li><a href="#org732e6f4">2. Config repos</a></li>
-<li><a href="#org38a6d06">3. Articles</a></li>
-<li><a href="#org69b3e58">4. Plugins</a>
+<li><a href="#orgb5936eb">1. Install</a></li>
+<li><a href="#orga9fcd52">2. Info</a></li>
+<li><a href="#org732e6f4">3. Config repos</a></li>
+<li><a href="#org38a6d06">4. Articles</a></li>
+<li><a href="#org69b3e58">5. Plugins</a>
 <ul>
-<li><a href="#org1ad5587">4.1. org</a></li>
-<li><a href="#orgce24761">4.2. tools</a></li>
-<li><a href="#org95aca79">4.3. basic</a></li>
+<li><a href="#org1ad5587">5.1. org</a></li>
+<li><a href="#orgce24761">5.2. tools</a></li>
+<li><a href="#org95aca79">5.3. basic</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga9fcd52" class="outline-2">
-<h2 id="orga9fcd52"><span class="section-number-2">1</span> Info</h2>
+<div id="outline-container-orgb5936eb" class="outline-2">
+<h2 id="orgb5936eb"><span class="section-number-2">1</span> Install</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://github.com/d12frosted/homebrew-emacs-plus">https://github.com/d12frosted/homebrew-emacs-plus</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-shell">brew tap d12frosted/emacs-plus
+brew install emacs-plus@29 --with-no-frame-refocus --with-no-titlebar
+
+brew unlink emacs-plus@27
+brew link emacs-plus@29
+
+rm /Applications/Emacs.app
+ln -s /usr/local/opt/emacs-plus@29/Emacs.app/ /Applications
+</pre>
+</div>
+
+<p>
+straight bug with 29
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(straight-rebuild-all)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">gsed -i <span style="font-style: italic;">'s#../../../../../.emacs.d#/Users/kevin/.emacs.d#g'</span> ~/.emacs.d/straight/build/*/*autoloads.el
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga9fcd52" class="outline-2">
+<h2 id="orga9fcd52"><span class="section-number-2">2</span> Info</h2>
+<div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li><a href="https://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Top">info:emacs#Top</a></li>
 <li><a href="https://www.gnu.org/software/emacs/manual/html_mono/eintr.html#Top">An Introduction to Programming in Emacs Lisp</a></li>
@@ -64,8 +99,8 @@
 </div>
 </div>
 <div id="outline-container-org732e6f4" class="outline-2">
-<h2 id="org732e6f4"><span class="section-number-2">2</span> Config repos</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org732e6f4"><span class="section-number-2">3</span> Config repos</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://gitlab.com/protesilaos/dotfiles">https://gitlab.com/protesilaos/dotfiles</a></li>
 <li><a href="https://github.com/EvanMeek/.emacs.d">https://github.com/EvanMeek/.emacs.d</a></li>
@@ -78,8 +113,8 @@
 </div>
 </div>
 <div id="outline-container-org38a6d06" class="outline-2">
-<h2 id="org38a6d06"><span class="section-number-2">3</span> Articles</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org38a6d06"><span class="section-number-2">4</span> Articles</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://github.com/AbstProcDo/Master-Emacs-From-Scratch-with-Solid-Procedures/blob/master/readme-cn.org">https://github.com/AbstProcDo/Master-Emacs-From-Scratch-with-Solid-Procedures/blob/master/readme-cn.org</a></li>
 <li><a href="https://emacs-china.org/t/emacs/16537">https://emacs-china.org/t/emacs/16537</a></li>
@@ -89,12 +124,12 @@
 </div>
 </div>
 <div id="outline-container-org69b3e58" class="outline-2">
-<h2 id="org69b3e58"><span class="section-number-2">4</span> Plugins</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org69b3e58"><span class="section-number-2">5</span> Plugins</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org1ad5587" class="outline-3">
-<h3 id="org1ad5587"><span class="section-number-3">4.1</span> org</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org1ad5587"><span class="section-number-3">5.1</span> org</h3>
+<div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li>roam</li>
 <li>org-appear</li>
@@ -102,8 +137,8 @@
 </div>
 </div>
 <div id="outline-container-orgce24761" class="outline-3">
-<h3 id="orgce24761"><span class="section-number-3">4.2</span> tools</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="orgce24761"><span class="section-number-3">5.2</span> tools</h3>
+<div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
 <li>telega</li>
 <li>rime</li>
@@ -112,8 +147,8 @@
 </div>
 </div>
 <div id="outline-container-org95aca79" class="outline-3">
-<h3 id="org95aca79"><span class="section-number-3">4.3</span> basic</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org95aca79"><span class="section-number-3">5.3</span> basic</h3>
+<div class="outline-text-3" id="text-5-3">
 <ol class="org-ol">
 <li>straight</li>
 <li>hydra</li>
