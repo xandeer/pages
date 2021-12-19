@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-19 Sun 13:47 -->
+<!-- 2021-12-19 Sun 17:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg-export-import</title>
@@ -35,6 +35,20 @@
 <body>
 <div id="content">
 <h1 class="title">gpg-export-import</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgccdaa9b">1. export and import</a></li>
+<li><a href="#org99aa8c2">2. renew expired key</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgccdaa9b" class="outline-2">
+<h2 id="orgccdaa9b"><span class="section-number-2">1</span> export and import</h2>
+<div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh">gpg --export-secret-keys &gt; private.pgp
 gpg --export &gt; public.pgp
@@ -42,6 +56,37 @@ gpg --export &gt; public.pgp
 gpg --import public.pgp
 gpg --import private.pgp
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99aa8c2" class="outline-2">
+<h2 id="org99aa8c2"><span class="section-number-2">2</span> renew expired key</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-shell">gpg --list-keys
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">gpg --edit-key 75FD6CC7582BBD6019DA44C18914F8BF2BEE1BA3
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-gpg">expire
+trust # 5 ultimate trust
+
+# sub key
+key 1
+expire
+trust # 5 ultimate trust
+
+save
+quit
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
