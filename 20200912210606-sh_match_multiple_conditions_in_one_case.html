@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-08 Tue 17:32 -->
+<!-- 2022-02-11 Fri 15:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sh match multiple conditions in one case</title>
@@ -42,14 +42,15 @@ match.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgd65c128"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">cs</span>() {
+<pre class="src src-sh" id="org9db04ea"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">cs</span>() {
   <span style="font-weight: bold;">case</span> $<span style="font-weight: bold; font-style: italic;">1</span><span style="font-weight: bold;"> in</span>
     1)
       <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Mon"</span>;;
     2|3|4|5)
-      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Tue|Wed|Thu|Fri"</span>;;&amp;
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Tue|Wed|Thu|Fri"</span>;;
     5|6|7)
-      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Fri|Sat|Sun"</span>;;
+      <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">';;&amp;' doesn't work</span>
+      <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Fri|Sat|Sun"</span>;;<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">&amp;</span>
     <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">3)</span>
       <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">echo "Wed";;</span>
     <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">2|3)</span>
@@ -59,9 +60,9 @@ match.
   <span style="font-weight: bold;">esac</span>
   <span style="font-weight: bold;">echo</span>
 }
-cs 1
-cs 3
-cs 5
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"case 1:\t$(cs 1)"</span>
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"case 3:\t$(cs 3)"</span>
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"case 5:\t$(cs 5)"</span>
 </pre>
 </div>
 </div>
