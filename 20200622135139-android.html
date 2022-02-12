@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-12 Sat 14:39 -->
+<!-- 2022-02-12 Sat 17:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android</title>
@@ -39,15 +39,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3a9ce60">1. Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></a></li>
-<li><a href="#org6bd3571">2. Problems</a>
+<li><a href="#org17604b0">1. Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></a></li>
+<li><a href="#orgb84d6df">2. Problems</a>
 <ul>
-<li><a href="#org54ddd3e">2.1. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
-<li><a href="#org2f92989">2.2. App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></li>
-<li><a href="#orgaa5471d">2.3. Soft keyboard makes resize event in Chrome on Android</a></li>
+<li><a href="#orgb11cb69">2.1. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
+<li><a href="#org4de24b9">2.2. App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></li>
+<li><a href="#orgfc75489">2.3. Soft keyboard makes resize event in Chrome on Android</a></li>
 </ul>
 </li>
-<li><a href="#org55ff301">3. Best Practices</a></li>
+<li><a href="#orgc58a953">3. Best Practices</a></li>
 </ul>
 </div>
 </div>
@@ -67,8 +67,8 @@
 <a href="https://roadmap.sh/android">https://roadmap.sh/android</a>
 </p>
 
-<div id="outline-container-org3a9ce60" class="outline-2">
-<h2 id="org3a9ce60"><span class="section-number-2">1</span> Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></h2>
+<div id="outline-container-org17604b0" class="outline-2">
+<h2 id="org17604b0"><span class="section-number-2">1</span> Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh">adb tcpip 5555
@@ -81,12 +81,12 @@ adb shell ip -f inet addr show wlan0
 </div>
 </div>
 </div>
-<div id="outline-container-org6bd3571" class="outline-2">
-<h2 id="org6bd3571"><span class="section-number-2">2</span> Problems</h2>
+<div id="outline-container-orgb84d6df" class="outline-2">
+<h2 id="orgb84d6df"><span class="section-number-2">2</span> Problems</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org54ddd3e" class="outline-3">
-<h3 id="org54ddd3e"><span class="section-number-3">2.1</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
+<div id="outline-container-orgb11cb69" class="outline-3">
+<h3 id="orgb11cb69"><span class="section-number-3">2.1</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Here, don't use `Collection&lt;T&gt;.toTypedArray(): Array&lt;T&gt;`. Because the return
@@ -110,20 +110,20 @@ Not serializable collections:
 </ol>
 </div>
 </div>
-<div id="outline-container-org2f92989" class="outline-3">
-<h3 id="org2f92989"><span class="section-number-3">2.2</span> <a href="https://stackoverflow.com/questions/36507316/app-random-crashes-with-fatal-signal-7-sigbus-code-2-or-fatal-signal-11-sigs">App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></h3>
+<div id="outline-container-org4de24b9" class="outline-3">
+<h3 id="org4de24b9"><span class="section-number-3">2.2</span> <a href="https://stackoverflow.com/questions/36507316/app-random-crashes-with-fatal-signal-7-sigbus-code-2-or-fatal-signal-11-sigs">App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The problem is on the svg lib. Avoid it by the <a href="https://github.com/shakiba/svgexport">svgexport</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaa5471d" class="outline-3">
-<h3 id="orgaa5471d"><span class="section-number-3">2.3</span> <a href="20200730103407-soft_keyboard_makes_resize_event_in_chrome_on_android.html#ID-73C57AD6-9E68-4E82-AED3-F324BEA47E13">Soft keyboard makes resize event in Chrome on Android</a></h3>
+<div id="outline-container-orgfc75489" class="outline-3">
+<h3 id="orgfc75489"><span class="section-number-3">2.3</span> <a href="20200730103407-soft_keyboard_makes_resize_event_in_chrome_on_android.html#ID-73C57AD6-9E68-4E82-AED3-F324BEA47E13">Soft keyboard makes resize event in Chrome on Android</a></h3>
 </div>
 </div>
-<div id="outline-container-org55ff301" class="outline-2">
-<h2 id="org55ff301"><span class="section-number-2">3</span> Best Practices</h2>
+<div id="outline-container-orgc58a953" class="outline-2">
+<h2 id="orgc58a953"><span class="section-number-2">3</span> Best Practices</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li><a href="20210303103033-best_practice_for_instantiating_a_new_android_fragment.html#ID-935D4657-31DD-4E3F-85DD-1173CD824114">Best practice for instantiating a new Android Fragment</a></li>
