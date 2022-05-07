@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-06 Fri 13:32 -->
+<!-- 2022-05-07 Sat 20:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>设计模式之禅</title>
@@ -17,65 +17,65 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org642cb0f">1. Principle</a>
+<li><a href="#orge383129">1. Principle</a>
 <ul>
-<li><a href="#org61784bc">1.1. SRP</a></li>
-<li><a href="#orgcdf8b20">1.2. LSP</a></li>
-<li><a href="#org07e2e11">1.3. DIP</a></li>
-<li><a href="#orgcc3ed48">1.4. 接口隔离原则</a></li>
-<li><a href="#org819d1e2">1.5. LoD/LKP</a></li>
-<li><a href="#org4814422">1.6. 开闭原则</a></li>
+<li><a href="#org5e34358">1.1. SRP</a></li>
+<li><a href="#org4d68f8e">1.2. LSP</a></li>
+<li><a href="#org81ea281">1.3. DIP</a></li>
+<li><a href="#orgc839db8">1.4. 接口隔离原则</a></li>
+<li><a href="#orga65b8fd">1.5. LoD/LKP</a></li>
+<li><a href="#org9b889ae">1.6. 开闭原则</a></li>
 </ul>
 </li>
-<li><a href="#org98771a0">2. Design Pattern</a>
+<li><a href="#org01b4462">2. Design Pattern</a>
 <ul>
-<li><a href="#orge1cc970">2.1. Creator</a>
+<li><a href="#org4d23e24">2.1. Creator</a>
 <ul>
-<li><a href="#orgeb097ee">2.1.1. Singleton</a></li>
-<li><a href="#orgf2ae138">2.1.2. Factory Method</a></li>
-<li><a href="#org6d6e9a9">2.1.3. Abstract Factory</a></li>
-<li><a href="#orged3c058">2.1.4. Builder</a></li>
-<li><a href="#org0bf295d">2.1.5. Prototype</a></li>
+<li><a href="#org11864ee">2.1.1. Singleton</a></li>
+<li><a href="#org0619181">2.1.2. Factory Method</a></li>
+<li><a href="#org155b890">2.1.3. Abstract Factory</a></li>
+<li><a href="#orgbbf84ad">2.1.4. Builder</a></li>
+<li><a href="#org412f286">2.1.5. Prototype</a></li>
 </ul>
 </li>
-<li><a href="#org8ab293b">2.2. Structure</a>
+<li><a href="#orgd287b9c">2.2. Structure</a>
 <ul>
-<li><a href="#org48010d3">2.2.1. Proxy</a>
+<li><a href="#org047102a">2.2.1. Proxy</a>
 <ul>
-<li><a href="#org9e583c2">2.2.1.1. 普通代理</a></li>
-<li><a href="#orgb0711f3">2.2.1.2. 强制代理</a></li>
-<li><a href="#orgf323f23">2.2.1.3. 动态代理 #R</a></li>
+<li><a href="#org6c569b2">2.2.1.1. 普通代理</a></li>
+<li><a href="#orgc2d85eb">2.2.1.2. 强制代理</a></li>
+<li><a href="#org8ef0eec">2.2.1.3. 动态代理 #R</a></li>
 </ul>
 </li>
-<li><a href="#org79f905b">2.2.2. Composite</a></li>
-<li><a href="#orgc2a9af8">2.2.3. Adapter</a></li>
-<li><a href="#org2986337">2.2.4. Decorator</a></li>
-<li><a href="#org9bfdb68">2.2.5. Facade</a></li>
-<li><a href="#orgb297955">2.2.6. Memento</a></li>
-<li><a href="#org16ae8eb">2.2.7. Bridge</a></li>
-<li><a href="#org939da09">2.2.8. Flyweight</a></li>
+<li><a href="#org6ec15bb">2.2.2. Composite</a></li>
+<li><a href="#org5e6e9ad">2.2.3. Adapter</a></li>
+<li><a href="#org2a0ec67">2.2.4. Decorator</a></li>
+<li><a href="#org50fcc86">2.2.5. Facade</a></li>
+<li><a href="#org7b348a4">2.2.6. Memento</a></li>
+<li><a href="#orgc785bd9">2.2.7. Bridge</a></li>
+<li><a href="#org00a7314">2.2.8. Flyweight</a></li>
 </ul>
 </li>
-<li><a href="#org6618106">2.3. Executor</a>
+<li><a href="#orgc6547c0">2.3. Executor</a>
 <ul>
-<li><a href="#org10023ca">2.3.1. Template Method</a></li>
-<li><a href="#orgc2d004f">2.3.2. Mediator</a></li>
-<li><a href="#org1ddc2ec">2.3.3. Command</a></li>
-<li><a href="#org14725cb">2.3.4. Chain of Responsibility</a></li>
-<li><a href="#org873d1c6">2.3.5. Strategy</a></li>
-<li><a href="#org0c1d911">2.3.6. Iterator</a></li>
-<li><a href="#orgfcc867e">2.3.7. Observer</a></li>
-<li><a href="#org2054d1d">2.3.8. Visitor</a></li>
-<li><a href="#orgf16ba62">2.3.9. State</a></li>
-<li><a href="#orge9b860d">2.3.10. Interpreter</a></li>
+<li><a href="#org6d4e5c9">2.3.1. Template Method</a></li>
+<li><a href="#orgecb3a89">2.3.2. Mediator</a></li>
+<li><a href="#orgd8e4ad6">2.3.3. Command</a></li>
+<li><a href="#org6f72ac7">2.3.4. Chain of Responsibility</a></li>
+<li><a href="#orgaf38f43">2.3.5. Strategy</a></li>
+<li><a href="#orge6e4c6f">2.3.6. Iterator</a></li>
+<li><a href="#orgb85a257">2.3.7. Observer</a></li>
+<li><a href="#orgdcc781f">2.3.8. Visitor</a></li>
+<li><a href="#orgae2150d">2.3.9. State</a></li>
+<li><a href="#orgad41057">2.3.10. Interpreter</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org472a2ca">3. Pattern PK</a>
+<li><a href="#org88a6431">3. Pattern PK</a>
 <ul>
-<li><a href="#org18f6e48">3.1. Creator</a></li>
-<li><a href="#org1c78c49">3.2. Structure</a></li>
+<li><a href="#orgdbbda1a">3.1. Creator</a></li>
+<li><a href="#org543fdda">3.2. Structure</a></li>
 </ul>
 </li>
 </ul>
@@ -89,8 +89,8 @@
 整个设计模式贯穿一个原理：面对接口编程，而不是面对实现。目标原则是：降低耦合，增强灵活性。
 </p>
 
-<div id="outline-container-org642cb0f" class="outline-2">
-<h2 id="org642cb0f"><span class="section-number-2">1.</span> Principle</h2>
+<div id="outline-container-orge383129" class="outline-2">
+<h2 id="orge383129"><span class="section-number-2">1.</span> Principle</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 SOLID:
@@ -103,8 +103,8 @@ SOLID:
 <li>Dependence Inversion Principle</li>
 </ol>
 </div>
-<div id="outline-container-org61784bc" class="outline-3">
-<h3 id="org61784bc"><span class="section-number-3">1.1.</span> SRP</h3>
+<div id="outline-container-org5e34358" class="outline-3">
+<h3 id="org5e34358"><span class="section-number-3">1.1.</span> SRP</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Single Responsibility Principle(单一职责): <b>There should never be more than
@@ -112,16 +112,16 @@ one reason for a class to change.</b>
 </p>
 </div>
 </div>
-<div id="outline-container-orgcdf8b20" class="outline-3">
-<h3 id="orgcdf8b20"><span class="section-number-3">1.2.</span> LSP</h3>
+<div id="outline-container-org4d68f8e" class="outline-3">
+<h3 id="org4d68f8e"><span class="section-number-3">1.2.</span> LSP</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Liskov Substitution Principle(里氏替换): 只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道是父类还是子类。但是，反过来就不行了，有子类出现的地方，父类未必就能适应。
 </p>
 </div>
 </div>
-<div id="outline-container-org07e2e11" class="outline-3">
-<h3 id="org07e2e11"><span class="section-number-3">1.3.</span> DIP</h3>
+<div id="outline-container-org81ea281" class="outline-3">
+<h3 id="org81ea281"><span class="section-number-3">1.3.</span> DIP</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Dependence Inversion Principle (依赖倒置)：High level modules should not
@@ -135,8 +135,8 @@ depend upon abstractions.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc3ed48" class="outline-3">
-<h3 id="orgcc3ed48"><span class="section-number-3">1.4.</span> 接口隔离原则</h3>
+<div id="outline-container-orgc839db8" class="outline-3">
+<h3 id="orgc839db8"><span class="section-number-3">1.4.</span> 接口隔离原则</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Clients should not be forced to depend upon interfaces that they don't use.</li>
@@ -145,16 +145,16 @@ possible interface.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org819d1e2" class="outline-3">
-<h3 id="org819d1e2"><span class="section-number-3">1.5.</span> LoD/LKP</h3>
+<div id="outline-container-orga65b8fd" class="outline-3">
+<h3 id="orga65b8fd"><span class="section-number-3">1.5.</span> LoD/LKP</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Law of Demeter (迪米特) / Least Knowledge Principle (最少知识)：一个对象应该对其它对象有最少的了解。
 </p>
 </div>
 </div>
-<div id="outline-container-org4814422" class="outline-3">
-<h3 id="org4814422"><span class="section-number-3">1.6.</span> 开闭原则</h3>
+<div id="outline-container-org9b889ae" class="outline-3">
+<h3 id="org9b889ae"><span class="section-number-3">1.6.</span> 开闭原则</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Software entities like classes, modules and functions should be open for
@@ -167,19 +167,19 @@ extension but closed for modifications.
 </div>
 </div>
 </div>
-<div id="outline-container-org98771a0" class="outline-2">
-<h2 id="org98771a0"><span class="section-number-2">2.</span> Design Pattern</h2>
+<div id="outline-container-org01b4462" class="outline-2">
+<h2 id="org01b4462"><span class="section-number-2">2.</span> Design Pattern</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge1cc970" class="outline-3">
-<h3 id="orge1cc970"><span class="section-number-3">2.1.</span> Creator</h3>
+<div id="outline-container-org4d23e24" class="outline-3">
+<h3 id="org4d23e24"><span class="section-number-3">2.1.</span> Creator</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgeb097ee" class="outline-4">
-<h4 id="orgeb097ee"><span class="section-number-4">2.1.1.</span> Singleton</h4>
+<div id="outline-container-org11864ee" class="outline-4">
+<h4 id="org11864ee"><span class="section-number-4">2.1.1.</span> Singleton</h4>
 </div>
-<div id="outline-container-orgf2ae138" class="outline-4">
-<h4 id="orgf2ae138"><span class="section-number-4">2.1.2.</span> Factory Method</h4>
+<div id="outline-container-org0619181" class="outline-4">
+<h4 id="org0619181"><span class="section-number-4">2.1.2.</span> Factory Method</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 Define an interface for creating an object, but let subclasses decide which
@@ -187,11 +187,11 @@ class to instantiate. Factory lets a class defer instantiation to subclasses.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d6e9a9" class="outline-4">
-<h4 id="org6d6e9a9"><span class="section-number-4">2.1.3.</span> Abstract Factory</h4>
+<div id="outline-container-org155b890" class="outline-4">
+<h4 id="org155b890"><span class="section-number-4">2.1.3.</span> Abstract Factory</h4>
 </div>
-<div id="outline-container-orged3c058" class="outline-4">
-<h4 id="orged3c058"><span class="section-number-4">2.1.4.</span> Builder</h4>
+<div id="outline-container-orgbbf84ad" class="outline-4">
+<h4 id="orgbbf84ad"><span class="section-number-4">2.1.4.</span> Builder</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 建造者模式关注的是零件类型和装配工艺（顺序），这是它与工厂方法模式最大不同的地方，虽然同为创建类模式，但是注重点不同。
@@ -205,8 +205,8 @@ class to instantiate. Factory lets a class defer instantiation to subclasses.
 </ul>
 </div>
 </div>
-<div id="outline-container-org0bf295d" class="outline-4">
-<h4 id="org0bf295d"><span class="section-number-4">2.1.5.</span> Prototype</h4>
+<div id="outline-container-org412f286" class="outline-4">
+<h4 id="org412f286"><span class="section-number-4">2.1.5.</span> Prototype</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <ol class="org-ol">
 <li>构造函数不会被执行</li>
@@ -214,26 +214,26 @@ class to instantiate. Factory lets a class defer instantiation to subclasses.
 </div>
 </div>
 </div>
-<div id="outline-container-org8ab293b" class="outline-3">
-<h3 id="org8ab293b"><span class="section-number-3">2.2.</span> Structure</h3>
+<div id="outline-container-orgd287b9c" class="outline-3">
+<h3 id="orgd287b9c"><span class="section-number-3">2.2.</span> Structure</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org48010d3" class="outline-4">
-<h4 id="org48010d3"><span class="section-number-4">2.2.1.</span> Proxy</h4>
+<div id="outline-container-org047102a" class="outline-4">
+<h4 id="org047102a"><span class="section-number-4">2.2.1.</span> Proxy</h4>
 <div class="outline-text-4" id="text-2-2-1">
 </div>
-<div id="outline-container-org9e583c2" class="outline-5">
-<h5 id="org9e583c2"><span class="section-number-5">2.2.1.1.</span> 普通代理</h5>
+<div id="outline-container-org6c569b2" class="outline-5">
+<h5 id="org6c569b2"><span class="section-number-5">2.2.1.1.</span> 普通代理</h5>
 </div>
-<div id="outline-container-orgb0711f3" class="outline-5">
-<h5 id="orgb0711f3"><span class="section-number-5">2.2.1.2.</span> 强制代理</h5>
+<div id="outline-container-orgc2d85eb" class="outline-5">
+<h5 id="orgc2d85eb"><span class="section-number-5">2.2.1.2.</span> 强制代理</h5>
 </div>
-<div id="outline-container-orgf323f23" class="outline-5">
-<h5 id="orgf323f23"><span class="section-number-5">2.2.1.3.</span> 动态代理 #R</h5>
+<div id="outline-container-org8ef0eec" class="outline-5">
+<h5 id="org8ef0eec"><span class="section-number-5">2.2.1.3.</span> 动态代理 #R</h5>
 </div>
 </div>
-<div id="outline-container-org79f905b" class="outline-4">
-<h4 id="org79f905b"><span class="section-number-4">2.2.2.</span> Composite</h4>
+<div id="outline-container-org6ec15bb" class="outline-4">
+<h4 id="org6ec15bb"><span class="section-number-4">2.2.2.</span> Composite</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Compose objects into tree structures to represent part-whole
@@ -242,11 +242,11 @@ of objects uniformly.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc2a9af8" class="outline-4">
-<h4 id="orgc2a9af8"><span class="section-number-4">2.2.3.</span> Adapter</h4>
+<div id="outline-container-org5e6e9ad" class="outline-4">
+<h4 id="org5e6e9ad"><span class="section-number-4">2.2.3.</span> Adapter</h4>
 </div>
-<div id="outline-container-org2986337" class="outline-4">
-<h4 id="org2986337"><span class="section-number-4">2.2.4.</span> Decorator</h4>
+<div id="outline-container-org2a0ec67" class="outline-4">
+<h4 id="org2a0ec67"><span class="section-number-4">2.2.4.</span> Decorator</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 Attach additional responsibilities to an object dynamically keeping the same
@@ -255,8 +255,8 @@ extending functionality.
 </p>
 </div>
 </div>
-<div id="outline-container-org9bfdb68" class="outline-4">
-<h4 id="org9bfdb68"><span class="section-number-4">2.2.5.</span> Facade</h4>
+<div id="outline-container-org50fcc86" class="outline-4">
+<h4 id="org50fcc86"><span class="section-number-4">2.2.5.</span> Facade</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <p>
 Provide a unified interface to a set of Interfaces in a subsystem. Facade
@@ -264,45 +264,45 @@ defines a higher-level Interface that makes the subsystem easier to use.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb297955" class="outline-4">
-<h4 id="orgb297955"><span class="section-number-4">2.2.6.</span> Memento</h4>
+<div id="outline-container-org7b348a4" class="outline-4">
+<h4 id="org7b348a4"><span class="section-number-4">2.2.6.</span> Memento</h4>
 </div>
-<div id="outline-container-org16ae8eb" class="outline-4">
-<h4 id="org16ae8eb"><span class="section-number-4">2.2.7.</span> Bridge</h4>
+<div id="outline-container-orgc785bd9" class="outline-4">
+<h4 id="orgc785bd9"><span class="section-number-4">2.2.7.</span> Bridge</h4>
 </div>
-<div id="outline-container-org939da09" class="outline-4">
-<h4 id="org939da09"><span class="section-number-4">2.2.8.</span> Flyweight</h4>
+<div id="outline-container-org00a7314" class="outline-4">
+<h4 id="org00a7314"><span class="section-number-4">2.2.8.</span> Flyweight</h4>
 </div>
 </div>
-<div id="outline-container-org6618106" class="outline-3">
-<h3 id="org6618106"><span class="section-number-3">2.3.</span> Executor</h3>
+<div id="outline-container-orgc6547c0" class="outline-3">
+<h3 id="orgc6547c0"><span class="section-number-3">2.3.</span> Executor</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org10023ca" class="outline-4">
-<h4 id="org10023ca"><span class="section-number-4">2.3.1.</span> Template Method</h4>
+<div id="outline-container-org6d4e5c9" class="outline-4">
+<h4 id="org6d4e5c9"><span class="section-number-4">2.3.1.</span> Template Method</h4>
 </div>
-<div id="outline-container-orgc2d004f" class="outline-4">
-<h4 id="orgc2d004f"><span class="section-number-4">2.3.2.</span> Mediator</h4>
+<div id="outline-container-orgecb3a89" class="outline-4">
+<h4 id="orgecb3a89"><span class="section-number-4">2.3.2.</span> Mediator</h4>
 </div>
-<div id="outline-container-org1ddc2ec" class="outline-4">
-<h4 id="org1ddc2ec"><span class="section-number-4">2.3.3.</span> Command</h4>
+<div id="outline-container-orgd8e4ad6" class="outline-4">
+<h4 id="orgd8e4ad6"><span class="section-number-4">2.3.3.</span> Command</h4>
 </div>
-<div id="outline-container-org14725cb" class="outline-4">
-<h4 id="org14725cb"><span class="section-number-4">2.3.4.</span> Chain of Responsibility</h4>
+<div id="outline-container-org6f72ac7" class="outline-4">
+<h4 id="org6f72ac7"><span class="section-number-4">2.3.4.</span> Chain of Responsibility</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <p>
 替换长串的 <code>if else</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org873d1c6" class="outline-4">
-<h4 id="org873d1c6"><span class="section-number-4">2.3.5.</span> Strategy</h4>
+<div id="outline-container-orgaf38f43" class="outline-4">
+<h4 id="orgaf38f43"><span class="section-number-4">2.3.5.</span> Strategy</h4>
 </div>
-<div id="outline-container-org0c1d911" class="outline-4">
-<h4 id="org0c1d911"><span class="section-number-4">2.3.6.</span> Iterator</h4>
+<div id="outline-container-orge6e4c6f" class="outline-4">
+<h4 id="orge6e4c6f"><span class="section-number-4">2.3.6.</span> Iterator</h4>
 </div>
-<div id="outline-container-orgfcc867e" class="outline-4">
-<h4 id="orgfcc867e"><span class="section-number-4">2.3.7.</span> Observer</h4>
+<div id="outline-container-orgb85a257" class="outline-4">
+<h4 id="orgb85a257"><span class="section-number-4">2.3.7.</span> Observer</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <p>
 Define a one-to-many dependency between objects so that when one object
@@ -310,16 +310,16 @@ changes state, all its dependents are notified and updated automatically.
 </p>
 </div>
 </div>
-<div id="outline-container-org2054d1d" class="outline-4">
-<h4 id="org2054d1d"><span class="section-number-4">2.3.8.</span> Visitor</h4>
+<div id="outline-container-orgdcc781f" class="outline-4">
+<h4 id="orgdcc781f"><span class="section-number-4">2.3.8.</span> Visitor</h4>
 <div class="outline-text-4" id="text-2-3-8">
 <p>
 遍历多个不同对象。
 </p>
 </div>
 </div>
-<div id="outline-container-orgf16ba62" class="outline-4">
-<h4 id="orgf16ba62"><span class="section-number-4">2.3.9.</span> State</h4>
+<div id="outline-container-orgae2150d" class="outline-4">
+<h4 id="orgae2150d"><span class="section-number-4">2.3.9.</span> State</h4>
 <div class="outline-text-4" id="text-2-3-9">
 <ol class="org-ol">
 <li>行为随状态改变而改变的场景</li>
@@ -327,17 +327,17 @@ changes state, all its dependents are notified and updated automatically.
 </ol>
 </div>
 </div>
-<div id="outline-container-orge9b860d" class="outline-4">
-<h4 id="orge9b860d"><span class="section-number-4">2.3.10.</span> Interpreter</h4>
+<div id="outline-container-orgad41057" class="outline-4">
+<h4 id="orgad41057"><span class="section-number-4">2.3.10.</span> Interpreter</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org472a2ca" class="outline-2">
-<h2 id="org472a2ca"><span class="section-number-2">3.</span> Pattern PK</h2>
+<div id="outline-container-org88a6431" class="outline-2">
+<h2 id="org88a6431"><span class="section-number-2">3.</span> Pattern PK</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org18f6e48" class="outline-3">
-<h3 id="org18f6e48"><span class="section-number-3">3.1.</span> Creator</h3>
+<div id="outline-container-orgdbbda1a" class="outline-3">
+<h3 id="orgdbbda1a"><span class="section-number-3">3.1.</span> Creator</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 工厂方法模式注重的是整体对象的创建方法，建造者模式注重的是部件构建的过程。
@@ -352,8 +352,8 @@ changes state, all its dependents are notified and updated automatically.
 </p>
 </div>
 </div>
-<div id="outline-container-org1c78c49" class="outline-3">
-<h3 id="org1c78c49"><span class="section-number-3">3.2.</span> Structure</h3>
+<div id="outline-container-org543fdda" class="outline-3">
+<h3 id="org543fdda"><span class="section-number-3">3.2.</span> Structure</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 通过组合类或对象产生更大结构以适应更高层次的逻辑需求。
