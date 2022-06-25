@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-06-24 Fri 14:59 -->
+<!-- 2022-06-25 Sat 10:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs Rime</title>
@@ -17,25 +17,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org78ce360">1. Prepare</a>
+<li><a href="#orge038c42">1. Prepare</a>
 <ul>
-<li><a href="#orgf2ab013">1.1. Download and install rime</a></li>
-<li><a href="#orgd980ade">1.2. Librime</a>
+<li><a href="#orga900605">1.1. Download and install rime</a></li>
+<li><a href="#org13ff477">1.2. Librime</a>
 <ul>
-<li><a href="#orge586d40">1.2.1. FAQ</a></li>
-<li><a href="#orga830b5e">1.2.2. Mac</a></li>
-<li><a href="#orgcfd93c7">1.2.3. Nixos</a></li>
+<li><a href="#org19a339e">1.2.1. FAQ</a></li>
+<li><a href="#org369cff0">1.2.2. Mac</a></li>
+<li><a href="#orgb1bd367">1.2.3. Nixos</a></li>
 </ul>
 </li>
-<li><a href="#orgf199cd6">1.3. Prepare share data (don't need)</a>
+<li><a href="#orgd5d41c7">1.3. Prepare share data (don't need)</a>
 <ul>
-<li><a href="#org98379af">1.3.1. Mac</a></li>
-<li><a href="#org73ca905">1.3.2. Nixos</a></li>
+<li><a href="#org109ea10">1.3.1. Mac</a></li>
+<li><a href="#orgbca5da6">1.3.2. Nixos</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb06a1b5">2. Configuration</a></li>
+<li><a href="#org2723a24">2. Configuration</a></li>
 </ul>
 </div>
 </div>
@@ -47,19 +47,19 @@
 <p>
 Use <a href="20200705173454-rime.html">rime</a> in <a href="20200623100445-emacs.html#ID-0B1EF4FB-BE94-4207-9A9B-8DD11D816B8C">Emacs</a>.
 </p>
-<div id="outline-container-org78ce360" class="outline-2">
-<h2 id="org78ce360"><span class="section-number-2">1.</span> Prepare</h2>
+<div id="outline-container-orge038c42" class="outline-2">
+<h2 id="orge038c42"><span class="section-number-2">1.</span> Prepare</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf2ab013" class="outline-3">
-<h3 id="orgf2ab013"><span class="section-number-3">1.1.</span> <a href="https://rime.im/download/">Download and install rime</a></h3>
+<div id="outline-container-orga900605" class="outline-3">
+<h3 id="orga900605"><span class="section-number-3">1.1.</span> <a href="https://rime.im/download/">Download and install rime</a></h3>
 </div>
-<div id="outline-container-orgd980ade" class="outline-3">
-<h3 id="orgd980ade"><span class="section-number-3">1.2.</span> <a href="https://github.com/rime/librime">Librime</a></h3>
+<div id="outline-container-org13ff477" class="outline-3">
+<h3 id="org13ff477"><span class="section-number-3">1.2.</span> <a href="https://github.com/rime/librime">Librime</a></h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orge586d40" class="outline-4">
-<h4 id="orge586d40"><span class="section-number-4">1.2.1.</span> FAQ</h4>
+<div id="outline-container-org19a339e" class="outline-4">
+<h4 id="org19a339e"><span class="section-number-4">1.2.1.</span> FAQ</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 简体配置没有生效时，可能是 Squirrel 和 librime 版本不匹配，检查更新。然后
@@ -71,19 +71,20 @@ Use <a href="20200705173454-rime.html">rime</a> in <a href="20200623100445-emacs
 </p>
 </div>
 </div>
-<div id="outline-container-orga830b5e" class="outline-4">
-<h4 id="orga830b5e"><span class="section-number-4">1.2.2.</span> Mac</h4>
+<div id="outline-container-org369cff0" class="outline-4">
+<h4 id="org369cff0"><span class="section-number-4">1.2.2.</span> Mac</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 <pre class="src src-sh">wget https://github.com/rime/librime/releases/download/1.7.3/rime-1.7.3-osx.zip
 unzip rime-1.7.3-osx.zip -d librime
-cp -a librime ~/.local/share
+rm -rf ~/projects/personal/dotfiles/librime/*
+cp -a librime/dist/* ~/projects/personal/dotfiles/librime/
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfd93c7" class="outline-4">
-<h4 id="orgcfd93c7"><span class="section-number-4">1.2.3.</span> Nixos</h4>
+<div id="outline-container-orgb1bd367" class="outline-4">
+<h4 id="orgb1bd367"><span class="section-number-4">1.2.3.</span> Nixos</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="font-weight: bold;">when</span> (eq window-system 'x)
@@ -101,15 +102,15 @@ cp -a librime ~/.local/share
 </div>
 </div>
 
-<div id="outline-container-orgf199cd6" class="outline-3">
-<h3 id="orgf199cd6"><span class="section-number-3">1.3.</span> Prepare share data (don't need)</h3>
+<div id="outline-container-orgd5d41c7" class="outline-3">
+<h3 id="orgd5d41c7"><span class="section-number-3">1.3.</span> Prepare share data (don't need)</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 This could make rime and emacs-rime use the same configuration.
 </p>
 </div>
-<div id="outline-container-org98379af" class="outline-4">
-<h4 id="org98379af"><span class="section-number-4">1.3.1.</span> Mac</h4>
+<div id="outline-container-org109ea10" class="outline-4">
+<h4 id="org109ea10"><span class="section-number-4">1.3.1.</span> Mac</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
 <pre class="src src-sh">ln -shf /Library/Input<span style="font-style: italic;">\ </span>Methods/Squirrel.app/Contents/SharedSupport/opencc ~/Library/Rime/opencc
@@ -118,8 +119,8 @@ ln -shf ~/Library/Rime ~/.local/share/rime
 </div>
 </div>
 </div>
-<div id="outline-container-org73ca905" class="outline-4">
-<h4 id="org73ca905"><span class="section-number-4">1.3.2.</span> Nixos</h4>
+<div id="outline-container-orgbca5da6" class="outline-4">
+<h4 id="orgbca5da6"><span class="section-number-4">1.3.2.</span> Nixos</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">ln -sTf ~/.config/fcitx/rime ~/.local/share/rime
@@ -129,8 +130,8 @@ ln -shf ~/Library/Rime ~/.local/share/rime
 </div>
 </div>
 </div>
-<div id="outline-container-orgb06a1b5" class="outline-2">
-<h2 id="orgb06a1b5"><span class="section-number-2">2.</span> Configuration</h2>
+<div id="outline-container-org2723a24" class="outline-2">
+<h2 id="org2723a24"><span class="section-number-2">2.</span> Configuration</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-elisp">(straight-register-package
