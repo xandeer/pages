@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-03 Sun 15:17 -->
+<!-- 2022-07-03 Sun 22:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg</title>
@@ -17,16 +17,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc8cf01f">1. gpg export and import</a></li>
-<li><a href="#orgd1a75ac">2. gpg renew expired key</a></li>
-<li><a href="#org24ccc6d">3. set session time</a></li>
-<li><a href="#orgb486afc">4. other config</a></li>
+<li><a href="#org435864d">1. gpg export and import</a></li>
+<li><a href="#org9584583">2. gpg renew expired key</a></li>
+<li><a href="#org2ff69a1">3. set session time</a></li>
+<li><a href="#org202cd92">4. other config</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc8cf01f" class="outline-2">
-<h2 id="orgc8cf01f"><span class="section-number-2">1.</span> gpg export and import</h2>
+<div id="outline-container-org435864d" class="outline-2">
+<h2 id="org435864d"><span class="section-number-2">1.</span> gpg export and import</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh">gpg --export-secret-keys &gt; private.pgp
@@ -38,8 +38,8 @@ gpg --import private.pgp
 </div>
 </div>
 </div>
-<div id="outline-container-orgd1a75ac" class="outline-2">
-<h2 id="orgd1a75ac"><span class="section-number-2">2.</span> gpg renew expired key</h2>
+<div id="outline-container-org9584583" class="outline-2">
+<h2 id="org9584583"><span class="section-number-2">2.</span> gpg renew expired key</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0">https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0</a>
@@ -70,8 +70,8 @@ quit
 </div>
 </div>
 </div>
-<div id="outline-container-org24ccc6d" class="outline-2">
-<h2 id="org24ccc6d"><span class="section-number-2">3.</span> set session time</h2>
+<div id="outline-container-org2ff69a1" class="outline-2">
+<h2 id="org2ff69a1"><span class="section-number-2">3.</span> set session time</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 At first, kill the current running daemon with:
@@ -85,7 +85,10 @@ At first, kill the current running daemon with:
 Then, change the <code>max-cache-ttl</code> in the <code>~/.gnupg/gpg-agent.conf</code>, like:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">max-cache-ttl 3600
+<pre class="src src-conf">default-cache-ttl 6048000
+default-cache-ttl-ssh 6048000
+max-cache-ttl 6048000
+max-cache-ttl-ssh 6048000
 </pre>
 </div>
 
@@ -94,11 +97,25 @@ The unit is seconds.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb486afc" class="outline-2">
-<h2 id="orgb486afc"><span class="section-number-2">4.</span> other config</h2>
+<div id="outline-container-org202cd92" class="outline-2">
+<h2 id="org202cd92"><span class="section-number-2">4.</span> other config</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+<code>~/.gnupg/gpg.conf</code>:
+</p>
 <div class="org-src-container">
-<pre class="src src-conf">pinentry-program /usr/local/bin/pinentry
+<pre class="src src-conf">use-agent
+pinentry-mode loopback
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">pinentry-program /usr/local/bin/pinentry</span>
+</pre>
+</div>
+
+<p>
+<code>~/.gnupg/gpg-agent.conf</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">allow-loopback-pinentry
+enable-ssh-support
 </pre>
 </div>
 </div>
