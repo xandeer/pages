@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-07-14 Thu 21:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>emacs starts with non-prefix key</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">emacs starts with non-prefix key</h1>
+<dl class="org-dl">
+<dt>link</dt><dd><a href="20200623100445-emacs.html#ID-0B1EF4FB-BE94-4207-9A9B-8DD11D816B8C">Emacs</a></dd>
+</dl>
+
+
+<p>
+<code>define-prefix-command</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">let</span> ((map (define-prefix-command 'x-navigation-map)))
+  (global-set-key (kbd <span style="font-style: italic;">"M-j"</span>) map)
+
+  (define-key map <span style="font-style: italic;">"a"</span> #'beginning-of-buffer)
+  (define-key map <span style="font-style: italic;">"e"</span> #'end-of-buffer)
+  (define-key map (kbd <span style="font-style: italic;">"M-a"</span>) #'beginning-of-buffer-other-window)
+  (define-key map (kbd <span style="font-style: italic;">"M-e"</span>) #'end-of-buffer-other-window)
+  (define-key map <span style="font-style: italic;">"h"</span> #'consult-outline) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Alternative: consult-org-heading</span>
+  (define-key map <span style="font-style: italic;">"i"</span> #'consult-imenu)
+  (define-key map (kbd <span style="font-style: italic;">"M-i"</span>) #'consult-imenu-multi)
+  (define-key map <span style="font-style: italic;">"j"</span> #'avy-goto-line-below)
+  (define-key map (kbd <span style="font-style: italic;">"M-j"</span>) #'x/ace-goto-char-timer)
+  (define-key map <span style="font-style: italic;">"k"</span> #'avy-goto-line-above)
+  (define-key map <span style="font-style: italic;">"l"</span> #'avy-goto-line)
+  (define-key map (kbd <span style="font-style: italic;">"M-l"</span>) #'consult-goto-line)
+  (define-key map <span style="font-style: italic;">"m"</span> #'consult-mark)
+  (define-key map (kbd <span style="font-style: italic;">"M-m"</span>) #'consult-global-mark)
+  (define-key map <span style="font-style: italic;">"u"</span> #'jump-to-register)
+  (define-key map (kbd <span style="font-style: italic;">"M-u"</span>) #'point-to-register)
+  (define-key map <span style="font-style: italic;">"v"</span> #'scroll-other-window)
+  (define-key map (kbd <span style="font-style: italic;">"M-v"</span>) #'scroll-other-window-down))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="#content">T</a><a href="index.html">H</a><a id="share-img">I</a><a href="20210629191000-000_index.html">0</a></div><script src="static/dom2img.min.js" type="text/javascript"></script><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
