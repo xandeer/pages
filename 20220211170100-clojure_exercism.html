@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-23 Sat 17:18 -->
+<!-- 2022-07-23 Sat 20:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure Exercism</title>
@@ -17,44 +17,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org217ef9e">1. Number</a>
+<li><a href="#orga4eaa48">1. Number</a>
 <ul>
-<li><a href="#org7cc7ac2">1.1. Transfer</a></li>
-<li><a href="#org3ef8269">1.2. Equal</a></li>
-<li><a href="#org9dd25d5">1.3. String to Number</a></li>
+<li><a href="#org8b9e03f">1.1. Transfer</a></li>
+<li><a href="#org91e256e">1.2. Equal</a></li>
+<li><a href="#orgf16de52">1.3. String to Number</a></li>
 </ul>
 </li>
-<li><a href="#org1776c42">2. String</a>
+<li><a href="#orgbf64cf6">2. String</a>
 <ul>
-<li><a href="#org4ad8308">2.1. Preliminaries</a></li>
-<li><a href="#org42196c4">2.2. Basics</a></li>
-<li><a href="#orgb91d382">2.3. Matching</a></li>
-<li><a href="#orgf7e0fc0">2.4. Replacing</a></li>
-<li><a href="#org07b87ab">2.5. Context-free grammars</a></li>
-<li><a href="#org483f51a">2.6. Building complex strings</a>
+<li><a href="#orga319035">2.1. Preliminaries</a></li>
+<li><a href="#orgdf64517">2.2. Basics</a></li>
+<li><a href="#org27ea28b">2.3. Matching</a></li>
+<li><a href="#org886a208">2.4. Replacing</a></li>
+<li><a href="#org9c4178c">2.5. Context-free grammars</a></li>
+<li><a href="#org48e4162">2.6. Building complex strings</a>
 <ul>
-<li><a href="#org7b77325">2.6.1. Redirecting streams</a></li>
-<li><a href="#org195d3e4">2.6.2. Format strings</a></li>
+<li><a href="#orgd7b5784">2.6.1. Redirecting streams</a></li>
+<li><a href="#org0292133">2.6.2. Format strings</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgca3c894">3. Collection</a></li>
-<li><a href="#org9f0e871">4. Flow</a>
+<li><a href="#orge1175f2">3. Collection</a></li>
+<li><a href="#org21e9d62">4. Flow</a>
 <ul>
-<li><a href="#orgd18749c">4.1. condp</a></li>
+<li><a href="#orgb0282e7">4.1. condp</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org217ef9e" class="outline-2">
-<h2 id="org217ef9e"><span class="section-number-2">1.</span> Number</h2>
+<div id="outline-container-orga4eaa48" class="outline-2">
+<h2 id="orga4eaa48"><span class="section-number-2">1.</span> Number</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7cc7ac2" class="outline-3">
-<h3 id="org7cc7ac2"><span class="section-number-3">1.1.</span> Transfer</h3>
+<div id="outline-container-org8b9e03f" class="outline-3">
+<h3 id="org8b9e03f"><span class="section-number-3">1.1.</span> Transfer</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-clojure">(bigdec 2)
@@ -64,8 +64,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org3ef8269" class="outline-3">
-<h3 id="org3ef8269"><span class="section-number-3">1.2.</span> Equal</h3>
+<div id="outline-container-org91e256e" class="outline-3">
+<h3 id="org91e256e"><span class="section-number-3">1.2.</span> Equal</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-clojure">(= 2 3)
@@ -74,8 +74,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org9dd25d5" class="outline-3">
-<h3 id="org9dd25d5"><span class="section-number-3">1.3.</span> String to Number</h3>
+<div id="outline-container-orgf16de52" class="outline-3">
+<h3 id="orgf16de52"><span class="section-number-3">1.3.</span> String to Number</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-clojure">(type (read-string "233.3"))
@@ -85,12 +85,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1776c42" class="outline-2">
-<h2 id="org1776c42"><span class="section-number-2">2.</span> <a href="http://clojure-doc.org/articles/cookbooks/strings.html">String</a></h2>
+<div id="outline-container-orgbf64cf6" class="outline-2">
+<h2 id="orgbf64cf6"><span class="section-number-2">2.</span> <a href="http://clojure-doc.org/articles/cookbooks/strings.html">String</a></h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4ad8308" class="outline-3">
-<h3 id="org4ad8308"><span class="section-number-3">2.1.</span> Preliminaries</h3>
+<div id="outline-container-orga319035" class="outline-3">
+<h3 id="orga319035"><span class="section-number-3">2.1.</span> Preliminaries</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Load <code>clojure.string</code>, with <code>ns</code> macro:
@@ -109,8 +109,8 @@ or in the repl:
 </div>
 </div>
 </div>
-<div id="outline-container-org42196c4" class="outline-3">
-<h3 id="org42196c4"><span class="section-number-3">2.2.</span> Basics</h3>
+<div id="outline-container-orgdf64517" class="outline-3">
+<h3 id="orgdf64517"><span class="section-number-3">2.2.</span> Basics</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-clojure">;; Size measurements
@@ -188,8 +188,8 @@ bar")                             ;=&gt; ["foo" "bar"]
 </div>
 </div>
 </div>
-<div id="outline-container-orgb91d382" class="outline-3">
-<h3 id="orgb91d382"><span class="section-number-3">2.3.</span> Matching</h3>
+<div id="outline-container-org27ea28b" class="outline-3">
+<h3 id="org27ea28b"><span class="section-number-3">2.3.</span> Matching</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-clojure">;; Simple matching
@@ -212,8 +212,8 @@ bar")                             ;=&gt; ["foo" "bar"]
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7e0fc0" class="outline-3">
-<h3 id="orgf7e0fc0"><span class="section-number-3">2.4.</span> Replacing</h3>
+<div id="outline-container-org886a208" class="outline-3">
+<h3 id="org886a208"><span class="section-number-3">2.4.</span> Replacing</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-clojure">;; In the replacement string, $0, $1, etc refer to matched groups.
@@ -236,8 +236,8 @@ bar")                             ;=&gt; ["foo" "bar"]
 </div>
 </div>
 </div>
-<div id="outline-container-org07b87ab" class="outline-3">
-<h3 id="org07b87ab"><span class="section-number-3">2.5.</span> Context-free grammars</h3>
+<div id="outline-container-org9c4178c" class="outline-3">
+<h3 id="org9c4178c"><span class="section-number-3">2.5.</span> Context-free grammars</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-clojure">;; Your project.clj should contain this (you may need to restart your JVM):
@@ -299,12 +299,12 @@ bar")                             ;=&gt; ["foo" "bar"]
 </div>
 </div>
 </div>
-<div id="outline-container-org483f51a" class="outline-3">
-<h3 id="org483f51a"><span class="section-number-3">2.6.</span> Building complex strings</h3>
+<div id="outline-container-org48e4162" class="outline-3">
+<h3 id="org48e4162"><span class="section-number-3">2.6.</span> Building complex strings</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-org7b77325" class="outline-4">
-<h4 id="org7b77325"><span class="section-number-4">2.6.1.</span> Redirecting streams</h4>
+<div id="outline-container-orgd7b5784" class="outline-4">
+<h4 id="orgd7b5784"><span class="section-number-4">2.6.1.</span> Redirecting streams</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 <code>with-out-str</code> provides a simple way to build strings. It redirects standard
@@ -324,8 +324,8 @@ resulting string at the end.
 </div>
 </div>
 </div>
-<div id="outline-container-org195d3e4" class="outline-4">
-<h4 id="org195d3e4"><span class="section-number-4">2.6.2.</span> Format strings</h4>
+<div id="outline-container-org0292133" class="outline-4">
+<h4 id="org0292133"><span class="section-number-4">2.6.2.</span> Format strings</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <div class="org-src-container">
 <pre class="src src-clojure">;; %s is most commonly used to print args. Escape %'s with %%.
@@ -345,8 +345,8 @@ resulting string at the end.
 </div>
 </div>
 </div>
-<div id="outline-container-orgca3c894" class="outline-2">
-<h2 id="orgca3c894"><span class="section-number-2">3.</span> Collection</h2>
+<div id="outline-container-orge1175f2" class="outline-2">
+<h2 id="orge1175f2"><span class="section-number-2">3.</span> Collection</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-clojure">(filter #(not= 1) '(2 1 1 3))                 ; =&gt; (2 3)
@@ -358,12 +358,12 @@ resulting string at the end.
 </div>
 </div>
 </div>
-<div id="outline-container-org9f0e871" class="outline-2">
-<h2 id="org9f0e871"><span class="section-number-2">4.</span> Flow</h2>
+<div id="outline-container-org21e9d62" class="outline-2">
+<h2 id="org21e9d62"><span class="section-number-2">4.</span> Flow</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgd18749c" class="outline-3">
-<h3 id="orgd18749c"><span class="section-number-3">4.1.</span> condp</h3>
+<div id="outline-container-orgb0282e7" class="outline-3">
+<h3 id="orgb0282e7"><span class="section-number-3">4.1.</span> condp</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-clojure">(defn question? [sentence]
