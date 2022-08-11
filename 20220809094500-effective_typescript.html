@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-08-11 Thu 08:44 -->
+<!-- 2022-08-11 Thu 17:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective TypeScript</title>
@@ -17,22 +17,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org73a7dfa">1. Effective Typescript</a>
+<li><a href="#orgdde1eeb">1. Effective Typescript</a>
 <ul>
-<li><a href="#org162847e">1.1. Preface</a></li>
-<li><a href="#org38b8d10">1.2. Getting to Know TypeScript</a>
+<li><a href="#orgcb8d12a">1.1. Preface</a></li>
+<li><a href="#org4561f82">1.2. Getting to Know TypeScript</a>
 <ul>
-<li><a href="#org9cf8ad7">1.2.1. Item 1: Understand the Relationship Between TypeScript and JavaScript</a></li>
-<li><a href="#org058fbed">1.2.2. Item 2: Know Which TypeScript Options You're Using</a></li>
-<li><a href="#org5f1d4c3">1.2.3. Item 3: Understand That Code Generation Is Independent of Types</a>
+<li><a href="#org003fcda">1.2.1. Item 1: Understand the Relationship Between TypeScript and JavaScript</a></li>
+<li><a href="#org878b590">1.2.2. Item 2: Know Which TypeScript Options You're Using</a></li>
+<li><a href="#org161fd1b">1.2.3. Item 3: Understand That Code Generation Is Independent of Types</a>
 <ul>
-<li><a href="#org75acecd">1.2.3.1. Code with Type Errors Can Produce Output</a></li>
-<li><a href="#org63a9238">1.2.3.2. You Cannot Check TypeScript Types at Runtime</a></li>
-<li><a href="#org38c6fe4">1.2.3.3. You Cannot Overload a Function Based on TypeScript Types</a></li>
-<li><a href="#org5fddd8c">1.2.3.4. Things to Remember</a></li>
+<li><a href="#orgbb7b44c">1.2.3.1. Code with Type Errors Can Produce Output</a></li>
+<li><a href="#org04db47e">1.2.3.2. You Cannot Check TypeScript Types at Runtime</a></li>
+<li><a href="#org55d42f6">1.2.3.3. You Cannot Overload a Function Based on TypeScript Types</a></li>
+<li><a href="#org746e6ca">1.2.3.4. Things to Remember</a></li>
 </ul>
 </li>
-<li><a href="#org6018fb7">1.2.4. Item 4: Get Comportable with Structural Typing</a></li>
+<li><a href="#org4f55aab">1.2.4. Item 4: Get Comportable with Structural Typing</a></li>
+<li><a href="#orgc421209">1.2.5. Item 5: Limit Use of the any Type</a></li>
 </ul>
 </li>
 </ul>
@@ -44,12 +45,12 @@
 <dt>author</dt><dd>Dan Vanderkam</dd>
 </dl>
 
-<div id="outline-container-org73a7dfa" class="outline-2">
-<h2 id="org73a7dfa"><span class="section-number-2">1.</span> Effective Typescript</h2>
+<div id="outline-container-orgdde1eeb" class="outline-2">
+<h2 id="orgdde1eeb"><span class="section-number-2">1.</span> Effective Typescript</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org162847e" class="outline-3">
-<h3 id="org162847e"><span class="section-number-3">1.1.</span> Preface</h3>
+<div id="outline-container-orgcb8d12a" class="outline-3">
+<h3 id="orgcb8d12a"><span class="section-number-3">1.1.</span> Preface</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Whereas a reference book will explain the five ways that a language lets you
@@ -57,30 +58,30 @@ do X, an Effective book will tell you which of those five to use and why.
 </p>
 </div>
 </div>
-<div id="outline-container-org38b8d10" class="outline-3">
-<h3 id="org38b8d10"><span class="section-number-3">1.2.</span> Getting to Know TypeScript</h3>
+<div id="outline-container-org4561f82" class="outline-3">
+<h3 id="org4561f82"><span class="section-number-3">1.2.</span> Getting to Know TypeScript</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org9cf8ad7" class="outline-4">
-<h4 id="org9cf8ad7"><span class="section-number-4">1.2.1.</span> Item 1: Understand the Relationship Between TypeScript and JavaScript</h4>
+<div id="outline-container-org003fcda" class="outline-4">
+<h4 id="org003fcda"><span class="section-number-4">1.2.1.</span> Item 1: Understand the Relationship Between TypeScript and JavaScript</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 TypeScript is a superset of JavaScript.
 </p>
 </div>
 </div>
-<div id="outline-container-org058fbed" class="outline-4">
-<h4 id="org058fbed"><span class="section-number-4">1.2.2.</span> Item 2: Know Which TypeScript Options You're Using</h4>
+<div id="outline-container-org878b590" class="outline-4">
+<h4 id="org878b590"><span class="section-number-4">1.2.2.</span> Item 2: Know Which TypeScript Options You're Using</h4>
 </div>
-<div id="outline-container-org5f1d4c3" class="outline-4">
-<h4 id="org5f1d4c3"><span class="section-number-4">1.2.3.</span> Item 3: Understand That Code Generation Is Independent of Types</h4>
+<div id="outline-container-org161fd1b" class="outline-4">
+<h4 id="org161fd1b"><span class="section-number-4">1.2.3.</span> Item 3: Understand That Code Generation Is Independent of Types</h4>
 <div class="outline-text-4" id="text-1-2-3">
 </div>
-<div id="outline-container-org75acecd" class="outline-5">
-<h5 id="org75acecd"><span class="section-number-5">1.2.3.1.</span> Code with Type Errors Can Produce Output</h5>
+<div id="outline-container-orgbb7b44c" class="outline-5">
+<h5 id="orgbb7b44c"><span class="section-number-5">1.2.3.1.</span> Code with Type Errors Can Produce Output</h5>
 </div>
-<div id="outline-container-org63a9238" class="outline-5">
-<h5 id="org63a9238"><span class="section-number-5">1.2.3.2.</span> You Cannot Check TypeScript Types at Runtime</h5>
+<div id="outline-container-org04db47e" class="outline-5">
+<h5 id="org04db47e"><span class="section-number-5">1.2.3.2.</span> You Cannot Check TypeScript Types at Runtime</h5>
 <div class="outline-text-5" id="text-1-2-3-2">
 <div class="org-src-container">
 <pre class="src src-typescript">interface Square {
@@ -129,8 +130,8 @@ function calculateArea(shape: Shpae) {
 </div>
 </div>
 </div>
-<div id="outline-container-org38c6fe4" class="outline-5">
-<h5 id="org38c6fe4"><span class="section-number-5">1.2.3.3.</span> You Cannot Overload a Function Based on TypeScript Types</h5>
+<div id="outline-container-org55d42f6" class="outline-5">
+<h5 id="org55d42f6"><span class="section-number-5">1.2.3.3.</span> You Cannot Overload a Function Based on TypeScript Types</h5>
 <div class="outline-text-5" id="text-1-2-3-3">
 <p>
 You can provide multiple declarations for a function, but only a single
@@ -148,8 +149,8 @@ const twelve = add('1', '2') // Type is string
 </div>
 </div>
 </div>
-<div id="outline-container-org5fddd8c" class="outline-5">
-<h5 id="org5fddd8c"><span class="section-number-5">1.2.3.4.</span> Things to Remember</h5>
+<div id="outline-container-org746e6ca" class="outline-5">
+<h5 id="org746e6ca"><span class="section-number-5">1.2.3.4.</span> Things to Remember</h5>
 <div class="outline-text-5" id="text-1-2-3-4">
 <ul class="org-ul">
 <li>Code generation is independent of the type system. This means that
@@ -164,8 +165,22 @@ a TypeScript type and a value that is available at runtime.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org6018fb7" class="outline-4">
-<h4 id="org6018fb7"><span class="section-number-4">1.2.4.</span> Item 4: Get Comportable with Structural Typing</h4>
+<div id="outline-container-org4f55aab" class="outline-4">
+<h4 id="org4f55aab"><span class="section-number-4">1.2.4.</span> Item 4: Get Comportable with Structural Typing</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>Understand that JavaScript is duck typed and TypeScript uses structural
+typing to model this: values assignable to your interfaces might have
+properties beyond those explicitly listed in your type definitions. Types
+are not "sealed".</li>
+<li>Be aware that classes also follow structural typing rules. You may not
+have an instance of the class you expect!</li>
+<li>Use structural typing to facilitate unit testing.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc421209" class="outline-4">
+<h4 id="orgc421209"><span class="section-number-4">1.2.5.</span> Item 5: Limit Use of the any Type</h4>
 </div>
 </div>
 </div>
