@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-08-21 Sun 21:37 -->
+<!-- 2022-08-22 Mon 16:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective Kotlin</title>
@@ -17,42 +17,53 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3f0c346">1. Introduction: Be pragmatic</a>
+<li><a href="#org4e004ad">1. Introduction: Be pragmatic</a>
 <ul>
-<li><a href="#orgfd3576a">1.1. The philosophy of Kotlin</a></li>
-<li><a href="#org66003dd">1.2. The purpose of this book</a></li>
-<li><a href="#org96dd517">1.3. For whom is this book written?</a></li>
-<li><a href="#org22ffb63">1.4. Book design</a></li>
-<li><a href="#org806b665">1.5. Chapters organization</a></li>
-<li><a href="#org2aadfbd">1.6. How should this book be read?</a></li>
-<li><a href="#orgf72315e">1.7. Labels</a></li>
-<li><a href="#orgabd481a">1.8. Suggestions</a></li>
+<li><a href="#org46d3363">1.1. The philosophy of Kotlin</a></li>
+<li><a href="#org4393a7d">1.2. The purpose of this book</a></li>
+<li><a href="#org820fe04">1.3. For whom is this book written?</a></li>
+<li><a href="#orgf95bdd7">1.4. Book design</a></li>
+<li><a href="#org7413fbb">1.5. Chapters organization</a></li>
+<li><a href="#org1808647">1.6. How should this book be read?</a></li>
+<li><a href="#orgbcb0248">1.7. Labels</a></li>
+<li><a href="#org0853913">1.8. Suggestions</a></li>
 </ul>
 </li>
-<li><a href="#org24dac70">2. Part 1: Good code</a>
+<li><a href="#orge148d81">2. Part 1: Good code</a>
 <ul>
-<li><a href="#orgf9543c6">2.1. Chapter 1: Safety</a>
+<li><a href="#orgf1d112a">2.1. Chapter 1: Safety</a>
 <ul>
-<li><a href="#org50c1af1">2.1.1. Item 1: Limit mutability</a></li>
-<li><a href="#orga3633c2">2.1.2. Item 2: Minimize the scope of variables</a></li>
-<li><a href="#org2d64cb3">2.1.3. Item 3: Eliminate platform types as soon as possible</a></li>
-<li><a href="#org6f9ba91">2.1.4. Item 4: Do not expose inferred types</a></li>
-<li><a href="#org9019966">2.1.5. Item 5: Specify your expectations on arguments and state</a></li>
+<li><a href="#orgb6ab9db">2.1.1. Item 1: Limit mutability</a></li>
+<li><a href="#org58b4b92">2.1.2. Item 2: Minimize the scope of variables</a></li>
+<li><a href="#org0ae67a9">2.1.3. Item 3: Eliminate platform types as soon as possible</a></li>
+<li><a href="#org2d825d1">2.1.4. Item 4: Do not expose inferred types</a></li>
+<li><a href="#org14edd09">2.1.5. Item 5: Specify your expectations on arguments and state</a></li>
 </ul>
 </li>
-<li><a href="#org8b75897">2.2. Chatper 2: Readability</a></li>
+<li><a href="#org3a0a696">2.2. Chatper 2: Readability</a>
+<ul>
+<li><a href="#org4c8b883">2.2.1. Item 11: hdesign for readability</a>
+<ul>
+<li><a href="#org0f0a274">2.2.1.1. Reducing cognitive load</a></li>
+<li><a href="#orgdd9fc3f">2.2.1.2. Do not get extreme</a></li>
+<li><a href="#org517263e">2.2.1.3. Conventions</a></li>
 </ul>
 </li>
-<li><a href="#orgeda3a9b">3. Part 2: Code design</a>
+<li><a href="#org4dd1bff">2.2.2. Item 12: Operator meaning should be consistent with its function name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org90befaf">3. Part 2: Code design</a>
 <ul>
-<li><a href="#org2ee34c1">3.1. Chapter 3: Reusability</a></li>
-<li><a href="#orgf3a167f">3.2. Chapter 4: Abstraction design</a></li>
-<li><a href="#org659684f">3.3. Chapter 5: Object creation</a></li>
-<li><a href="#orgc6373d6">3.4. Chapter 6: Class design</a>
+<li><a href="#org37037e3">3.1. Chapter 3: Reusability</a></li>
+<li><a href="#orge987982">3.2. Chapter 4: Abstraction design</a></li>
+<li><a href="#orgd4c6f9e">3.3. Chapter 5: Object creation</a></li>
+<li><a href="#org34562a2">3.4. Chapter 6: Class design</a>
 <ul>
-<li><a href="#org5182bcb">3.4.1. Item 36: Prefer composition over inheritance</a></li>
-<li><a href="#org4aeece2">3.4.2. Item 37: Use the data modifier to represent a bundle of data</a></li>
-<li><a href="#org5fa6f2c">3.4.3. Item 38: Use function types instead of interfaces to pass operations and actions</a></li>
+<li><a href="#org3c022ef">3.4.1. Item 36: Prefer composition over inheritance</a></li>
+<li><a href="#org9fd9521">3.4.2. Item 37: Use the data modifier to represent a bundle of data</a></li>
+<li><a href="#org8afdd60">3.4.3. Item 38: Use function types instead of interfaces to pass operations and actions</a></li>
 </ul>
 </li>
 </ul>
@@ -65,12 +76,12 @@
 <dt>start</dt><dd><span class="timestamp-wrapper"><span class="timestamp">&lt;2022-08-17 Wed 10:09&gt;</span></span></dd>
 </dl>
 
-<div id="outline-container-org3f0c346" class="outline-2">
-<h2 id="org3f0c346"><span class="section-number-2">1.</span> Introduction: Be pragmatic</h2>
+<div id="outline-container-org4e004ad" class="outline-2">
+<h2 id="org4e004ad"><span class="section-number-2">1.</span> Introduction: Be pragmatic</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgfd3576a" class="outline-3">
-<h3 id="orgfd3576a"><span class="section-number-3">1.1.</span> The philosophy of Kotlin</h3>
+<div id="outline-container-org46d3363" class="outline-3">
+<h3 id="org46d3363"><span class="section-number-3">1.1.</span> The philosophy of Kotlin</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The central point of Kotlin's philosophy is pragmatism. This means that in the end, all choices need to serve business needs, like:
@@ -84,8 +95,8 @@ The central point of Kotlin's philosophy is pragmatism. This means that in the e
 </ul>
 </div>
 </div>
-<div id="outline-container-org66003dd" class="outline-3">
-<h3 id="org66003dd"><span class="section-number-3">1.2.</span> The purpose of this book</h3>
+<div id="outline-container-org4393a7d" class="outline-3">
+<h3 id="org4393a7d"><span class="section-number-3">1.2.</span> The purpose of this book</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The main goal of this book is to explain how to use different Kotlin features to achieve safe, readable, scalable, and efficient code.
@@ -96,8 +107,8 @@ This book concentrates on higher-level good practices that come from authorities
 </p>
 </div>
 </div>
-<div id="outline-container-org96dd517" class="outline-3">
-<h3 id="org96dd517"><span class="section-number-3">1.3.</span> For whom is this book written?</h3>
+<div id="outline-container-org820fe04" class="outline-3">
+<h3 id="org820fe04"><span class="section-number-3">1.3.</span> For whom is this book written?</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 I will assume that even experienced developers might not know some features. This is why I explain some concepts like:
@@ -112,17 +123,17 @@ I will assume that even experienced developers might not know some features. Thi
 </ul>
 </div>
 </div>
-<div id="outline-container-org22ffb63" class="outline-3">
-<h3 id="org22ffb63"><span class="section-number-3">1.4.</span> Book design</h3>
+<div id="outline-container-orgf95bdd7" class="outline-3">
+<h3 id="orgf95bdd7"><span class="section-number-3">1.4.</span> Book design</h3>
 </div>
-<div id="outline-container-org806b665" class="outline-3">
-<h3 id="org806b665"><span class="section-number-3">1.5.</span> Chapters organization</h3>
+<div id="outline-container-org7413fbb" class="outline-3">
+<h3 id="org7413fbb"><span class="section-number-3">1.5.</span> Chapters organization</h3>
 </div>
-<div id="outline-container-org2aadfbd" class="outline-3">
-<h3 id="org2aadfbd"><span class="section-number-3">1.6.</span> How should this book be read?</h3>
+<div id="outline-container-org1808647" class="outline-3">
+<h3 id="org1808647"><span class="section-number-3">1.6.</span> How should this book be read?</h3>
 </div>
-<div id="outline-container-orgf72315e" class="outline-3">
-<h3 id="orgf72315e"><span class="section-number-3">1.7.</span> Labels</h3>
+<div id="outline-container-orgbcb0248" class="outline-3">
+<h3 id="orgbcb0248"><span class="section-number-3">1.7.</span> Labels</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Not Kotlin-specific</li>
@@ -131,26 +142,26 @@ I will assume that even experienced developers might not know some features. Thi
 </ul>
 </div>
 </div>
-<div id="outline-container-orgabd481a" class="outline-3">
-<h3 id="orgabd481a"><span class="section-number-3">1.8.</span> Suggestions</h3>
+<div id="outline-container-org0853913" class="outline-3">
+<h3 id="org0853913"><span class="section-number-3">1.8.</span> Suggestions</h3>
 </div>
 </div>
-<div id="outline-container-org24dac70" class="outline-2">
-<h2 id="org24dac70"><span class="section-number-2">2.</span> Part 1: Good code</h2>
+<div id="outline-container-orge148d81" class="outline-2">
+<h2 id="orge148d81"><span class="section-number-2">2.</span> Part 1: Good code</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf9543c6" class="outline-3">
-<h3 id="orgf9543c6"><span class="section-number-3">2.1.</span> Chapter 1: Safety</h3>
+<div id="outline-container-orgf1d112a" class="outline-3">
+<h3 id="orgf1d112a"><span class="section-number-3">2.1.</span> Chapter 1: Safety</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org50c1af1" class="outline-4">
-<h4 id="org50c1af1"><span class="section-number-4">2.1.1.</span> Item 1: Limit mutability</h4>
+<div id="outline-container-orgb6ab9db" class="outline-4">
+<h4 id="orgb6ab9db"><span class="section-number-4">2.1.1.</span> Item 1: Limit mutability</h4>
 </div>
-<div id="outline-container-orga3633c2" class="outline-4">
-<h4 id="orga3633c2"><span class="section-number-4">2.1.2.</span> Item 2: Minimize the scope of variables</h4>
+<div id="outline-container-org58b4b92" class="outline-4">
+<h4 id="org58b4b92"><span class="section-number-4">2.1.2.</span> Item 2: Minimize the scope of variables</h4>
 </div>
-<div id="outline-container-org2d64cb3" class="outline-4">
-<h4 id="org2d64cb3"><span class="section-number-4">2.1.3.</span> Item 3: Eliminate platform types as soon as possible</h4>
+<div id="outline-container-org0ae67a9" class="outline-4">
+<h4 id="org0ae67a9"><span class="section-number-4">2.1.3.</span> Item 3: Eliminate platform types as soon as possible</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 <i>Platform type</i> - a type that comes from another language and has unknown nullability.
@@ -178,16 +189,16 @@ What're the differences between <code>User!</code> and <code>User</code>?
 </p>
 </div>
 </div>
-<div id="outline-container-org6f9ba91" class="outline-4">
-<h4 id="org6f9ba91"><span class="section-number-4">2.1.4.</span> Item 4: Do not expose inferred types</h4>
+<div id="outline-container-org2d825d1" class="outline-4">
+<h4 id="org2d825d1"><span class="section-number-4">2.1.4.</span> Item 4: Do not expose inferred types</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 If we are not sure about the type, we should specify it. In an external API, we should always specify types. We cannot let them be changed by accident. Inferred types can be too restrictive or can too easily change when our project envolves.
 </p>
 </div>
 </div>
-<div id="outline-container-org9019966" class="outline-4">
-<h4 id="org9019966"><span class="section-number-4">2.1.5.</span> Item 5: Specify your expectations on arguments and state</h4>
+<div id="outline-container-org14edd09" class="outline-4">
+<h4 id="org14edd09"><span class="section-number-4">2.1.5.</span> Item 5: Specify your expectations on arguments and state</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <ul class="org-ul">
 <li><i>require</i> block: a universal way to specify expectations on arguments.</li>
@@ -198,35 +209,54 @@ If we are not sure about the type, we should specify it. In an external API, we 
 </div>
 </div>
 </div>
-<div id="outline-container-org8b75897" class="outline-3">
-<h3 id="org8b75897"><span class="section-number-3">2.2.</span> Chatper 2: Readability</h3>
+<div id="outline-container-org3a0a696" class="outline-3">
+<h3 id="org3a0a696"><span class="section-number-3">2.2.</span> Chatper 2: Readability</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org4c8b883" class="outline-4">
+<h4 id="org4c8b883"><span class="section-number-4">2.2.1.</span> Item 11: hdesign for readability</h4>
+<div class="outline-text-4" id="text-2-2-1">
+</div>
+<div id="outline-container-org0f0a274" class="outline-5">
+<h5 id="org0f0a274"><span class="section-number-5">2.2.1.1.</span> Reducing cognitive load</h5>
+</div>
+<div id="outline-container-orgdd9fc3f" class="outline-5">
+<h5 id="orgdd9fc3f"><span class="section-number-5">2.2.1.2.</span> Do not get extreme</h5>
+</div>
+<div id="outline-container-org517263e" class="outline-5">
+<h5 id="org517263e"><span class="section-number-5">2.2.1.3.</span> Conventions</h5>
 </div>
 </div>
-<div id="outline-container-orgeda3a9b" class="outline-2">
-<h2 id="orgeda3a9b"><span class="section-number-2">3.</span> Part 2: Code design</h2>
+<div id="outline-container-org4dd1bff" class="outline-4">
+<h4 id="org4dd1bff"><span class="section-number-4">2.2.2.</span> Item 12: Operator meaning should be consistent with its function name</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org90befaf" class="outline-2">
+<h2 id="org90befaf"><span class="section-number-2">3.</span> Part 2: Code design</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org2ee34c1" class="outline-3">
-<h3 id="org2ee34c1"><span class="section-number-3">3.1.</span> Chapter 3: Reusability</h3>
+<div id="outline-container-org37037e3" class="outline-3">
+<h3 id="org37037e3"><span class="section-number-3">3.1.</span> Chapter 3: Reusability</h3>
 </div>
-<div id="outline-container-orgf3a167f" class="outline-3">
-<h3 id="orgf3a167f"><span class="section-number-3">3.2.</span> Chapter 4: Abstraction design</h3>
+<div id="outline-container-orge987982" class="outline-3">
+<h3 id="orge987982"><span class="section-number-3">3.2.</span> Chapter 4: Abstraction design</h3>
 </div>
-<div id="outline-container-org659684f" class="outline-3">
-<h3 id="org659684f"><span class="section-number-3">3.3.</span> Chapter 5: Object creation</h3>
+<div id="outline-container-orgd4c6f9e" class="outline-3">
+<h3 id="orgd4c6f9e"><span class="section-number-3">3.3.</span> Chapter 5: Object creation</h3>
 </div>
-<div id="outline-container-orgc6373d6" class="outline-3">
-<h3 id="orgc6373d6"><span class="section-number-3">3.4.</span> Chapter 6: Class design</h3>
+<div id="outline-container-org34562a2" class="outline-3">
+<h3 id="org34562a2"><span class="section-number-3">3.4.</span> Chapter 6: Class design</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org5182bcb" class="outline-4">
-<h4 id="org5182bcb"><span class="section-number-4">3.4.1.</span> Item 36: Prefer composition over inheritance</h4>
+<div id="outline-container-org3c022ef" class="outline-4">
+<h4 id="org3c022ef"><span class="section-number-4">3.4.1.</span> Item 36: Prefer composition over inheritance</h4>
 </div>
-<div id="outline-container-org4aeece2" class="outline-4">
-<h4 id="org4aeece2"><span class="section-number-4">3.4.2.</span> Item 37: Use the data modifier to represent a bundle of data</h4>
+<div id="outline-container-org9fd9521" class="outline-4">
+<h4 id="org9fd9521"><span class="section-number-4">3.4.2.</span> Item 37: Use the data modifier to represent a bundle of data</h4>
 </div>
-<div id="outline-container-org5fa6f2c" class="outline-4">
-<h4 id="org5fa6f2c"><span class="section-number-4">3.4.3.</span> Item 38: Use function types instead of interfaces to pass operations and actions</h4>
+<div id="outline-container-org8afdd60" class="outline-4">
+<h4 id="org8afdd60"><span class="section-number-4">3.4.3.</span> Item 38: Use function types instead of interfaces to pass operations and actions</h4>
 </div>
 </div>
 </div>
