@@ -34,6 +34,7 @@ window.onload = () => {
     if (preview && !preview.classList.contains('hide')) {
       hide(preview);
     } else if (!hasSelection) {
+      if (e.target && e.target.tagName.toLowerCase() === 'a') return;
       const dir = e.pageX * 2 > document.body.clientWidth ? 1 : -1;
       const top = dir * window.screen.height / 2;
       scrollBy({
