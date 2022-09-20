@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-09-20 Tue 09:25 -->
+<!-- 2022-09-20 Tue 16:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Android with Kotlin Achieving Structured Concurrency with Coroutines</title>
@@ -42,7 +42,30 @@ In practice, you'll most often use a special context element to control which th
 </p>
 
 <p>
-next: Cancellation
+Cancellation: designed or failure
+</p>
+
+<div class="org-src-container">
+<pre class="src src-kotlin">suspend fun Call.await() = suspendCancelableCoroutine&lt;ResponseBody?&gt; { continuation -&gt;
+  continuation.invokeOnCancellation {
+    cancel()
+  }
+
+  enqueue(object: Callback {
+    override fun onResponse(call: Call, response: Response) {
+      continuation.resume(response.body())
+    }
+
+    override fun onFailure(call: Call, e: IOException) {
+      continuation.resumeWithException(e)
+    }
+  })
+}
+</pre>
+</div>
+
+<p>
+next: Coroutines That Are Cooperative with Cancellation
 </p>
 </div>
 <div id="postamble" class="status">
