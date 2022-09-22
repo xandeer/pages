@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-09-22 Thu 09:17 -->
+<!-- 2022-09-22 Thu 13:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Android with Kotlin Achieving Structured Concurrency with Coroutines</title>
@@ -45,8 +45,11 @@ In practice, you'll most often use a special context element to control which th
 Cancellation: designed or failure
 </p>
 
+<p>
+Make callback suspendable with <code>suspendCancellableCoroutine</code>:
+</p>
 <div class="org-src-container">
-<pre class="src src-kotlin">suspend fun Call.await() = suspendCancelableCoroutine&lt;ResponseBody?&gt; { continuation -&gt;
+<pre class="src src-kotlin">suspend fun Call.await() = suspendCancellableCoroutine&lt;ResponseBody?&gt; { continuation -&gt;
   continuation.invokeOnCancellation {
     cancel()
   }
@@ -64,6 +67,9 @@ Cancellation: designed or failure
 </pre>
 </div>
 
+<p>
+Catch the unhandled coroutine exceptions with <code>CoroutineExceptionHandler</code>:
+</p>
 <div class="org-src-container">
 <pre class="src src-kotlin">fun main() = runBlocking {
   val ceh = CoroutineExceptionHandler { _, exception -&gt;
@@ -86,6 +92,35 @@ Cancellation: designed or failure
 </pre>
 </div>
 
+<p>
+Stop exceptions' propagation with <code>SupervisorJob</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin">fun main() = runBlocking {
+  val ceh = CoroutineExceptionHandler { _, exception -&gt;
+    println("Caught $exception with suppressed ${exception.suppressed.contentToString()}")
+  }
+  val supervisor = SupervisorJob()
+  val scope = CoroutineScope(coroutineContext + supervisor)
+  with(scope) {
+    val firstChild = launch(ceh) {
+      println("First child is failing")
+      throw AssertionError("First child is cancelled")
+    }
+
+    val secondChild = launch {
+      firstChild.join()
+
+      delay(10)
+      println("First child is cancelled: ${firstChild.isCancelled}, but second one is still active")
+    }
+
+    // wait until the second child completes
+    secondChild.join()
+  }
+}
+</pre>
+</div>
 
 <p>
 Unknown concepts or API:
@@ -96,7 +131,7 @@ Unknown concepts or API:
 </ul>
 
 <p>
-next: Consider the real-world example of loading a fragment’s layout
+next: supervisorScope Builder
 </p>
 </div>
 <div id="postamble" class="status">
