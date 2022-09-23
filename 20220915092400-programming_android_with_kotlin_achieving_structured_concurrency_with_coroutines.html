@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-09-23 Fri 10:41 -->
+<!-- 2022-09-23 Fri 21:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Android with Kotlin Achieving Structured Concurrency with Coroutines</title>
@@ -103,6 +103,7 @@ Stop exceptions' propagation with <code>SupervisorJob</code>:
   val supervisor = SupervisorJob()
   val scope = CoroutineScope(coroutineContext + supervisor)
   with(scope) {
+    // upon could be replaced with supervisorScope
     val firstChild = launch(ceh) {
       println("First child is failing")
       throw AssertionError("First child is cancelled")
@@ -123,11 +124,38 @@ Stop exceptions' propagation with <code>SupervisorJob</code>:
 </div>
 
 <p>
+<code>withContext</code> could be replaced with <code>coroutineScope</code>
+</p>
+
+<p>
+Use <code>runCatching</code> instead of <code>try/catch</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-kotlin">scope.launch {
+  val result = runCatching {
+    regularFunctionWhichCanThrowException()
+  }
+
+  if (result.isSuccess) {
+    // no exception was thrown
+  } else {
+    // exception was thrown
+  }
+}
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>If the failure of a child should also cancel other children, use a regular scope. Otherwise, use a supervisor scope.</li>
+<li><code>async</code> exposes exceptions, which can be caught by wrapping the <code>await</code> call in a <code>try/catch</code>. On the other hand, <code>launch</code> treats uncaught exceptions as unhandled, which can be handled using a CEH.</li>
+</ul>
+
+<p>
 Unknown concepts or API:
 </p>
 <ul class="org-ul">
-<li><code>Job.join()</code></li>
-<li><code>yield</code></li>
+<li><code>Job.join()</code>: wait the job complete</li>
+<li><code>yield</code>: give a chance to suspend unsuspendable block</li>
 </ul>
 
 <p>
