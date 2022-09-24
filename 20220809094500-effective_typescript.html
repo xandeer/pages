@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-09-23 Fri 23:19 -->
+<!-- 2022-09-24 Sat 17:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective TypeScript</title>
@@ -17,99 +17,106 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgffa4c77">1. Effective Typescript</a>
+<li><a href="#org3c5c4b1">1. Effective Typescript</a>
 <ul>
-<li><a href="#orgf7619d4">1.1. Preface</a></li>
-<li><a href="#org3407eef">1.2. Getting to Know TypeScript</a>
+<li><a href="#orgb0a7bdc">1.1. Preface</a></li>
+<li><a href="#org0b5a3dc">1.2. Getting to Know TypeScript</a>
 <ul>
-<li><a href="#org236d0a6">1.2.1. Item 1: Understand the Relationship Between TypeScript and JavaScript</a></li>
-<li><a href="#org925887e">1.2.2. Item 2: Know Which TypeScript Options You're Using</a></li>
-<li><a href="#orgbb879fa">1.2.3. Item 3: Understand That Code Generation Is Independent of Types</a>
+<li><a href="#orga089aef">1.2.1. Item 1: Understand the Relationship Between TypeScript and JavaScript</a></li>
+<li><a href="#orgd50ed12">1.2.2. Item 2: Know Which TypeScript Options You're Using</a></li>
+<li><a href="#org2f752fb">1.2.3. Item 3: Understand That Code Generation Is Independent of Types</a>
 <ul>
-<li><a href="#org7786cc0">1.2.3.1. Code with Type Errors Can Produce Output</a></li>
-<li><a href="#org60d6ff8">1.2.3.2. You Cannot Check TypeScript Types at Runtime</a></li>
-<li><a href="#org31dd90c">1.2.3.3. You Cannot Overload a Function Based on TypeScript Types</a></li>
-<li><a href="#orge710815">1.2.3.4. Things to Remember</a></li>
+<li><a href="#org6601dac">1.2.3.1. Code with Type Errors Can Produce Output</a></li>
+<li><a href="#org128670c">1.2.3.2. You Cannot Check TypeScript Types at Runtime</a></li>
+<li><a href="#org5f5e9a6">1.2.3.3. You Cannot Overload a Function Based on TypeScript Types</a></li>
+<li><a href="#org36794ba">1.2.3.4. Things to Remember</a></li>
 </ul>
 </li>
-<li><a href="#orgf353157">1.2.4. Item 4: Get Comfortable with Structural Typing</a></li>
-<li><a href="#org889a979">1.2.5. Item 5: Limit Use of the any Type</a></li>
+<li><a href="#orgeae46fc">1.2.4. Item 4: Get Comfortable with Structural Typing</a></li>
+<li><a href="#orge0870c1">1.2.5. Item 5: Limit Use of the any Type</a></li>
 </ul>
 </li>
-<li><a href="#orgfb50079">1.3. TypeScript's Type System</a>
+<li><a href="#orgb3be903">1.3. TypeScript's Type System</a>
 <ul>
-<li><a href="#orge30322d">1.3.1. Item 6: Use Your Editor to Interrogate and Explore the Type System</a></li>
-<li><a href="#org8c7538a">1.3.2. Item 7: Think of Types as Sets of Values</a></li>
-<li><a href="#org02c9da9">1.3.3. Item 8: Know How to Tell Whether a Symbol Is in the Type Space or Value Space</a></li>
-<li><a href="#org991f850">1.3.4. Item 9: Prefer Type Declarations to Type Assertions</a></li>
-<li><a href="#org140a908">1.3.5. Item 10: Avoid Object Wrapper Types(String, Number, Boolean, Symbol, BigInt)</a></li>
-<li><a href="#orgd449c5d">1.3.6. Item 11: Recognize the Limits of Excess Property Checking</a></li>
-<li><a href="#org9c0213c">1.3.7. Item 12: Apply Types to Entire Function Expressions When Possible</a></li>
-<li><a href="#orgc3b20f3">1.3.8. Item 13: Know the Differences Between type and interface</a></li>
-<li><a href="#org360bede">1.3.9. Item 14: Use Type Operations and Generics to Avoid Repeating Yourself</a></li>
-<li><a href="#orge1ebfaa">1.3.10. Item 15: Use Index Signatures for Dynamic Data</a></li>
-<li><a href="#orgd3514bf">1.3.11. Item 16: Prefer Arrays, Tuples, and ArrayLike to number Index Signatures</a></li>
-<li><a href="#orgb634c26">1.3.12. Item 17: Use readonly to Avoid Errors Associated with Mutation</a></li>
-<li><a href="#orgaed8568">1.3.13. Item 18: Use Mapped Types to Keep Values in Sync</a></li>
+<li><a href="#orgdf61ec0">1.3.1. Item 6: Use Your Editor to Interrogate and Explore the Type System</a></li>
+<li><a href="#orgaf77bc6">1.3.2. Item 7: Think of Types as Sets of Values</a></li>
+<li><a href="#org0321f36">1.3.3. Item 8: Know How to Tell Whether a Symbol Is in the Type Space or Value Space</a></li>
+<li><a href="#orge443ee0">1.3.4. Item 9: Prefer Type Declarations to Type Assertions</a></li>
+<li><a href="#org45029a0">1.3.5. Item 10: Avoid Object Wrapper Types(String, Number, Boolean, Symbol, BigInt)</a></li>
+<li><a href="#org04b0ce5">1.3.6. Item 11: Recognize the Limits of Excess Property Checking</a></li>
+<li><a href="#org9cea51d">1.3.7. Item 12: Apply Types to Entire Function Expressions When Possible</a></li>
+<li><a href="#org5d173e3">1.3.8. Item 13: Know the Differences Between type and interface</a></li>
+<li><a href="#org4794ca3">1.3.9. Item 14: Use Type Operations and Generics to Avoid Repeating Yourself</a></li>
+<li><a href="#org3e80076">1.3.10. Item 15: Use Index Signatures for Dynamic Data</a></li>
+<li><a href="#org7493693">1.3.11. Item 16: Prefer Arrays, Tuples, and ArrayLike to number Index Signatures</a></li>
+<li><a href="#org2ec7060">1.3.12. Item 17: Use readonly to Avoid Errors Associated with Mutation</a></li>
+<li><a href="#org1d075bf">1.3.13. Item 18: Use Mapped Types to Keep Values in Sync</a></li>
 </ul>
 </li>
-<li><a href="#orgbde2033">1.4. Type Inference</a>
+<li><a href="#org532f629">1.4. Type Inference</a>
 <ul>
-<li><a href="#orge8dc657">1.4.1. Item 19: Avoid Cluttering Your Code with Inferable Types</a></li>
-<li><a href="#orgbf6097c">1.4.2. Item 20: Use Different Variables for Different Types</a></li>
-<li><a href="#orgded2a77">1.4.3. Item 21: Understand Type Widening</a></li>
-<li><a href="#orgc0f38ca">1.4.4. Item 22: Understand Type Narrowing</a></li>
-<li><a href="#org2914475">1.4.5. Item 23: Create Objects All at Once</a></li>
-<li><a href="#org6adf4f6">1.4.6. Item 24: Be Consistent in Your Use of Aliases</a></li>
-<li><a href="#orgbd6e684">1.4.7. Item 25: Use async Functions Instead of Callbacks for Asynchronous Code</a></li>
-<li><a href="#org5461434">1.4.8. Item 26: Understand How Context Is Used in Type Inference</a></li>
-<li><a href="#org585f686">1.4.9. Item 27: Use Functional Constructs and Libraries to Help Types Flow</a></li>
+<li><a href="#org46806ea">1.4.1. Item 19: Avoid Cluttering Your Code with Inferable Types</a></li>
+<li><a href="#org62b0db0">1.4.2. Item 20: Use Different Variables for Different Types</a></li>
+<li><a href="#org8479721">1.4.3. Item 21: Understand Type Widening</a></li>
+<li><a href="#orgd0cf90e">1.4.4. Item 22: Understand Type Narrowing</a></li>
+<li><a href="#orgfba4940">1.4.5. Item 23: Create Objects All at Once</a></li>
+<li><a href="#org17297f0">1.4.6. Item 24: Be Consistent in Your Use of Aliases</a></li>
+<li><a href="#org289dda5">1.4.7. Item 25: Use async Functions Instead of Callbacks for Asynchronous Code</a></li>
+<li><a href="#org98fb7a5">1.4.8. Item 26: Understand How Context Is Used in Type Inference</a></li>
+<li><a href="#org454b7f0">1.4.9. Item 27: Use Functional Constructs and Libraries to Help Types Flow</a></li>
 </ul>
 </li>
-<li><a href="#org81feba1">1.5. Type Design</a>
+<li><a href="#orga6e688f">1.5. Type Design</a>
 <ul>
-<li><a href="#orgf9a44ad">1.5.1. Item 28: Prefer Types That Always Represent Valid States</a></li>
-<li><a href="#org49d41bf">1.5.2. Item 29: Be Liberal in What You Accept and Strict in What You Produce</a></li>
-<li><a href="#orgd2a9210">1.5.3. Item 30: Don't Repeat Type Information in Documentation</a></li>
-<li><a href="#org6ed760f">1.5.4. Item 31: Push Null Values to the Perimeter of Your Types</a></li>
-<li><a href="#orgf537bec">1.5.5. Item 32: Prefer Unions of Interfaces to Interfaces of Unions</a></li>
-<li><a href="#orgb55029f">1.5.6. Item 33: Prefer More Precise Alternatives to String Types</a></li>
-<li><a href="#org1c234ed">1.5.7. Item 34: Prefer Incomplete Types to Inaccurate Types</a></li>
-<li><a href="#org1b2b19d">1.5.8. Item 35: Generate Types from APIs and Specs, Not Data</a></li>
-<li><a href="#orgbeabf7f">1.5.9. Item 36: Name Types Using the Language of Your Problem Domain</a></li>
-<li><a href="#org2092865">1.5.10. Item 37: Consider "Brands" for Nominal Typing</a></li>
+<li><a href="#org48ca1f9">1.5.1. Item 28: Prefer Types That Always Represent Valid States</a></li>
+<li><a href="#orga08942a">1.5.2. Item 29: Be Liberal in What You Accept and Strict in What You Produce</a></li>
+<li><a href="#org97621a9">1.5.3. Item 30: Don't Repeat Type Information in Documentation</a></li>
+<li><a href="#org3971ba9">1.5.4. Item 31: Push Null Values to the Perimeter of Your Types</a></li>
+<li><a href="#orge5ea683">1.5.5. Item 32: Prefer Unions of Interfaces to Interfaces of Unions</a></li>
+<li><a href="#orgcaef59a">1.5.6. Item 33: Prefer More Precise Alternatives to String Types</a></li>
+<li><a href="#org3958361">1.5.7. Item 34: Prefer Incomplete Types to Inaccurate Types</a></li>
+<li><a href="#org29bac91">1.5.8. Item 35: Generate Types from APIs and Specs, Not Data</a></li>
+<li><a href="#org10297d5">1.5.9. Item 36: Name Types Using the Language of Your Problem Domain</a></li>
+<li><a href="#orgec60847">1.5.10. Item 37: Consider "Brands" for Nominal Typing</a></li>
 </ul>
 </li>
-<li><a href="#orga559e60">1.6. Working with <code>any</code></a>
+<li><a href="#org6bf8718">1.6. Working with <code>any</code></a>
 <ul>
-<li><a href="#org5bc73e6">1.6.1. Item 38: Use the Narrowest Possible Scope for any Types</a></li>
-<li><a href="#orgbd1787e">1.6.2. Item 39: Prefer More Precise Variants of any to Plain any</a></li>
-<li><a href="#org4890fbe">1.6.3. Item 40: Hide Unsafe Type Assertions in Well-Typed Functions</a></li>
-<li><a href="#orge4367a2">1.6.4. Item 41: Understand Evolving <code>any</code></a></li>
-<li><a href="#orge93fd61">1.6.5. Item 42: Use <code>unknown</code> Instead of <code>any</code> for Values with an Unknown Type</a></li>
-<li><a href="#orge7cfd71">1.6.6. Item 43: Prefer Type-Safe Approaches to Monkey Patching</a></li>
-<li><a href="#orgfae1c55">1.6.7. Item 44: Track Your Type Coverage to Prevent Regressions in Type Safety</a></li>
+<li><a href="#org4da56f4">1.6.1. Item 38: Use the Narrowest Possible Scope for any Types</a></li>
+<li><a href="#org9226fce">1.6.2. Item 39: Prefer More Precise Variants of any to Plain any</a></li>
+<li><a href="#orgd7d5c71">1.6.3. Item 40: Hide Unsafe Type Assertions in Well-Typed Functions</a></li>
+<li><a href="#org5ffd3b7">1.6.4. Item 41: Understand Evolving <code>any</code></a></li>
+<li><a href="#orgcfebbbb">1.6.5. Item 42: Use <code>unknown</code> Instead of <code>any</code> for Values with an Unknown Type</a></li>
+<li><a href="#org3bbe4cf">1.6.6. Item 43: Prefer Type-Safe Approaches to Monkey Patching</a></li>
+<li><a href="#org6459e63">1.6.7. Item 44: Track Your Type Coverage to Prevent Regressions in Type Safety</a></li>
 </ul>
 </li>
-<li><a href="#org39d03d2">1.7. Types Declarations and @types</a>
+<li><a href="#org7fb1796">1.7. Types Declarations and @types</a>
 <ul>
-<li><a href="#org1153b39">1.7.1. Item 45: Put TypeScript and @types in devDependencies</a></li>
-<li><a href="#orgfd20832">1.7.2. Item 46: Understand the Three Versions Involved in Type Declarations</a></li>
-<li><a href="#org818b8b8">1.7.3. Item 47: Export All Types That Appear in Public APIs</a></li>
-<li><a href="#org084054e">1.7.4. Item 48: Use TSDoc for API Comments</a></li>
-<li><a href="#orgad39a23">1.7.5. Item 49: Provide a Type for <code>this</code> in Callbacks</a></li>
-<li><a href="#orgcac3259">1.7.6. item 50: Prefer Conditional Types to Overloaded Declarations</a></li>
-<li><a href="#orgdec154d">1.7.7. Item 51: Mirror Types to Sever Dependencies</a></li>
-<li><a href="#orgfcde6ce">1.7.8. Item 52: Be Aware of the Pitfalls of Testing Types</a></li>
+<li><a href="#org425237c">1.7.1. Item 45: Put TypeScript and @types in devDependencies</a></li>
+<li><a href="#orgb3e4846">1.7.2. Item 46: Understand the Three Versions Involved in Type Declarations</a></li>
+<li><a href="#org73b0fd8">1.7.3. Item 47: Export All Types That Appear in Public APIs</a></li>
+<li><a href="#org8a411ee">1.7.4. Item 48: Use TSDoc for API Comments</a></li>
+<li><a href="#orge3aa177">1.7.5. Item 49: Provide a Type for <code>this</code> in Callbacks</a></li>
+<li><a href="#orgd72ad64">1.7.6. item 50: Prefer Conditional Types to Overloaded Declarations</a></li>
+<li><a href="#org8f654c6">1.7.7. Item 51: Mirror Types to Sever Dependencies</a></li>
+<li><a href="#orgd7102b3">1.7.8. Item 52: Be Aware of the Pitfalls of Testing Types</a></li>
 </ul>
 </li>
-<li><a href="#org517c016">1.8. Writing and Running Your Code</a>
+<li><a href="#org1808352">1.8. Writing and Running Your Code</a>
 <ul>
-<li><a href="#orgc67ddb4">1.8.1. Item 53: Prefer ECMAScript Features to TypeScript Features</a></li>
-<li><a href="#orgeae18d7">1.8.2. Item 54: Know How to Iterate Over Objects</a></li>
-<li><a href="#orgbe8adf2">1.8.3. Item 55: Understand the DOM Hierarchy</a></li>
-<li><a href="#org0029aea">1.8.4. Item 56: Don't Rely on Private to Hide Information</a></li>
-<li><a href="#org904c916">1.8.5. Item 57: Use Source Maps to Debug Typescript</a></li>
+<li><a href="#org698a4e2">1.8.1. Item 53: Prefer ECMAScript Features to TypeScript Features</a></li>
+<li><a href="#org658fbbd">1.8.2. Item 54: Know How to Iterate Over Objects</a></li>
+<li><a href="#org8dd3d6a">1.8.3. Item 55: Understand the DOM Hierarchy</a></li>
+<li><a href="#org9f31259">1.8.4. Item 56: Don't Rely On Private To Hide Information</a></li>
+<li><a href="#org9e78372">1.8.5. Item 57: Use Source Maps To Debug Typescript</a></li>
+</ul>
+</li>
+<li><a href="#orgd9068c3">1.9. Migrating to TypeScript</a>
+<ul>
+<li><a href="#org1521c22">1.9.1. Item 58: Write Modern JavaScript</a></li>
+<li><a href="#orgb8973ee">1.9.2. Item 59: Use @ts-check and JSDoc to Experiment with TypeScript</a></li>
+<li><a href="#orga5d1c98">1.9.3. Item 60: Use allowJs to Mix TypeScript and JavaScript</a></li>
 </ul>
 </li>
 </ul>
@@ -121,42 +128,42 @@
 <dt>author</dt><dd>Dan Vanderkam</dd>
 </dl>
 
-<div id="outline-container-orgffa4c77" class="outline-2">
-<h2 id="orgffa4c77"><span class="section-number-2">1.</span> Effective Typescript</h2>
+<div id="outline-container-org3c5c4b1" class="outline-2">
+<h2 id="org3c5c4b1"><span class="section-number-2">1.</span> Effective Typescript</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf7619d4" class="outline-3">
-<h3 id="orgf7619d4"><span class="section-number-3">1.1.</span> Preface</h3>
+<div id="outline-container-orgb0a7bdc" class="outline-3">
+<h3 id="orgb0a7bdc"><span class="section-number-3">1.1.</span> Preface</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Whereas a reference book will explain the five ways that a language lets you do X, an Effective book will tell you which of those five to use and why.
 </p>
 </div>
 </div>
-<div id="outline-container-org3407eef" class="outline-3">
-<h3 id="org3407eef"><span class="section-number-3">1.2.</span> Getting to Know TypeScript</h3>
+<div id="outline-container-org0b5a3dc" class="outline-3">
+<h3 id="org0b5a3dc"><span class="section-number-3">1.2.</span> Getting to Know TypeScript</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org236d0a6" class="outline-4">
-<h4 id="org236d0a6"><span class="section-number-4">1.2.1.</span> Item 1: Understand the Relationship Between TypeScript and JavaScript</h4>
+<div id="outline-container-orga089aef" class="outline-4">
+<h4 id="orga089aef"><span class="section-number-4">1.2.1.</span> Item 1: Understand the Relationship Between TypeScript and JavaScript</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 TypeScript is a superset of JavaScript.
 </p>
 </div>
 </div>
-<div id="outline-container-org925887e" class="outline-4">
-<h4 id="org925887e"><span class="section-number-4">1.2.2.</span> Item 2: Know Which TypeScript Options You're Using</h4>
+<div id="outline-container-orgd50ed12" class="outline-4">
+<h4 id="orgd50ed12"><span class="section-number-4">1.2.2.</span> Item 2: Know Which TypeScript Options You're Using</h4>
 </div>
-<div id="outline-container-orgbb879fa" class="outline-4">
-<h4 id="orgbb879fa"><span class="section-number-4">1.2.3.</span> Item 3: Understand That Code Generation Is Independent of Types</h4>
+<div id="outline-container-org2f752fb" class="outline-4">
+<h4 id="org2f752fb"><span class="section-number-4">1.2.3.</span> Item 3: Understand That Code Generation Is Independent of Types</h4>
 <div class="outline-text-4" id="text-1-2-3">
 </div>
-<div id="outline-container-org7786cc0" class="outline-5">
-<h5 id="org7786cc0"><span class="section-number-5">1.2.3.1.</span> Code with Type Errors Can Produce Output</h5>
+<div id="outline-container-org6601dac" class="outline-5">
+<h5 id="org6601dac"><span class="section-number-5">1.2.3.1.</span> Code with Type Errors Can Produce Output</h5>
 </div>
-<div id="outline-container-org60d6ff8" class="outline-5">
-<h5 id="org60d6ff8"><span class="section-number-5">1.2.3.2.</span> You Cannot Check TypeScript Types at Runtime</h5>
+<div id="outline-container-org128670c" class="outline-5">
+<h5 id="org128670c"><span class="section-number-5">1.2.3.2.</span> You Cannot Check TypeScript Types at Runtime</h5>
 <div class="outline-text-5" id="text-1-2-3-2">
 <div class="org-src-container">
 <pre class="src src-typescript">interface Square {
@@ -204,8 +211,8 @@ function calculateArea(shape: Shpae) {
 </div>
 </div>
 </div>
-<div id="outline-container-org31dd90c" class="outline-5">
-<h5 id="org31dd90c"><span class="section-number-5">1.2.3.3.</span> You Cannot Overload a Function Based on TypeScript Types</h5>
+<div id="outline-container-org5f5e9a6" class="outline-5">
+<h5 id="org5f5e9a6"><span class="section-number-5">1.2.3.3.</span> You Cannot Overload a Function Based on TypeScript Types</h5>
 <div class="outline-text-5" id="text-1-2-3-3">
 <p>
 You can provide multiple declarations for a function, but only a single implementation:
@@ -222,8 +229,8 @@ const twelve = add('1', '2') // Type is string
 </div>
 </div>
 </div>
-<div id="outline-container-orge710815" class="outline-5">
-<h5 id="orge710815"><span class="section-number-5">1.2.3.4.</span> Things to Remember</h5>
+<div id="outline-container-org36794ba" class="outline-5">
+<h5 id="org36794ba"><span class="section-number-5">1.2.3.4.</span> Things to Remember</h5>
 <div class="outline-text-5" id="text-1-2-3-4">
 <ul class="org-ul">
 <li>Code generation is independent of the type system. This means that TypeScript types cannot affect the runtime behavior or performance of your code.</li>
@@ -233,8 +240,8 @@ const twelve = add('1', '2') // Type is string
 </div>
 </div>
 </div>
-<div id="outline-container-orgf353157" class="outline-4">
-<h4 id="orgf353157"><span class="section-number-4">1.2.4.</span> Item 4: Get Comfortable with Structural Typing</h4>
+<div id="outline-container-orgeae46fc" class="outline-4">
+<h4 id="orgeae46fc"><span class="section-number-4">1.2.4.</span> Item 4: Get Comfortable with Structural Typing</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li>Understand that JavaScript is duck typed and TypeScript uses structural typing to model this: values assignable to your interfaces might have properties beyond those explicitly listed in your type definitions. Types are not "sealed".</li>
@@ -243,19 +250,19 @@ const twelve = add('1', '2') // Type is string
 </ul>
 </div>
 </div>
-<div id="outline-container-org889a979" class="outline-4">
-<h4 id="org889a979"><span class="section-number-4">1.2.5.</span> Item 5: Limit Use of the any Type</h4>
+<div id="outline-container-orge0870c1" class="outline-4">
+<h4 id="orge0870c1"><span class="section-number-4">1.2.5.</span> Item 5: Limit Use of the any Type</h4>
 </div>
 </div>
-<div id="outline-container-orgfb50079" class="outline-3">
-<h3 id="orgfb50079"><span class="section-number-3">1.3.</span> TypeScript's Type System</h3>
+<div id="outline-container-orgb3be903" class="outline-3">
+<h3 id="orgb3be903"><span class="section-number-3">1.3.</span> TypeScript's Type System</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orge30322d" class="outline-4">
-<h4 id="orge30322d"><span class="section-number-4">1.3.1.</span> Item 6: Use Your Editor to Interrogate and Explore the Type System</h4>
+<div id="outline-container-orgdf61ec0" class="outline-4">
+<h4 id="orgdf61ec0"><span class="section-number-4">1.3.1.</span> Item 6: Use Your Editor to Interrogate and Explore the Type System</h4>
 </div>
-<div id="outline-container-org8c7538a" class="outline-4">
-<h4 id="org8c7538a"><span class="section-number-4">1.3.2.</span> Item 7: Think of Types as Sets of Values</h4>
+<div id="outline-container-orgaf77bc6" class="outline-4">
+<h4 id="orgaf77bc6"><span class="section-number-4">1.3.2.</span> Item 7: Think of Types as Sets of Values</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li>Think of types as sets of values (the type's domain). These sets can either be finite (e.g., boolean or literal types) or infinite (e.g., number or string).</li>
@@ -266,8 +273,8 @@ const twelve = add('1', '2') // Type is string
 </ul>
 </div>
 </div>
-<div id="outline-container-org02c9da9" class="outline-4">
-<h4 id="org02c9da9"><span class="section-number-4">1.3.3.</span> Item 8: Know How to Tell Whether a Symbol Is in the Type Space or Value Space</h4>
+<div id="outline-container-org0321f36" class="outline-4">
+<h4 id="org0321f36"><span class="section-number-4">1.3.3.</span> Item 8: Know How to Tell Whether a Symbol Is in the Type Space or Value Space</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li>Every value has a type, but types do not have values. Constructs such as <code>type</code> and <code>interface</code> exist only in the type space.</li>
@@ -276,8 +283,8 @@ const twelve = add('1', '2') // Type is string
 </ul>
 </div>
 </div>
-<div id="outline-container-org991f850" class="outline-4">
-<h4 id="org991f850"><span class="section-number-4">1.3.4.</span> Item 9: Prefer Type Declarations to Type Assertions</h4>
+<div id="outline-container-orge443ee0" class="outline-4">
+<h4 id="orge443ee0"><span class="section-number-4">1.3.4.</span> Item 9: Prefer Type Declarations to Type Assertions</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <ul class="org-ul">
 <li>Prefer type declarations(: Type) to type assertions(as Type).</li>
@@ -285,11 +292,11 @@ const twelve = add('1', '2') // Type is string
 </ul>
 </div>
 </div>
-<div id="outline-container-org140a908" class="outline-4">
-<h4 id="org140a908"><span class="section-number-4">1.3.5.</span> Item 10: Avoid Object Wrapper Types(String, Number, Boolean, Symbol, BigInt)</h4>
+<div id="outline-container-org45029a0" class="outline-4">
+<h4 id="org45029a0"><span class="section-number-4">1.3.5.</span> Item 10: Avoid Object Wrapper Types(String, Number, Boolean, Symbol, BigInt)</h4>
 </div>
-<div id="outline-container-orgd449c5d" class="outline-4">
-<h4 id="orgd449c5d"><span class="section-number-4">1.3.6.</span> Item 11: Recognize the Limits of Excess Property Checking</h4>
+<div id="outline-container-org04b0ce5" class="outline-4">
+<h4 id="org04b0ce5"><span class="section-number-4">1.3.6.</span> Item 11: Recognize the Limits of Excess Property Checking</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
 index signature
@@ -307,8 +314,8 @@ When you assign an object literal to a variable or pass it as an argument to a f
 </p>
 </div>
 </div>
-<div id="outline-container-org9c0213c" class="outline-4">
-<h4 id="org9c0213c"><span class="section-number-4">1.3.7.</span> Item 12: Apply Types to Entire Function Expressions When Possible</h4>
+<div id="outline-container-org9cea51d" class="outline-4">
+<h4 id="org9cea51d"><span class="section-number-4">1.3.7.</span> Item 12: Apply Types to Entire Function Expressions When Possible</h4>
 <div class="outline-text-4" id="text-1-3-7">
 <ul class="org-ul">
 <li>Consider applying type annotations to entire function expressions, ranther than to their parameters and return type.</li>
@@ -317,8 +324,8 @@ When you assign an object literal to a variable or pass it as an argument to a f
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc3b20f3" class="outline-4">
-<h4 id="orgc3b20f3"><span class="section-number-4">1.3.8.</span> Item 13: Know the Differences Between type and interface</h4>
+<div id="outline-container-org5d173e3" class="outline-4">
+<h4 id="org5d173e3"><span class="section-number-4">1.3.8.</span> Item 13: Know the Differences Between type and interface</h4>
 <div class="outline-text-4" id="text-1-3-8">
 <ul class="org-ul">
 <li>Understand the differences and similarities between <code>type</code> and <code>interface</code>.</li>
@@ -327,8 +334,8 @@ When you assign an object literal to a variable or pass it as an argument to a f
 </ul>
 </div>
 </div>
-<div id="outline-container-org360bede" class="outline-4">
-<h4 id="org360bede"><span class="section-number-4">1.3.9.</span> Item 14: Use Type Operations and Generics to Avoid Repeating Yourself</h4>
+<div id="outline-container-org4794ca3" class="outline-4">
+<h4 id="org4794ca3"><span class="section-number-4">1.3.9.</span> Item 14: Use Type Operations and Generics to Avoid Repeating Yourself</h4>
 <div class="outline-text-4" id="text-1-3-9">
 <div class="org-src-container">
 <pre class="src src-typescript">type State = {
@@ -368,8 +375,8 @@ Similar:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1ebfaa" class="outline-4">
-<h4 id="orge1ebfaa"><span class="section-number-4">1.3.10.</span> Item 15: Use Index Signatures for Dynamic Data</h4>
+<div id="outline-container-org3e80076" class="outline-4">
+<h4 id="org3e80076"><span class="section-number-4">1.3.10.</span> Item 15: Use Index Signatures for Dynamic Data</h4>
 <div class="outline-text-4" id="text-1-3-10">
 <div class="org-src-container">
 <pre class="src src-typescript">type Vec3D = Record&lt;'x' | 'y' | 'z', number&gt;
@@ -396,11 +403,11 @@ type ABC = { [k in 'a' | 'b' | 'c']: k extends 'b' ? string : number }
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3514bf" class="outline-4">
-<h4 id="orgd3514bf"><span class="section-number-4">1.3.11.</span> Item 16: Prefer Arrays, Tuples, and ArrayLike to number Index Signatures</h4>
+<div id="outline-container-org7493693" class="outline-4">
+<h4 id="org7493693"><span class="section-number-4">1.3.11.</span> Item 16: Prefer Arrays, Tuples, and ArrayLike to number Index Signatures</h4>
 </div>
-<div id="outline-container-orgb634c26" class="outline-4">
-<h4 id="orgb634c26"><span class="section-number-4">1.3.12.</span> Item 17: Use readonly to Avoid Errors Associated with Mutation</h4>
+<div id="outline-container-org2ec7060" class="outline-4">
+<h4 id="org2ec7060"><span class="section-number-4">1.3.12.</span> Item 17: Use readonly to Avoid Errors Associated with Mutation</h4>
 <div class="outline-text-4" id="text-1-3-12">
 <ul class="org-ul">
 <li>If your function does not modify its parameters then declare them <code>readonly</code>. This makes its contract clearer and prevents inadvertent mutations in its implementation.</li>
@@ -410,8 +417,8 @@ type ABC = { [k in 'a' | 'b' | 'c']: k extends 'b' ? string : number }
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaed8568" class="outline-4">
-<h4 id="orgaed8568"><span class="section-number-4">1.3.13.</span> Item 18: Use Mapped Types to Keep Values in Sync</h4>
+<div id="outline-container-org1d075bf" class="outline-4">
+<h4 id="org1d075bf"><span class="section-number-4">1.3.13.</span> Item 18: Use Mapped Types to Keep Values in Sync</h4>
 <div class="outline-text-4" id="text-1-3-13">
 <div class="org-src-container">
 <pre class="src src-typescript">const REQUIRES_UPDATE: { [k in keyof ScatterProps]: boolean } = {
@@ -438,12 +445,12 @@ Mapped types are ideal if you want one object to have exactly the same  properti
 </div>
 </div>
 </div>
-<div id="outline-container-orgbde2033" class="outline-3">
-<h3 id="orgbde2033"><span class="section-number-3">1.4.</span> Type Inference</h3>
+<div id="outline-container-org532f629" class="outline-3">
+<h3 id="org532f629"><span class="section-number-3">1.4.</span> Type Inference</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orge8dc657" class="outline-4">
-<h4 id="orge8dc657"><span class="section-number-4">1.4.1.</span> Item 19: Avoid Cluttering Your Code with Inferable Types</h4>
+<div id="outline-container-org46806ea" class="outline-4">
+<h4 id="org46806ea"><span class="section-number-4">1.4.1.</span> Item 19: Avoid Cluttering Your Code with Inferable Types</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ul class="org-ul">
 <li>Avoid writing type annotations when TypeScript can infer the same type.</li>
@@ -452,14 +459,14 @@ Mapped types are ideal if you want one object to have exactly the same  properti
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf6097c" class="outline-4">
-<h4 id="orgbf6097c"><span class="section-number-4">1.4.2.</span> Item 20: Use Different Variables for Different Types</h4>
+<div id="outline-container-org62b0db0" class="outline-4">
+<h4 id="org62b0db0"><span class="section-number-4">1.4.2.</span> Item 20: Use Different Variables for Different Types</h4>
 </div>
-<div id="outline-container-orgded2a77" class="outline-4">
-<h4 id="orgded2a77"><span class="section-number-4">1.4.3.</span> Item 21: Understand Type Widening</h4>
+<div id="outline-container-org8479721" class="outline-4">
+<h4 id="org8479721"><span class="section-number-4">1.4.3.</span> Item 21: Understand Type Widening</h4>
 </div>
-<div id="outline-container-orgc0f38ca" class="outline-4">
-<h4 id="orgc0f38ca"><span class="section-number-4">1.4.4.</span> Item 22: Understand Type Narrowing</h4>
+<div id="outline-container-orgd0cf90e" class="outline-4">
+<h4 id="orgd0cf90e"><span class="section-number-4">1.4.4.</span> Item 22: Understand Type Narrowing</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <div class="org-src-container">
 <pre class="src src-typescript">function isInputElement(el: HTMLElement): el is HTMLInputElement {
@@ -482,8 +489,8 @@ The <code>el is HTMLInputElement</code> as a return type tells the type checker 
 </ul>
 </div>
 </div>
-<div id="outline-container-org2914475" class="outline-4">
-<h4 id="org2914475"><span class="section-number-4">1.4.5.</span> Item 23: Create Objects All at Once</h4>
+<div id="outline-container-orgfba4940" class="outline-4">
+<h4 id="orgfba4940"><span class="section-number-4">1.4.5.</span> Item 23: Create Objects All at Once</h4>
 <div class="outline-text-4" id="text-1-4-5">
 <div class="org-src-container">
 <pre class="src src-typescript">declare let hasMiddle: boolean
@@ -510,8 +517,8 @@ const president = addOptional(firstLast, hasMiddle ? { middle: 'S' } : null)
 </ul>
 </div>
 </div>
-<div id="outline-container-org6adf4f6" class="outline-4">
-<h4 id="org6adf4f6"><span class="section-number-4">1.4.6.</span> Item 24: Be Consistent in Your Use of Aliases</h4>
+<div id="outline-container-org17297f0" class="outline-4">
+<h4 id="org17297f0"><span class="section-number-4">1.4.6.</span> Item 24: Be Consistent in Your Use of Aliases</h4>
 <div class="outline-text-4" id="text-1-4-6">
 <ul class="org-ul">
 <li>Aliasing can prevent TypeScript from narrowing types. If you create an alias for a variable, use it consistently.</li>
@@ -519,8 +526,8 @@ const president = addOptional(firstLast, hasMiddle ? { middle: 'S' } : null)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd6e684" class="outline-4">
-<h4 id="orgbd6e684"><span class="section-number-4">1.4.7.</span> Item 25: Use async Functions Instead of Callbacks for Asynchronous Code</h4>
+<div id="outline-container-org289dda5" class="outline-4">
+<h4 id="org289dda5"><span class="section-number-4">1.4.7.</span> Item 25: Use async Functions Instead of Callbacks for Asynchronous Code</h4>
 <div class="outline-text-4" id="text-1-4-7">
 <div class="org-src-container">
 <pre class="src src-typescript">async function fetchAll() {
@@ -544,11 +551,11 @@ async function fetchWithTimeout(url: string, ms: number) {
 </ul>
 </div>
 </div>
-<div id="outline-container-org5461434" class="outline-4">
-<h4 id="org5461434"><span class="section-number-4">1.4.8.</span> Item 26: Understand How Context Is Used in Type Inference</h4>
+<div id="outline-container-org98fb7a5" class="outline-4">
+<h4 id="org98fb7a5"><span class="section-number-4">1.4.8.</span> Item 26: Understand How Context Is Used in Type Inference</h4>
 </div>
-<div id="outline-container-org585f686" class="outline-4">
-<h4 id="org585f686"><span class="section-number-4">1.4.9.</span> Item 27: Use Functional Constructs and Libraries to Help Types Flow</h4>
+<div id="outline-container-org454b7f0" class="outline-4">
+<h4 id="org454b7f0"><span class="section-number-4">1.4.9.</span> Item 27: Use Functional Constructs and Libraries to Help Types Flow</h4>
 <div class="outline-text-4" id="text-1-4-9">
 <ul class="org-ul">
 <li>Use built-in functional constructs and those in utility libraries like <i>Lodash</i> instead of hand-rolled constructs to improve type flow, increase legibility, and reduce the need for explicit type annotations.</li>
@@ -556,12 +563,12 @@ async function fetchWithTimeout(url: string, ms: number) {
 </div>
 </div>
 </div>
-<div id="outline-container-org81feba1" class="outline-3">
-<h3 id="org81feba1"><span class="section-number-3">1.5.</span> Type Design</h3>
+<div id="outline-container-orga6e688f" class="outline-3">
+<h3 id="orga6e688f"><span class="section-number-3">1.5.</span> Type Design</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-orgf9a44ad" class="outline-4">
-<h4 id="orgf9a44ad"><span class="section-number-4">1.5.1.</span> Item 28: Prefer Types That Always Represent Valid States</h4>
+<div id="outline-container-org48ca1f9" class="outline-4">
+<h4 id="org48ca1f9"><span class="section-number-4">1.5.1.</span> Item 28: Prefer Types That Always Represent Valid States</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>Types that represent both valid and invalid states are likely to lead to confusing and error-prone code.</li>
@@ -569,8 +576,8 @@ async function fetchWithTimeout(url: string, ms: number) {
 </ul>
 </div>
 </div>
-<div id="outline-container-org49d41bf" class="outline-4">
-<h4 id="org49d41bf"><span class="section-number-4">1.5.2.</span> Item 29: Be Liberal in What You Accept and Strict in What You Produce</h4>
+<div id="outline-container-orga08942a" class="outline-4">
+<h4 id="orga08942a"><span class="section-number-4">1.5.2.</span> Item 29: Be Liberal in What You Accept and Strict in What You Produce</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <div class="org-src-container">
 <pre class="src src-typescript">type LngLat = { lng: number, lat: number }
@@ -601,16 +608,16 @@ declare function viewportForBounds(bounds: LngLatBounds): Camera
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd2a9210" class="outline-4">
-<h4 id="orgd2a9210"><span class="section-number-4">1.5.3.</span> Item 30: Don't Repeat Type Information in Documentation</h4>
+<div id="outline-container-org97621a9" class="outline-4">
+<h4 id="org97621a9"><span class="section-number-4">1.5.3.</span> Item 30: Don't Repeat Type Information in Documentation</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <ul class="org-ul">
 <li>Consider including units in variable names if they aren't clear from the type (e.g., timeMS or temperatureC).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6ed760f" class="outline-4">
-<h4 id="org6ed760f"><span class="section-number-4">1.5.4.</span> Item 31: Push Null Values to the Perimeter of Your Types</h4>
+<div id="outline-container-org3971ba9" class="outline-4">
+<h4 id="org3971ba9"><span class="section-number-4">1.5.4.</span> Item 31: Push Null Values to the Perimeter of Your Types</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <div class="org-src-container">
 <pre class="src src-typescript">function extent(nums: number[]) {
@@ -667,8 +674,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf537bec" class="outline-4">
-<h4 id="orgf537bec"><span class="section-number-4">1.5.5.</span> Item 32: Prefer Unions of Interfaces to Interfaces of Unions</h4>
+<div id="outline-container-orge5ea683" class="outline-4">
+<h4 id="orge5ea683"><span class="section-number-4">1.5.5.</span> Item 32: Prefer Unions of Interfaces to Interfaces of Unions</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <ul class="org-ul">
 <li>Interfaces with multiple properties that are union types are often a mistake because they obscure the relationships between these properties.</li>
@@ -677,8 +684,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb55029f" class="outline-4">
-<h4 id="orgb55029f"><span class="section-number-4">1.5.6.</span> Item 33: Prefer More Precise Alternatives to String Types</h4>
+<div id="outline-container-orgcaef59a" class="outline-4">
+<h4 id="orgcaef59a"><span class="section-number-4">1.5.6.</span> Item 33: Prefer More Precise Alternatives to String Types</h4>
 <div class="outline-text-4" id="text-1-5-6">
 <div class="org-src-container">
 <pre class="src src-typescript">function pluck&lt;T, K extends keyof T&gt;(records: T[], key: K): T[K][] {
@@ -693,8 +700,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-org1c234ed" class="outline-4">
-<h4 id="org1c234ed"><span class="section-number-4">1.5.7.</span> Item 34: Prefer Incomplete Types to Inaccurate Types</h4>
+<div id="outline-container-org3958361" class="outline-4">
+<h4 id="org3958361"><span class="section-number-4">1.5.7.</span> Item 34: Prefer Incomplete Types to Inaccurate Types</h4>
 <div class="outline-text-4" id="text-1-5-7">
 <ul class="org-ul">
 <li>Avoid the uncanny valley of type safety: incorrect types are often worse than no types.</li>
@@ -703,8 +710,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b2b19d" class="outline-4">
-<h4 id="org1b2b19d"><span class="section-number-4">1.5.8.</span> Item 35: Generate Types from APIs and Specs, Not Data</h4>
+<div id="outline-container-org29bac91" class="outline-4">
+<h4 id="org29bac91"><span class="section-number-4">1.5.8.</span> Item 35: Generate Types from APIs and Specs, Not Data</h4>
 <div class="outline-text-4" id="text-1-5-8">
 <ul class="org-ul">
 <li>Consider generating types for API calls and data formats to get type safety all the way to the edge of your code.</li>
@@ -712,8 +719,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbeabf7f" class="outline-4">
-<h4 id="orgbeabf7f"><span class="section-number-4">1.5.9.</span> Item 36: Name Types Using the Language of Your Problem Domain</h4>
+<div id="outline-container-org10297d5" class="outline-4">
+<h4 id="org10297d5"><span class="section-number-4">1.5.9.</span> Item 36: Name Types Using the Language of Your Problem Domain</h4>
 <div class="outline-text-4" id="text-1-5-9">
 <ul class="org-ul">
 <li>Reuse names from the domain of your problem where possible to increase the readability and level of abstraction of your code.</li>
@@ -721,8 +728,8 @@ const [min, max] = range!
 </ul>
 </div>
 </div>
-<div id="outline-container-org2092865" class="outline-4">
-<h4 id="org2092865"><span class="section-number-4">1.5.10.</span> Item 37: Consider "Brands" for Nominal Typing</h4>
+<div id="outline-container-orgec60847" class="outline-4">
+<h4 id="orgec60847"><span class="section-number-4">1.5.10.</span> Item 37: Consider "Brands" for Nominal Typing</h4>
 <div class="outline-text-4" id="text-1-5-10">
 <div class="org-src-container">
 <pre class="src src-typescript">type AbsolutePath = string &amp; { _brand: 'abs' }
@@ -754,15 +761,15 @@ const seconds = (s: number) =&gt; s as Seconds
 </div>
 </div>
 </div>
-<div id="outline-container-orga559e60" class="outline-3">
-<h3 id="orga559e60"><span class="section-number-3">1.6.</span> Working with <code>any</code></h3>
+<div id="outline-container-org6bf8718" class="outline-3">
+<h3 id="org6bf8718"><span class="section-number-3">1.6.</span> Working with <code>any</code></h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-org5bc73e6" class="outline-4">
-<h4 id="org5bc73e6"><span class="section-number-4">1.6.1.</span> Item 38: Use the Narrowest Possible Scope for any Types</h4>
+<div id="outline-container-org4da56f4" class="outline-4">
+<h4 id="org4da56f4"><span class="section-number-4">1.6.1.</span> Item 38: Use the Narrowest Possible Scope for any Types</h4>
 </div>
-<div id="outline-container-orgbd1787e" class="outline-4">
-<h4 id="orgbd1787e"><span class="section-number-4">1.6.2.</span> Item 39: Prefer More Precise Variants of any to Plain any</h4>
+<div id="outline-container-org9226fce" class="outline-4">
+<h4 id="org9226fce"><span class="section-number-4">1.6.2.</span> Item 39: Prefer More Precise Variants of any to Plain any</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <ul class="org-ul">
 <li>When you use <code>any</code>, think about whether any JavaScript value is truly permissible.</li>
@@ -770,16 +777,16 @@ const seconds = (s: number) =&gt; s as Seconds
 </ul>
 </div>
 </div>
-<div id="outline-container-org4890fbe" class="outline-4">
-<h4 id="org4890fbe"><span class="section-number-4">1.6.3.</span> Item 40: Hide Unsafe Type Assertions in Well-Typed Functions</h4>
+<div id="outline-container-orgd7d5c71" class="outline-4">
+<h4 id="orgd7d5c71"><span class="section-number-4">1.6.3.</span> Item 40: Hide Unsafe Type Assertions in Well-Typed Functions</h4>
 <div class="outline-text-4" id="text-1-6-3">
 <p>
 Sometimes unsafe type assertions are necessary or expedient. When you need to use one, hide it inside a function with a correct signature.
 </p>
 </div>
 </div>
-<div id="outline-container-orge4367a2" class="outline-4">
-<h4 id="orge4367a2"><span class="section-number-4">1.6.4.</span> Item 41: Understand Evolving <code>any</code></h4>
+<div id="outline-container-org5ffd3b7" class="outline-4">
+<h4 id="org5ffd3b7"><span class="section-number-4">1.6.4.</span> Item 41: Understand Evolving <code>any</code></h4>
 <div class="outline-text-4" id="text-1-6-4">
 <ul class="org-ul">
 <li>While TypeScript types typically only <b>refine</b>, implicit <code>any</code> and <code>any[]</code> types are allowed to <b>envolve</b>. You should be able to recognize and understand this construct where it occurs.</li>
@@ -787,8 +794,8 @@ Sometimes unsafe type assertions are necessary or expedient. When you need to us
 </ul>
 </div>
 </div>
-<div id="outline-container-orge93fd61" class="outline-4">
-<h4 id="orge93fd61"><span class="section-number-4">1.6.5.</span> Item 42: Use <code>unknown</code> Instead of <code>any</code> for Values with an Unknown Type</h4>
+<div id="outline-container-orgcfebbbb" class="outline-4">
+<h4 id="orgcfebbbb"><span class="section-number-4">1.6.5.</span> Item 42: Use <code>unknown</code> Instead of <code>any</code> for Values with an Unknown Type</h4>
 <div class="outline-text-4" id="text-1-6-5">
 <p>
 The power and danger of <code>any</code> come from two properties:
@@ -819,8 +826,8 @@ The type checker is set-based, the use of <code>any</code> effectively disables 
 </ul>
 </div>
 </div>
-<div id="outline-container-orge7cfd71" class="outline-4">
-<h4 id="orge7cfd71"><span class="section-number-4">1.6.6.</span> Item 43: Prefer Type-Safe Approaches to Monkey Patching</h4>
+<div id="outline-container-org3bbe4cf" class="outline-4">
+<h4 id="org3bbe4cf"><span class="section-number-4">1.6.6.</span> Item 43: Prefer Type-Safe Approaches to Monkey Patching</h4>
 <div class="outline-text-4" id="text-1-6-6">
 <div class="org-src-container">
 <pre class="src src-typescript">export {}
@@ -863,8 +870,8 @@ function foo(window: Window) {
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfae1c55" class="outline-4">
-<h4 id="orgfae1c55"><span class="section-number-4">1.6.7.</span> Item 44: Track Your Type Coverage to Prevent Regressions in Type Safety</h4>
+<div id="outline-container-org6459e63" class="outline-4">
+<h4 id="org6459e63"><span class="section-number-4">1.6.7.</span> Item 44: Track Your Type Coverage to Prevent Regressions in Type Safety</h4>
 <div class="outline-text-4" id="text-1-6-7">
 <p>
 <code>type-coverage --detail</code>
@@ -876,15 +883,15 @@ function foo(window: Window) {
 </div>
 </div>
 </div>
-<div id="outline-container-org39d03d2" class="outline-3">
-<h3 id="org39d03d2"><span class="section-number-3">1.7.</span> Types Declarations and @types</h3>
+<div id="outline-container-org7fb1796" class="outline-3">
+<h3 id="org7fb1796"><span class="section-number-3">1.7.</span> Types Declarations and @types</h3>
 <div class="outline-text-3" id="text-1-7">
 </div>
-<div id="outline-container-org1153b39" class="outline-4">
-<h4 id="org1153b39"><span class="section-number-4">1.7.1.</span> Item 45: Put TypeScript and @types in devDependencies</h4>
+<div id="outline-container-org425237c" class="outline-4">
+<h4 id="org425237c"><span class="section-number-4">1.7.1.</span> Item 45: Put TypeScript and @types in devDependencies</h4>
 </div>
-<div id="outline-container-orgfd20832" class="outline-4">
-<h4 id="orgfd20832"><span class="section-number-4">1.7.2.</span> Item 46: Understand the Three Versions Involved in Type Declarations</h4>
+<div id="outline-container-orgb3e4846" class="outline-4">
+<h4 id="orgb3e4846"><span class="section-number-4">1.7.2.</span> Item 46: Understand the Three Versions Involved in Type Declarations</h4>
 <div class="outline-text-4" id="text-1-7-2">
 <ul class="org-ul">
 <li>There are three versions involved in an <code>@types</code> dependency: the library Build: Update app version to , the <code>@types</code> version , and the TypeScript version.</li>
@@ -892,14 +899,14 @@ function foo(window: Window) {
 </ul>
 </div>
 </div>
-<div id="outline-container-org818b8b8" class="outline-4">
-<h4 id="org818b8b8"><span class="section-number-4">1.7.3.</span> Item 47: Export All Types That Appear in Public APIs</h4>
+<div id="outline-container-org73b0fd8" class="outline-4">
+<h4 id="org73b0fd8"><span class="section-number-4">1.7.3.</span> Item 47: Export All Types That Appear in Public APIs</h4>
 </div>
-<div id="outline-container-org084054e" class="outline-4">
-<h4 id="org084054e"><span class="section-number-4">1.7.4.</span> Item 48: Use TSDoc for API Comments</h4>
+<div id="outline-container-org8a411ee" class="outline-4">
+<h4 id="org8a411ee"><span class="section-number-4">1.7.4.</span> Item 48: Use TSDoc for API Comments</h4>
 </div>
-<div id="outline-container-orgad39a23" class="outline-4">
-<h4 id="orgad39a23"><span class="section-number-4">1.7.5.</span> Item 49: Provide a Type for <code>this</code> in Callbacks</h4>
+<div id="outline-container-orge3aa177" class="outline-4">
+<h4 id="orge3aa177"><span class="section-number-4">1.7.5.</span> Item 49: Provide a Type for <code>this</code> in Callbacks</h4>
 <div class="outline-text-4" id="text-1-7-5">
 <div class="org-src-container">
 <pre class="src src-typescript">function addKeyListener(
@@ -919,8 +926,8 @@ addKeyListener(el, function(e) {
 </div>
 </div>
 </div>
-<div id="outline-container-orgcac3259" class="outline-4">
-<h4 id="orgcac3259"><span class="section-number-4">1.7.6.</span> item 50: Prefer Conditional Types to Overloaded Declarations</h4>
+<div id="outline-container-orgd72ad64" class="outline-4">
+<h4 id="orgd72ad64"><span class="section-number-4">1.7.6.</span> item 50: Prefer Conditional Types to Overloaded Declarations</h4>
 <div class="outline-text-4" id="text-1-7-6">
 <div class="org-src-container">
 <pre class="src src-typescript">function double&lt;T extends number | string&gt;(x: T): T
@@ -945,8 +952,8 @@ const b = double('b') // string
 </div>
 </div>
 </div>
-<div id="outline-container-orgdec154d" class="outline-4">
-<h4 id="orgdec154d"><span class="section-number-4">1.7.7.</span> Item 51: Mirror Types to Sever Dependencies</h4>
+<div id="outline-container-org8f654c6" class="outline-4">
+<h4 id="org8f654c6"><span class="section-number-4">1.7.7.</span> Item 51: Mirror Types to Sever Dependencies</h4>
 <div class="outline-text-4" id="text-1-7-7">
 <div class="org-src-container">
 <pre class="src src-typescript">interface CsvBuffer {
@@ -973,8 +980,8 @@ parseCSV(new Buffer("column1,column2\nvalue1,value2", "utf-8"))
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfcde6ce" class="outline-4">
-<h4 id="orgfcde6ce"><span class="section-number-4">1.7.8.</span> Item 52: Be Aware of the Pitfalls of Testing Types</h4>
+<div id="outline-container-orgd7102b3" class="outline-4">
+<h4 id="orgd7102b3"><span class="section-number-4">1.7.8.</span> Item 52: Be Aware of the Pitfalls of Testing Types</h4>
 <div class="outline-text-4" id="text-1-7-8">
 <div class="org-src-container">
 <pre class="src src-typescript">function assertType&lt;T&gt;(value: T): T {
@@ -1021,12 +1028,12 @@ assertType&lt;number[]&gt;(map(
 </div>
 </div>
 </div>
-<div id="outline-container-org517c016" class="outline-3">
-<h3 id="org517c016"><span class="section-number-3">1.8.</span> Writing and Running Your Code</h3>
+<div id="outline-container-org1808352" class="outline-3">
+<h3 id="org1808352"><span class="section-number-3">1.8.</span> Writing and Running Your Code</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-orgc67ddb4" class="outline-4">
-<h4 id="orgc67ddb4"><span class="section-number-4">1.8.1.</span> Item 53: Prefer ECMAScript Features to TypeScript Features</h4>
+<div id="outline-container-org698a4e2" class="outline-4">
+<h4 id="org698a4e2"><span class="section-number-4">1.8.1.</span> Item 53: Prefer ECMAScript Features to TypeScript Features</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <ul class="org-ul">
 <li>Enums, parameter properties, triple-slash imports, and decorators are historical exceptions to this rule.</li>
@@ -1034,8 +1041,8 @@ assertType&lt;number[]&gt;(map(
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeae18d7" class="outline-4">
-<h4 id="orgeae18d7"><span class="section-number-4">1.8.2.</span> Item 54: Know How to Iterate Over Objects</h4>
+<div id="outline-container-org658fbbd" class="outline-4">
+<h4 id="org658fbbd"><span class="section-number-4">1.8.2.</span> Item 54: Know How to Iterate Over Objects</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <ul class="org-ul">
 <li>Use <code>let k: keyof T</code> and a for-in loop to iterate objects when you know exactly what the keys will be. Be aware that any objects your function receives as parameters might have additional keys.</li>
@@ -1043,26 +1050,40 @@ assertType&lt;number[]&gt;(map(
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe8adf2" class="outline-4">
-<h4 id="orgbe8adf2"><span class="section-number-4">1.8.3.</span> Item 55: Understand the DOM Hierarchy</h4>
+<div id="outline-container-org8dd3d6a" class="outline-4">
+<h4 id="org8dd3d6a"><span class="section-number-4">1.8.3.</span> Item 55: Understand the DOM Hierarchy</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <ul class="org-ul">
-<li>Know the differences between <code>Node</code>, <code>Element</code>, <code>HTMLElement</code>, and <code>EventTarget</code>, as well as those between <code>Event</code> and <code>MouseEvent</code>.</li>
-<li>Either use a specific enough type for DOM elements and Events in your code or give TypeScript the context to infer it.</li>
+<li>Know The Differences Between <code>Node</code>, <code>Element</code>, <code>HTMLElement</code>, And <code>EventTarget</code>, As Well As Those Between <code>Event</code> And <code>MouseEvent</code>.</li>
+<li>Either Use A Specific Enough Type For DOM Elements And Events In Your Code Or Give TypeScript The Context To Infer It.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0029aea" class="outline-4">
-<h4 id="org0029aea"><span class="section-number-4">1.8.4.</span> Item 56: Don't Rely on Private to Hide Information</h4>
+<div id="outline-container-org9f31259" class="outline-4">
+<h4 id="org9f31259"><span class="section-number-4">1.8.4.</span> Item 56: Don't Rely On Private To Hide Information</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <ul class="org-ul">
-<li>The <code>private</code> access modifier is only enforced through the type system. It has no effect at runtime and can be bypassed with an assertion. Don't assume it will keep data hidden.</li>
-<li>For more reliable information hiding, use a closure.</li>
+<li>The <code>Private</code> Access Modifier Is Only Enforced Through The Type System. It Has No Effect At Runtime And Can Be Bypassed With An Assertion. Don't Assume It Will Keep Data Hidden.</li>
+<li>For More Reliable Information Hiding, Use A Closure.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org904c916" class="outline-4">
-<h4 id="org904c916"><span class="section-number-4">1.8.5.</span> Item 57: Use Source Maps to Debug Typescript</h4>
+<div id="outline-container-org9e78372" class="outline-4">
+<h4 id="org9e78372"><span class="section-number-4">1.8.5.</span> Item 57: Use Source Maps To Debug Typescript</h4>
+</div>
+</div>
+<div id="outline-container-orgd9068c3" class="outline-3">
+<h3 id="orgd9068c3"><span class="section-number-3">1.9.</span> Migrating to TypeScript</h3>
+<div class="outline-text-3" id="text-1-9">
+</div>
+<div id="outline-container-org1521c22" class="outline-4">
+<h4 id="org1521c22"><span class="section-number-4">1.9.1.</span> Item 58: Write Modern JavaScript</h4>
+</div>
+<div id="outline-container-orgb8973ee" class="outline-4">
+<h4 id="orgb8973ee"><span class="section-number-4">1.9.2.</span> Item 59: Use @ts-check and JSDoc to Experiment with TypeScript</h4>
+</div>
+<div id="outline-container-orga5d1c98" class="outline-4">
+<h4 id="orga5d1c98"><span class="section-number-4">1.9.3.</span> Item 60: Use allowJs to Mix TypeScript and JavaScript</h4>
 </div>
 </div>
 </div>
