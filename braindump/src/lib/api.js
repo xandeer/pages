@@ -13,7 +13,7 @@ import resolveLinks from './resolveLinks.js';
 // If you change this directory, make sure you copy all assets
 // (images, linked files) to the public directory, so that next.js
 // serves them.
-const pagesDirectory = path.join(process.cwd(), '../');
+const pagesDirectory = path.join(process.cwd(), process.env.DEV ? '_posts/' : '../');
 
 const processor = trough()
   .use(collectFiles)
