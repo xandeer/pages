@@ -4,8 +4,8 @@ import { toVFile } from 'to-vfile';
 import { findDown } from 'vfile-find-down';
 import report from 'vfile-reporter';
 
-import orgToHtml from './orgToHtml.js';
-import resolveLinks from './resolveLinks.js';
+import orgToHtml from './org-to-html';
+import resolveLinks from './resolve-links';
 
 // We serve posts from "public" directory, so that we don't have to
 // copy assets.
@@ -13,7 +13,8 @@ import resolveLinks from './resolveLinks.js';
 // If you change this directory, make sure you copy all assets
 // (images, linked files) to the public directory, so that next.js
 // serves them.
-const pagesDirectory = path.join(process.cwd(), process.env.DEV ? '_posts/' : '../');
+
+const pagesDirectory = path.join(process.cwd(), process.env.NODE_ENV === 'development' ? '_posts/' : '../');
 
 const processor = trough()
   .use(collectFiles)
