@@ -92,8 +92,8 @@ const loadPosts = async () => {
       else resolve(files);
     })
   );
-  const filtered = files.filter((f) => !(f.data.filetags && f.data.filetags.includes('nopub')));
-  const posts = Object.fromEntries(filtered.map((f) => [f.data.slug, f]));
+  // const filtered = files.filter((f) => !(f.data.filetags && f.data.filetags.includes('nopub')));
+  const posts = Object.fromEntries(files.map((f) => [f.data.slug, f]));
   cachedPosts = posts;
   console.log('Loaded posts.');
   return posts;
