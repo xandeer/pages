@@ -4,6 +4,7 @@ import orgParse from 'uniorg-parse';
 import org2rehype from 'uniorg-rehype';
 import extractKeywords from 'uniorg-extract-keywords';
 import { uniorgSlug } from 'uniorg-slug';
+import { uniorgAttach } from 'uniorg-attach'
 import { visitIds } from 'orgast-util-visit-ids';
 
 const processor = unified()
@@ -11,6 +12,9 @@ const processor = unified()
   .use(extractKeywords)
   .use(uniorgSlug)
   .use(extractIds)
+  .use(uniorgAttach, {
+    useInheritance: true,
+  })
   .use(org2rehype)
   .use(toJson);
 
