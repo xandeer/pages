@@ -12,9 +12,10 @@ const processor = unified()
   .use(extractKeywords)
   .use(uniorgSlug)
   .use(extractIds)
-  // .use(uniorgAttach, {
-    // useInheritance: true,
-  // })
+  .use(uniorgAttach, {
+    useInheritance: true,
+    idDir: '.attach/'
+  })
   .use(org2rehype)
   .use(toJson);
 
