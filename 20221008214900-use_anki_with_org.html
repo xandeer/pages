@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-19 Wed 22:15 -->
+<!-- 2022-10-20 Thu 12:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Use Anki with Org</title>
@@ -17,27 +17,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5bb2a23">1. Prepare</a></li>
-<li><a href="#org47baf7f">2. Helper</a>
+<li><a href="#org80ad32f">1. Prepare</a></li>
+<li><a href="#orgc139abf">2. Helper</a>
 <ul>
-<li><a href="#org327c56a">2.1. Transform a region to cloze</a></li>
+<li><a href="#org5bbd1c3">2.1. Transform a region to cloze</a></li>
 </ul>
 </li>
-<li><a href="#org1b9083d">3. Customize cards style</a>
+<li><a href="#orgcbe2d9c">3. Customize cards style</a>
 <ul>
-<li><a href="#org1537e7c">3.1. Simple</a></li>
-<li><a href="#org3e0e82f">3.2. Cloze</a></li>
+<li><a href="#org3b4e63d">3.1. Add tags</a></li>
+<li><a href="#org64d3d46">3.2. Simple</a></li>
+<li><a href="#orgcef0a1d">3.3. Cloze</a></li>
 </ul>
 </li>
-<li><a href="#orge1595d5">4. Other useful add-ons</a></li>
+<li><a href="#org4357ada">4. Other useful add-ons</a></li>
 </ul>
 </div>
 </div>
 <p>
 Use Anki to <a href="20220928092200-augmenting_long_term_memory.html#ID-BFE89208-3064-49DC-AE01-6B6B9ABE35B4">Augment Long-term Memory</a>.
 </p>
-<div id="outline-container-org5bb2a23" class="outline-2">
-<h2 id="org5bb2a23"><span class="section-number-2">1.</span> Prepare</h2>
+<div id="outline-container-org80ad32f" class="outline-2">
+<h2 id="org80ad32f"><span class="section-number-2">1.</span> Prepare</h2>
 <div class="outline-text-2" id="text-1">
 <ol class="org-ol">
 <li>Install Anki add-on anki-connect with it id 2055492159.</li>
@@ -45,12 +46,12 @@ Use Anki to <a href="20220928092200-augmenting_long_term_memory.html#ID-BFE89208
 </ol>
 </div>
 </div>
-<div id="outline-container-org47baf7f" class="outline-2">
-<h2 id="org47baf7f"><span class="section-number-2">2.</span> Helper</h2>
+<div id="outline-container-orgc139abf" class="outline-2">
+<h2 id="orgc139abf"><span class="section-number-2">2.</span> Helper</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org327c56a" class="outline-3">
-<h3 id="org327c56a"><span class="section-number-3">2.1.</span> Transform a region to cloze</h3>
+<div id="outline-container-org5bbd1c3" class="outline-3">
+<h3 id="org5bbd1c3"><span class="section-number-3">2.1.</span> Transform a region to cloze</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">x/anki-cloze</span> (beg end)
@@ -64,13 +65,46 @@ Use Anki to <a href="20220928092200-augmenting_long_term_memory.html#ID-BFE89208
 </div>
 </div>
 </div>
-<div id="outline-container-org1b9083d" class="outline-2">
-<h2 id="org1b9083d"><span class="section-number-2">3.</span> Customize cards style</h2>
+<div id="outline-container-orgcbe2d9c" class="outline-2">
+<h2 id="orgcbe2d9c"><span class="section-number-2">3.</span> Customize cards style</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org1537e7c" class="outline-3">
-<h3 id="org1537e7c"><span class="section-number-3">3.1.</span> Simple</h3>
+<div id="outline-container-org3b4e63d" class="outline-3">
+<h3 id="org3b4e63d"><span class="section-number-3">3.1.</span> Add tags</h3>
 <div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"tags-container"</span>&gt;&lt;/<span style="font-weight: bold;">div</span>&gt;
+
+&lt;<span style="font-weight: bold;">script</span>&gt;
+var colors = [
+  // Add more colors to this array as necessary
+  "#f44336", "#9C27B0", "#3F51B5", "#03A9F4", "#009688",
+  "#C0CA33", "#FF9800", "#FF5722", "#9E9E9E", "#607D8B"
+]
+var tagContent = "{{Tags}}";
+if (tagContent.search(" ") &gt;= 1) {
+  var tags = tagContent.split(" ");
+} else {
+  var tags = [tagContent];
+}
+tags = tags.filter(t =&gt; t !== "anki")
+for (var i in tags) {
+  var newDiv = document.createElement("div");
+  newDiv.id = "tag";
+  newDiv.innerHTML = tags[i];
+  newDiv.style.display = "inline-block";
+
+  newDiv.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+  document.getElementById("tags-container").appendChild(newDiv);
+}
+&lt;/<span style="font-weight: bold;">script</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org64d3d46" class="outline-3">
+<h3 id="org64d3d46"><span class="section-number-3">3.2.</span> Simple</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-css"><span style="font-weight: bold;">.card</span> {
   <span style="font-weight: bold;">font-family</span>: Bookerly, arial, Weibei SC;
@@ -92,13 +126,27 @@ Use Anki to <a href="20220928092200-augmenting_long_term_memory.html#ID-BFE89208
 <span style="font-weight: bold;">code</span> {
   <span style="font-weight: bold;">color</span>: <span style="color: #000000; background-color: #50a14f;">#50a14f</span>;
 }
+
+<span style="font-weight: bold;">#tags-container</span> {
+  <span style="font-weight: bold;">position</span>: absolute;
+  <span style="font-weight: bold;">bottom</span>: 1em;
+  <span style="font-weight: bold;">right</span>: 1em;
+}
+
+<span style="font-weight: bold;">#tag</span> {
+  <span style="font-weight: bold;">font-size</span>: 14px;
+  <span style="font-weight: bold;">border-radius</span>: 3px;
+  <span style="font-weight: bold;">padding</span>: 0.25rem;
+  <span style="font-weight: bold;">margin</span>: 0.25rem;
+  <span style="font-weight: bold;">color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3e0e82f" class="outline-3">
-<h3 id="org3e0e82f"><span class="section-number-3">3.2.</span> Cloze</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgcef0a1d" class="outline-3">
+<h3 id="orgcef0a1d"><span class="section-number-3">3.3.</span> Cloze</h3>
+<div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-css"><span style="font-weight: bold;">.card</span> {
   <span style="font-weight: bold;">font-family</span>: Bookerly, arial, Weibei SC;
@@ -121,13 +169,27 @@ Use Anki to <a href="20220928092200-augmenting_long_term_memory.html#ID-BFE89208
   <span style="font-weight: bold;">font-family</span>: Latin Modern Mono Light, arial;
   <span style="font-weight: bold;">color</span>: <span style="color: #000000; background-color: #50a14f;">#50a14f</span>;
 }
+
+<span style="font-weight: bold;">#tags-container</span> {
+  <span style="font-weight: bold;">position</span>: absolute;
+  <span style="font-weight: bold;">bottom</span>: 1em;
+  <span style="font-weight: bold;">right</span>: 1em;
+}
+
+<span style="font-weight: bold;">#tag</span> {
+  <span style="font-weight: bold;">font-size</span>: 14px;
+  <span style="font-weight: bold;">border-radius</span>: 3px;
+  <span style="font-weight: bold;">padding</span>: 0.25rem;
+  <span style="font-weight: bold;">margin</span>: 0.25rem;
+  <span style="font-weight: bold;">color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+}
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orge1595d5" class="outline-2">
-<h2 id="orge1595d5"><span class="section-number-2">4.</span> Other useful add-ons</h2>
+<div id="outline-container-org4357ada" class="outline-2">
+<h2 id="org4357ada"><span class="section-number-2">4.</span> Other useful add-ons</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>web inspector: 31746032</li>
