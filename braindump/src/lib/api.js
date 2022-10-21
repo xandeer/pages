@@ -4,6 +4,10 @@ import { toVFile } from 'to-vfile';
 import { findDown } from 'vfile-find-down';
 import report from 'vfile-reporter';
 
+var realFs = require('fs');
+var gracefulFs = require('graceful-fs');
+gracefulFs.gracefulify(realFs);
+
 import orgToHtml from './org-to-html';
 import resolveLinks from './resolve-links';
 
@@ -66,17 +70,25 @@ async function processPosts(files) {
 // Assign all collected backlinks to file. This function should be
 // called after all pages have been processed---otherwise, it might
 // miss backlinks.
-function populateBacklinks(files) {
+export function populateBacklinks(files) {
   const backlinks = {};
   files.forEach((file) => {
+    const slug = file.data.slug;
     file.data.links = file.data.links || new Set();
-    backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
-    file.data.backlinks = backlinks[file.data.slug];
+    file.data.backlinks = backlinks[slug] = backlinks[slug] || new Set();
+
+    // backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
+    // file.data.backlinks = backlinks[file.data.slug];
 
     file.data.links.forEach((other) => {
-      backlinks[other] = backlinks[other] || new Set();
-      file.data.slug && backlinks[other].add(file.data.slug);
+      const decodedOther = decodeURIComponent(other);
+      backlinks[decodedOther] = backlinks[decodedOther] || new Set();
+      backlinks[decodedOther].add(slug);
+      // file.data.slug && backlinks[other].add(file.data.slug);
     });
+
+    // console.log('Backlinks for', file.data.slug, backlinks[file.data.slug]);
+    // console.log('Links for', file.data.slug, file.data.links);
   });
 }
 
