@@ -1,15 +1,15 @@
-import * as path from 'path';
-import { trough } from 'trough';
-import { toVFile } from 'to-vfile';
-import { findDown } from 'vfile-find-down';
-import report from 'vfile-reporter';
+import * as path from 'node:path'
+import realFs from 'node:fs'
+import { trough } from 'trough'
+import { toVFile } from 'to-vfile'
+import { findDown } from 'vfile-find-down'
+import report from 'vfile-reporter'
+import gracefulFs from 'graceful-fs'
 
-var realFs = require('fs');
-var gracefulFs = require('graceful-fs');
-gracefulFs.gracefulify(realFs);
+import orgToHtml from './org-to-html.js'
+import resolveLinks from './resolve-links.js'
 
-import orgToHtml from './org-to-html';
-import resolveLinks from './resolve-links';
+gracefulFs.gracefulify(realFs)
 
 // We serve posts from "public" directory, so that we don't have to
 // copy assets.
@@ -18,52 +18,53 @@ import resolveLinks from './resolve-links';
 // (images, linked files) to the public directory, so that next.js
 // serves them.
 
-const pagesDirectory = path.join(process.cwd(), process.env.NODE_ENV === 'development' ? '_posts/' : '../');
+const pagesDirectory = path.join(process.cwd(), process.env.NODE_ENV === 'development' ? '_posts/' : '../')
 
+// prettier-ignore
 const processor = trough()
-  .use(collectFiles)
-  .use(processPosts)
-  .use(resolveLinks)
-  .use(populateBacklinks);
+      .use(collectFiles)
+      .use(processPosts)
+      .use(resolveLinks)
+      .use(populateBacklinks)
 
 function collectFiles(root) {
   return new Promise((resolve, reject) => {
     findDown(
       (f, stats) =>
-        // f.dirname === root &&
-        stats.isFile() &&
-        f.basename.endsWith('.org'),
+        // F.dirname === root &&
+        stats.isFile() && f.basename.endsWith('.org'),
       root,
-      (err, files) => {
-        if (err) {
-          reject(err);
+      (error, files) => {
+        if (error) {
+          reject(error)
         } else {
-          files.forEach((f) => {
+          for (const f of files) {
             f.data.slug = '/' + path.relative(root, f.path).replace(/\.org$/, '')
-          });
-          resolve(files);
+          }
+
+          resolve(files)
         }
       }
-    );
-  });
+    )
+  })
 }
 
 async function processPosts(files) {
-  return Promise.all(files.map(processPost));
+  return Promise.all(files.map(processPost))
 
   async function processPost(file) {
     try {
-      await toVFile.read(file, 'utf8');
-    } catch (e) {
-      console.error('Error reading file', file, e);
-      throw e;
+      await toVFile.read(file, 'utf8')
+    } catch (error) {
+      console.error('Error reading file', file, error)
+      throw error
     }
 
-    file.path = file.data.slug;
+    file.path = file.data.slug
 
-    await orgToHtml(file);
+    await orgToHtml(file)
 
-    return file;
+    return file
   }
 }
 
@@ -71,64 +72,65 @@ async function processPosts(files) {
 // called after all pages have been processed---otherwise, it might
 // miss backlinks.
 export function populateBacklinks(files) {
-  const backlinks = {};
-  files.forEach((file) => {
-    const slug = file.data.slug;
-    file.data.links = file.data.links || new Set();
-    file.data.backlinks = backlinks[slug] = backlinks[slug] || new Set();
+  const backlinks = {}
+  for (const file of files) {
+    const slug = file.data.slug
+    file.data.links = file.data.links || new Set()
+    file.data.backlinks = backlinks[slug] = backlinks[slug] || new Set()
 
-    // backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
+    // Backlinks[file.data.slug] = backlinks[file.data.slug] || new Set();
     // file.data.backlinks = backlinks[file.data.slug];
 
-    file.data.links.forEach((other) => {
-      const decodedOther = decodeURIComponent(other);
-      backlinks[decodedOther] = backlinks[decodedOther] || new Set();
-      backlinks[decodedOther].add(slug);
-      // file.data.slug && backlinks[other].add(file.data.slug);
-    });
+    for (const other of file.data.links) {
+      const decodedOther = decodeURIComponent(other)
+      backlinks[decodedOther] = backlinks[decodedOther] || new Set()
+      backlinks[decodedOther].add(slug)
+      // File.data.slug && backlinks[other].add(file.data.slug);
+    }
 
-    // console.log('Backlinks for', file.data.slug, backlinks[file.data.slug]);
+    // Console.log('Backlinks for', file.data.slug, backlinks[file.data.slug]);
     // console.log('Links for', file.data.slug, file.data.links);
-  });
+  }
 }
 
-let cachedPosts = null;
+let cachedPosts = null
 const loadPosts = async () => {
   if (cachedPosts) {
-    return cachedPosts;
+    return cachedPosts
   }
-  console.log('Loading posts...');
+
+  console.log('Loading posts...')
   const files = await new Promise((resolve, reject) =>
-    processor.run(pagesDirectory, (err, files) => {
-      console.error(report(err || files, { quiet: true }));
-      if (err) reject(err);
-      else resolve(files);
+    processor.run(pagesDirectory, (error, files) => {
+      console.error(report(error || files, { quiet: true }))
+      if (error) reject(error)
+      else resolve(files)
     })
-  );
-  // const filtered = files.filter((f) => !(f.data.filetags && f.data.filetags.includes('nopub')));
-  const posts = Object.fromEntries(files.map((f) => [f.data.slug, f]));
-  cachedPosts = posts;
-  console.log('Loaded posts.');
-  return posts;
-};
+  )
+  // Const filtered = files.filter((f) => !(f.data.filetags && f.data.filetags.includes('nopub')));
+  const posts = Object.fromEntries(files.map(f => [f.data.slug, f]))
+  cachedPosts = posts
+  console.log('Loaded posts.')
+  return posts
+}
 
 const allPosts = async () => {
-  const posts = await loadPosts();
-  return posts;
-};
+  const posts = await loadPosts()
+  return posts
+}
 
 export async function getAllPaths() {
-  const posts = await loadPosts();
-  return Object.keys(posts);
+  const posts = await loadPosts()
+  return Object.keys(posts)
 }
 
 export async function getPostBySlug(slug) {
-  const posts = await allPosts();
-  const post = await posts[slug];
-  return post;
+  const posts = await allPosts()
+  const post = await posts[slug]
+  return post
 }
 
 export async function getAllPosts() {
-  const posts = await allPosts();
-  return await Promise.all(Object.values(posts));
+  const posts = await allPosts()
+  return await Promise.all(Object.values(posts))
 }
