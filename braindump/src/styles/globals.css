@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: Bookerly, Weibei SC, serif;
+}
+
 .floating-menu {
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  font-family: Bookerly, Weibei SC, serif;
+/* overrides for the default theme */
+.prose {
+  font-size: 1.1rem;
+}
+
+.prose :where(blockquote strong):not(:where([class~="not-prose"] *)) {
+  color: var(--tw-prose-bold);
 }
 
 code,
@@ -16,6 +25,7 @@ samp,
 pre {
   font-family: Latin Modern Mono, Weibei SC, monospace;
 }
+/* overrides for the default theme */
 
 /* Type fonts */
 @font-face {
