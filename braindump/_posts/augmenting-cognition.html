@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-23 Sun 12:12 -->
+<!-- 2022-10-23 Sun 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Augmenting Long-term Memory</title>
@@ -17,21 +17,77 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5329436">1. Augmenting Long-term Memory</a>
+<li><a href="#org48271e1">1. How to sever dependencies?</a></li>
+<li><a href="#org39de484">2. How to use a <code>Channel</code> without buffer in kotlin coroutine?</a></li>
+<li><a href="#orgfe83079">3. Augmenting Long-term Memory</a>
 <ul>
-<li><a href="#org1009a44">1.1. Part I: How to remember almost anything: the Anki system</a></li>
-<li><a href="#org15bbfb6">1.2. Part II: Personal Memory Systems More Broadly</a></li>
-<li><a href="#org1ccc207">1.3. Appendix 1: Analysis of Anki study time</a></li>
-<li><a href="#org45c5db4">1.4. Appendix 2: Using Anki to learn APIs</a></li>
+<li><a href="#orgc2da1f0">3.1. Part I: How to remember almost anything: the Anki system</a></li>
+<li><a href="#orgb0bef43">3.2. Part II: Personal Memory Systems More Broadly</a></li>
+<li><a href="#org8191f89">3.3. Appendix 1: Analysis of Anki study time</a></li>
+<li><a href="#org28cac76">3.4. Appendix 2: Using Anki to learn APIs</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5329436" class="outline-2">
-<h2 id="org5329436"><span class="section-number-2">1.</span> Augmenting Long-term Memory</h2>
+<div id="outline-container-org48271e1" class="outline-2">
+<h2 id="org48271e1"><span class="section-number-2">1.</span> How to sever dependencies?</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Use mirror types.
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript">type OriginalType = {
+  a: string,
+  b: string,
+  c: () =&gt; string
+}
+
+type MirrorType = {
+  c: () =&gt; string
+}
+
+function fn(x: string | MirrorType): string {
+  if (typeof x === 'object') {
+    return x.c()
+  } else {
+    return x
+  }
+}
+
+const o = {
+  a: 'a',
+  c: () =&gt; 'c'
+}
+
+fn(o)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org39de484" class="outline-2">
+<h2 id="org39de484"><span class="section-number-2">2.</span> How to use a <code>Channel</code> without buffer in kotlin coroutine?</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-kotlin">fun main() = runBlocking {
+  val channel = Channel&lt;Int&gt;()
+  launch {
+    for (x in 1..5) channel.send(x * x)
+    channel.close()
+  }
+
+  for (y in channel) println(y)
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfe83079" class="outline-2">
+<h2 id="orgfe83079"><span class="section-number-2">3.</span> Augmenting Long-term Memory</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 <img src="braindump/_posts/IMG_0541.JPG" alt="IMG_0541.JPG" />
 The essay is a distillation of informal, ad hoc observations and rules of thumb.
@@ -53,9 +109,9 @@ The essay is a distillation of informal, ad hoc observations and rules of thumb.
 </p>
 </div>
 
-<div id="outline-container-org1009a44" class="outline-3">
-<h3 id="org1009a44"><span class="section-number-3">1.1.</span> Part I: How to remember almost anything: the Anki system</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgc2da1f0" class="outline-3">
+<h3 id="orgc2da1f0"><span class="section-number-3">3.1.</span> Part I: How to remember almost anything: the Anki system</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 Two rules of thumb about determining what to remember:
 </p>
@@ -99,9 +155,9 @@ Knowing the names of things are the foundation that allows you to build up a net
 </p>
 </div>
 </div>
-<div id="outline-container-org15bbfb6" class="outline-3">
-<h3 id="org15bbfb6"><span class="section-number-3">1.2.</span> Part II: Personal Memory Systems More Broadly</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgb0bef43" class="outline-3">
+<h3 id="orgb0bef43"><span class="section-number-3">3.2.</span> Part II: Personal Memory Systems More Broadly</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 The probability of correctly recalling an item declined (roughly) exponentially with time.
 </p>
@@ -111,17 +167,17 @@ Finding the right relationship between imaginative design and cognitive science 
 </p>
 </div>
 </div>
-<div id="outline-container-org1ccc207" class="outline-3">
-<h3 id="org1ccc207"><span class="section-number-3">1.3.</span> Appendix 1: Analysis of Anki study time</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org8191f89" class="outline-3">
+<h3 id="org8191f89"><span class="section-number-3">3.3.</span> Appendix 1: Analysis of Anki study time</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 How to discover my own intervals?
 </p>
 </div>
 </div>
-<div id="outline-container-org45c5db4" class="outline-3">
-<h3 id="org45c5db4"><span class="section-number-3">1.4.</span> Appendix 2: Using Anki to learn APIs</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org28cac76" class="outline-3">
+<h3 id="org28cac76"><span class="section-number-3">3.4.</span> Appendix 2: Using Anki to learn APIs</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
 When to create a new note?
 </p>

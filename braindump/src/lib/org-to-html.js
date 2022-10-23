@@ -6,6 +6,7 @@ import extractKeywords from 'uniorg-extract-keywords'
 import { uniorgSlug } from 'uniorg-slug'
 import { uniorgAttach } from 'uniorg-attach'
 import { visitIds } from 'orgast-util-visit-ids'
+import rehypeHighlight from 'rehype-highlight'
 
 const processor = unified()
   .use(orgParse)
@@ -19,6 +20,7 @@ const processor = unified()
   .use(org2rehype, {
     imageFilenameExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'JPG', 'JPEG', 'PNG', 'GIF', 'SVG']
   })
+  .use(rehypeHighlight)
   .use(toJson)
 
 export default async function orgToHtml(file) {
