@@ -20,7 +20,10 @@ const processor = unified()
   .use(org2rehype, {
     imageFilenameExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'JPG', 'JPEG', 'PNG', 'GIF', 'SVG']
   })
-  .use(rehypeHighlight)
+  .use(rehypeHighlight, {
+    ignoreMissing: true,
+    aliases: { sh: 'bash' }
+  })
   .use(toJson)
 
 export default async function orgToHtml(file) {
