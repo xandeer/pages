@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-25 Tue 09:51 -->
+<!-- 2022-10-25 Tue 16:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Android with Kotlin Achieving Structured Concurrency with Coroutines</title>
@@ -17,19 +17,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9e813d1">1. Coroutine</a></li>
-<li><a href="#orgc1b06cc">2. Channel</a>
+<li><a href="#org2eca9b8">1. Coroutine</a></li>
+<li><a href="#org2943540">2. Channel</a>
 <ul>
-<li><a href="#orge41aa77">2.1. What is a <code>Channel</code>?</a></li>
-<li><a href="#org10b985f">2.2. How to use a <code>Channel</code> without buffer?</a></li>
-<li><a href="#org972279f">2.3. Which <code>Channel</code> flavors does coroutine provide?</a></li>
+<li><a href="#orgbd302ab">2.1. What is a <code>Channel</code>?</a></li>
+<li><a href="#org9cba5ce">2.2. How to use a <code>Channel</code> without buffer?</a></li>
+<li><a href="#org8e8eb46">2.3. Which <code>Channel</code> flavors does coroutine provide?</a></li>
 </ul>
 </li>
-<li><a href="#org699ba1d">3. Flow</a>
+<li><a href="#org119d6b8">3. Flow</a>
 <ul>
-<li><a href="#org31a61c3">3.1. How to make a flow from callbacked api?</a></li>
-<li><a href="#orgdea77e7">3.2. How to transform a stream of values concurrently?</a></li>
-<li><a href="#org10bd044">3.3. How to implement a <code>bufferTimeout</code> operator?</a></li>
+<li><a href="#orgad3af27">3.1. How to make a flow from callbacked api?</a></li>
+<li><a href="#orgc0df024">3.2. How to transform a stream of values concurrently?</a></li>
+<li><a href="#org585b348">3.3. How to implement a <code>bufferTimeout</code> operator?</a></li>
 </ul>
 </li>
 </ul>
@@ -40,8 +40,8 @@
 </dl>
 
 
-<div id="outline-container-org9e813d1" class="outline-2">
-<h2 id="org9e813d1"><span class="section-number-2">1.</span> Coroutine</h2>
+<div id="outline-container-org2eca9b8" class="outline-2">
+<h2 id="org2eca9b8"><span class="section-number-2">1.</span> Coroutine</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Conceptually, a <code>job</code> is a cancellable thing with a life-cycle that culminates in its completion.
@@ -190,20 +190,20 @@ Unknown concepts or API:
 </div>
 
 
-<div id="outline-container-orgc1b06cc" class="outline-2">
-<h2 id="orgc1b06cc"><span class="section-number-2">2.</span> Channel</h2>
+<div id="outline-container-org2943540" class="outline-2">
+<h2 id="org2943540"><span class="section-number-2">2.</span> Channel</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge41aa77" class="outline-3">
-<h3 id="orge41aa77"><span class="section-number-3">2.1.</span> What is a <code>Channel</code>?</h3>
+<div id="outline-container-orgbd302ab" class="outline-3">
+<h3 id="orgbd302ab"><span class="section-number-3">2.1.</span> What is a <code>Channel</code>?</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A <code>Channel</code> can be see just like that: a queue with suspending functions <code>send</code> and <code>receive</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org10b985f" class="outline-3">
-<h3 id="org10b985f"><span class="section-number-3">2.2.</span> How to use a <code>Channel</code> without buffer?</h3>
+<div id="outline-container-org9cba5ce" class="outline-3">
+<h3 id="org9cba5ce"><span class="section-number-3">2.2.</span> How to use a <code>Channel</code> without buffer?</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun main() = runBlocking {
@@ -219,8 +219,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org972279f" class="outline-3">
-<h3 id="org972279f"><span class="section-number-3">2.3.</span> Which <code>Channel</code> flavors does coroutine provide?</h3>
+<div id="outline-container-org8e8eb46" class="outline-3">
+<h3 id="org8e8eb46"><span class="section-number-3">2.3.</span> Which <code>Channel</code> flavors does coroutine provide?</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li>RENDEZVOUS: 0</li>
@@ -231,12 +231,12 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org699ba1d" class="outline-2">
-<h2 id="org699ba1d"><span class="section-number-2">3.</span> Flow</h2>
+<div id="outline-container-org119d6b8" class="outline-2">
+<h2 id="org119d6b8"><span class="section-number-2">3.</span> Flow</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org31a61c3" class="outline-3">
-<h3 id="org31a61c3"><span class="section-number-3">3.1.</span> How to make a flow from callbacked api?</h3>
+<div id="outline-container-orgad3af27" class="outline-3">
+<h3 id="orgad3af27"><span class="section-number-3">3.1.</span> How to make a flow from callbacked api?</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun messageFlow() = callbackFlow&lt;Message&gt; {
@@ -264,8 +264,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-orgdea77e7" class="outline-3">
-<h3 id="orgdea77e7"><span class="section-number-3">3.2.</span> How to transform a stream of values concurrently?</h3>
+<div id="outline-container-orgc0df024" class="outline-3">
+<h3 id="orgc0df024"><span class="section-number-3">3.2.</span> How to transform a stream of values concurrently?</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">suspend fun transform(loc: Location): Content = withContext(Dispatchers.IO) {
@@ -285,8 +285,8 @@ fun main() = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-org10bd044" class="outline-3">
-<h3 id="org10bd044"><span class="section-number-3">3.3.</span> How to implement a <code>bufferTimeout</code> operator?</h3>
+<div id="outline-container-org585b348" class="outline-3">
+<h3 id="org585b348"><span class="section-number-3">3.3.</span> How to implement a <code>bufferTimeout</code> operator?</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T&gt; Flow&lt;T&gt;.bufferTimeout(timeoutMillis: Long, capacity: Int = 16): Flow&lt;List&lt;T&gt;&gt; = flow {
