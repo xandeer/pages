@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-25 Tue 20:46 -->
+<!-- 2022-10-26 Wed 08:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android</title>
@@ -17,16 +17,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2d9f89e">1. Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></a></li>
-<li><a href="#org4518e03">2. Problems</a>
+<li><a href="#org3dd84bd">1. Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></a></li>
+<li><a href="#orgef2da74">2. Problems</a>
 <ul>
-<li><a href="#org38f5a4c">2.1. The colors of status bar on android</a></li>
-<li><a href="#orgb9832c0">2.2. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
-<li><a href="#org9f8de47">2.3. App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></li>
-<li><a href="#orgd0e7f08">2.4. Soft keyboard makes resize event in Chrome on Android</a></li>
+<li><a href="#orgd34db88">2.1. The colors of status bar on android</a></li>
+<li><a href="#org828fba2">2.2. Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</a></li>
+<li><a href="#orgf848942">2.3. App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></li>
+<li><a href="#orged6ec26">2.4. Soft keyboard makes resize event in Chrome on Android</a></li>
 </ul>
 </li>
-<li><a href="#org79cb0fe">3. Best Practices</a></li>
+<li><a href="#orga460ee8">3. Best Practices</a></li>
 </ul>
 </div>
 </div>
@@ -46,8 +46,8 @@
 <a href="https://roadmap.sh/android">https://roadmap.sh/android</a>
 </p>
 
-<div id="outline-container-org2d9f89e" class="outline-2">
-<h2 id="org2d9f89e"><span class="section-number-2">1.</span> Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></h2>
+<div id="outline-container-org3dd84bd" class="outline-2">
+<h2 id="org3dd84bd"><span class="section-number-2">1.</span> Android debug via Wi-Fi wifi <span class="timestamp-wrapper"><span class="timestamp">[2019-07-11 Thu 16:51]</span></span></h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh">adb tcpip 5555
@@ -60,15 +60,15 @@ adb shell ip -f inet addr show wlan0
 </div>
 </div>
 </div>
-<div id="outline-container-org4518e03" class="outline-2">
-<h2 id="org4518e03"><span class="section-number-2">2.</span> Problems</h2>
+<div id="outline-container-orgef2da74" class="outline-2">
+<h2 id="orgef2da74"><span class="section-number-2">2.</span> Problems</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org38f5a4c" class="outline-3">
-<h3 id="org38f5a4c"><span class="section-number-3">2.1.</span> <a href="20221017095800-the_colors_of_status_bar_on_android.html#ID-1FA778CA-0F87-4B2C-9A70-727FAB8DD4DB">The colors of status bar on android</a></h3>
+<div id="outline-container-orgd34db88" class="outline-3">
+<h3 id="orgd34db88"><span class="section-number-3">2.1.</span> <a href="20221017095800-the_colors_of_status_bar_on_android.html#ID-1FA778CA-0F87-4B2C-9A70-727FAB8DD4DB">The colors of status bar on android</a></h3>
 </div>
-<div id="outline-container-orgb9832c0" class="outline-3">
-<h3 id="orgb9832c0"><span class="section-number-3">2.2.</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
+<div id="outline-container-org828fba2" class="outline-3">
+<h3 id="org828fba2"><span class="section-number-3">2.2.</span> Intent.putExtra(Intent.EXTRA<sub>STREAM</sub>, serializable)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Here, don't use `Collection&lt;T&gt;.toTypedArray(): Array&lt;T&gt;`. Because the return
@@ -92,20 +92,20 @@ Not serializable collections:
 </ol>
 </div>
 </div>
-<div id="outline-container-org9f8de47" class="outline-3">
-<h3 id="org9f8de47"><span class="section-number-3">2.3.</span> <a href="https://stackoverflow.com/questions/36507316/app-random-crashes-with-fatal-signal-7-sigbus-code-2-or-fatal-signal-11-sigs">App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></h3>
+<div id="outline-container-orgf848942" class="outline-3">
+<h3 id="orgf848942"><span class="section-number-3">2.3.</span> <a href="https://stackoverflow.com/questions/36507316/app-random-crashes-with-fatal-signal-7-sigbus-code-2-or-fatal-signal-11-sigs">App random crashes with Fatal signal 7 (SIGBUS), code 2 or Fatal signal 11 (SIGSEGV), code 1</a></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The problem is on the svg lib. Avoid it by the <a href="https://github.com/shakiba/svgexport">svgexport</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd0e7f08" class="outline-3">
-<h3 id="orgd0e7f08"><span class="section-number-3">2.4.</span> <a href="20200730103407-soft_keyboard_makes_resize_event_in_chrome_on_android.html#ID-73C57AD6-9E68-4E82-AED3-F324BEA47E13">Soft keyboard makes resize event in Chrome on Android</a></h3>
+<div id="outline-container-orged6ec26" class="outline-3">
+<h3 id="orged6ec26"><span class="section-number-3">2.4.</span> <a href="20200730103407-soft_keyboard_makes_resize_event_in_chrome_on_android.html#ID-73C57AD6-9E68-4E82-AED3-F324BEA47E13">Soft keyboard makes resize event in Chrome on Android</a></h3>
 </div>
 </div>
-<div id="outline-container-org79cb0fe" class="outline-2">
-<h2 id="org79cb0fe"><span class="section-number-2">3.</span> Best Practices</h2>
+<div id="outline-container-orga460ee8" class="outline-2">
+<h2 id="orga460ee8"><span class="section-number-2">3.</span> Best Practices</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li><a href="20210303103033-best_practice_for_instantiating_a_new_android_fragment.html#ID-935D4657-31DD-4E3F-85DD-1173CD824114">Best practice for instantiating a new Android Fragment</a></li>
