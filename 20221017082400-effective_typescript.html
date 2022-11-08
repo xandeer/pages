@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-08 Tue 11:48 -->
+<!-- 2022-11-08 Tue 16:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective TypeScript</title>
@@ -17,44 +17,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9188ce4">1. Think of TypeScript types as {{c1::sets}} of values.</a></li>
-<li><a href="#org46d0a12">2. How to tell whether a symbol is in the type space or value space?</a></li>
-<li><a href="#org46b61f9">3. How to declare something like map?</a></li>
-<li><a href="#org0b2f52b">4. How to match the signature of a function?</a></li>
-<li><a href="#org99b9565">5. Which ability does <code>interface</code> have but <code>type</code> not?</a></li>
-<li><a href="#org2603456">6. How to pick specified items in a type in Typescript?</a></li>
-<li><a href="#org2bdb84f">7. How to pick unspecified items in a type?</a></li>
-<li><a href="#orgd5464fa">8. How to use a function's return as a type?</a></li>
-<li><a href="#orga436c53">9. How to use different types for different keys?</a></li>
-<li><a href="#org094395a">10. How to make a new type with same keys relative to another type?</a></li>
-<li><a href="#orgfcca68a">11. How to make a new Array type that just contains another type's keys?</a></li>
-<li><a href="#org01d225e">12. <code>let a = 1</code>, what is the type of <code>a</code>?</a></li>
-<li><a href="#org01178c2">13. <code>const a = 1</code>, what is the type of <code>a</code>?</a></li>
-<li><a href="#org655e7c6">14. <code>const a = ['x', 1]</code>, what is the type of <code>a</code>?</a></li>
-<li><a href="#orgc4e392c">15. How to define a "user-defined type guard"?</a></li>
-<li><a href="#orga75e90a">16. How to conditionally add properties to an object?</a></li>
-<li><a href="#orgc4fb38e">17. Nominal type with user-defined type guide</a></li>
-<li><a href="#org20b3a6b">18. Nominal type with type assertion</a></li>
-<li><a href="#orgbdc5e57">19. Which type is assignable to the <code>unknown</code> type?</a></li>
-<li><a href="#orgdb8dfde">20. Which type is <code>unknown</code> type assignable to?</a></li>
-<li><a href="#org0d58500">21. How to patch <code>window</code> by augmentation?</a></li>
-<li><a href="#org0cbe34b">22. How to patch <code>window</code> by a custom interface?</a></li>
-<li><a href="#org6e028a2">23. How to track type coverage?</a></li>
-<li><a href="#org7ef33fe">24. Why do we prefer conditional types to overloaded declarations?</a></li>
-<li><a href="#orgcec9d63">25. How to use conditional types instead of overloaded declarations?</a></li>
-<li><a href="#orgfe14db4">26. How to sever dependencies?</a></li>
+<li><a href="#org23d658e">1. Think of TypeScript types as {{c1::sets}} of values.</a></li>
+<li><a href="#org885eadf">2. How to tell whether a symbol is in the type space or value space?</a></li>
+<li><a href="#org1067a4b">3. How to declare something like map?</a></li>
+<li><a href="#orgaa64480">4. How to match the signature of a function?</a></li>
+<li><a href="#orgb7e7035">5. Which ability does <code>interface</code> have but <code>type</code> not?</a></li>
+<li><a href="#orgfb1463e">6. How to pick specified items in a type in Typescript?</a></li>
+<li><a href="#org0cef42f">7. How to pick unspecified items in a type?</a></li>
+<li><a href="#org423c1ce">8. How to use a function's return as a type?</a></li>
+<li><a href="#orgfd0abfb">9. How to use different types for different keys?</a></li>
+<li><a href="#org115147d">10. How to make a new type with same keys relative to another type?</a></li>
+<li><a href="#org34aa474">11. How to make a new Array type that just contains another type's keys?</a></li>
+<li><a href="#orga462015">12. <code>let a = 1</code>, what is the type of <code>a</code>?</a></li>
+<li><a href="#org0a01da8">13. <code>const a = 1</code>, what is the type of <code>a</code>?</a></li>
+<li><a href="#orgca9b1b5">14. <code>const a = ['x', 1]</code>, what is the type of <code>a</code>?</a></li>
+<li><a href="#org63edb99">15. How to define a "user-defined type guard"?</a></li>
+<li><a href="#org7c2ad4c">16. How to conditionally add properties to an object?</a></li>
+<li><a href="#org413ea2e">17. Nominal type with user-defined type guide</a></li>
+<li><a href="#org65f442e">18. Nominal type with type assertion</a></li>
+<li><a href="#org30e1f46">19. Which type is assignable to the <code>unknown</code> type?</a></li>
+<li><a href="#org375d971">20. Which type is <code>unknown</code> type assignable to?</a></li>
+<li><a href="#org2759e66">21. How to patch <code>window</code> by augmentation?</a></li>
+<li><a href="#org762a21c">22. How to patch <code>window</code> by a custom interface?</a></li>
+<li><a href="#orgd6472b3">23. How to track type coverage?</a></li>
+<li><a href="#org5a84c23">24. Why do we prefer conditional types to overloaded declarations?</a></li>
+<li><a href="#org8d62dde">25. How to use conditional types instead of overloaded declarations?</a></li>
+<li><a href="#orgc49d1ac">26. How to sever dependencies?</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org9188ce4" class="outline-2">
-<h2 id="org9188ce4"><span class="section-number-2">1.</span> Think of TypeScript types as {{c1::sets}} of values.</h2>
+<div id="outline-container-org23d658e" class="outline-2">
+<h2 id="org23d658e"><span class="section-number-2">1.</span> Think of TypeScript types as {{c1::sets}} of values.</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 </div>
-<div id="outline-container-org46d0a12" class="outline-2">
-<h2 id="org46d0a12"><span class="section-number-2">2.</span> How to tell whether a symbol is in the type space or value space?</h2>
+<div id="outline-container-org885eadf" class="outline-2">
+<h2 id="org885eadf"><span class="section-number-2">2.</span> How to tell whether a symbol is in the type space or value space?</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Every value has a type, but types do not have values. Constructs such as <code>type</code> and <code>interface</code> exist only in the type space.</li>
@@ -63,8 +63,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org46b61f9" class="outline-2">
-<h2 id="org46b61f9"><span class="section-number-2">3.</span> How to declare something like map?</h2>
+<div id="outline-container-org1067a4b" class="outline-2">
+<h2 id="org1067a4b"><span class="section-number-2">3.</span> How to declare something like map?</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-typescript">type Map {
@@ -74,8 +74,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0b2f52b" class="outline-2">
-<h2 id="org0b2f52b"><span class="section-number-2">4.</span> How to match the signature of a function?</h2>
+<div id="outline-container-orgaa64480" class="outline-2">
+<h2 id="orgaa64480"><span class="section-number-2">4.</span> How to match the signature of a function?</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-typescript">function greet(msg: string) {
@@ -87,8 +87,8 @@ type Greet = typeof greet // (msg: string) =&gt; void
 </div>
 </div>
 </div>
-<div id="outline-container-org99b9565" class="outline-2">
-<h2 id="org99b9565"><span class="section-number-2">5.</span> Which ability does <code>interface</code> have but <code>type</code> not?</h2>
+<div id="outline-container-orgb7e7035" class="outline-2">
+<h2 id="orgb7e7035"><span class="section-number-2">5.</span> Which ability does <code>interface</code> have but <code>type</code> not?</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Declaration merging:
@@ -110,8 +110,8 @@ const state: IState = {
 </div>
 </div>
 </div>
-<div id="outline-container-org2603456" class="outline-2">
-<h2 id="org2603456"><span class="section-number-2">6.</span> How to pick specified items in a type in Typescript?</h2>
+<div id="outline-container-orgfb1463e" class="outline-2">
+<h2 id="orgfb1463e"><span class="section-number-2">6.</span> How to pick specified items in a type in Typescript?</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-typescript">Pick&lt;A, 'a' | 'b' 'c'&gt;
@@ -119,8 +119,8 @@ const state: IState = {
 </div>
 </div>
 </div>
-<div id="outline-container-org2bdb84f" class="outline-2">
-<h2 id="org2bdb84f"><span class="section-number-2">7.</span> How to pick unspecified items in a type?</h2>
+<div id="outline-container-org0cef42f" class="outline-2">
+<h2 id="org0cef42f"><span class="section-number-2">7.</span> How to pick unspecified items in a type?</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-typescript">Partial&lt;A&gt;
@@ -128,8 +128,8 @@ const state: IState = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5464fa" class="outline-2">
-<h2 id="orgd5464fa"><span class="section-number-2">8.</span> How to use a function's return as a type?</h2>
+<div id="outline-container-org423c1ce" class="outline-2">
+<h2 id="org423c1ce"><span class="section-number-2">8.</span> How to use a function's return as a type?</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-typescript">type A = ReturnType&lt;fn&gt;
@@ -137,8 +137,8 @@ const state: IState = {
 </div>
 </div>
 </div>
-<div id="outline-container-orga436c53" class="outline-2">
-<h2 id="orga436c53"><span class="section-number-2">9.</span> How to use different types for different keys?</h2>
+<div id="outline-container-orgfd0abfb" class="outline-2">
+<h2 id="orgfd0abfb"><span class="section-number-2">9.</span> How to use different types for different keys?</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-typescript">type ABC = { [k in 'a' | 'b' | 'c']: k extends 'b' ? number : string }
@@ -146,8 +146,8 @@ const state: IState = {
 </div>
 </div>
 </div>
-<div id="outline-container-org094395a" class="outline-2">
-<h2 id="org094395a"><span class="section-number-2">10.</span> How to make a new type with same keys relative to another type?</h2>
+<div id="outline-container-org115147d" class="outline-2">
+<h2 id="org115147d"><span class="section-number-2">10.</span> How to make a new type with same keys relative to another type?</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-typescript">type A = Record&lt;'a' | 'b' | 'c', string&gt;
@@ -156,8 +156,8 @@ type B = Record&lt;keyof A, boolean&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-orgfcca68a" class="outline-2">
-<h2 id="orgfcca68a"><span class="section-number-2">11.</span> How to make a new Array type that just contains another type's keys?</h2>
+<div id="outline-container-org34aa474" class="outline-2">
+<h2 id="org34aa474"><span class="section-number-2">11.</span> How to make a new Array type that just contains another type's keys?</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <pre class="src src-typescript">type A = Record&lt;'a' | 'b', number&gt;
@@ -166,32 +166,32 @@ type B = (keyof A)[]
 </div>
 </div>
 </div>
-<div id="outline-container-org01d225e" class="outline-2">
-<h2 id="org01d225e"><span class="section-number-2">12.</span> <code>let a = 1</code>, what is the type of <code>a</code>?</h2>
+<div id="outline-container-orga462015" class="outline-2">
+<h2 id="orga462015"><span class="section-number-2">12.</span> <code>let a = 1</code>, what is the type of <code>a</code>?</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Type widening: <code>a</code>'s type is <code>number</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org01178c2" class="outline-2">
-<h2 id="org01178c2"><span class="section-number-2">13.</span> <code>const a = 1</code>, what is the type of <code>a</code>?</h2>
+<div id="outline-container-org0a01da8" class="outline-2">
+<h2 id="org0a01da8"><span class="section-number-2">13.</span> <code>const a = 1</code>, what is the type of <code>a</code>?</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Type widening: <code>a</code>'s type is <code>1</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org655e7c6" class="outline-2">
-<h2 id="org655e7c6"><span class="section-number-2">14.</span> <code>const a = ['x', 1]</code>, what is the type of <code>a</code>?</h2>
+<div id="outline-container-orgca9b1b5" class="outline-2">
+<h2 id="orgca9b1b5"><span class="section-number-2">14.</span> <code>const a = ['x', 1]</code>, what is the type of <code>a</code>?</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Type widening: <code>a</code>'s type is <code>[string, number]</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc4e392c" class="outline-2">
-<h2 id="orgc4e392c"><span class="section-number-2">15.</span> How to define a "user-defined type guard"?</h2>
+<div id="outline-container-org63edb99" class="outline-2">
+<h2 id="org63edb99"><span class="section-number-2">15.</span> How to define a "user-defined type guard"?</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-typescript">function isInputElement(el: HTMLElement): el is HTMLInputElement {
@@ -209,8 +209,8 @@ function getElementContent(el: HTMLElement): string {
 </div>
 </div>
 </div>
-<div id="outline-container-orga75e90a" class="outline-2">
-<h2 id="orga75e90a"><span class="section-number-2">16.</span> How to conditionally add properties to an object?</h2>
+<div id="outline-container-org7c2ad4c" class="outline-2">
+<h2 id="org7c2ad4c"><span class="section-number-2">16.</span> How to conditionally add properties to an object?</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <pre class="src src-typescript">function addOptional&lt;T extends object, U extends object&gt;(a: T, b: U | null): T &amp; Partial&lt;U&gt; {
@@ -224,8 +224,8 @@ const firstMiddleLast = addOptional(firstLast, middle ? { middle } : null)
 </div>
 </div>
 </div>
-<div id="outline-container-orgc4fb38e" class="outline-2">
-<h2 id="orgc4fb38e"><span class="section-number-2">17.</span> Nominal type with user-defined type guide</h2>
+<div id="outline-container-org413ea2e" class="outline-2">
+<h2 id="org413ea2e"><span class="section-number-2">17.</span> Nominal type with user-defined type guide</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <pre class="src src-typescript">type AbsolutePath = string &amp; { _brand: 'abs'}
@@ -237,8 +237,8 @@ function isAbsolutePath(path: string): path is AbsolutePath {
 </div>
 </div>
 </div>
-<div id="outline-container-org20b3a6b" class="outline-2">
-<h2 id="org20b3a6b"><span class="section-number-2">18.</span> Nominal type with type assertion</h2>
+<div id="outline-container-org65f442e" class="outline-2">
+<h2 id="org65f442e"><span class="section-number-2">18.</span> Nominal type with type assertion</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <pre class="src src-typescript">type Seconds = number &amp; { _brand: "seconds" }
@@ -250,8 +250,8 @@ const meters = (n: number) =&gt; n as Meters
 </div>
 </div>
 </div>
-<div id="outline-container-orgbdc5e57" class="outline-2">
-<h2 id="orgbdc5e57"><span class="section-number-2">19.</span> Which type is assignable to the <code>unknown</code> type?</h2>
+<div id="outline-container-org30e1f46" class="outline-2">
+<h2 id="org30e1f46"><span class="section-number-2">19.</span> Which type is assignable to the <code>unknown</code> type?</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 Any type.
@@ -265,8 +265,8 @@ a = 1 as any
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb8dfde" class="outline-2">
-<h2 id="orgdb8dfde"><span class="section-number-2">20.</span> Which type is <code>unknown</code> type assignable to?</h2>
+<div id="outline-container-org375d971" class="outline-2">
+<h2 id="org375d971"><span class="section-number-2">20.</span> Which type is <code>unknown</code> type assignable to?</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 Just <code>unknown</code> and <code>any</code>.
@@ -282,8 +282,8 @@ b = 1 as unknown
 </div>
 </div>
 </div>
-<div id="outline-container-org0d58500" class="outline-2">
-<h2 id="org0d58500"><span class="section-number-2">21.</span> How to patch <code>window</code> by augmentation?</h2>
+<div id="outline-container-org2759e66" class="outline-2">
+<h2 id="org2759e66"><span class="section-number-2">21.</span> How to patch <code>window</code> by augmentation?</h2>
 <div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 <pre class="src src-typescript">declare global {
@@ -295,8 +295,8 @@ b = 1 as unknown
 </div>
 </div>
 </div>
-<div id="outline-container-org0cbe34b" class="outline-2">
-<h2 id="org0cbe34b"><span class="section-number-2">22.</span> How to patch <code>window</code> by a custom interface?</h2>
+<div id="outline-container-org762a21c" class="outline-2">
+<h2 id="org762a21c"><span class="section-number-2">22.</span> How to patch <code>window</code> by a custom interface?</h2>
 <div class="outline-text-2" id="text-22">
 <div class="org-src-container">
 <pre class="src src-typescript">interface HelloWindow extends Window {
@@ -310,16 +310,16 @@ function isHelloWindow(window: Window): window is HelloWindow {
 </div>
 </div>
 </div>
-<div id="outline-container-org6e028a2" class="outline-2">
-<h2 id="org6e028a2"><span class="section-number-2">23.</span> How to track type coverage?</h2>
+<div id="outline-container-orgd6472b3" class="outline-2">
+<h2 id="orgd6472b3"><span class="section-number-2">23.</span> How to track type coverage?</h2>
 <div class="outline-text-2" id="text-23">
 <p>
 Use <code>type-coverage --detail</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org7ef33fe" class="outline-2">
-<h2 id="org7ef33fe"><span class="section-number-2">24.</span> Why do we prefer conditional types to overloaded declarations?</h2>
+<div id="outline-container-org5a84c23" class="outline-2">
+<h2 id="org5a84c23"><span class="section-number-2">24.</span> Why do we prefer conditional types to overloaded declarations?</h2>
 <div class="outline-text-2" id="text-24">
 <p>
 By distributing over unions, conditional types allow your declarations to support union types without additional overloads.
@@ -338,8 +338,8 @@ function fn(x: string | number) {
 </div>
 </div>
 </div>
-<div id="outline-container-orgcec9d63" class="outline-2">
-<h2 id="orgcec9d63"><span class="section-number-2">25.</span> How to use conditional types instead of overloaded declarations?</h2>
+<div id="outline-container-org8d62dde" class="outline-2">
+<h2 id="org8d62dde"><span class="section-number-2">25.</span> How to use conditional types instead of overloaded declarations?</h2>
 <div class="outline-text-2" id="text-25">
 <div class="org-src-container">
 <pre class="src src-typescript">function double&lt;T extends number | string&gt;(x: T): T extends number ? number : string
@@ -353,8 +353,8 @@ const b = double('b') // type is string
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe14db4" class="outline-2">
-<h2 id="orgfe14db4"><span class="section-number-2">26.</span> How to sever dependencies?</h2>
+<div id="outline-container-orgc49d1ac" class="outline-2">
+<h2 id="orgc49d1ac"><span class="section-number-2">26.</span> How to sever dependencies?</h2>
 <div class="outline-text-2" id="text-26">
 <p>
 Use mirror types.
