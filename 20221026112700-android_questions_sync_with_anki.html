@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-12 Sat 11:42 -->
+<!-- 2022-11-14 Mon 07:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android Questions Sync with Anki</title>
@@ -17,16 +17,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org11ae4cc">1. How to restart an activity?</a></li>
-<li><a href="#orgb87fe60">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
-<li><a href="#orgb9116d5">3. How to set ellipsis for <code>EditText</code>?</a></li>
-<li><a href="#org3e1dce7">4. How to switch edit states of <code>EditText</code>?</a></li>
+<li><a href="#org91ccba7">1. How to restart an activity?</a></li>
+<li><a href="#orge115ae2">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
+<li><a href="#orgef74d7e">3. How to set ellipsis for <code>EditText</code>?</a></li>
+<li><a href="#orgf2839d2">4. How to switch edit states of <code>EditText</code>?</a></li>
+<li><a href="#org20ae80f">5. Activity 启动模式有哪些？</a></li>
+<li><a href="#orge0cb438">6. Activity 各启动模式有何差异？</a></li>
+<li><a href="#org71615ae">7. <code>Activity</code> 生命周期？</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org11ae4cc" class="outline-2">
-<h2 id="org11ae4cc"><span class="section-number-2">1.</span> How to restart an activity?</h2>
+<div id="outline-container-org91ccba7" class="outline-2">
+<h2 id="org91ccba7"><span class="section-number-2">1.</span> How to restart an activity?</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">// something wrong with cached view model
@@ -38,8 +41,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orgb87fe60" class="outline-2">
-<h2 id="orgb87fe60"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
+<div id="outline-container-orge115ae2" class="outline-2">
+<h2 id="orge115ae2"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">backgroundColorResource = R.color.transparent
@@ -47,8 +50,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9116d5" class="outline-2">
-<h2 id="orgb9116d5"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
+<div id="outline-container-orgef74d7e" class="outline-2">
+<h2 id="orgef74d7e"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">ellipsize = TextUtils.TruncateAt.END
@@ -56,8 +59,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-org3e1dce7" class="outline-2">
-<h2 id="org3e1dce7"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
+<div id="outline-container-orgf2839d2" class="outline-2">
+<h2 id="orgf2839d2"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-kotlin">// non-editable
@@ -67,6 +70,33 @@ keyListener = null
 keyListener = TextKeyListener.getInstance(false, TextKeyListener.Capitalize.NONE)
 </pre>
 </div>
+</div>
+</div>
+<div id="outline-container-org20ae80f" class="outline-2">
+<h2 id="org20ae80f"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Standard, SingleTop, SingleTask, SingleInstance
+</p>
+</div>
+</div>
+<div id="outline-container-orge0cb438" class="outline-2">
+<h2 id="orge0cb438"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><code>standard</code>: 默认，启动一个就多一个 <code>Activity</code> 实例</li>
+<li><code>SingleTop</code>: 栈顶复用，如果处于栈顶，则生命周期不走 <code>onCreate</code> 和 <code>onStart</code></li>
+<li><code>SingleTask</code>: 栈内复用，如果存在于栈内，则在其上的 <code>Activity</code> 全部出栈，使其位于栈顶，生命周期和 <code>SingleTop</code> 一样，基本用于 app 首页</li>
+<li><code>SingleInstance</code>: <code>SingleTask</code> 加强版，系统会为要启动的 <code>Activity</code> 单独开一个栈，这个栈里只有它，适用于新开 <code>Activity</code> 要和 app 能独立开的。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71615ae" class="outline-2">
+<h2 id="org71615ae"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<code>onCreate()</code> -&gt; <code>onStart()</code> -&gt; <code>onResume()</code> -&gt; <code>onPause()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestroy()</code>
+</p>
 </div>
 </div>
 </div>
