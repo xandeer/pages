@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-14 Mon 07:07 -->
+<!-- 2022-11-14 Mon 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android Questions Sync with Anki</title>
@@ -17,19 +17,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org91ccba7">1. How to restart an activity?</a></li>
-<li><a href="#orge115ae2">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
-<li><a href="#orgef74d7e">3. How to set ellipsis for <code>EditText</code>?</a></li>
-<li><a href="#orgf2839d2">4. How to switch edit states of <code>EditText</code>?</a></li>
-<li><a href="#org20ae80f">5. Activity 启动模式有哪些？</a></li>
-<li><a href="#orge0cb438">6. Activity 各启动模式有何差异？</a></li>
-<li><a href="#org71615ae">7. <code>Activity</code> 生命周期？</a></li>
+<li><a href="#org18dd49d">1. How to restart an activity?</a></li>
+<li><a href="#org637da25">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
+<li><a href="#orgc608828">3. How to set ellipsis for <code>EditText</code>?</a></li>
+<li><a href="#org532f975">4. How to switch edit states of <code>EditText</code>?</a></li>
+<li><a href="#org990902c">5. Activity 启动模式有哪些？</a></li>
+<li><a href="#orgb8793cc">6. Activity 各启动模式有何差异？</a></li>
+<li><a href="#org117a3d0">7. <code>Activity</code> 生命周期？</a></li>
+<li><a href="#org448582f">8. <code>View</code> 事件分发机制</a></li>
+<li><a href="#org5a149eb">9. <code>ViewGroup</code> 事件分发机制</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org91ccba7" class="outline-2">
-<h2 id="org91ccba7"><span class="section-number-2">1.</span> How to restart an activity?</h2>
+<div id="outline-container-org18dd49d" class="outline-2">
+<h2 id="org18dd49d"><span class="section-number-2">1.</span> How to restart an activity?</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">// something wrong with cached view model
@@ -41,8 +43,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orge115ae2" class="outline-2">
-<h2 id="orge115ae2"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
+<div id="outline-container-org637da25" class="outline-2">
+<h2 id="org637da25"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">backgroundColorResource = R.color.transparent
@@ -50,8 +52,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orgef74d7e" class="outline-2">
-<h2 id="orgef74d7e"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
+<div id="outline-container-orgc608828" class="outline-2">
+<h2 id="orgc608828"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">ellipsize = TextUtils.TruncateAt.END
@@ -59,8 +61,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2839d2" class="outline-2">
-<h2 id="orgf2839d2"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
+<div id="outline-container-org532f975" class="outline-2">
+<h2 id="org532f975"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-kotlin">// non-editable
@@ -72,16 +74,16 @@ keyListener = TextKeyListener.getInstance(false, TextKeyListener.Capitalize.NONE
 </div>
 </div>
 </div>
-<div id="outline-container-org20ae80f" class="outline-2">
-<h2 id="org20ae80f"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
+<div id="outline-container-org990902c" class="outline-2">
+<h2 id="org990902c"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Standard, SingleTop, SingleTask, SingleInstance
 </p>
 </div>
 </div>
-<div id="outline-container-orge0cb438" class="outline-2">
-<h2 id="orge0cb438"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
+<div id="outline-container-orgb8793cc" class="outline-2">
+<h2 id="orgb8793cc"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>standard</code>: 默认，启动一个就多一个 <code>Activity</code> 实例</li>
@@ -91,12 +93,63 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ul>
 </div>
 </div>
-<div id="outline-container-org71615ae" class="outline-2">
-<h2 id="org71615ae"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
+<div id="outline-container-org117a3d0" class="outline-2">
+<h2 id="org117a3d0"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <code>onCreate()</code> -&gt; <code>onStart()</code> -&gt; <code>onResume()</code> -&gt; <code>onPause()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestroy()</code>
 </p>
+</div>
+</div>
+<div id="outline-container-org448582f" class="outline-2">
+<h2 id="org448582f"><span class="section-number-2">8.</span> <code>View</code> 事件分发机制</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+如果在 <code>onTouch</code> 的 <code>ACTION_DOWN</code> 中返回 <code>false</code>, 之后的 touch 事件将不会被触发，不影响 click 事件。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">boolean</span> <span style="font-weight: bold;">dispatchTouchEvent</span>(<span style="font-weight: bold; text-decoration: underline;">MotionEvent</span> <span style="font-weight: bold; font-style: italic;">event</span>) {
+  <span style="font-weight: bold;">if</span> (mOnTouchListener != <span style="font-weight: bold; text-decoration: underline;">null</span> &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED &amp;&amp;
+      mOnTouchListener.onTouch(<span style="font-weight: bold;">this</span>, event)) {
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>
+  }
+  <span style="font-weight: bold;">return</span> onTouchEvent(event)
+}
+
+<span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">boolean</span> <span style="font-weight: bold;">onTouchEvent</span>(<span style="font-weight: bold; text-decoration: underline;">MotionEvent</span> <span style="font-weight: bold; font-style: italic;">event</span>) {
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+  <span style="font-weight: bold;">if</span> ((viewFlags &amp; CLICKABLE) == CLICKABLE ||
+      (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+    <span style="font-weight: bold;">case</span> <span style="font-weight: bold; text-decoration: underline;">MotionEvent</span>.ACTION_UP:
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+      performClick()
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>
+  }
+  <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>
+}
+
+<span style="font-weight: bold;">public</span> <span style="font-weight: bold; text-decoration: underline;">boolean</span> <span style="font-weight: bold;">performClick</span>() {
+  <span style="font-weight: bold;">if</span> (mOnClickListener != <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+    mOnClickListener.onClick(<span style="font-weight: bold;">this</span>)
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>
+  }
+  <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5a149eb" class="outline-2">
+<h2 id="org5a149eb"><span class="section-number-2">9.</span> <code>ViewGroup</code> 事件分发机制</h2>
+<div class="outline-text-2" id="text-9">
+<ol class="org-ol">
+<li>事件首先传递到 <code>ViewGroup</code> 的 <code>dispatchTouchEvent</code></li>
+<li><code>ViewGroup</code> 的 <code>dispatchTouchEvent</code> 中根据 <code>onInterceptTouchEvent</code> 判断事件是否需要被拦截，默认不拦截</li>
+<li>如果被拦截，事件将不会传递给子 <code>View</code></li>
+<li>如果不拦截，事件传递给子 <code>View</code>, 之后与 <code>View</code> 事件传递一样</li>
+</ol>
 </div>
 </div>
 </div>
