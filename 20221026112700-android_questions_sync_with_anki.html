@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-15 Tue 09:03 -->
+<!-- 2022-11-15 Tue 16:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android Questions Sync with Anki</title>
@@ -17,27 +17,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd0593a9">1. How to restart an activity?</a></li>
-<li><a href="#org51c4a8c">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
-<li><a href="#org33894b2">3. How to set ellipsis for <code>EditText</code>?</a></li>
-<li><a href="#orga5bea1a">4. How to switch edit states of <code>EditText</code>?</a></li>
-<li><a href="#org56999fa">5. Activity 启动模式有哪些？</a></li>
-<li><a href="#org91590f2">6. Activity 各启动模式有何差异？</a></li>
-<li><a href="#org3decebb">7. <code>Activity</code> 生命周期？</a></li>
-<li><a href="#org4083c57">8. <code>View</code> 事件分发机制</a></li>
-<li><a href="#org2ebf485">9. <code>ViewGroup</code> 事件分发机制</a></li>
+<li><a href="#org19c4ba1">1. How to restart an activity?</a></li>
+<li><a href="#orgc1a8bdb">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
+<li><a href="#orgc474727">3. How to set ellipsis for <code>EditText</code>?</a></li>
+<li><a href="#org2940fda">4. How to switch edit states of <code>EditText</code>?</a></li>
+<li><a href="#org7bc312b">5. Activity 启动模式有哪些？</a></li>
+<li><a href="#orgadf3e8a">6. Activity 各启动模式有何差异？</a></li>
+<li><a href="#org94e07a6">7. <code>Activity</code> 生命周期？</a></li>
+<li><a href="#org1ebdd3a">8. <code>View</code> 事件分发机制</a></li>
+<li><a href="#org7be9ce1">9. <code>ViewGroup</code> 事件分发机制</a></li>
+<li><a href="#orgdd1b2eb">10. 如何启动 <code>Service</code>?</a></li>
+<li><a href="#orgea459f0">11. <code>Service</code> 生命周期？</a></li>
+<li><a href="#org1745256">12. <code>Service</code> 如何与其它组件通信？</a></li>
 </ul>
 </div>
 </div>
 <ol class="org-ol">
-<li><a href="android_interview.md#org3620053">questions</a></li>
+<li><a href="android_interview.md#org47898c7">questions</a></li>
 <li><a href="https://juejin.cn/post/6844903797270003719">https://juejin.cn/post/6844903797270003719</a></li>
 <li><a href="https://github.com/yangkun19921001/Blog/blob/master/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/Android%E9%AB%98%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/Android/Android%20%E5%9F%BA%E7%A1%80/Activity.md">https://github.com/yangkun19921001/Blog/blob/master/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/Android%E9%AB%98%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/Android/Android%20%E5%9F%BA%E7%A1%80/Activity.md</a></li>
 <li><a href="https://blog.csdn.net/qsdsn/article/details/81134143?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control#2service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">https://blog.csdn.net/qsdsn/article/details/81134143?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control#2service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F</a></li>
 </ol>
 
-<div id="outline-container-orgd0593a9" class="outline-2">
-<h2 id="orgd0593a9"><span class="section-number-2">1.</span> How to restart an activity?</h2>
+<div id="outline-container-org19c4ba1" class="outline-2">
+<h2 id="org19c4ba1"><span class="section-number-2">1.</span> How to restart an activity?</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">// something wrong with cached view model
@@ -49,8 +52,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-org51c4a8c" class="outline-2">
-<h2 id="org51c4a8c"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
+<div id="outline-container-orgc1a8bdb" class="outline-2">
+<h2 id="orgc1a8bdb"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">backgroundColorResource = R.color.transparent
@@ -58,8 +61,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-org33894b2" class="outline-2">
-<h2 id="org33894b2"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
+<div id="outline-container-orgc474727" class="outline-2">
+<h2 id="orgc474727"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">ellipsize = TextUtils.TruncateAt.END
@@ -67,8 +70,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orga5bea1a" class="outline-2">
-<h2 id="orga5bea1a"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
+<div id="outline-container-org2940fda" class="outline-2">
+<h2 id="org2940fda"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-kotlin">// non-editable
@@ -80,16 +83,16 @@ keyListener = TextKeyListener.getInstance(false, TextKeyListener.Capitalize.NONE
 </div>
 </div>
 </div>
-<div id="outline-container-org56999fa" class="outline-2">
-<h2 id="org56999fa"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
+<div id="outline-container-org7bc312b" class="outline-2">
+<h2 id="org7bc312b"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Standard, SingleTop, SingleTask, SingleInstance
 </p>
 </div>
 </div>
-<div id="outline-container-org91590f2" class="outline-2">
-<h2 id="org91590f2"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
+<div id="outline-container-orgadf3e8a" class="outline-2">
+<h2 id="orgadf3e8a"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>standard</code>: 默认，启动一个就多一个 <code>Activity</code> 实例</li>
@@ -99,16 +102,16 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ul>
 </div>
 </div>
-<div id="outline-container-org3decebb" class="outline-2">
-<h2 id="org3decebb"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
+<div id="outline-container-org94e07a6" class="outline-2">
+<h2 id="org94e07a6"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <code>onCreate()</code> -&gt; <code>onStart()</code> -&gt; <code>onResume()</code> -&gt; <code>onPause()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestroy()</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org4083c57" class="outline-2">
-<h2 id="org4083c57"><span class="section-number-2">8.</span> <code>View</code> 事件分发机制</h2>
+<div id="outline-container-org1ebdd3a" class="outline-2">
+<h2 id="org1ebdd3a"><span class="section-number-2">8.</span> <code>View</code> 事件分发机制</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 如果在 <code>onTouch</code> 的 <code>ACTION_DOWN</code> 中返回 <code>false</code>, 之后的 touch 事件将不会被触发，不影响 click 事件。
@@ -147,8 +150,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </div>
 </div>
 </div>
-<div id="outline-container-org2ebf485" class="outline-2">
-<h2 id="org2ebf485"><span class="section-number-2">9.</span> <code>ViewGroup</code> 事件分发机制</h2>
+<div id="outline-container-org7be9ce1" class="outline-2">
+<h2 id="org7be9ce1"><span class="section-number-2">9.</span> <code>ViewGroup</code> 事件分发机制</h2>
 <div class="outline-text-2" id="text-9">
 <ol class="org-ol">
 <li>事件首先传递到 <code>ViewGroup</code> 的 <code>dispatchTouchEvent</code></li>
@@ -156,6 +159,37 @@ Standard, SingleTop, SingleTask, SingleInstance
 <li>如果被拦截，事件将不会传递给子 <code>View</code></li>
 <li>如果不拦截，事件传递给子 <code>View</code>, 之后与 <code>View</code> 事件传递一样</li>
 </ol>
+</div>
+</div>
+<div id="outline-container-orgdd1b2eb" class="outline-2">
+<h2 id="orgdd1b2eb"><span class="section-number-2">10.</span> 如何启动 <code>Service</code>?</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li><code>startService</code>: 在主动停止前，一直存在，与调用组件生命周期无关</li>
+<li><code>bindService</code>: 调用者组件退出后，<code>Service</code> 也会退出</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgea459f0" class="outline-2">
+<h2 id="orgea459f0"><span class="section-number-2">11.</span> <code>Service</code> 生命周期？</h2>
+<div class="outline-text-2" id="text-11">
+<ul class="org-ul">
+<li><code>startService</code>: <code>onCreate</code> -&gt; <code>onStartCommand</code> -&gt; <code>onDestroy</code></li>
+<li><code>bindService</code>: <code>onCreate</code> -&gt; <code>onBind</code> -&gt; <code>onUnbind</code> -&gt; <code>onDestroy</code></li>
+<li>both: <code>onCreate</code> -&gt; <code>onStartCommand</code> -&gt; <code>onBind</code> -&gt; <code>onUnbind</code> -&gt; <code>onDestroy</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1745256" class="outline-2">
+<h2 id="org1745256"><span class="section-number-2">12.</span> <code>Service</code> 如何与其它组件通信？</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+通过 <code>ServiceConnection.onBind</code> 提供的 <code>IBinder</code> 实例参数通信。<code>IBinder</code> 实例可返回 <code>Service</code> 实例，然后调用其公共方法进行通信；也可在通过 <code>Messenger</code> 实现跨进程通信，在 <code>Service</code> 中创建一个 <code>Handler</code>, 再创建一个引用此 <code>Handler</code> 的 <code>Messenger</code>, 在 <code>Service</code> 的 <code>onBind</code> 中返回 <code>Messenger</code> 的 <code>binder</code>, 客户端的 <code>ServiceConnection.onBind</code> 中根据此 <code>binder</code> 创建一个 <code>Messenger</code> 实例，客户端即可用此 <code>Messenger</code> 实例发送消息给 <code>Service</code>.
+</p>
+
+<p>
+需要双向通信时，可在 <code>Service</code> 中保存客户 <code>Messenger</code>, 客户通过设置发送 <code>Message</code> 的 <code>replyTo</code> 传递客户 <code>Messenger</code> 给 <code>Service</code>.
+</p>
 </div>
 </div>
 </div>
