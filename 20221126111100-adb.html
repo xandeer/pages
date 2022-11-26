@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-11-26 Sat 20:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>adb</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="static/x.css" type="text/css"/><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">adb</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org27aa98a">1. How to get device ip?</a></li>
+<li><a href="#orgc475c23">2. How to send text to device?</a></li>
+<li><a href="#org36ea388">3. How to send key event to device?</a></li>
+<li><a href="#orgacf5dca">4. How to take a screenshot?</a></li>
+</ul>
+</div>
+</div>
+<dl class="org-dl">
+<dt>reference</dt><dd><a href="https://proandroiddev.com/utilizing-adb-for-daily-tasks-b52a27715ee5">Utilizing ADB for daily tasks</a></dd>
+</dl>
+
+<div id="outline-container-org27aa98a" class="outline-2">
+<h2 id="org27aa98a"><span class="section-number-2">1.</span> How to get device ip?</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh">adb shell ip -f inet addr show wlan2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc475c23" class="outline-2">
+<h2 id="orgc475c23"><span class="section-number-2">2.</span> How to send text to device?</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh">adb shell input text hello
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org36ea388" class="outline-2">
+<h2 id="org36ea388"><span class="section-number-2">3.</span> How to send key event to device?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+More keycodes can see <a href="https://developer.android.com/reference/android/view/KeyEvent">KeyEvent</a>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">66: enter</span>
+adb shell input keyevent 66
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgacf5dca" class="outline-2">
+<h2 id="orgacf5dca"><span class="section-number-2">4.</span> How to take a screenshot?</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-sh">adb shell screencap /sdcard/Pictures/$(date +%s).png
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="links"><a href="#content">T</a><a href="index.html">H</a><a id="share-img">I</a><a href="20210629191000-000_index.html">0</a></div><script src="static/dom2img.min.js" type="text/javascript"></script><script src="static/x.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
