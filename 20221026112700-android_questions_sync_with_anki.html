@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-27 Sun 09:24 -->
+<!-- 2022-11-27 Sun 09:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Android Questions Sync with Anki</title>
@@ -17,35 +17,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd7a6c9b">1. How to restart an activity?</a></li>
-<li><a href="#org5abc8ec">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
-<li><a href="#orgf8b37c1">3. How to set ellipsis for <code>EditText</code>?</a></li>
-<li><a href="#org8423911">4. How to switch edit states of <code>EditText</code>?</a></li>
-<li><a href="#org1bfa902">5. Activity 启动模式有哪些？</a></li>
-<li><a href="#org2bef2be">6. Activity 各启动模式有何差异？</a></li>
-<li><a href="#orgcf7be66">7. <code>Activity</code> 生命周期？</a></li>
-<li><a href="#org930a328">8. <code>View</code> 事件分发机制</a></li>
-<li><a href="#org6d1aec6">9. <code>ViewGroup</code> 事件分发机制</a></li>
-<li><a href="#org9cce80b">10. 如何启动 <code>Service</code>?</a></li>
-<li><a href="#org603be36">11. <code>Service</code> 生命周期？</a></li>
-<li><a href="#org3ca3dc4">12. <code>Service</code> 如何与其它组件通信？</a></li>
-<li><a href="#org388145a">13. Why use compose?</a></li>
-<li><a href="#org477e012">14. 协程的底层原理是什么？</a></li>
-<li><a href="#orgb1f7afb">15. 为什么要用协程？</a></li>
-<li><a href="#org6624b35">16. Glide 缓存机制</a></li>
+<li><a href="#org5d26ff7">1. How to restart an activity?</a></li>
+<li><a href="#orge66afbe">2. How to remove underline in <code>AppCompatEditText</code>?</a></li>
+<li><a href="#org5a28bb6">3. How to set ellipsis for <code>EditText</code>?</a></li>
+<li><a href="#org8f99909">4. How to switch edit states of <code>EditText</code>?</a></li>
+<li><a href="#org0c6bc3d">5. Activity 启动模式有哪些？</a></li>
+<li><a href="#orgc9f0d21">6. Activity 各启动模式有何差异？</a></li>
+<li><a href="#orgd305ca9">7. <code>Activity</code> 生命周期？</a></li>
+<li><a href="#org776ef1a">8. <code>View</code> 事件分发机制</a></li>
+<li><a href="#org5fc79be">9. <code>ViewGroup</code> 事件分发机制</a></li>
+<li><a href="#org9bdff81">10. 如何启动 <code>Service</code>?</a></li>
+<li><a href="#org71aa7a3">11. <code>Service</code> 生命周期？</a></li>
+<li><a href="#org0e09004">12. <code>Service</code> 如何与其它组件通信？</a></li>
+<li><a href="#org5fde3a9">13. Why use compose?</a></li>
+<li><a href="#orge017e0e">14. 协程的底层原理是什么？</a></li>
+<li><a href="#org91eae67">15. 为什么要用协程？</a></li>
+<li><a href="#org1b9751a">16. Glide 缓存机制</a></li>
 </ul>
 </div>
 </div>
 <ol class="org-ol">
 <li><a href="https://www.jianshu.com/p/2fff6fe403dd">okio</a></li>
-<li><a href="android_interview.md#org9bcb30b">questions</a></li>
+<li><a href="android_interview.md#orgbdd4357">questions</a></li>
 <li><a href="https://juejin.cn/post/6844903797270003719">https://juejin.cn/post/6844903797270003719</a></li>
 <li><a href="https://github.com/yangkun19921001/Blog/blob/master/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/Android%E9%AB%98%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/Android/Android%20%E5%9F%BA%E7%A1%80/Activity.md">https://github.com/yangkun19921001/Blog/blob/master/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/Android%E9%AB%98%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/Android/Android%20%E5%9F%BA%E7%A1%80/Activity.md</a></li>
 <li><a href="https://blog.csdn.net/qsdsn/article/details/81134143?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control#2service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">https://blog.csdn.net/qsdsn/article/details/81134143?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-13.control#2service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F</a></li>
 </ol>
 
-<div id="outline-container-orgd7a6c9b" class="outline-2">
-<h2 id="orgd7a6c9b"><span class="section-number-2">1.</span> How to restart an activity?</h2>
+<div id="outline-container-org5d26ff7" class="outline-2">
+<h2 id="org5d26ff7"><span class="section-number-2">1.</span> How to restart an activity?</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">// something wrong with cached view model
@@ -57,8 +57,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-org5abc8ec" class="outline-2">
-<h2 id="org5abc8ec"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
+<div id="outline-container-orge66afbe" class="outline-2">
+<h2 id="orge66afbe"><span class="section-number-2">2.</span> How to remove underline in <code>AppCompatEditText</code>?</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">backgroundColorResource = R.color.transparent
@@ -66,8 +66,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-orgf8b37c1" class="outline-2">
-<h2 id="orgf8b37c1"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
+<div id="outline-container-org5a28bb6" class="outline-2">
+<h2 id="org5a28bb6"><span class="section-number-2">3.</span> How to set ellipsis for <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">ellipsize = TextUtils.TruncateAt.END
@@ -75,8 +75,8 @@ startActivity(intent)
 </div>
 </div>
 </div>
-<div id="outline-container-org8423911" class="outline-2">
-<h2 id="org8423911"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
+<div id="outline-container-org8f99909" class="outline-2">
+<h2 id="org8f99909"><span class="section-number-2">4.</span> How to switch edit states of <code>EditText</code>?</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-kotlin">// non-editable
@@ -88,16 +88,16 @@ keyListener = TextKeyListener.getInstance(false, TextKeyListener.Capitalize.NONE
 </div>
 </div>
 </div>
-<div id="outline-container-org1bfa902" class="outline-2">
-<h2 id="org1bfa902"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
+<div id="outline-container-org0c6bc3d" class="outline-2">
+<h2 id="org0c6bc3d"><span class="section-number-2">5.</span> Activity 启动模式有哪些？</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Standard, SingleTop, SingleTask, SingleInstance
 </p>
 </div>
 </div>
-<div id="outline-container-org2bef2be" class="outline-2">
-<h2 id="org2bef2be"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
+<div id="outline-container-orgc9f0d21" class="outline-2">
+<h2 id="orgc9f0d21"><span class="section-number-2">6.</span> Activity 各启动模式有何差异？</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>standard</code>: 默认，启动一个就多一个 <code>Activity</code> 实例</li>
@@ -107,16 +107,16 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcf7be66" class="outline-2">
-<h2 id="orgcf7be66"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
+<div id="outline-container-orgd305ca9" class="outline-2">
+<h2 id="orgd305ca9"><span class="section-number-2">7.</span> <code>Activity</code> 生命周期？</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <code>onCreate()</code> -&gt; <code>onStart()</code> -&gt; <code>onResume()</code> -&gt; <code>onPause()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestroy()</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org930a328" class="outline-2">
-<h2 id="org930a328"><span class="section-number-2">8.</span> <code>View</code> 事件分发机制</h2>
+<div id="outline-container-org776ef1a" class="outline-2">
+<h2 id="org776ef1a"><span class="section-number-2">8.</span> <code>View</code> 事件分发机制</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 如果在 <code>onTouch</code> 的 <code>ACTION_DOWN</code> 中返回 <code>false</code>, 之后的 touch 事件将不会被触发，不影响 click 事件。
@@ -155,8 +155,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </div>
 </div>
 </div>
-<div id="outline-container-org6d1aec6" class="outline-2">
-<h2 id="org6d1aec6"><span class="section-number-2">9.</span> <code>ViewGroup</code> 事件分发机制</h2>
+<div id="outline-container-org5fc79be" class="outline-2">
+<h2 id="org5fc79be"><span class="section-number-2">9.</span> <code>ViewGroup</code> 事件分发机制</h2>
 <div class="outline-text-2" id="text-9">
 <ol class="org-ol">
 <li>事件首先传递到 <code>ViewGroup</code> 的 <code>dispatchTouchEvent</code></li>
@@ -166,8 +166,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ol>
 </div>
 </div>
-<div id="outline-container-org9cce80b" class="outline-2">
-<h2 id="org9cce80b"><span class="section-number-2">10.</span> 如何启动 <code>Service</code>?</h2>
+<div id="outline-container-org9bdff81" class="outline-2">
+<h2 id="org9bdff81"><span class="section-number-2">10.</span> 如何启动 <code>Service</code>?</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><code>startService</code>: 在主动停止前，一直存在，与调用组件生命周期无关</li>
@@ -175,8 +175,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ul>
 </div>
 </div>
-<div id="outline-container-org603be36" class="outline-2">
-<h2 id="org603be36"><span class="section-number-2">11.</span> <code>Service</code> 生命周期？</h2>
+<div id="outline-container-org71aa7a3" class="outline-2">
+<h2 id="org71aa7a3"><span class="section-number-2">11.</span> <code>Service</code> 生命周期？</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><code>startService</code>: <code>onCreate</code> -&gt; <code>onStartCommand</code> -&gt; <code>onDestroy</code></li>
@@ -185,8 +185,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ca3dc4" class="outline-2">
-<h2 id="org3ca3dc4"><span class="section-number-2">12.</span> <code>Service</code> 如何与其它组件通信？</h2>
+<div id="outline-container-org0e09004" class="outline-2">
+<h2 id="org0e09004"><span class="section-number-2">12.</span> <code>Service</code> 如何与其它组件通信？</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 通过 <code>ServiceConnection.onBind</code> 提供的 <code>IBinder</code> 实例参数通信。<code>IBinder</code> 实例可返回 <code>Service</code> 实例，然后调用其公共方法进行通信；也可在通过 <code>Messenger</code> 实现跨进程通信，在 <code>Service</code> 中创建一个 <code>Handler</code>, 再创建一个引用此 <code>Handler</code> 的 <code>Messenger</code>, 在 <code>Service</code> 的 <code>onBind</code> 中返回 <code>Messenger</code> 的 <code>binder</code>, 客户端的 <code>ServiceConnection.onBind</code> 中根据此 <code>binder</code> 创建一个 <code>Messenger</code> 实例，客户端即可用此 <code>Messenger</code> 实例发送消息给 <code>Service</code>.
@@ -197,8 +197,8 @@ Standard, SingleTop, SingleTask, SingleInstance
 </p>
 </div>
 </div>
-<div id="outline-container-org388145a" class="outline-2">
-<h2 id="org388145a"><span class="section-number-2">13.</span> Why use compose?</h2>
+<div id="outline-container-org5fde3a9" class="outline-2">
+<h2 id="org5fde3a9"><span class="section-number-2">13.</span> Why use compose?</h2>
 <div class="outline-text-2" id="text-13">
 <ol class="org-ol">
 <li>更少的代码，不用在 xml 和 kotlin 间切换</li>
@@ -208,24 +208,24 @@ Standard, SingleTop, SingleTask, SingleInstance
 </ol>
 </div>
 </div>
-<div id="outline-container-org477e012" class="outline-2">
-<h2 id="org477e012"><span class="section-number-2">14.</span> 协程的底层原理是什么？</h2>
+<div id="outline-container-orge017e0e" class="outline-2">
+<h2 id="orge017e0e"><span class="section-number-2">14.</span> 协程的底层原理是什么？</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 对 <code>suspend</code> 方法进行封装，在编译时生成对应的 <code>Continuation</code> 类，在其中保存代码块的运行状态，在合适的时机返回或取消。协程会给子协程添加一个标记，根据标记及运行状态管理子协程的调用。
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1f7afb" class="outline-2">
-<h2 id="orgb1f7afb"><span class="section-number-2">15.</span> 为什么要用协程？</h2>
+<div id="outline-container-org91eae67" class="outline-2">
+<h2 id="org91eae67"><span class="section-number-2">15.</span> 为什么要用协程？</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 可以用同步的方式写异步的代码，不用管理一个个的回调。
 </p>
 </div>
 </div>
-<div id="outline-container-org6624b35" class="outline-2">
-<h2 id="org6624b35"><span class="section-number-2">16.</span> Glide 缓存机制</h2>
+<div id="outline-container-org1b9751a" class="outline-2">
+<h2 id="org1b9751a"><span class="section-number-2">16.</span> Glide 缓存机制</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 分为内存缓存和磁盘缓存。
