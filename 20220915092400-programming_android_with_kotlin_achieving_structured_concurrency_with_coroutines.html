@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-12-18 Sun 13:14 -->
+<!-- 2022-12-18 Sun 17:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Android with Kotlin Achieving Structured Concurrency with Coroutines</title>
@@ -17,27 +17,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb23bdb8">1. Coroutine</a></li>
-<li><a href="#org1726754">2. Channel</a>
+<li><a href="#org2485be3">1. Coroutine</a></li>
+<li><a href="#orgf990d9a">2. Channel</a>
 <ul>
-<li><a href="#org86ebbd6">2.1. What is a <code>Channel</code>?</a></li>
-<li><a href="#org5663503">2.2. How to use a <code>Channel</code> without buffer?</a></li>
-<li><a href="#org5bc5d02">2.3. Which <code>Channel</code> flavors does coroutine provide?</a></li>
+<li><a href="#org1521b01">2.1. What is a <code>Channel</code>?</a></li>
+<li><a href="#org44f1b30">2.2. How to use a <code>Channel</code> without buffer?</a></li>
+<li><a href="#org8b739dc">2.3. Which <code>Channel</code> flavors does coroutine provide?</a></li>
 </ul>
 </li>
-<li><a href="#org2e31155">3. Flow</a>
+<li><a href="#org4af5004">3. Flow</a>
 <ul>
-<li><a href="#orgb8d3d82">3.1. How to make a flow from callbacked api?</a></li>
-<li><a href="#orga20c1a2">3.2. How to transform a stream of values concurrently?</a></li>
-<li><a href="#orgb1b6278">3.3. How to implement a <code>bufferTimeout</code> operator?</a></li>
-<li><a href="#org2d60e32">3.4. A <code>try/catch</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</a></li>
-<li><a href="#orgf5e0290">3.5. When to use <code>try/catch</code> with the flow?</a></li>
-<li><a href="#org0a97ffd">3.6. How to handle exceptions inside the flow?</a></li>
-<li><a href="#orgc36833f">3.7. How to build a flow with exceptions?</a></li>
-<li><a href="#org2623029">3.8. How to implement a <code>mapWithRetry</code> operator?</a></li>
-<li><a href="#org838aaad">3.9. How to share emitted values among several collectors?</a></li>
-<li><a href="#orga4bee4e">3.10. Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</a></li>
-<li><a href="#org37c0628">3.11. How to <code>replay</code> values for new collectors?</a></li>
+<li><a href="#org2bab1fa">3.1. How to make a flow from callbacked api?</a></li>
+<li><a href="#orgc13aa8c">3.2. How to transform a stream of values concurrently?</a></li>
+<li><a href="#org261fdfd">3.3. How to implement a <code>bufferTimeout</code> operator?</a></li>
+<li><a href="#org5f92b9e">3.4. A <code>try/catch</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</a></li>
+<li><a href="#orgf160bf6">3.5. When to use <code>try/catch</code> with the flow?</a></li>
+<li><a href="#org1407410">3.6. How to handle exceptions inside the flow?</a></li>
+<li><a href="#org0ab1556">3.7. How to build a flow with exceptions?</a></li>
+<li><a href="#org94f9503">3.8. How to implement a <code>mapWithRetry</code> operator?</a></li>
+<li><a href="#orgb521408">3.9. How to share emitted values among several collectors?</a></li>
+<li><a href="#org60abebc">3.10. Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</a></li>
+<li><a href="#org2778f91">3.11. How to <code>replay</code> values for new collectors?</a></li>
 </ul>
 </li>
 </ul>
@@ -48,8 +48,8 @@
 </dl>
 
 
-<div id="outline-container-orgb23bdb8" class="outline-2">
-<h2 id="orgb23bdb8"><span class="section-number-2">1.</span> Coroutine</h2>
+<div id="outline-container-org2485be3" class="outline-2">
+<h2 id="org2485be3"><span class="section-number-2">1.</span> Coroutine</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Conceptually, a <code>job</code> is a cancellable thing with a life-cycle that culminates in its completion.
@@ -198,20 +198,20 @@ Unknown concepts or API:
 </div>
 
 
-<div id="outline-container-org1726754" class="outline-2">
-<h2 id="org1726754"><span class="section-number-2">2.</span> Channel</h2>
+<div id="outline-container-orgf990d9a" class="outline-2">
+<h2 id="orgf990d9a"><span class="section-number-2">2.</span> Channel</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org86ebbd6" class="outline-3">
-<h3 id="org86ebbd6"><span class="section-number-3">2.1.</span> What is a <code>Channel</code>?</h3>
+<div id="outline-container-org1521b01" class="outline-3">
+<h3 id="org1521b01"><span class="section-number-3">2.1.</span> What is a <code>Channel</code>?</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A <code>Channel</code> can be see just like that: a queue with suspending functions <code>send</code> and <code>receive</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org5663503" class="outline-3">
-<h3 id="org5663503"><span class="section-number-3">2.2.</span> How to use a <code>Channel</code> without buffer?</h3>
+<div id="outline-container-org44f1b30" class="outline-3">
+<h3 id="org44f1b30"><span class="section-number-3">2.2.</span> How to use a <code>Channel</code> without buffer?</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun main() = runBlocking {
@@ -227,8 +227,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org5bc5d02" class="outline-3">
-<h3 id="org5bc5d02"><span class="section-number-3">2.3.</span> Which <code>Channel</code> flavors does coroutine provide?</h3>
+<div id="outline-container-org8b739dc" class="outline-3">
+<h3 id="org8b739dc"><span class="section-number-3">2.3.</span> Which <code>Channel</code> flavors does coroutine provide?</h3>
 <div class="outline-text-3" id="text-2-3">
 <ol class="org-ol">
 <li>RENDEZVOUS: 0</li>
@@ -239,12 +239,12 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org2e31155" class="outline-2">
-<h2 id="org2e31155"><span class="section-number-2">3.</span> Flow</h2>
+<div id="outline-container-org4af5004" class="outline-2">
+<h2 id="org4af5004"><span class="section-number-2">3.</span> Flow</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgb8d3d82" class="outline-3">
-<h3 id="orgb8d3d82"><span class="section-number-3">3.1.</span> How to make a flow from callbacked api?</h3>
+<div id="outline-container-org2bab1fa" class="outline-3">
+<h3 id="org2bab1fa"><span class="section-number-3">3.1.</span> How to make a flow from callbacked api?</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun messageFlow() = callbackFlow&lt;Message&gt; {
@@ -272,8 +272,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-orga20c1a2" class="outline-3">
-<h3 id="orga20c1a2"><span class="section-number-3">3.2.</span> How to transform a stream of values concurrently?</h3>
+<div id="outline-container-orgc13aa8c" class="outline-3">
+<h3 id="orgc13aa8c"><span class="section-number-3">3.2.</span> How to transform a stream of values concurrently?</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">suspend fun transform(loc: Location): Content = withContext(Dispatchers.IO) {
@@ -293,8 +293,8 @@ fun main() = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-orgb1b6278" class="outline-3">
-<h3 id="orgb1b6278"><span class="section-number-3">3.3.</span> How to implement a <code>bufferTimeout</code> operator?</h3>
+<div id="outline-container-org261fdfd" class="outline-3">
+<h3 id="org261fdfd"><span class="section-number-3">3.3.</span> How to implement a <code>bufferTimeout</code> operator?</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T&gt; Flow&lt;T&gt;.bufferTimeout(timeoutMillis: Long, capacity: Int = 16): Flow&lt;List&lt;T&gt;&gt; = flow {
@@ -352,11 +352,11 @@ suspend fun main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org2d60e32" class="outline-3">
-<h3 id="org2d60e32"><span class="section-number-3">3.4.</span> A <code>try/catch</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</h3>
+<div id="outline-container-org5f92b9e" class="outline-3">
+<h3 id="org5f92b9e"><span class="section-number-3">3.4.</span> A <code>try/catch</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</h3>
 </div>
-<div id="outline-container-orgf5e0290" class="outline-3">
-<h3 id="orgf5e0290"><span class="section-number-3">3.5.</span> When to use <code>try/catch</code> with the flow?</h3>
+<div id="outline-container-orgf160bf6" class="outline-3">
+<h3 id="orgf160bf6"><span class="section-number-3">3.5.</span> When to use <code>try/catch</code> with the flow?</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 The <code>try/catch</code> block should <i>only</i> be used to surround the collector, to handle exceptions raised from the collector itself, or (possibly, although it’s not ideal) to handle exceptions raised from the flow.
@@ -374,16 +374,16 @@ The <code>try/catch</code> block should <i>only</i> be used to surround the coll
 </div>
 </div>
 </div>
-<div id="outline-container-org0a97ffd" class="outline-3">
-<h3 id="org0a97ffd"><span class="section-number-3">3.6.</span> How to handle exceptions inside the flow?</h3>
+<div id="outline-container-org1407410" class="outline-3">
+<h3 id="org1407410"><span class="section-number-3">3.6.</span> How to handle exceptions inside the flow?</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Use <code>catch</code> operator.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc36833f" class="outline-3">
-<h3 id="orgc36833f"><span class="section-number-3">3.7.</span> How to build a flow with exceptions?</h3>
+<div id="outline-container-org0ab1556" class="outline-3">
+<h3 id="org0ab1556"><span class="section-number-3">3.7.</span> How to build a flow with exceptions?</h3>
 <div class="outline-text-3" id="text-3-7">
 <div class="org-src-container">
 <pre class="src src-kotlin">data class Image(val url: String)
@@ -430,8 +430,8 @@ fun main() = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-org2623029" class="outline-3">
-<h3 id="org2623029"><span class="section-number-3">3.8.</span> How to implement a <code>mapWithRetry</code> operator?</h3>
+<div id="outline-container-org94f9503" class="outline-3">
+<h3 id="org94f9503"><span class="section-number-3">3.8.</span> How to implement a <code>mapWithRetry</code> operator?</h3>
 <div class="outline-text-3" id="text-3-8">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T, R: Any&gt; Flow&lt;T&gt;.mapWithRetry(
@@ -471,16 +471,16 @@ fun main = runBlocking {
 </div>
 </div>
 
-<div id="outline-container-org838aaad" class="outline-3">
-<h3 id="org838aaad"><span class="section-number-3">3.9.</span> How to share emitted values among several collectors?</h3>
+<div id="outline-container-orgb521408" class="outline-3">
+<h3 id="orgb521408"><span class="section-number-3">3.9.</span> How to share emitted values among several collectors?</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 <code>SharedFlow</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orga4bee4e" class="outline-3">
-<h3 id="orga4bee4e"><span class="section-number-3">3.10.</span> Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</h3>
+<div id="outline-container-org60abebc" class="outline-3">
+<h3 id="org60abebc"><span class="section-number-3">3.10.</span> Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 默认情况下，当 <code>MutableSharedFlow</code> 使用 <code>emit</code> 发射一个值时，它会暂停直到所有订阅者开始处理这个值。
@@ -491,8 +491,8 @@ fun main = runBlocking {
 </p>
 </div>
 </div>
-<div id="outline-container-org37c0628" class="outline-3">
-<h3 id="org37c0628"><span class="section-number-3">3.11.</span> How to <code>replay</code> values for new collectors?</h3>
+<div id="outline-container-org2778f91" class="outline-3">
+<h3 id="org2778f91"><span class="section-number-3">3.11.</span> How to <code>replay</code> values for new collectors?</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 一个 <code>replay &gt; 0</code> 的共享流在内部使用一个缓存，其工作方式与通道类似。例如，如果你创建了一个 <code>replay = 3</code> 的共享流，前三个 <code>emit</code> 调用就不会暂停。在这种情况下，=emit= 和 <code>tryEmit</code> 做的是完全一样的事情：它们向缓存中添加一个新的值。
