@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-12-20 Tue 09:32 -->
+<!-- 2022-12-20 Tue 17:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kotlin Coroutine</title>
@@ -17,44 +17,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org50b74f3">1. A coroutine <code>job</code> is a {{c1::cancellable}} thing with a {{c1::life-cycle}} that culminates in its completion.</a></li>
-<li><a href="#org928136e">2. What is the <code>throttle</code> with kotlin coroutine <code>flow</code>?</a></li>
-<li><a href="#org4365130">3. Kotlin coroutine {{c1::async}} return a {{c1::Deferred}} instance, which is a specialized {{c1::Job}} with a return value.</a></li>
-<li><a href="#orgd1df3d5">4. What is a <code>CoroutineScope</code> in kotlin coroutine?</a></li>
-<li><a href="#org81f8418">5. What is a <code>CoroutineDispatcher</code> in kotlin coroutine?</a></li>
-<li><a href="#org8f11432">6. What is a <code>Job</code> in kotlin coroutine?</a></li>
-<li><a href="#org35d4ed4">7. What is a <code>SupervisorJob</code> in kotlin coroutine?</a></li>
-<li><a href="#orge8a364d">8. How to handle uncaught exceptions in a <code>launch</code> in kotlin coroutine?</a></li>
-<li><a href="#orgcc040a1">9. How to handle exceptions in a <code>async</code> in kotlin coroutine?</a></li>
-<li><a href="#org4c37c5f">10. How to convert a single-shot callback API to suspendable in kotlin coroutine?</a></li>
-<li><a href="#orgf0d9302">11. What is a <code>Channel</code> in kotlin coroutine?</a></li>
-<li><a href="#org9795532">12. How to use a <code>Channel</code> without buffer in kotlin coroutine?</a></li>
-<li><a href="#org81b4884">13. Which <code>Channel</code> flavors does kotlin coroutine provide?</a></li>
-<li><a href="#org4053f63">14. <code>Flow.collect</code> is a {{c1::terminal}} operator.</a></li>
-<li><a href="#org1ffb896">15. How to make a flow from callbacked api?</a></li>
-<li><a href="#org259a60e">16. How to transform a stream of values concurrently?</a></li>
-<li><a href="#org14840d9">17. How to implement a <code>bufferTimeout</code> operator?</a></li>
-<li><a href="#org52dff95">18. A <code>{{c1::try/catch}}</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</a></li>
-<li><a href="#orgae68807">19. When to use <code>try/catch</code> with the flow?</a></li>
-<li><a href="#org22994ad">20. How to handle exceptions inside the flow?</a></li>
-<li><a href="#orge26ccc4">21. How to build a flow with exceptions?</a></li>
-<li><a href="#org8e7e42a">22. How to implement a <code>mapWithRetry</code> operator?</a></li>
-<li><a href="#org80392f0">23. How to share emitted values among several collectors?</a></li>
-<li><a href="#org7e4c19a">24. Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</a></li>
-<li><a href="#orga20ab97">25. How to <code>replay</code> values for new collectors?</a></li>
-<li><a href="#org3a0c005">26. How to use <code>SharedFlow</code> like a <code>StateFlow</code>?</a></li>
+<li><a href="#orgc8be539">1. A coroutine <code>job</code> is a {{c1::cancellable}} thing with a {{c1::life-cycle}} that culminates in its completion.</a></li>
+<li><a href="#orga5b552e">2. What is the <code>throttle</code> with kotlin coroutine <code>flow</code>?</a></li>
+<li><a href="#orgfde6cf6">3. Kotlin coroutine {{c1::async}} return a {{c1::Deferred}} instance, which is a specialized {{c1::Job}} with a return value.</a></li>
+<li><a href="#orgc99ae81">4. What is a <code>CoroutineScope</code> in kotlin coroutine?</a></li>
+<li><a href="#org3ebb16b">5. What is a <code>CoroutineDispatcher</code> in kotlin coroutine?</a></li>
+<li><a href="#org0dd7c36">6. What is a <code>Job</code> in kotlin coroutine?</a></li>
+<li><a href="#org31ad1d6">7. What is a <code>SupervisorJob</code> in kotlin coroutine?</a></li>
+<li><a href="#orga540181">8. How to handle uncaught exceptions in a <code>launch</code> in kotlin coroutine?</a></li>
+<li><a href="#orge4422dd">9. How to handle exceptions in a <code>async</code> in kotlin coroutine?</a></li>
+<li><a href="#org8066aa3">10. How to convert a single-shot callback API to suspendable in kotlin coroutine?</a></li>
+<li><a href="#org6e7910c">11. What is a <code>Channel</code> in kotlin coroutine?</a></li>
+<li><a href="#org0fe636a">12. How to use a <code>Channel</code> without buffer in kotlin coroutine?</a></li>
+<li><a href="#org5a27142">13. Which <code>Channel</code> flavors does kotlin coroutine provide?</a></li>
+<li><a href="#org78b38b2">14. <code>Flow.collect</code> is a {{c1::terminal}} operator.</a></li>
+<li><a href="#orgfbd9222">15. How to make a flow from callbacked api?</a></li>
+<li><a href="#orge751e3e">16. How to transform a stream of values concurrently?</a></li>
+<li><a href="#org8078f7c">17. How to implement a <code>bufferTimeout</code> operator?</a></li>
+<li><a href="#org136cb7f">18. A <code>{{c1::try/catch}}</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</a></li>
+<li><a href="#orgfa53160">19. When to use <code>try/catch</code> with the flow?</a></li>
+<li><a href="#orgbd8d6df">20. How to handle exceptions inside the flow?</a></li>
+<li><a href="#org358e12b">21. How to build a flow with exceptions?</a></li>
+<li><a href="#org12c87f3">22. How to implement a <code>mapWithRetry</code> operator?</a></li>
+<li><a href="#org58240f7">23. How to share emitted values among several collectors?</a></li>
+<li><a href="#org860e6f0">24. Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</a></li>
+<li><a href="#org07669fb">25. How to <code>replay</code> values for new collectors?</a></li>
+<li><a href="#orgb36e892">26. How to use <code>SharedFlow</code> like a <code>StateFlow</code>?</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org50b74f3" class="outline-2">
-<h2 id="org50b74f3"><span class="section-number-2">1.</span> A coroutine <code>job</code> is a {{c1::cancellable}} thing with a {{c1::life-cycle}} that culminates in its completion.</h2>
+<div id="outline-container-orgc8be539" class="outline-2">
+<h2 id="orgc8be539"><span class="section-number-2">1.</span> A coroutine <code>job</code> is a {{c1::cancellable}} thing with a {{c1::life-cycle}} that culminates in its completion.</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 </div>
-<div id="outline-container-org928136e" class="outline-2">
-<h2 id="org928136e"><span class="section-number-2">2.</span> What is the <code>throttle</code> with kotlin coroutine <code>flow</code>?</h2>
+<div id="outline-container-orga5b552e" class="outline-2">
+<h2 id="orga5b552e"><span class="section-number-2">2.</span> What is the <code>throttle</code> with kotlin coroutine <code>flow</code>?</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T&gt; Flow&lt;T&gt;.sample(periodMillis: Long): Flow&lt;T&gt;
@@ -63,13 +63,13 @@ fun &lt;T&gt; Flow&lt;T&gt;.sample(period: Duration): Flow&lt;T&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org4365130" class="outline-2">
-<h2 id="org4365130"><span class="section-number-2">3.</span> Kotlin coroutine {{c1::async}} return a {{c1::Deferred}} instance, which is a specialized {{c1::Job}} with a return value.</h2>
+<div id="outline-container-orgfde6cf6" class="outline-2">
+<h2 id="orgfde6cf6"><span class="section-number-2">3.</span> Kotlin coroutine {{c1::async}} return a {{c1::Deferred}} instance, which is a specialized {{c1::Job}} with a return value.</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 </div>
-<div id="outline-container-orgd1df3d5" class="outline-2">
-<h2 id="orgd1df3d5"><span class="section-number-2">4.</span> What is a <code>CoroutineScope</code> in kotlin coroutine?</h2>
+<div id="outline-container-orgc99ae81" class="outline-2">
+<h2 id="orgc99ae81"><span class="section-number-2">4.</span> What is a <code>CoroutineScope</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A <code>CoroutineScope</code> is an object that plays the role of the parent in Structured cocurrency&#x2013;its purpose is to manage and monitor the coroutines you create inside it.
@@ -87,32 +87,32 @@ In other words, a <code>CoroutineScope</code> is a container for a <code>Corouti
 </div>
 </div>
 </div>
-<div id="outline-container-org81f8418" class="outline-2">
-<h2 id="org81f8418"><span class="section-number-2">5.</span> What is a <code>CoroutineDispatcher</code> in kotlin coroutine?</h2>
+<div id="outline-container-org3ebb16b" class="outline-2">
+<h2 id="org3ebb16b"><span class="section-number-2">5.</span> What is a <code>CoroutineDispatcher</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 A <code>CoroutineContext</code> used to specify the thread scheduler.
 </p>
 </div>
 </div>
-<div id="outline-container-org8f11432" class="outline-2">
-<h2 id="org8f11432"><span class="section-number-2">6.</span> What is a <code>Job</code> in kotlin coroutine?</h2>
+<div id="outline-container-org0dd7c36" class="outline-2">
+<h2 id="org0dd7c36"><span class="section-number-2">6.</span> What is a <code>Job</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 A <code>CoroutineContext</code> used to save coroutine's life-cycle.
 </p>
 </div>
 </div>
-<div id="outline-container-org35d4ed4" class="outline-2">
-<h2 id="org35d4ed4"><span class="section-number-2">7.</span> What is a <code>SupervisorJob</code> in kotlin coroutine?</h2>
+<div id="outline-container-org31ad1d6" class="outline-2">
+<h2 id="org31ad1d6"><span class="section-number-2">7.</span> What is a <code>SupervisorJob</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 It's a special <code>Job</code>, it's children can fail independently of each other.
 </p>
 </div>
 </div>
-<div id="outline-container-orge8a364d" class="outline-2">
-<h2 id="orge8a364d"><span class="section-number-2">8.</span> How to handle uncaught exceptions in a <code>launch</code> in kotlin coroutine?</h2>
+<div id="outline-container-orga540181" class="outline-2">
+<h2 id="orga540181"><span class="section-number-2">8.</span> How to handle uncaught exceptions in a <code>launch</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Set a <code>CoroutineExceptionHandler</code> to <code>CoroutineScope</code>:
@@ -132,8 +132,8 @@ launch(ceh) {
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc040a1" class="outline-2">
-<h2 id="orgcc040a1"><span class="section-number-2">9.</span> How to handle exceptions in a <code>async</code> in kotlin coroutine?</h2>
+<div id="outline-container-orge4422dd" class="outline-2">
+<h2 id="orge4422dd"><span class="section-number-2">9.</span> How to handle exceptions in a <code>async</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Handle it when call <code>Deferred.await</code>:
@@ -154,8 +154,8 @@ try {
 </div>
 </div>
 </div>
-<div id="outline-container-org4c37c5f" class="outline-2">
-<h2 id="org4c37c5f"><span class="section-number-2">10.</span> How to convert a single-shot callback API to suspendable in kotlin coroutine?</h2>
+<div id="outline-container-org8066aa3" class="outline-2">
+<h2 id="org8066aa3"><span class="section-number-2">10.</span> How to convert a single-shot callback API to suspendable in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-kotlin">inline suspend fun &lt;T&gt; suspendCancellableCoroutine(crossinline block: (CancellableContinuation&lt;T&gt;) -&gt; Unit): T
@@ -179,16 +179,16 @@ suspend fun awaitCallback(): T = suspendCancellableCoroutine { continuation -&gt
 </div>
 </div>
 </div>
-<div id="outline-container-orgf0d9302" class="outline-2">
-<h2 id="orgf0d9302"><span class="section-number-2">11.</span> What is a <code>Channel</code> in kotlin coroutine?</h2>
+<div id="outline-container-org6e7910c" class="outline-2">
+<h2 id="org6e7910c"><span class="section-number-2">11.</span> What is a <code>Channel</code> in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 A <code>Channel</code> can be see just like that: a queue with suspending functions <code>send</code> and <code>receive</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org9795532" class="outline-2">
-<h2 id="org9795532"><span class="section-number-2">12.</span> How to use a <code>Channel</code> without buffer in kotlin coroutine?</h2>
+<div id="outline-container-org0fe636a" class="outline-2">
+<h2 id="org0fe636a"><span class="section-number-2">12.</span> How to use a <code>Channel</code> without buffer in kotlin coroutine?</h2>
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun main() = runBlocking {
@@ -204,8 +204,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org81b4884" class="outline-2">
-<h2 id="org81b4884"><span class="section-number-2">13.</span> Which <code>Channel</code> flavors does kotlin coroutine provide?</h2>
+<div id="outline-container-org5a27142" class="outline-2">
+<h2 id="org5a27142"><span class="section-number-2">13.</span> Which <code>Channel</code> flavors does kotlin coroutine provide?</h2>
 <div class="outline-text-2" id="text-13">
 <ol class="org-ol">
 <li>RENDEZVOUS: 0</li>
@@ -215,13 +215,13 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </ol>
 </div>
 </div>
-<div id="outline-container-org4053f63" class="outline-2">
-<h2 id="org4053f63"><span class="section-number-2">14.</span> <code>Flow.collect</code> is a {{c1::terminal}} operator.</h2>
+<div id="outline-container-org78b38b2" class="outline-2">
+<h2 id="org78b38b2"><span class="section-number-2">14.</span> <code>Flow.collect</code> is a {{c1::terminal}} operator.</h2>
 <div class="outline-text-2" id="text-14">
 </div>
 </div>
-<div id="outline-container-org1ffb896" class="outline-2">
-<h2 id="org1ffb896"><span class="section-number-2">15.</span> How to make a flow from callbacked api?</h2>
+<div id="outline-container-orgfbd9222" class="outline-2">
+<h2 id="orgfbd9222"><span class="section-number-2">15.</span> How to make a flow from callbacked api?</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun messageFlow() = callbackFlow&lt;Message&gt; {
@@ -249,8 +249,8 @@ A <code>Channel</code> can be see just like that: a queue with suspending functi
 </div>
 </div>
 </div>
-<div id="outline-container-org259a60e" class="outline-2">
-<h2 id="org259a60e"><span class="section-number-2">16.</span> How to transform a stream of values concurrently?</h2>
+<div id="outline-container-orge751e3e" class="outline-2">
+<h2 id="orge751e3e"><span class="section-number-2">16.</span> How to transform a stream of values concurrently?</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <pre class="src src-kotlin">suspend fun transform(loc: Location): Content = withContext(Dispatchers.IO) {
@@ -270,8 +270,8 @@ fun main() = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-org14840d9" class="outline-2">
-<h2 id="org14840d9"><span class="section-number-2">17.</span> How to implement a <code>bufferTimeout</code> operator?</h2>
+<div id="outline-container-org8078f7c" class="outline-2">
+<h2 id="org8078f7c"><span class="section-number-2">17.</span> How to implement a <code>bufferTimeout</code> operator?</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T&gt; Flow&lt;T&gt;.bufferTimeout(timeoutMillis: Long, capacity: Int = 16): Flow&lt;List&lt;T&gt;&gt; = flow {
@@ -329,13 +329,13 @@ suspend fun main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org52dff95" class="outline-2">
-<h2 id="org52dff95"><span class="section-number-2">18.</span> A <code>{{c1::try/catch}}</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</h2>
+<div id="outline-container-org136cb7f" class="outline-2">
+<h2 id="org136cb7f"><span class="section-number-2">18.</span> A <code>{{c1::try/catch}}</code> statement inside a flow builder might catch <i>downstream</i> exceptions &#x2013; which includes exceptions raised during the collection of the flow.</h2>
 <div class="outline-text-2" id="text-18">
 </div>
 </div>
-<div id="outline-container-orgae68807" class="outline-2">
-<h2 id="orgae68807"><span class="section-number-2">19.</span> When to use <code>try/catch</code> with the flow?</h2>
+<div id="outline-container-orgfa53160" class="outline-2">
+<h2 id="orgfa53160"><span class="section-number-2">19.</span> When to use <code>try/catch</code> with the flow?</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 The <code>try/catch</code> block should <i>only</i> be used to surround the collector, to handle exceptions raised from the collector itself, or (possibly, although it’s not ideal) to handle exceptions raised from the flow.
@@ -353,16 +353,16 @@ The <code>try/catch</code> block should <i>only</i> be used to surround the coll
 </div>
 </div>
 </div>
-<div id="outline-container-org22994ad" class="outline-2">
-<h2 id="org22994ad"><span class="section-number-2">20.</span> How to handle exceptions inside the flow?</h2>
+<div id="outline-container-orgbd8d6df" class="outline-2">
+<h2 id="orgbd8d6df"><span class="section-number-2">20.</span> How to handle exceptions inside the flow?</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 Use <code>catch</code> operator.
 </p>
 </div>
 </div>
-<div id="outline-container-orge26ccc4" class="outline-2">
-<h2 id="orge26ccc4"><span class="section-number-2">21.</span> How to build a flow with exceptions?</h2>
+<div id="outline-container-org358e12b" class="outline-2">
+<h2 id="org358e12b"><span class="section-number-2">21.</span> How to build a flow with exceptions?</h2>
 <div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 <pre class="src src-kotlin">data class Image(val url: String)
@@ -409,8 +409,8 @@ fun main() = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-org8e7e42a" class="outline-2">
-<h2 id="org8e7e42a"><span class="section-number-2">22.</span> How to implement a <code>mapWithRetry</code> operator?</h2>
+<div id="outline-container-org12c87f3" class="outline-2">
+<h2 id="org12c87f3"><span class="section-number-2">22.</span> How to implement a <code>mapWithRetry</code> operator?</h2>
 <div class="outline-text-2" id="text-22">
 <div class="org-src-container">
 <pre class="src src-kotlin">fun &lt;T, R: Any&gt; Flow&lt;T&gt;.mapWithRetry(
@@ -449,16 +449,16 @@ fun main = runBlocking {
 </div>
 </div>
 </div>
-<div id="outline-container-org80392f0" class="outline-2">
-<h2 id="org80392f0"><span class="section-number-2">23.</span> How to share emitted values among several collectors?</h2>
+<div id="outline-container-org58240f7" class="outline-2">
+<h2 id="org58240f7"><span class="section-number-2">23.</span> How to share emitted values among several collectors?</h2>
 <div class="outline-text-2" id="text-23">
 <p>
 <code>SharedFlow</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org7e4c19a" class="outline-2">
-<h2 id="org7e4c19a"><span class="section-number-2">24.</span> Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</h2>
+<div id="outline-container-org860e6f0" class="outline-2">
+<h2 id="org860e6f0"><span class="section-number-2">24.</span> Why are there two methods to emit values exposed by <code>MutableSharedFlow</code>?</h2>
 <div class="outline-text-2" id="text-24">
 <p>
 默认情况下，当 <code>MutableSharedFlow</code> 使用 <code>emit</code> 发射一个值时，它会暂停直到所有订阅者开始处理这个值。
@@ -469,8 +469,8 @@ fun main = runBlocking {
 </p>
 </div>
 </div>
-<div id="outline-container-orga20ab97" class="outline-2">
-<h2 id="orga20ab97"><span class="section-number-2">25.</span> How to <code>replay</code> values for new collectors?</h2>
+<div id="outline-container-org07669fb" class="outline-2">
+<h2 id="org07669fb"><span class="section-number-2">25.</span> How to <code>replay</code> values for new collectors?</h2>
 <div class="outline-text-2" id="text-25">
 <p>
 一个 <code>replay &gt; 0</code> 的共享流在内部使用一个缓存，其工作方式与通道类似。例如，如果你创建了一个 <code>replay = 3</code> 的共享流，前三个 <code>emit</code> 调用就不会暂停。在这种情况下，=emit= 和 <code>tryEmit</code> 做的是完全一样的事情：它们向缓存中添加一个新的值。
@@ -494,8 +494,8 @@ fun main = runBlocking {
 </p>
 </div>
 </div>
-<div id="outline-container-org3a0c005" class="outline-2">
-<h2 id="org3a0c005"><span class="section-number-2">26.</span> How to use <code>SharedFlow</code> like a <code>StateFlow</code>?</h2>
+<div id="outline-container-orgb36e892" class="outline-2">
+<h2 id="orgb36e892"><span class="section-number-2">26.</span> How to use <code>SharedFlow</code> like a <code>StateFlow</code>?</h2>
 <div class="outline-text-2" id="text-26">
 <div class="org-src-container">
 <pre class="src src-kotlin">val shared = MutableSharedFlow(
