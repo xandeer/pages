@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-01-01 Sun 14:56 -->
+<!-- 2023-01-01 Sun 19:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective Kotlin</title>
@@ -17,152 +17,152 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org42a0966">1. Introduction: Be pragmatic</a>
+<li><a href="#org067902d">1. Introduction: Be pragmatic</a>
 <ul>
-<li><a href="#org6eaf845">1.1. The philosophy of Kotlin</a></li>
-<li><a href="#org5f09ee3">1.2. The purpose of this book</a></li>
-<li><a href="#org0b7d379">1.3. For whom is this book written?</a></li>
-<li><a href="#orgf283d7c">1.4. Book design</a></li>
-<li><a href="#org9c8082e">1.5. Chapters organization</a></li>
-<li><a href="#org3e5bb6b">1.6. How should this book be read?</a></li>
-<li><a href="#orgd734605">1.7. Labels</a></li>
-<li><a href="#org03cfe3b">1.8. Suggestions</a></li>
+<li><a href="#org5ec19f1">1.1. The philosophy of Kotlin</a></li>
+<li><a href="#orgaf26237">1.2. The purpose of this book</a></li>
+<li><a href="#org2adaab8">1.3. For whom is this book written?</a></li>
+<li><a href="#org4f405af">1.4. Book design</a></li>
+<li><a href="#orgbed9767">1.5. Chapters organization</a></li>
+<li><a href="#org5c0ea01">1.6. How should this book be read?</a></li>
+<li><a href="#org5162e7c">1.7. Labels</a></li>
+<li><a href="#orgce98f48">1.8. Suggestions</a></li>
 </ul>
 </li>
-<li><a href="#org74fb642">2. Part 1: Good code</a>
+<li><a href="#orge52e408">2. Part 1: Good code</a>
 <ul>
-<li><a href="#org23728fb">2.1. Chapter 1: Safety</a>
+<li><a href="#org8f4c9eb">2.1. Chapter 1: Safety</a>
 <ul>
-<li><a href="#org210986b">2.1.1. Item 1: Limit mutability</a></li>
-<li><a href="#org86a0387">2.1.2. Item 2: Minimize the scope of variables</a></li>
-<li><a href="#org61b67c9">2.1.3. Item 3: Eliminate platform types as soon as possible</a></li>
-<li><a href="#org0fffa51">2.1.4. Item 4: Do not expose inferred types</a></li>
-<li><a href="#orgbc8cadd">2.1.5. Item 5: Specify your expectations on arguments and state</a></li>
-<li><a href="#org2363085">2.1.6. Item 8: Handle nulls properly</a>
+<li><a href="#orgfa44dc2">2.1.1. Item 1: Limit mutability</a></li>
+<li><a href="#org8482bcf">2.1.2. Item 2: Minimize the scope of variables</a></li>
+<li><a href="#org1b88ae6">2.1.3. Item 3: Eliminate platform types as soon as possible</a></li>
+<li><a href="#org871ca87">2.1.4. Item 4: Do not expose inferred types</a></li>
+<li><a href="#org4012cbc">2.1.5. Item 5: Specify your expectations on arguments and state</a></li>
+<li><a href="#orgdebc923">2.1.6. Item 8: Handle nulls properly</a>
 <ul>
-<li><a href="#org60601fd">2.1.6.1. Handling nulls safely</a></li>
-<li><a href="#org4298ce3">2.1.6.2. Throw an error</a></li>
-<li><a href="#org47d9e4d">2.1.6.3. Avoiding meaningless nullability</a></li>
-<li><a href="#org4cacdcd">2.1.6.4. <code>lateinit</code> property and <code>notNull</code> delegate</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org3119954">2.2. Chatper 2: Readability</a>
-<ul>
-<li><a href="#org515a5b7">2.2.1. Item 11: Design for readability</a>
-<ul>
-<li><a href="#orge9ce116">2.2.1.1. Reducing cognitive load</a></li>
-<li><a href="#org10db5e4">2.2.1.2. Do not get extreme</a></li>
-<li><a href="#orgb94e68a">2.2.1.3. Conventions</a></li>
-</ul>
-</li>
-<li><a href="#orge66a30f">2.2.2. Item 12: Operator meaning should be consistent with its function name</a></li>
-<li><a href="#org25de682">2.2.3. Item 16: Properties should represent state, not behavior</a></li>
-<li><a href="#orgcb31cff">2.2.4. Item 17: Consider naming arguments</a></li>
-<li><a href="#org9b88678">2.2.5. Item 18: Respect coding conventions</a></li>
+<li><a href="#orgf68b127">2.1.6.1. Handling nulls safely</a></li>
+<li><a href="#orgf410d6f">2.1.6.2. Throw an error</a></li>
+<li><a href="#org632275e">2.1.6.3. Avoiding meaningless nullability</a></li>
+<li><a href="#org218e3df">2.1.6.4. <code>lateinit</code> property and <code>notNull</code> delegate</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org352b94d">3. Part 2: Code design</a>
+<li><a href="#org98d9fad">2.2. Chatper 2: Readability</a>
 <ul>
-<li><a href="#orgdec8aab">3.1. Chapter 3: Reusability</a>
+<li><a href="#orgea9abd3">2.2.1. Item 11: Design for readability</a>
 <ul>
-<li><a href="#org5348b45">3.1.1. Item 19: Do not repeat knowledge</a></li>
-<li><a href="#org33c3a6c">3.1.2. Item 20: Do not repeat common algorithms</a></li>
-<li><a href="#orgd7a463d">3.1.3. Item 21: Use Property delegation to extract common property patterns</a></li>
-<li><a href="#org3e8b513">3.1.4. Item 23: Avoid shadowing type parameters</a></li>
-<li><a href="#org152d29e">3.1.5. Item 24: Consider variance for generic types</a></li>
-<li><a href="#orgf45a7c4">3.1.6. Item 25: Reuse between different platforms by extracting common modules</a></li>
+<li><a href="#org56c0824">2.2.1.1. Reducing cognitive load</a></li>
+<li><a href="#orgf8ed677">2.2.1.2. Do not get extreme</a></li>
+<li><a href="#org96c40cf">2.2.1.3. Conventions</a></li>
 </ul>
 </li>
-<li><a href="#org385c69e">3.2. Chapter 4: Abstraction design</a>
-<ul>
-<li><a href="#org0bd581b">3.2.1. Item 26: Each function should be written in terms of a single level of abstraction</a></li>
-<li><a href="#orgcf66f23">3.2.2. Item 27: Use abstraction to protect code against changes</a>
-<ul>
-<li><a href="#orgb1c8855">3.2.2.1. Abstractions give freedom</a></li>
-<li><a href="#orgb48c053">3.2.2.2. Problems with abstraction</a></li>
-</ul>
-</li>
-<li><a href="#org980e8c6">3.2.3. Item 28: Specify API stability</a></li>
-<li><a href="#orge4c454a">3.2.4. Item 29: Consider wrapping external API</a></li>
-<li><a href="#orgfe3219c">3.2.5. Item 30: Minimize elements visibility</a></li>
-<li><a href="#org8611a08">3.2.6. Item 31: Define contract with documentation</a></li>
-<li><a href="#orgf4dad37">3.2.7. Item 32: Respect abstraction contracts</a></li>
-</ul>
-</li>
-<li><a href="#orgdbe8ac4">3.3. Chapter 5: Object creation</a>
-<ul>
-<li><a href="#org6fb15a8">3.3.1. Item 33: Consider factory functions instead of constructors</a>
-<ul>
-<li><a href="#orgf768c89">3.3.1.1. Companion object factory function</a></li>
-<li><a href="#orgd7cfcb8">3.3.1.2. Extension factory functions</a></li>
-<li><a href="#org32ec02a">3.3.1.3. Top-level functions</a></li>
-<li><a href="#orgc651b56">3.3.1.4. Fake constructors</a></li>
-<li><a href="#orgfbb7bb6">3.3.1.5. Methods on a factory class</a></li>
-</ul>
-</li>
-<li><a href="#org95d66a1">3.3.2. Item 34: Consider a primary constructor with named optional arguments</a></li>
-<li><a href="#org6a270f2">3.3.3. Item 35: Consider defining a DSL for complex object creation</a></li>
-</ul>
-</li>
-<li><a href="#orgad8698b">3.4. Chapter 6: Class design</a>
-<ul>
-<li><a href="#org5b979fe">3.4.1. Item 36: Prefer composition over inheritance</a></li>
-<li><a href="#orgd518bf3">3.4.2. Item 37: Use the data modifier to represent a bundle of data</a></li>
-<li><a href="#org5d8fd8f">3.4.3. Item 38: Use function types instead of interfaces to pass operations and actions</a></li>
-<li><a href="#orgf8cb079">3.4.4. Item 39: Prefer class hierarchies to tagged classes</a></li>
-<li><a href="#org67d0f0e">3.4.5. Item 40: Respect the contract of <code>equals</code></a>
-<ul>
-<li><a href="#orgd270ff0">3.4.5.1. Equality</a></li>
-<li><a href="#org5a36e62">3.4.5.2. Why do we need equals?</a></li>
-<li><a href="#org0a39edc">3.4.5.3. When to implement <code>equals</code> ourselves</a></li>
-</ul>
-</li>
-<li><a href="#orgacf7c22">3.4.6. Item 41: Respect the contract of <code>hashCode</code></a>
-<ul>
-<li><a href="#orgbb7dabb">3.4.6.1. Hash table</a></li>
-<li><a href="#org51f2524">3.4.6.2. Problem with mutability</a></li>
-</ul>
-</li>
-<li><a href="#org9a7975f">3.4.7. Item 42: Respect the contract of <code>compareTo</code></a></li>
-<li><a href="#org2841ce8">3.4.8. Item 43: Consider extracting non-essential parts of your API into extensions</a></li>
-<li><a href="#orgc305aa4">3.4.9. Item 44: Avoid member extensions</a></li>
+<li><a href="#org851a95f">2.2.2. Item 12: Operator meaning should be consistent with its function name</a></li>
+<li><a href="#orgdd7a01d">2.2.3. Item 16: Properties should represent state, not behavior</a></li>
+<li><a href="#orgb41909c">2.2.4. Item 17: Consider naming arguments</a></li>
+<li><a href="#org7afe558">2.2.5. Item 18: Respect coding conventions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8355344">4. Part 3: Efficiency</a>
+<li><a href="#org7d13f34">3. Part 2: Code design</a>
 <ul>
-<li><a href="#org02dcdba">4.1. Chapter 7: Make it cheap</a>
+<li><a href="#org29b5041">3.1. Chapter 3: Reusability</a>
 <ul>
-<li><a href="#org7baabb6">4.1.1. Item 46: Use inline modifier for functions with parameters of functional types</a>
-<ul>
-<li><a href="#orgdb7f5b3">4.1.1.1. A type argument can be reified</a></li>
-<li><a href="#orga8ef3c2">4.1.1.2. Functions with functional parameters are faster when they are inlined</a></li>
-<li><a href="#orgf8f4d05">4.1.1.3. Non-local return is allowed</a></li>
-<li><a href="#org8d164e5">4.1.1.4. Costs of inline modifier</a></li>
-<li><a href="#orgebf13f0">4.1.1.5. Crossinline and noinline</a></li>
+<li><a href="#org32fd35e">3.1.1. Item 19: Do not repeat knowledge</a></li>
+<li><a href="#org2d8ac10">3.1.2. Item 20: Do not repeat common algorithms</a></li>
+<li><a href="#orged3c3fb">3.1.3. Item 21: Use Property delegation to extract common property patterns</a></li>
+<li><a href="#orgd859dd2">3.1.4. Item 23: Avoid shadowing type parameters</a></li>
+<li><a href="#org11a9c90">3.1.5. Item 24: Consider variance for generic types</a></li>
+<li><a href="#org5dac026">3.1.6. Item 25: Reuse between different platforms by extracting common modules</a></li>
 </ul>
 </li>
-<li><a href="#orgb03e508">4.1.2. Item 47: Consider using inline classes</a>
+<li><a href="#org60a2051">3.2. Chapter 4: Abstraction design</a>
 <ul>
-<li><a href="#org5ff3ee3">4.1.2.1. Indicate unit of measure</a></li>
-<li><a href="#org8e796b8">4.1.2.2. Protect us from type misuse</a></li>
-<li><a href="#org3de1088">4.1.2.3. Inline classes and interfaces</a></li>
-<li><a href="#org7a7c359">4.1.2.4. Typealias</a></li>
+<li><a href="#org7be0827">3.2.1. Item 26: Each function should be written in terms of a single level of abstraction</a></li>
+<li><a href="#org3878296">3.2.2. Item 27: Use abstraction to protect code against changes</a>
+<ul>
+<li><a href="#orgb9a8843">3.2.2.1. Abstractions give freedom</a></li>
+<li><a href="#orgfd5b806">3.2.2.2. Problems with abstraction</a></li>
 </ul>
 </li>
-<li><a href="#orgba96094">4.1.3. Item 48: Eliminate obsolete object references</a></li>
+<li><a href="#org90c85cb">3.2.3. Item 28: Specify API stability</a></li>
+<li><a href="#orgfc86ef0">3.2.4. Item 29: Consider wrapping external API</a></li>
+<li><a href="#orge51e393">3.2.5. Item 30: Minimize elements visibility</a></li>
+<li><a href="#org766f433">3.2.6. Item 31: Define contract with documentation</a></li>
+<li><a href="#orga6a25cd">3.2.7. Item 32: Respect abstraction contracts</a></li>
 </ul>
 </li>
-<li><a href="#org5330fc1">4.2. Chapter 8: Efficient collection processing</a>
+<li><a href="#orga0f7b2e">3.3. Chapter 5: Object creation</a>
 <ul>
-<li><a href="#org819574b">4.2.1. Item 50: Limit the number of operations</a></li>
-<li><a href="#orgb9c13dd">4.2.2. Item 51: Consider Arrays with primitives for performance-critical processing</a></li>
-<li><a href="#orga5f3edf">4.2.3. Item 52: Consider using mutable collections</a></li>
+<li><a href="#orge95daac">3.3.1. Item 33: Consider factory functions instead of constructors</a>
+<ul>
+<li><a href="#org9ef3364">3.3.1.1. Companion object factory function</a></li>
+<li><a href="#orga0d7132">3.3.1.2. Extension factory functions</a></li>
+<li><a href="#org78fe50f">3.3.1.3. Top-level functions</a></li>
+<li><a href="#org5495aae">3.3.1.4. Fake constructors</a></li>
+<li><a href="#orgb612565">3.3.1.5. Methods on a factory class</a></li>
+</ul>
+</li>
+<li><a href="#org5e69f5d">3.3.2. Item 34: Consider a primary constructor with named optional arguments</a></li>
+<li><a href="#orgf323560">3.3.3. Item 35: Consider defining a DSL for complex object creation</a></li>
+</ul>
+</li>
+<li><a href="#orgc8e07e8">3.4. Chapter 6: Class design</a>
+<ul>
+<li><a href="#org7ce36a4">3.4.1. Item 36: Prefer composition over inheritance</a></li>
+<li><a href="#orgb91713c">3.4.2. Item 37: Use the data modifier to represent a bundle of data</a></li>
+<li><a href="#org5c8db80">3.4.3. Item 38: Use function types instead of interfaces to pass operations and actions</a></li>
+<li><a href="#org809aca3">3.4.4. Item 39: Prefer class hierarchies to tagged classes</a></li>
+<li><a href="#org8a57eda">3.4.5. Item 40: Respect the contract of <code>equals</code></a>
+<ul>
+<li><a href="#org1408db2">3.4.5.1. Equality</a></li>
+<li><a href="#orgdef8d34">3.4.5.2. Why do we need equals?</a></li>
+<li><a href="#org9cdd6a8">3.4.5.3. When to implement <code>equals</code> ourselves</a></li>
+</ul>
+</li>
+<li><a href="#org11f8bd6">3.4.6. Item 41: Respect the contract of <code>hashCode</code></a>
+<ul>
+<li><a href="#org7661f72">3.4.6.1. Hash table</a></li>
+<li><a href="#org8f92b76">3.4.6.2. Problem with mutability</a></li>
+</ul>
+</li>
+<li><a href="#orgded132c">3.4.7. Item 42: Respect the contract of <code>compareTo</code></a></li>
+<li><a href="#org731ca31">3.4.8. Item 43: Consider extracting non-essential parts of your API into extensions</a></li>
+<li><a href="#orgba9c482">3.4.9. Item 44: Avoid member extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org34033a1">4. Part 3: Efficiency</a>
+<ul>
+<li><a href="#orgc652793">4.1. Chapter 7: Make it cheap</a>
+<ul>
+<li><a href="#org87ea243">4.1.1. Item 46: Use inline modifier for functions with parameters of functional types</a>
+<ul>
+<li><a href="#org6902e11">4.1.1.1. A type argument can be reified</a></li>
+<li><a href="#org1bf9f06">4.1.1.2. Functions with functional parameters are faster when they are inlined</a></li>
+<li><a href="#orgaf69838">4.1.1.3. Non-local return is allowed</a></li>
+<li><a href="#org5407741">4.1.1.4. Costs of inline modifier</a></li>
+<li><a href="#orgf98dbd4">4.1.1.5. Crossinline and noinline</a></li>
+</ul>
+</li>
+<li><a href="#org117f546">4.1.2. Item 47: Consider using inline classes</a>
+<ul>
+<li><a href="#orgd1c7f40">4.1.2.1. Indicate unit of measure</a></li>
+<li><a href="#org94cd5cc">4.1.2.2. Protect us from type misuse</a></li>
+<li><a href="#org0c38c5f">4.1.2.3. Inline classes and interfaces</a></li>
+<li><a href="#orge327572">4.1.2.4. Typealias</a></li>
+</ul>
+</li>
+<li><a href="#org78d339e">4.1.3. Item 48: Eliminate obsolete object references</a></li>
+</ul>
+</li>
+<li><a href="#org11539c3">4.2. Chapter 8: Efficient collection processing</a>
+<ul>
+<li><a href="#org62ffc73">4.2.1. Item 50: Limit the number of operations</a></li>
+<li><a href="#orgb0928c1">4.2.2. Item 51: Consider Arrays with primitives for performance-critical processing</a></li>
+<li><a href="#orgdf34f52">4.2.3. Item 52: Consider using mutable collections</a></li>
 </ul>
 </li>
 </ul>
@@ -175,12 +175,12 @@
 <dt>start</dt><dd><span class="timestamp-wrapper"><span class="timestamp">&lt;2022-08-17 Wed 10:09&gt;</span></span></dd>
 </dl>
 
-<div id="outline-container-org42a0966" class="outline-2">
-<h2 id="org42a0966"><span class="section-number-2">1.</span> Introduction: Be pragmatic</h2>
+<div id="outline-container-org067902d" class="outline-2">
+<h2 id="org067902d"><span class="section-number-2">1.</span> Introduction: Be pragmatic</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org6eaf845" class="outline-3">
-<h3 id="org6eaf845"><span class="section-number-3">1.1.</span> The philosophy of Kotlin</h3>
+<div id="outline-container-org5ec19f1" class="outline-3">
+<h3 id="org5ec19f1"><span class="section-number-3">1.1.</span> The philosophy of Kotlin</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The central point of Kotlin's philosophy is pragmatism. This means that in the end, all choices need to serve business needs, like:
@@ -194,8 +194,8 @@ The central point of Kotlin's philosophy is pragmatism. This means that in the e
 </ul>
 </div>
 </div>
-<div id="outline-container-org5f09ee3" class="outline-3">
-<h3 id="org5f09ee3"><span class="section-number-3">1.2.</span> The purpose of this book</h3>
+<div id="outline-container-orgaf26237" class="outline-3">
+<h3 id="orgaf26237"><span class="section-number-3">1.2.</span> The purpose of this book</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The main goal of this book is to explain how to use different Kotlin features to achieve safe, readable, scalable, and efficient code.
@@ -206,8 +206,8 @@ This book concentrates on higher-level good practices that come from authorities
 </p>
 </div>
 </div>
-<div id="outline-container-org0b7d379" class="outline-3">
-<h3 id="org0b7d379"><span class="section-number-3">1.3.</span> For whom is this book written?</h3>
+<div id="outline-container-org2adaab8" class="outline-3">
+<h3 id="org2adaab8"><span class="section-number-3">1.3.</span> For whom is this book written?</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 I will assume that even experienced developers might not know some features. This is why I explain some concepts like:
@@ -222,17 +222,17 @@ I will assume that even experienced developers might not know some features. Thi
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf283d7c" class="outline-3">
-<h3 id="orgf283d7c"><span class="section-number-3">1.4.</span> Book design</h3>
+<div id="outline-container-org4f405af" class="outline-3">
+<h3 id="org4f405af"><span class="section-number-3">1.4.</span> Book design</h3>
 </div>
-<div id="outline-container-org9c8082e" class="outline-3">
-<h3 id="org9c8082e"><span class="section-number-3">1.5.</span> Chapters organization</h3>
+<div id="outline-container-orgbed9767" class="outline-3">
+<h3 id="orgbed9767"><span class="section-number-3">1.5.</span> Chapters organization</h3>
 </div>
-<div id="outline-container-org3e5bb6b" class="outline-3">
-<h3 id="org3e5bb6b"><span class="section-number-3">1.6.</span> How should this book be read?</h3>
+<div id="outline-container-org5c0ea01" class="outline-3">
+<h3 id="org5c0ea01"><span class="section-number-3">1.6.</span> How should this book be read?</h3>
 </div>
-<div id="outline-container-orgd734605" class="outline-3">
-<h3 id="orgd734605"><span class="section-number-3">1.7.</span> Labels</h3>
+<div id="outline-container-org5162e7c" class="outline-3">
+<h3 id="org5162e7c"><span class="section-number-3">1.7.</span> Labels</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Not Kotlin-specific</li>
@@ -241,26 +241,26 @@ I will assume that even experienced developers might not know some features. Thi
 </ul>
 </div>
 </div>
-<div id="outline-container-org03cfe3b" class="outline-3">
-<h3 id="org03cfe3b"><span class="section-number-3">1.8.</span> Suggestions</h3>
+<div id="outline-container-orgce98f48" class="outline-3">
+<h3 id="orgce98f48"><span class="section-number-3">1.8.</span> Suggestions</h3>
 </div>
 </div>
-<div id="outline-container-org74fb642" class="outline-2">
-<h2 id="org74fb642"><span class="section-number-2">2.</span> Part 1: Good code</h2>
+<div id="outline-container-orge52e408" class="outline-2">
+<h2 id="orge52e408"><span class="section-number-2">2.</span> Part 1: Good code</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org23728fb" class="outline-3">
-<h3 id="org23728fb"><span class="section-number-3">2.1.</span> Chapter 1: Safety</h3>
+<div id="outline-container-org8f4c9eb" class="outline-3">
+<h3 id="org8f4c9eb"><span class="section-number-3">2.1.</span> Chapter 1: Safety</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org210986b" class="outline-4">
-<h4 id="org210986b"><span class="section-number-4">2.1.1.</span> Item 1: Limit mutability</h4>
+<div id="outline-container-orgfa44dc2" class="outline-4">
+<h4 id="orgfa44dc2"><span class="section-number-4">2.1.1.</span> Item 1: Limit mutability</h4>
 </div>
-<div id="outline-container-org86a0387" class="outline-4">
-<h4 id="org86a0387"><span class="section-number-4">2.1.2.</span> Item 2: Minimize the scope of variables</h4>
+<div id="outline-container-org8482bcf" class="outline-4">
+<h4 id="org8482bcf"><span class="section-number-4">2.1.2.</span> Item 2: Minimize the scope of variables</h4>
 </div>
-<div id="outline-container-org61b67c9" class="outline-4">
-<h4 id="org61b67c9"><span class="section-number-4">2.1.3.</span> Item 3: Eliminate platform types as soon as possible</h4>
+<div id="outline-container-org1b88ae6" class="outline-4">
+<h4 id="org1b88ae6"><span class="section-number-4">2.1.3.</span> Item 3: Eliminate platform types as soon as possible</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 <i>Platform type</i> - a type that comes from another language and has unknown nullability.
@@ -288,16 +288,16 @@ What're the differences between <code>User!</code> and <code>User</code>?
 </p>
 </div>
 </div>
-<div id="outline-container-org0fffa51" class="outline-4">
-<h4 id="org0fffa51"><span class="section-number-4">2.1.4.</span> Item 4: Do not expose inferred types</h4>
+<div id="outline-container-org871ca87" class="outline-4">
+<h4 id="org871ca87"><span class="section-number-4">2.1.4.</span> Item 4: Do not expose inferred types</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 If we are not sure about the type, we should specify it. In an external API, we should always specify types. We cannot let them be changed by accident. Inferred types can be too restrictive or can too easily change when our project envolves.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc8cadd" class="outline-4">
-<h4 id="orgbc8cadd"><span class="section-number-4">2.1.5.</span> Item 5: Specify your expectations on arguments and state</h4>
+<div id="outline-container-org4012cbc" class="outline-4">
+<h4 id="org4012cbc"><span class="section-number-4">2.1.5.</span> Item 5: Specify your expectations on arguments and state</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <ul class="org-ul">
 <li><i>require</i> block: a universal way to specify expectations on arguments.</li>
@@ -307,47 +307,47 @@ If we are not sure about the type, we should specify it. In an external API, we 
 </ul>
 </div>
 </div>
-<div id="outline-container-org2363085" class="outline-4">
-<h4 id="org2363085"><span class="section-number-4">2.1.6.</span> Item 8: Handle nulls properly</h4>
+<div id="outline-container-orgdebc923" class="outline-4">
+<h4 id="orgdebc923"><span class="section-number-4">2.1.6.</span> Item 8: Handle nulls properly</h4>
 <div class="outline-text-4" id="text-2-1-6">
 </div>
-<div id="outline-container-org60601fd" class="outline-5">
-<h5 id="org60601fd"><span class="section-number-5">2.1.6.1.</span> Handling nulls safely</h5>
+<div id="outline-container-orgf68b127" class="outline-5">
+<h5 id="orgf68b127"><span class="section-number-5">2.1.6.1.</span> Handling nulls safely</h5>
 </div>
-<div id="outline-container-org4298ce3" class="outline-5">
-<h5 id="org4298ce3"><span class="section-number-5">2.1.6.2.</span> Throw an error</h5>
+<div id="outline-container-orgf410d6f" class="outline-5">
+<h5 id="orgf410d6f"><span class="section-number-5">2.1.6.2.</span> Throw an error</h5>
 </div>
-<div id="outline-container-org47d9e4d" class="outline-5">
-<h5 id="org47d9e4d"><span class="section-number-5">2.1.6.3.</span> Avoiding meaningless nullability</h5>
+<div id="outline-container-org632275e" class="outline-5">
+<h5 id="org632275e"><span class="section-number-5">2.1.6.3.</span> Avoiding meaningless nullability</h5>
 </div>
-<div id="outline-container-org4cacdcd" class="outline-5">
-<h5 id="org4cacdcd"><span class="section-number-5">2.1.6.4.</span> <code>lateinit</code> property and <code>notNull</code> delegate</h5>
+<div id="outline-container-org218e3df" class="outline-5">
+<h5 id="org218e3df"><span class="section-number-5">2.1.6.4.</span> <code>lateinit</code> property and <code>notNull</code> delegate</h5>
 </div>
 </div>
 </div>
-<div id="outline-container-org3119954" class="outline-3">
-<h3 id="org3119954"><span class="section-number-3">2.2.</span> Chatper 2: Readability</h3>
+<div id="outline-container-org98d9fad" class="outline-3">
+<h3 id="org98d9fad"><span class="section-number-3">2.2.</span> Chatper 2: Readability</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org515a5b7" class="outline-4">
-<h4 id="org515a5b7"><span class="section-number-4">2.2.1.</span> Item 11: Design for readability</h4>
+<div id="outline-container-orgea9abd3" class="outline-4">
+<h4 id="orgea9abd3"><span class="section-number-4">2.2.1.</span> Item 11: Design for readability</h4>
 <div class="outline-text-4" id="text-2-2-1">
 </div>
-<div id="outline-container-orge9ce116" class="outline-5">
-<h5 id="orge9ce116"><span class="section-number-5">2.2.1.1.</span> Reducing cognitive load</h5>
+<div id="outline-container-org56c0824" class="outline-5">
+<h5 id="org56c0824"><span class="section-number-5">2.2.1.1.</span> Reducing cognitive load</h5>
 </div>
-<div id="outline-container-org10db5e4" class="outline-5">
-<h5 id="org10db5e4"><span class="section-number-5">2.2.1.2.</span> Do not get extreme</h5>
+<div id="outline-container-orgf8ed677" class="outline-5">
+<h5 id="orgf8ed677"><span class="section-number-5">2.2.1.2.</span> Do not get extreme</h5>
 </div>
-<div id="outline-container-orgb94e68a" class="outline-5">
-<h5 id="orgb94e68a"><span class="section-number-5">2.2.1.3.</span> Conventions</h5>
+<div id="outline-container-org96c40cf" class="outline-5">
+<h5 id="org96c40cf"><span class="section-number-5">2.2.1.3.</span> Conventions</h5>
 </div>
 </div>
-<div id="outline-container-orge66a30f" class="outline-4">
-<h4 id="orge66a30f"><span class="section-number-4">2.2.2.</span> Item 12: Operator meaning should be consistent with its function name</h4>
+<div id="outline-container-org851a95f" class="outline-4">
+<h4 id="org851a95f"><span class="section-number-4">2.2.2.</span> Item 12: Operator meaning should be consistent with its function name</h4>
 </div>
-<div id="outline-container-org25de682" class="outline-4">
-<h4 id="org25de682"><span class="section-number-4">2.2.3.</span> Item 16: Properties should represent state, not behavior</h4>
+<div id="outline-container-orgdd7a01d" class="outline-4">
+<h4 id="orgdd7a01d"><span class="section-number-4">2.2.3.</span> Item 16: Properties should represent state, not behavior</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 Properties are essentially functions, we can make extension properties as well:
@@ -375,24 +375,24 @@ The most typical situations when we should not use properties, and we should use
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcb31cff" class="outline-4">
-<h4 id="orgcb31cff"><span class="section-number-4">2.2.4.</span> Item 17: Consider naming arguments</h4>
+<div id="outline-container-orgb41909c" class="outline-4">
+<h4 id="orgb41909c"><span class="section-number-4">2.2.4.</span> Item 17: Consider naming arguments</h4>
 </div>
-<div id="outline-container-org9b88678" class="outline-4">
-<h4 id="org9b88678"><span class="section-number-4">2.2.5.</span> Item 18: Respect coding conventions</h4>
+<div id="outline-container-org7afe558" class="outline-4">
+<h4 id="org7afe558"><span class="section-number-4">2.2.5.</span> Item 18: Respect coding conventions</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org352b94d" class="outline-2">
-<h2 id="org352b94d"><span class="section-number-2">3.</span> Part 2: Code design</h2>
+<div id="outline-container-org7d13f34" class="outline-2">
+<h2 id="org7d13f34"><span class="section-number-2">3.</span> Part 2: Code design</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgdec8aab" class="outline-3">
-<h3 id="orgdec8aab"><span class="section-number-3">3.1.</span> Chapter 3: Reusability</h3>
+<div id="outline-container-org29b5041" class="outline-3">
+<h3 id="org29b5041"><span class="section-number-3">3.1.</span> Chapter 3: Reusability</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org5348b45" class="outline-4">
-<h4 id="org5348b45"><span class="section-number-4">3.1.1.</span> Item 19: Do not repeat knowledge</h4>
+<div id="outline-container-org32fd35e" class="outline-4">
+<h4 id="org32fd35e"><span class="section-number-4">3.1.1.</span> Item 19: Do not repeat knowledge</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 The biggest enemy of changes is knowledge repetition.
@@ -403,11 +403,11 @@ Are they more likely going to change together or separately?
 </p>
 </div>
 </div>
-<div id="outline-container-org33c3a6c" class="outline-4">
-<h4 id="org33c3a6c"><span class="section-number-4">3.1.2.</span> Item 20: Do not repeat common algorithms</h4>
+<div id="outline-container-org2d8ac10" class="outline-4">
+<h4 id="org2d8ac10"><span class="section-number-4">3.1.2.</span> Item 20: Do not repeat common algorithms</h4>
 </div>
-<div id="outline-container-orgd7a463d" class="outline-4">
-<h4 id="orgd7a463d"><span class="section-number-4">3.1.3.</span> Item 21: Use Property delegation to extract common property patterns</h4>
+<div id="outline-container-orged3c3fb" class="outline-4">
+<h4 id="orged3c3fb"><span class="section-number-4">3.1.3.</span> Item 21: Use Property delegation to extract common property patterns</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
 <pre class="src src-kotlin">var token: String? by LoggingProperty(null)
@@ -456,32 +456,32 @@ private class LoggingProperty&lt;T&gt;(var value: T) {
 </div>
 </div>
 </div>
-<div id="outline-container-org3e8b513" class="outline-4">
-<h4 id="org3e8b513"><span class="section-number-4">3.1.4.</span> Item 23: Avoid shadowing type parameters</h4>
+<div id="outline-container-orgd859dd2" class="outline-4">
+<h4 id="orgd859dd2"><span class="section-number-4">3.1.4.</span> Item 23: Avoid shadowing type parameters</h4>
 </div>
-<div id="outline-container-org152d29e" class="outline-4">
-<h4 id="org152d29e"><span class="section-number-4">3.1.5.</span> Item 24: Consider variance for generic types</h4>
+<div id="outline-container-org11a9c90" class="outline-4">
+<h4 id="org11a9c90"><span class="section-number-4">3.1.5.</span> Item 24: Consider variance for generic types</h4>
 </div>
-<div id="outline-container-orgf45a7c4" class="outline-4">
-<h4 id="orgf45a7c4"><span class="section-number-4">3.1.6.</span> Item 25: Reuse between different platforms by extracting common modules</h4>
+<div id="outline-container-org5dac026" class="outline-4">
+<h4 id="org5dac026"><span class="section-number-4">3.1.6.</span> Item 25: Reuse between different platforms by extracting common modules</h4>
 </div>
 </div>
-<div id="outline-container-org385c69e" class="outline-3">
-<h3 id="org385c69e"><span class="section-number-3">3.2.</span> Chapter 4: Abstraction design</h3>
+<div id="outline-container-org60a2051" class="outline-3">
+<h3 id="org60a2051"><span class="section-number-3">3.2.</span> Chapter 4: Abstraction design</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Car metaphor
 </p>
 </div>
-<div id="outline-container-org0bd581b" class="outline-4">
-<h4 id="org0bd581b"><span class="section-number-4">3.2.1.</span> Item 26: Each function should be written in terms of a single level of abstraction</h4>
+<div id="outline-container-org7be0827" class="outline-4">
+<h4 id="org7be0827"><span class="section-number-4">3.2.1.</span> Item 26: Each function should be written in terms of a single level of abstraction</h4>
 </div>
-<div id="outline-container-orgcf66f23" class="outline-4">
-<h4 id="orgcf66f23"><span class="section-number-4">3.2.2.</span> Item 27: Use abstraction to protect code against changes</h4>
+<div id="outline-container-org3878296" class="outline-4">
+<h4 id="org3878296"><span class="section-number-4">3.2.2.</span> Item 27: Use abstraction to protect code against changes</h4>
 <div class="outline-text-4" id="text-3-2-2">
 </div>
-<div id="outline-container-orgb1c8855" class="outline-5">
-<h5 id="orgb1c8855"><span class="section-number-5">3.2.2.1.</span> Abstractions give freedom</h5>
+<div id="outline-container-orgb9a8843" class="outline-5">
+<h5 id="orgb9a8843"><span class="section-number-5">3.2.2.1.</span> Abstractions give freedom</h5>
 <div class="outline-text-5" id="text-3-2-2-1">
 <ul class="org-ul">
 <li>Extracting constant</li>
@@ -495,26 +495,26 @@ Car metaphor
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb48c053" class="outline-5">
-<h5 id="orgb48c053"><span class="section-number-5">3.2.2.2.</span> Problems with abstraction</h5>
+<div id="outline-container-orgfd5b806" class="outline-5">
+<h5 id="orgfd5b806"><span class="section-number-5">3.2.2.2.</span> Problems with abstraction</h5>
 </div>
 </div>
-<div id="outline-container-org980e8c6" class="outline-4">
-<h4 id="org980e8c6"><span class="section-number-4">3.2.3.</span> Item 28: Specify API stability</h4>
+<div id="outline-container-org90c85cb" class="outline-4">
+<h4 id="org90c85cb"><span class="section-number-4">3.2.3.</span> Item 28: Specify API stability</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Version names, documentation, and annotations.
 </p>
 </div>
 </div>
-<div id="outline-container-orge4c454a" class="outline-4">
-<h4 id="orge4c454a"><span class="section-number-4">3.2.4.</span> Item 29: Consider wrapping external API</h4>
+<div id="outline-container-orgfc86ef0" class="outline-4">
+<h4 id="orgfc86ef0"><span class="section-number-4">3.2.4.</span> Item 29: Consider wrapping external API</h4>
 </div>
-<div id="outline-container-orgfe3219c" class="outline-4">
-<h4 id="orgfe3219c"><span class="section-number-4">3.2.5.</span> Item 30: Minimize elements visibility</h4>
+<div id="outline-container-orge51e393" class="outline-4">
+<h4 id="orge51e393"><span class="section-number-4">3.2.5.</span> Item 30: Minimize elements visibility</h4>
 </div>
-<div id="outline-container-org8611a08" class="outline-4">
-<h4 id="org8611a08"><span class="section-number-4">3.2.6.</span> Item 31: Define contract with documentation</h4>
+<div id="outline-container-org766f433" class="outline-4">
+<h4 id="org766f433"><span class="section-number-4">3.2.6.</span> Item 31: Define contract with documentation</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <p>
 When the behavior is not documented and the element name is not clear, developers will depend on current implementation instead of on the abstraction we intended to create.
@@ -525,16 +525,16 @@ When a contract is well specified, creators do not need to worry about how the c
 </p>
 </div>
 </div>
-<div id="outline-container-orgf4dad37" class="outline-4">
-<h4 id="orgf4dad37"><span class="section-number-4">3.2.7.</span> Item 32: Respect abstraction contracts</h4>
+<div id="outline-container-orga6a25cd" class="outline-4">
+<h4 id="orga6a25cd"><span class="section-number-4">3.2.7.</span> Item 32: Respect abstraction contracts</h4>
 </div>
 </div>
-<div id="outline-container-orgdbe8ac4" class="outline-3">
-<h3 id="orgdbe8ac4"><span class="section-number-3">3.3.</span> Chapter 5: Object creation</h3>
+<div id="outline-container-orga0f7b2e" class="outline-3">
+<h3 id="orga0f7b2e"><span class="section-number-3">3.3.</span> Chapter 5: Object creation</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org6fb15a8" class="outline-4">
-<h4 id="org6fb15a8"><span class="section-number-4">3.3.1.</span> Item 33: Consider factory functions instead of constructors</h4>
+<div id="outline-container-orge95daac" class="outline-4">
+<h4 id="orge95daac"><span class="section-number-4">3.3.1.</span> Item 33: Consider factory functions instead of constructors</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Unlike constructors, functions have names.</li>
@@ -551,8 +551,8 @@ When a contract is well specified, creators do not need to worry about how the c
 Factory functions are mainly a competition to secondary constructors.
 </p>
 </div>
-<div id="outline-container-orgf768c89" class="outline-5">
-<h5 id="orgf768c89"><span class="section-number-5">3.3.1.1.</span> Companion object factory function</h5>
+<div id="outline-container-org9ef3364" class="outline-5">
+<h5 id="org9ef3364"><span class="section-number-5">3.3.1.1.</span> Companion object factory function</h5>
 <div class="outline-text-5" id="text-3-3-1-1">
 <ul class="org-ul">
 <li><code>from</code>: A type-conversion function that takes a single parameter and returns a corresponding instance of the same type, for example: <code>val date: Date = Date.from(instant)</code></li>
@@ -565,8 +565,8 @@ Factory functions are mainly a competition to secondary constructors.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd7cfcb8" class="outline-5">
-<h5 id="orgd7cfcb8"><span class="section-number-5">3.3.1.2.</span> Extension factory functions</h5>
+<div id="outline-container-orga0d7132" class="outline-5">
+<h5 id="orga0d7132"><span class="section-number-5">3.3.1.2.</span> Extension factory functions</h5>
 <div class="outline-text-5" id="text-3-3-1-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">interface Tool {
@@ -580,16 +580,16 @@ Tool.create( /*...*/ )
 </div>
 </div>
 </div>
-<div id="outline-container-org32ec02a" class="outline-5">
-<h5 id="org32ec02a"><span class="section-number-5">3.3.1.3.</span> Top-level functions</h5>
+<div id="outline-container-org78fe50f" class="outline-5">
+<h5 id="org78fe50f"><span class="section-number-5">3.3.1.3.</span> Top-level functions</h5>
 <div class="outline-text-5" id="text-3-3-1-3">
 <p>
 <code>listOf</code>, <code>setOf</code> and <code>mapOf</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc651b56" class="outline-5">
-<h5 id="orgc651b56"><span class="section-number-5">3.3.1.4.</span> Fake constructors</h5>
+<div id="outline-container-org5495aae" class="outline-5">
+<h5 id="org5495aae"><span class="section-number-5">3.3.1.4.</span> Fake constructors</h5>
 <div class="outline-text-5" id="text-3-3-1-4">
 <p>
 Constructors in Kotlin are used the same way as top-level functions.
@@ -603,8 +603,8 @@ val reference: () -&gt; A = ::A
 </div>
 </div>
 </div>
-<div id="outline-container-orgfbb7bb6" class="outline-5">
-<h5 id="orgfbb7bb6"><span class="section-number-5">3.3.1.5.</span> Methods on a factory class</h5>
+<div id="outline-container-orgb612565" class="outline-5">
+<h5 id="orgb612565"><span class="section-number-5">3.3.1.5.</span> Methods on a factory class</h5>
 <div class="outline-text-5" id="text-3-3-1-5">
 <div class="org-src-container">
 <pre class="src src-kotlin">data class Student(
@@ -630,8 +630,8 @@ Factory classes can have properties and those properties can be used to optimize
 </div>
 </div>
 </div>
-<div id="outline-container-org95d66a1" class="outline-4">
-<h4 id="org95d66a1"><span class="section-number-4">3.3.2.</span> Item 34: Consider a primary constructor with named optional arguments</h4>
+<div id="outline-container-org5e69f5d" class="outline-4">
+<h4 id="org5e69f5d"><span class="section-number-4">3.3.2.</span> Item 34: Consider a primary constructor with named optional arguments</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <div class="org-src-container">
 <pre class="src src-kotlin">val dialog = context.alert(R.string.fire_missiles) {
@@ -651,37 +651,37 @@ These kinds of DSL builders are generally preferred over classic builder pattern
 </p>
 </div>
 </div>
-<div id="outline-container-org6a270f2" class="outline-4">
-<h4 id="org6a270f2"><span class="section-number-4">3.3.3.</span> Item 35: Consider defining a DSL for complex object creation</h4>
+<div id="outline-container-orgf323560" class="outline-4">
+<h4 id="orgf323560"><span class="section-number-4">3.3.3.</span> Item 35: Consider defining a DSL for complex object creation</h4>
 </div>
 </div>
-<div id="outline-container-orgad8698b" class="outline-3">
-<h3 id="orgad8698b"><span class="section-number-3">3.4.</span> Chapter 6: Class design</h3>
+<div id="outline-container-orgc8e07e8" class="outline-3">
+<h3 id="orgc8e07e8"><span class="section-number-3">3.4.</span> Chapter 6: Class design</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org5b979fe" class="outline-4">
-<h4 id="org5b979fe"><span class="section-number-4">3.4.1.</span> Item 36: Prefer composition over inheritance</h4>
+<div id="outline-container-org7ce36a4" class="outline-4">
+<h4 id="org7ce36a4"><span class="section-number-4">3.4.1.</span> Item 36: Prefer composition over inheritance</h4>
 </div>
-<div id="outline-container-orgd518bf3" class="outline-4">
-<h4 id="orgd518bf3"><span class="section-number-4">3.4.2.</span> Item 37: Use the data modifier to represent a bundle of data</h4>
+<div id="outline-container-orgb91713c" class="outline-4">
+<h4 id="orgb91713c"><span class="section-number-4">3.4.2.</span> Item 37: Use the data modifier to represent a bundle of data</h4>
 </div>
-<div id="outline-container-org5d8fd8f" class="outline-4">
-<h4 id="org5d8fd8f"><span class="section-number-4">3.4.3.</span> Item 38: Use function types instead of interfaces to pass operations and actions</h4>
+<div id="outline-container-org5c8db80" class="outline-4">
+<h4 id="org5c8db80"><span class="section-number-4">3.4.3.</span> Item 38: Use function types instead of interfaces to pass operations and actions</h4>
 </div>
-<div id="outline-container-orgf8cb079" class="outline-4">
-<h4 id="orgf8cb079"><span class="section-number-4">3.4.4.</span> Item 39: Prefer class hierarchies to tagged classes</h4>
+<div id="outline-container-org809aca3" class="outline-4">
+<h4 id="org809aca3"><span class="section-number-4">3.4.4.</span> Item 39: Prefer class hierarchies to tagged classes</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <p>
 sealed classes
 </p>
 </div>
 </div>
-<div id="outline-container-org67d0f0e" class="outline-4">
-<h4 id="org67d0f0e"><span class="section-number-4">3.4.5.</span> Item 40: Respect the contract of <code>equals</code></h4>
+<div id="outline-container-org8a57eda" class="outline-4">
+<h4 id="org8a57eda"><span class="section-number-4">3.4.5.</span> Item 40: Respect the contract of <code>equals</code></h4>
 <div class="outline-text-4" id="text-3-4-5">
 </div>
-<div id="outline-container-orgd270ff0" class="outline-5">
-<h5 id="orgd270ff0"><span class="section-number-5">3.4.5.1.</span> Equality</h5>
+<div id="outline-container-org1408db2" class="outline-5">
+<h5 id="org1408db2"><span class="section-number-5">3.4.5.1.</span> Equality</h5>
 <div class="outline-text-5" id="text-3-4-5-1">
 <p>
 In kotlin, there are two types of equality:
@@ -692,16 +692,16 @@ In kotlin, there are two types of equality:
 </ul>
 </div>
 </div>
-<div id="outline-container-org5a36e62" class="outline-5">
-<h5 id="org5a36e62"><span class="section-number-5">3.4.5.2.</span> Why do we need equals?</h5>
+<div id="outline-container-orgdef8d34" class="outline-5">
+<h5 id="orgdef8d34"><span class="section-number-5">3.4.5.2.</span> Why do we need equals?</h5>
 <div class="outline-text-5" id="text-3-4-5-2">
 <p>
 The default implementation of <code>equals</code> coming from <code>Any</code> checks if another object is exactly the same instance. Just like referential equality (<code>===</code>). It means that every object by default is unique.
 </p>
 </div>
 </div>
-<div id="outline-container-org0a39edc" class="outline-5">
-<h5 id="org0a39edc"><span class="section-number-5">3.4.5.3.</span> When to implement <code>equals</code> ourselves</h5>
+<div id="outline-container-org9cdd6a8" class="outline-5">
+<h5 id="org9cdd6a8"><span class="section-number-5">3.4.5.3.</span> When to implement <code>equals</code> ourselves</h5>
 <div class="outline-text-5" id="text-3-4-5-3">
 <ul class="org-ul">
 <li>We need its logic to differ from the default one</li>
@@ -711,15 +711,15 @@ The default implementation of <code>equals</code> coming from <code>Any</code> c
 </div>
 </div>
 </div>
-<div id="outline-container-orgacf7c22" class="outline-4">
-<h4 id="orgacf7c22"><span class="section-number-4">3.4.6.</span> Item 41: Respect the contract of <code>hashCode</code></h4>
+<div id="outline-container-org11f8bd6" class="outline-4">
+<h4 id="org11f8bd6"><span class="section-number-4">3.4.6.</span> Item 41: Respect the contract of <code>hashCode</code></h4>
 <div class="outline-text-4" id="text-3-4-6">
 </div>
-<div id="outline-container-orgbb7dabb" class="outline-5">
-<h5 id="orgbb7dabb"><span class="section-number-5">3.4.6.1.</span> Hash table</h5>
+<div id="outline-container-org7661f72" class="outline-5">
+<h5 id="org7661f72"><span class="section-number-5">3.4.6.1.</span> Hash table</h5>
 </div>
-<div id="outline-container-org51f2524" class="outline-5">
-<h5 id="org51f2524"><span class="section-number-5">3.4.6.2.</span> Problem with mutability</h5>
+<div id="outline-container-org8f92b76" class="outline-5">
+<h5 id="org8f92b76"><span class="section-number-5">3.4.6.2.</span> Problem with mutability</h5>
 <div class="outline-text-5" id="text-3-4-6-2">
 <p>
 A hash is calculated for an element only when this element is added.
@@ -727,8 +727,8 @@ A hash is calculated for an element only when this element is added.
 </div>
 </div>
 </div>
-<div id="outline-container-org9a7975f" class="outline-4">
-<h4 id="org9a7975f"><span class="section-number-4">3.4.7.</span> Item 42: Respect the contract of <code>compareTo</code></h4>
+<div id="outline-container-orgded132c" class="outline-4">
+<h4 id="orgded132c"><span class="section-number-4">3.4.7.</span> Item 42: Respect the contract of <code>compareTo</code></h4>
 <div class="outline-text-4" id="text-3-4-7">
 <div class="org-src-container">
 <pre class="src src-kotlin">class User(val name: String, val surname: String)
@@ -739,8 +739,8 @@ users.sortedWith(compareBy({ it.surname }, { it.name }))
 </div>
 </div>
 </div>
-<div id="outline-container-org2841ce8" class="outline-4">
-<h4 id="org2841ce8"><span class="section-number-4">3.4.8.</span> Item 43: Consider extracting non-essential parts of your API into extensions</h4>
+<div id="outline-container-org731ca31" class="outline-4">
+<h4 id="org731ca31"><span class="section-number-4">3.4.8.</span> Item 43: Consider extracting non-essential parts of your API into extensions</h4>
 <div class="outline-text-4" id="text-3-4-8">
 <p>
 The biggest difference between members and extensions in terms of use is that <b>extensions need to be imported separately</b>.
@@ -768,8 +768,8 @@ Extensions are <b>not listed as members in the class reference</b>. This is why 
 </p>
 </div>
 </div>
-<div id="outline-container-orgc305aa4" class="outline-4">
-<h4 id="orgc305aa4"><span class="section-number-4">3.4.9.</span> Item 44: Avoid member extensions</h4>
+<div id="outline-container-orgba9c482" class="outline-4">
+<h4 id="orgba9c482"><span class="section-number-4">3.4.9.</span> Item 44: Avoid member extensions</h4>
 <div class="outline-text-4" id="text-3-4-9">
 <div class="org-src-container">
 <pre class="src src-kotlin">// Bad practice, do not do this
@@ -785,20 +785,20 @@ class PhoneBookIncorrect {
 </div>
 </div>
 </div>
-<div id="outline-container-org8355344" class="outline-2">
-<h2 id="org8355344"><span class="section-number-2">4.</span> Part 3: Efficiency</h2>
+<div id="outline-container-org34033a1" class="outline-2">
+<h2 id="org34033a1"><span class="section-number-2">4.</span> Part 3: Efficiency</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org02dcdba" class="outline-3">
-<h3 id="org02dcdba"><span class="section-number-3">4.1.</span> Chapter 7: Make it cheap</h3>
+<div id="outline-container-orgc652793" class="outline-3">
+<h3 id="orgc652793"><span class="section-number-3">4.1.</span> Chapter 7: Make it cheap</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-org7baabb6" class="outline-4">
-<h4 id="org7baabb6"><span class="section-number-4">4.1.1.</span> Item 46: Use inline modifier for functions with parameters of functional types</h4>
+<div id="outline-container-org87ea243" class="outline-4">
+<h4 id="org87ea243"><span class="section-number-4">4.1.1.</span> Item 46: Use inline modifier for functions with parameters of functional types</h4>
 <div class="outline-text-4" id="text-4-1-1">
 </div>
-<div id="outline-container-orgdb7f5b3" class="outline-5">
-<h5 id="orgdb7f5b3"><span class="section-number-5">4.1.1.1.</span> A type argument can be reified</h5>
+<div id="outline-container-org6902e11" class="outline-5">
+<h5 id="org6902e11"><span class="section-number-5">4.1.1.1.</span> A type argument can be reified</h5>
 <div class="outline-text-5" id="text-4-1-1-1">
 <p>
 Function calls are replaced with its body, so type parameters uses can be replaced with type arguments, by using the <code>reified</code> modifier:
@@ -811,14 +811,14 @@ Function calls are replaced with its body, so type parameters uses can be replac
 </div>
 </div>
 </div>
-<div id="outline-container-orga8ef3c2" class="outline-5">
-<h5 id="orga8ef3c2"><span class="section-number-5">4.1.1.2.</span> Functions with functional parameters are faster when they are inlined</h5>
+<div id="outline-container-org1bf9f06" class="outline-5">
+<h5 id="org1bf9f06"><span class="section-number-5">4.1.1.2.</span> Functions with functional parameters are faster when they are inlined</h5>
 </div>
-<div id="outline-container-orgf8f4d05" class="outline-5">
-<h5 id="orgf8f4d05"><span class="section-number-5">4.1.1.3.</span> Non-local return is allowed</h5>
+<div id="outline-container-orgaf69838" class="outline-5">
+<h5 id="orgaf69838"><span class="section-number-5">4.1.1.3.</span> Non-local return is allowed</h5>
 </div>
-<div id="outline-container-org8d164e5" class="outline-5">
-<h5 id="org8d164e5"><span class="section-number-5">4.1.1.4.</span> Costs of inline modifier</h5>
+<div id="outline-container-org5407741" class="outline-5">
+<h5 id="org5407741"><span class="section-number-5">4.1.1.4.</span> Costs of inline modifier</h5>
 <div class="outline-text-5" id="text-4-1-1-4">
 <ul class="org-ul">
 <li>Inline functions cannot be recursive.</li>
@@ -826,16 +826,16 @@ Function calls are replaced with its body, so type parameters uses can be replac
 </ul>
 </div>
 </div>
-<div id="outline-container-orgebf13f0" class="outline-5">
-<h5 id="orgebf13f0"><span class="section-number-5">4.1.1.5.</span> Crossinline and noinline</h5>
+<div id="outline-container-orgf98dbd4" class="outline-5">
+<h5 id="orgf98dbd4"><span class="section-number-5">4.1.1.5.</span> Crossinline and noinline</h5>
 </div>
 </div>
-<div id="outline-container-orgb03e508" class="outline-4">
-<h4 id="orgb03e508"><span class="section-number-4">4.1.2.</span> Item 47: Consider using inline classes</h4>
+<div id="outline-container-org117f546" class="outline-4">
+<h4 id="org117f546"><span class="section-number-4">4.1.2.</span> Item 47: Consider using inline classes</h4>
 <div class="outline-text-4" id="text-4-1-2">
 </div>
-<div id="outline-container-org5ff3ee3" class="outline-5">
-<h5 id="org5ff3ee3"><span class="section-number-5">4.1.2.1.</span> Indicate unit of measure</h5>
+<div id="outline-container-orgd1c7f40" class="outline-5">
+<h5 id="orgd1c7f40"><span class="section-number-5">4.1.2.1.</span> Indicate unit of measure</h5>
 <div class="outline-text-5" id="text-4-1-2-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">inline class Minutes(val minutes: Int) {
@@ -852,26 +852,26 @@ inline val Int.ms get() = Millis(this)
 </div>
 </div>
 </div>
-<div id="outline-container-org8e796b8" class="outline-5">
-<h5 id="org8e796b8"><span class="section-number-5">4.1.2.2.</span> Protect us from type misuse</h5>
+<div id="outline-container-org94cd5cc" class="outline-5">
+<h5 id="org94cd5cc"><span class="section-number-5">4.1.2.2.</span> Protect us from type misuse</h5>
 </div>
-<div id="outline-container-org3de1088" class="outline-5">
-<h5 id="org3de1088"><span class="section-number-5">4.1.2.3.</span> Inline classes and interfaces</h5>
+<div id="outline-container-org0c38c5f" class="outline-5">
+<h5 id="org0c38c5f"><span class="section-number-5">4.1.2.3.</span> Inline classes and interfaces</h5>
 </div>
-<div id="outline-container-org7a7c359" class="outline-5">
-<h5 id="org7a7c359"><span class="section-number-5">4.1.2.4.</span> Typealias</h5>
-</div>
-</div>
-<div id="outline-container-orgba96094" class="outline-4">
-<h4 id="orgba96094"><span class="section-number-4">4.1.3.</span> Item 48: Eliminate obsolete object references</h4>
+<div id="outline-container-orge327572" class="outline-5">
+<h5 id="orge327572"><span class="section-number-5">4.1.2.4.</span> Typealias</h5>
 </div>
 </div>
-<div id="outline-container-org5330fc1" class="outline-3">
-<h3 id="org5330fc1"><span class="section-number-3">4.2.</span> Chapter 8: Efficient collection processing</h3>
+<div id="outline-container-org78d339e" class="outline-4">
+<h4 id="org78d339e"><span class="section-number-4">4.1.3.</span> Item 48: Eliminate obsolete object references</h4>
+</div>
+</div>
+<div id="outline-container-org11539c3" class="outline-3">
+<h3 id="org11539c3"><span class="section-number-3">4.2.</span> Chapter 8: Efficient collection processing</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org819574b" class="outline-4">
-<h4 id="org819574b"><span class="section-number-4">4.2.1.</span> Item 50: Limit the number of operations</h4>
+<div id="outline-container-org62ffc73" class="outline-4">
+<h4 id="org62ffc73"><span class="section-number-4">4.2.1.</span> Item 50: Limit the number of operations</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
 <pre class="src src-kotlin">class Student(val name: String?)
@@ -995,8 +995,8 @@ fun List&lt;Student&gt;.getNames(): List&lt;String&gt; = this.mapNotNull { it.na
 </table>
 </div>
 </div>
-<div id="outline-container-orgb9c13dd" class="outline-4">
-<h4 id="orgb9c13dd"><span class="section-number-4">4.2.2.</span> Item 51: Consider Arrays with primitives for performance-critical processing</h4>
+<div id="outline-container-orgb0928c1" class="outline-4">
+<h4 id="orgb0928c1"><span class="section-number-4">4.2.2.</span> Item 51: Consider Arrays with primitives for performance-critical processing</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1036,8 +1036,8 @@ fun List&lt;Student&gt;.getNames(): List&lt;String&gt; = this.mapNotNull { it.na
 </table>
 </div>
 </div>
-<div id="outline-container-orga5f3edf" class="outline-4">
-<h4 id="orga5f3edf"><span class="section-number-4">4.2.3.</span> Item 52: Consider using mutable collections</h4>
+<div id="outline-container-orgdf34f52" class="outline-4">
+<h4 id="orgdf34f52"><span class="section-number-4">4.2.3.</span> Item 52: Consider using mutable collections</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 In local scope we generally do not need the control over how they are changed, so mutable collections should be preferred. Especially in utils, where element insertion might happen many times.

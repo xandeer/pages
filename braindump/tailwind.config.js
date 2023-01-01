@@ -11,7 +11,7 @@ module.exports = {
 					css: {
 						'--tw-prose-links': theme('colors.blue.500'),
 						'--tw-prose-bold': theme('colors.rose.500'),
-						'--tw-prose-pre-bg': theme('colors.gray.100'),
+						'--tw-prose-pre-bg': '#ede5c3',
 						'--tw-prose-pre-code': theme('colors.gray.800'),
 						'blockquote p:first-of-type::before': {
 							content: 'none'
